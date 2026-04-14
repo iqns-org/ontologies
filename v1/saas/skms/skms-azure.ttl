@@ -1,4 +1,4 @@
-@prefix azure: <https://iqns.org/v1/itil/azure#> .
+@prefix azure: <https://iqns.org/v1/skms/azure#> .
 @prefix itil:  <https://iqns.org/itil#> .
 @prefix dct:   <http://purl.org/dc/terms/> .
 @prefix owl:   <http://www.w3.org/2002/07/owl#> .
