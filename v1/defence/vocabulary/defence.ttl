@@ -1,4 +1,4 @@
-@prefix dg:  <https://iqns.org/v1/defence#> .
+@prefix defence-core:  <https://iqns.org/v1/defence#> .
 @prefix ai:  <https://iqns.org/v1/ai#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -9,7 +9,7 @@
 
 # ── Ontology ─────────────────────────────────────────────────────────────────
 
-dg:Ontology
+defence-core:Ontology
     a owl:Ontology ;
     dct:title       "Defence and National Security Core Vocabulary"@en ;
     skos:definition "Abstract vocabulary for defence and national security AI governance — autonomous weapons, lethal autonomy, responsible AI for national security, and counter-AI capabilities. Extends ai: with defence-specific dimensions, lifecycle stages, and stakeholders."@en ;
@@ -19,80 +19,80 @@ dg:Ontology
 
 # ── Defence-Specific Properties ───────────────────────────────────────────────
 
-dg:hasAutonomyLevel
+defence-core:hasAutonomyLevel
     a owl:ObjectProperty ;
     skos:prefLabel  "has autonomy level"@en ;
-    rdfs:range  dg:AutonomyLevel ;
+    rdfs:range  defence-core:AutonomyLevel ;
 .
-dg:requiresHumanInLoop
+defence-core:requiresHumanInLoop
     a owl:DatatypeProperty ;
     skos:prefLabel  "requires human in the loop"@en ;
     rdfs:range  xsd:boolean ;
 .
-dg:hasClassificationLevel
+defence-core:hasClassificationLevel
     a owl:ObjectProperty ;
     skos:prefLabel  "has classification level"@en ;
-    rdfs:range  dg:ClassificationLevel ;
+    rdfs:range  defence-core:ClassificationLevel ;
 .
 
 # ── Autonomy Levels ───────────────────────────────────────────────────────────
 
-dg:HumanInTheLoop
-    a dg:AutonomyLevel ; a skos:Concept ;
+defence-core:HumanInTheLoop
+    a defence-core:AutonomyLevel ; a skos:Concept ;
     skos:prefLabel  "Human in the Loop (HITL)"@en ;
     skos:definition "Human makes or approves every significant action or decision — AI provides decision support only. Required for lethal force decisions under DoD Directive 3000.09."@en ;
 .
-dg:HumanOnTheLoop
-    a dg:AutonomyLevel ; a skos:Concept ;
+defence-core:HumanOnTheLoop
+    a defence-core:AutonomyLevel ; a skos:Concept ;
     skos:prefLabel  "Human on the Loop (HOTL)"@en ;
     skos:definition "AI system can take actions autonomously but a human monitors and can intervene — operator sets parameters and monitors execution."@en ;
 .
-dg:HumanOutOfTheLoop
-    a dg:AutonomyLevel ; a skos:Concept ;
+defence-core:HumanOutOfTheLoop
+    a defence-core:AutonomyLevel ; a skos:Concept ;
     skos:prefLabel  "Human out of the Loop (Autonomous)"@en ;
     skos:definition "System operates without real-time human control — fully autonomous systems engaging lethal targets are prohibited absent human judgement under DoD Directive 3000.09."@en ;
 .
 
 # ── Classification Levels (US) ────────────────────────────────────────────────
 
-dg:Unclassified
-    a dg:ClassificationLevel ; a skos:Concept ;
+defence-core:Unclassified
+    a defence-core:ClassificationLevel ; a skos:Concept ;
     skos:prefLabel  "Unclassified (U)"@en ;
 .
-dg:CUI
-    a dg:ClassificationLevel ; a skos:Concept ;
+defence-core:CUI
+    a defence-core:ClassificationLevel ; a skos:Concept ;
     skos:prefLabel  "Controlled Unclassified Information (CUI)"@en ;
 .
-dg:SecretClassified
-    a dg:ClassificationLevel ; a skos:Concept ;
+defence-core:SecretClassified
+    a defence-core:ClassificationLevel ; a skos:Concept ;
     skos:prefLabel  "Secret (S)"@en ;
 .
-dg:TopSecret
-    a dg:ClassificationLevel ; a skos:Concept ;
+defence-core:TopSecret
+    a defence-core:ClassificationLevel ; a skos:Concept ;
     skos:prefLabel  "Top Secret (TS)"@en ;
 .
 
 # ── Defence AI Dimensions ─────────────────────────────────────────────────────
 
-dg:LegalCompliance
+defence-core:LegalCompliance
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Legal Compliance (IHL)"@en ;
     skos:definition "Compliance with International Humanitarian Law (IHL) — distinction, proportionality, precaution. AI weapons must be capable of meeting IHL requirements; commander retains responsibility."@en ;
     skos:relatedMatch ai:Accountability ;
 .
-dg:MeaningfulHumanControl
+defence-core:MeaningfulHumanControl
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Meaningful Human Control"@en ;
     skos:definition "Human military commanders maintain sufficient understanding and authority over AI-enabled weapons to maintain accountability under IHL — the core principle of DoD Directive 3000.09."@en ;
     skos:broadMatch ai:HumanOversight ;
 .
-dg:MissionReliability
+defence-core:MissionReliability
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Mission Reliability"@en ;
     skos:definition "AI systems used in defence must perform reliably under adversarial conditions including electronic warfare, sensor spoofing, and contested environments."@en ;
     skos:broadMatch ai:Robustness ;
 .
-dg:CounterAIReadiness
+defence-core:CounterAIReadiness
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Counter-AI and Adversarial Robustness"@en ;
     skos:definition "Military AI systems must be robust against adversarial ML attacks — model poisoning, adversarial inputs, sensor deception — particularly salient for computer vision and signal processing applications."@en ;
@@ -101,22 +101,22 @@ dg:CounterAIReadiness
 
 # ── Defence AI Lifecycle ──────────────────────────────────────────────────────
 
-dg:RequirementGeneration
+defence-core:RequirementGeneration
     a ai:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "AI Requirement Generation"@en ;
     skos:definition "Definition of capability need and AI system requirements — includes human-machine teaming concept, autonomy level determination, and IHL compliance analysis."@en ;
 .
-dg:AcquisitionAndDevelopment
+defence-core:AcquisitionAndDevelopment
     a ai:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Acquisition and Development"@en ;
     skos:definition "Procurement or development of defence AI systems — including supplier ethics requirements, testing and evaluation plans, and red-teaming against adversarial scenarios."@en ;
 .
-dg:TestEvaluationValidation
+defence-core:TestEvaluationValidation
     a ai:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Test, Evaluation, Validation and Verification (TEVV)"@en ;
     skos:definition "Rigorous testing of defence AI systems including operational testing, adversarial red-teaming, and IHL compliance assessment — mandatory before operational deployment."@en ;
 .
-dg:OperationalDeployment
+defence-core:OperationalDeployment
     a ai:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Operational Deployment"@en ;
     skos:definition "Active use of AI systems in military operations — requires ongoing monitoring, operator training, and defined disengagement and override procedures."@en ;
@@ -124,22 +124,22 @@ dg:OperationalDeployment
 
 # ── Stakeholders ──────────────────────────────────────────────────────────────
 
-dg:MilitaryCommander
+defence-core:MilitaryCommander
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Military Commander"@en ;
     skos:definition "Senior officer with command authority and accountability for AI-enabled military operations — retains legal responsibility under IHL for actions of human-machine teams."@en ;
 .
-dg:SystemOperator
+defence-core:SystemOperator
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "AI System Operator"@en ;
     skos:definition "Military personnel operating AI-enabled systems — responsible for monitoring system behaviour and exercising override authority."@en ;
 .
-dg:DefenceAcquisitionAuthority
+defence-core:DefenceAcquisitionAuthority
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Defence Acquisition Authority"@en ;
     skos:definition "Government body responsible for procuring AI systems — DoD for the US; responsible for imposing responsible AI requirements on defence industry suppliers."@en ;
 .
-dg:EthicsOversightBody
+defence-core:EthicsOversightBody
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "AI Ethics Oversight Body"@en ;
     skos:definition "Independent body reviewing AI ethics in defence contexts — e.g., DoD AI Ethics Advisory Board, NATO AI governance bodies."@en ;

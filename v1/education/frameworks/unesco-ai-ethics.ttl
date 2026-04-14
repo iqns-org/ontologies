@@ -1,5 +1,5 @@
 @prefix unesco-ai-ethics: <https://iqns.org/v1/unesco-ai-ethics#> .
-@prefix edg:  <https://iqns.org/v1/edugraph#> .
+@prefix edefence:  <https://iqns.org/v1/edugraph#> .
 @prefix ai:   <https://iqns.org/v1/ai#> .
 @prefix dct:  <http://purl.org/dc/terms/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
@@ -69,7 +69,7 @@ unesco-ai-ethics:PrivacyAndDataProtection
     skos:inScheme   unesco-ai-ethics:Scheme ;
     prov:wasDerivedFrom <https://unesdoc.unesco.org/ark:/48223/pf0000380455#nameddest=§4.7> ;
     skos:exactMatch ai:Privacy ;
-    ai:appliesToDomain edg:StudentDataPrivacy ;
+    ai:appliesToDomain edefence:StudentDataPrivacy ;
 .
 unesco-ai-ethics:HumanOversight
     a ai:Principle ; a skos:Concept ;
@@ -96,7 +96,7 @@ unesco-ai-ethics:AILiteracyObligation
     skos:definition "Member States should ensure that all learners, educators, and citizens can develop capabilities to understand, use, and critically evaluate AI tools — including knowledge of AI bias, privacy risks, and societal impacts."@en ;
     skos:inScheme   unesco-ai-ethics:Scheme ;
     prov:wasDerivedFrom <https://unesdoc.unesco.org/ark:/48223/pf0000380455#nameddest=§56> ;
-    ai:appliesToLifecycle edg:CurriculumDesign ;
+    ai:appliesToLifecycle edefence:CurriculumDesign ;
 .
 unesco-ai-ethics:TeacherSupportObligation
     a ai:Obligation ; a skos:Concept ;
@@ -104,8 +104,8 @@ unesco-ai-ethics:TeacherSupportObligation
     skos:definition "AI must be used to support, not replace, teachers. Member States should provide training and capacity-building for educators on ethical AI use, and ensure teachers remain the primary custodians of pedagogical decisions."@en ;
     skos:inScheme   unesco-ai-ethics:Scheme ;
     prov:wasDerivedFrom <https://unesdoc.unesco.org/ark:/48223/pf0000380455#nameddest=§57> ;
-    ai:appliesToLifecycle edg:AdaptiveLearning ;
-    ai:appliesToDomain edg:AcademicIntegrity ;
+    ai:appliesToLifecycle edefence:AdaptiveLearning ;
+    ai:appliesToDomain edefence:AcademicIntegrity ;
 .
 unesco-ai-ethics:BiasInEducationalAssessment
     a ai:Risk ; a skos:Concept ;
@@ -114,7 +114,7 @@ unesco-ai-ethics:BiasInEducationalAssessment
     skos:inScheme   unesco-ai-ethics:Scheme ;
     prov:wasDerivedFrom <https://unesdoc.unesco.org/ark:/48223/pf0000380455#nameddest=§59> ;
     ai:hasRiskLevel ai:HighRisk ;
-    ai:appliesToLifecycle edg:Assessment ;
+    ai:appliesToLifecycle edefence:Assessment ;
 .
 unesco-ai-ethics:OpenResearchObligation
     a ai:Obligation ; a skos:Concept ;

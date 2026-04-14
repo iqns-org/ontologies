@@ -1,0 +1,477 @@
+@prefix ai-systems-inventory:      <https://iqns.org/v1/example#> .
+@prefix ai:      <https://iqns.org/v1/ai#> .
+@prefix euai:    <https://iqns.org/v1/eu-ai-act#> .
+@prefix nrmf:    <https://iqns.org/v1/nist-ai-rmf#> .
+@prefix iso42001:<https://iqns.org/v1/iso-42001#> .
+@prefix owasp:   <https://iqns.org/v1/owasp-llm#> .
+@prefix saif:    <https://iqns.org/v1/google-saif#> .
+@prefix atlas:   <https://iqns.org/v1/mitre-atlas#> .
+@prefix sr117:   <https://iqns.org/v1/sr-11-7#> .
+@prefix eba:     <https://iqns.org/v1/eba-ai#> .
+@prefix fda:     <https://iqns.org/v1/fda-aiml-samd#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+ai-systems-inventory:Inventory a owl:Ontology ;
+    dct:title       "Enterprise AI Systems Inventory"@en ;
+    skos:definition "Concrete AI system instances for a hypothetical global enterprise, each mapped to applicable ai: governance controls."@en ;
+    prov:wasDerivedFrom      <https://iqns.org/v1/example> ;
+    owl:versionInfo "0.1" ;
+    owl:imports     <https://iqns.org/v1/example> ;
+.
+
+# ══════════════════════════════════════════════════════════════════════════════
+# 1.  Enterprise LLM Assistant (EU AI Act: Limited Risk — chatbot disclosure)
+# ══════════════════════════════════════════════════════════════════════════════
+
+ai-systems-inventory:EnterpriseLLMAssistant
+    a ai-systems-inventory:GenerativeAISystem ;
+    skos:prefLabel              "Enterprise LLM Assistant"@en ;
+    skos:definition         "Internal employee-facing generative AI assistant. Answers HR, IT, legal, and strategy questions using RAG over corporate knowledge bases. Backed by AWS Bedrock (Claude) with company-specific fine-tuning and guardrails."@en ;
+    ai-systems-inventory:systemOwner          "Digital Workplace / IT Platform team" ;
+    ai-systems-inventory:processesPersonalData true ;
+    ai-systems-inventory:processesSpecialCategoryData false ;
+    ai-systems-inventory:thirdPartyAI         true ;
+    ai-systems-inventory:dataRegion           "eu-west-1, us-east-1" ;
+    ai-systems-inventory:hostedOn             ai-systems-inventory:K8sProdCluster, ai-systems-inventory:AWSBedrockAPI ;
+
+    # ── Regulatory risk tier ──────────────────────────────────────────────────
+    # Chatbot disclosure obligation applies (EU AI Act Art. 50)
+    ai-systems-inventory:riskClassifiedAs     euai:LimitedRisk ;
+    ai-systems-inventory:subjectToRequirement euai:TransparencyObligation ;     # disclose AI nature to users
+    ai-systems-inventory:subjectToRequirement euai:HumanOversightRequirement ;  # escalation path to humans
+
+    # ── NIST AI RMF controls ──────────────────────────────────────────────────
+    ai-systems-inventory:subjectToControl nrmf:GV1 ;   # AI policy & accountability
+    ai-systems-inventory:subjectToControl nrmf:GV5 ;   # AI risk & benefits inventory
+    ai-systems-inventory:subjectToControl nrmf:GV6 ;   # third-party / supply chain (Bedrock, Anthropic)
+    ai-systems-inventory:subjectToControl nrmf:MP1 ;   # context documentation (intended users, use cases)
+    ai-systems-inventory:subjectToControl nrmf:MP2 ;   # risk category classification
+    ai-systems-inventory:subjectToControl nrmf:MS2 ;   # red-team / adversarial testing
+    ai-systems-inventory:subjectToControl nrmf:MS4 ;   # production performance monitoring
+    ai-systems-inventory:subjectToControl nrmf:MG2 ;   # AI incident response
+
+    # ── ISO 42001 controls ────────────────────────────────────────────────────
+    ai-systems-inventory:subjectToControl iso42001:A9SupplyChain ;      # manage Bedrock/Anthropic vendor
+    ai-systems-inventory:subjectToControl iso42001:A10Documentation ;   # model card + RAG data provenance
+
+    # ── OWASP LLM risks (this system must mitigate all 10) ───────────────────
+    ai-systems-inventory:bearsFace owasp:LLM01_PromptInjection ;
+    ai-systems-inventory:bearsFace owasp:LLM02_InsecureOutputHandling ;
+    ai-systems-inventory:bearsFace owasp:LLM03_TrainingDataPoisoning ;  # fine-tuning data
+    ai-systems-inventory:bearsFace owasp:LLM04_ModelDenialOfService ;
+    ai-systems-inventory:bearsFace owasp:LLM05_SupplyChainVulnerabilities ;
+    ai-systems-inventory:bearsFace owasp:LLM06_SensitiveInfoDisclosure ;
+    ai-systems-inventory:bearsFace owasp:LLM08_ExcessiveAgency ;
+    ai-systems-inventory:bearsFace owasp:LLM09_Overreliance ;
+    ai-systems-inventory:bearsFace owasp:LLM10_ModelTheft ;
+    ai-systems-inventory:bearsFace saif:MemoryPoisoningRAG ;            # RAG store injection
+
+    # ── Controls to implement ─────────────────────────────────────────────────
+    ai-systems-inventory:subjectToControl owasp:PromptValidation ;
+    ai-systems-inventory:subjectToControl owasp:OutputValidation ;
+    ai-systems-inventory:subjectToControl owasp:LeastPrivilegeLLM ;
+
+    # ── Assessments required ──────────────────────────────────────────────────
+    ai-systems-inventory:requiresAssessment ai:RedTeamExercise ;
+    ai-systems-inventory:requiresAssessment ai:RiskAssessment ;
+.
+
+# ══════════════════════════════════════════════════════════════════════════════
+# 2.  Fraud Detection System (High Risk: SR 11-7 model risk; EBA AI)
+# ══════════════════════════════════════════════════════════════════════════════
+
+ai-systems-inventory:FraudDetectionSystem
+    a ai-systems-inventory:ClassicalMLSystem ;
+    skos:prefLabel              "Real-Time Fraud Detection System"@en ;
+    skos:definition         "Gradient-boosted ensemble model scoring card transactions in <50 ms. Trained on 3 years of labelled fraud events. Deployed as a SageMaker real-time endpoint with A/B shadow model. Subject to SR 11-7 model risk management and EBA AI guidelines."@en ;
+    ai-systems-inventory:systemOwner          "Financial Crime / Payments Risk team" ;
+    ai-systems-inventory:processesPersonalData true ;
+    ai-systems-inventory:processesSpecialCategoryData false ;
+    ai-systems-inventory:thirdPartyAI         false ;
+    ai-systems-inventory:dataRegion           "eu-central-1" ;
+    ai-systems-inventory:hostedOn             ai-systems-inventory:AWSSageMakerDomain ;
+    ai-systems-inventory:deployedInDomain     ai:Finance ;
+
+    # ── Regulatory risk tier ──────────────────────────────────────────────────
+    # SR 11-7 (US banking regulator) — model risk; EBA AI guidelines (EU banking)
+    # EU AI Act: financial services access → HighRisk (Annex III)
+    ai-systems-inventory:riskClassifiedAs     ai:HighRisk ;                         # canonical
+    ai-systems-inventory:subjectToRequirement euai:HighRiskEmployment ;              # closest EU AI Act bucket
+    ai-systems-inventory:subjectToRequirement euai:RiskManagementSystem ;
+    ai-systems-inventory:subjectToRequirement euai:DataGovernance ;
+    ai-systems-inventory:subjectToRequirement euai:TechnicalDocumentation ;
+    ai-systems-inventory:subjectToRequirement euai:RecordKeeping ;
+    ai-systems-inventory:subjectToRequirement euai:AccuracyRobustnessRequirement ;
+    ai-systems-inventory:requiresAssessment   euai:ConformityAssessmentRequirement ; # EU AI Act Art. 43
+
+    # ── SR 11-7 controls ─────────────────────────────────────────────────────
+    ai-systems-inventory:subjectToControl sr117:ModelDevelopment ;
+    ai-systems-inventory:subjectToControl sr117:ModelDocumentation ;
+    ai-systems-inventory:subjectToControl sr117:ModelTesting ;
+    ai-systems-inventory:subjectToControl sr117:ModelValidation ;
+    ai-systems-inventory:subjectToControl sr117:ConceptualSoundness ;
+    ai-systems-inventory:subjectToControl sr117:OngoingMonitoringSR ;
+    ai-systems-inventory:subjectToControl sr117:OutcomesAnalysis ;
+    ai-systems-inventory:subjectToControl sr117:ModelInventory ;
+    ai-systems-inventory:subjectToControl sr117:ThreeLinesOfDefence ;
+
+    # ── EBA AI controls ───────────────────────────────────────────────────────
+    ai-systems-inventory:subjectToControl eba:AIModelExplainabilityEBA ;
+    ai-systems-inventory:subjectToControl eba:AIBiasTestingEBA ;
+    ai-systems-inventory:subjectToControl eba:DataQualityEBA ;
+    ai-systems-inventory:subjectToControl eba:ModelValidationEBA ;
+
+    # ── NIST AI RMF controls ──────────────────────────────────────────────────
+    ai-systems-inventory:subjectToControl nrmf:MS1 ;   # risk metrics & threshold testing
+    ai-systems-inventory:subjectToControl nrmf:MS3 ;   # bias & fairness evaluation (false-positive disparity)
+    ai-systems-inventory:subjectToControl nrmf:MS4 ;   # production performance / drift monitoring
+    ai-systems-inventory:subjectToControl nrmf:MG1 ;   # risk response (model override process)
+    ai-systems-inventory:subjectToControl nrmf:MG2 ;   # incident response for model failures
+
+    # ── ISO 42001 controls ────────────────────────────────────────────────────
+    ai-systems-inventory:subjectToControl iso42001:A7ResourcesForAI ;
+    ai-systems-inventory:subjectToControl iso42001:A8AILifecycle ;
+    ai-systems-inventory:subjectToControl iso42001:A10Documentation ;
+
+    # ── Risks ─────────────────────────────────────────────────────────────────
+    ai-systems-inventory:bearsFace sr117:ModelRisk ;
+    ai-systems-inventory:bearsFace sr117:ModelUncertainty ;
+    ai-systems-inventory:bearsFace ai:DiscriminationHarm ;     # false-positive rate disparity across demographics
+    ai-systems-inventory:bearsFace ai:FinancialHarm ;          # missed fraud causing losses
+    ai-systems-inventory:bearsFace atlas:MLAttackStaging ;     # adversary probing decision thresholds
+
+    # ── Assessments required ──────────────────────────────────────────────────
+    ai-systems-inventory:requiresAssessment ai:BiasAudit ;
+    ai-systems-inventory:requiresAssessment ai:RiskAssessment ;
+    ai-systems-inventory:requiresAssessment ai:ConformityAssessment ;
+.
+
+# ══════════════════════════════════════════════════════════════════════════════
+# 3.  HR Candidate Screening System  (EU AI Act: HIGH RISK — Annex III §4)
+# ══════════════════════════════════════════════════════════════════════════════
+
+ai-systems-inventory:HRCandidateScreeningSystem
+    a ai-systems-inventory:ClassicalMLSystem ;
+    skos:prefLabel              "HR Candidate Screening & Ranking System"@en ;
+    skos:definition         "ML model ranking job applicants by predicted interview-success probability. Ingests CV text + LinkedIn data; deployed as Azure ML batch scoring pipeline, also integrated with Workday ATS. Employment domain → HIGH RISK under EU AI Act Annex III §4."@en ;
+    ai-systems-inventory:systemOwner          "Human Resources / People Analytics team" ;
+    ai-systems-inventory:processesPersonalData true ;
+    ai-systems-inventory:processesSpecialCategoryData false ; # no protected characteristics used as features
+    ai-systems-inventory:thirdPartyAI         true ;          # Workday AI component
+    ai-systems-inventory:dataRegion           "eu-west-1" ;
+    ai-systems-inventory:hostedOn             ai-systems-inventory:AzureMLWorkspace, ai-systems-inventory:SaaSWorkdayAI ;
+    ai-systems-inventory:deployedInDomain     ai:Employment ;
+
+    # ── Regulatory risk tier ──────────────────────────────────────────────────
+    # EU AI Act Annex III §4 — employment & worker management → HIGH RISK
+    ai-systems-inventory:riskClassifiedAs         ai:HighRisk ;
+    ai-systems-inventory:subjectToRequirement     euai:HighRiskEmployment ;
+    ai-systems-inventory:subjectToRequirement     euai:RiskManagementSystem ;
+    ai-systems-inventory:subjectToRequirement     euai:DataGovernance ;
+    ai-systems-inventory:subjectToRequirement     euai:TechnicalDocumentation ;
+    ai-systems-inventory:subjectToRequirement     euai:RecordKeeping ;
+    ai-systems-inventory:subjectToRequirement     euai:TransparencyObligation ;
+    ai-systems-inventory:subjectToRequirement     euai:HumanOversightRequirement ;
+    ai-systems-inventory:subjectToRequirement     euai:AccuracyRobustnessRequirement ;
+    ai-systems-inventory:subjectToRequirement     euai:EUDatabaseRegistration ;
+
+    # Affected persons have right to explanation of automated processing
+    ai-systems-inventory:subjectToRequirement     euai:RightToExplanation ;
+
+    # Conformity assessment required before deployment
+    ai-systems-inventory:requiresAssessment       euai:ConformityAssessmentRequirement ;
+
+    # ── NIST AI RMF controls ──────────────────────────────────────────────────
+    ai-systems-inventory:subjectToControl nrmf:GV1 ;   # top-level AI accountability policy
+    ai-systems-inventory:subjectToControl nrmf:GV4 ;   # stakeholder engagement (HR, legal, works council)
+    ai-systems-inventory:subjectToControl nrmf:GV5 ;   # AI system inventory
+    ai-systems-inventory:subjectToControl nrmf:GV6 ;   # Workday third-party supply-chain risk
+    ai-systems-inventory:subjectToControl nrmf:MP5 ;   # fundamental rights & employment law impact
+    ai-systems-inventory:subjectToControl nrmf:MS2 ;   # red-team: test for demographic bias
+    ai-systems-inventory:subjectToControl nrmf:MS3 ;   # bias & fairness evaluation (mandatory)
+    ai-systems-inventory:subjectToControl nrmf:MS4 ;   # ongoing performance monitoring per role/region
+    ai-systems-inventory:subjectToControl nrmf:MG1 ;   # human review override for every shortlist
+    ai-systems-inventory:subjectToControl nrmf:MG2 ;   # incident response if discriminatory pattern detected
+
+    # ── ISO 42001 controls ────────────────────────────────────────────────────
+    ai-systems-inventory:subjectToControl iso42001:A5AIPolicy ;
+    ai-systems-inventory:subjectToControl iso42001:A6InternalOrganisation ;
+    ai-systems-inventory:subjectToControl iso42001:A8AILifecycle ;
+    ai-systems-inventory:subjectToControl iso42001:A9SupplyChain ;    # Workday AI vendor management
+    ai-systems-inventory:subjectToControl iso42001:A10Documentation ;
+
+    # ── Risks ─────────────────────────────────────────────────────────────────
+    ai-systems-inventory:bearsFace ai:DiscriminationHarm ;    # gender, ethnicity, disability proxy features
+    ai-systems-inventory:bearsFace ai:PrivacyHarm ;           # CV data profiling
+    ai-systems-inventory:bearsFace ai:ReputationalHarm ;      # discriminatory outcomes made public
+    ai-systems-inventory:bearsFace ai:SocietalHarm ;          # systemic discrimination at scale
+
+    # ── Assessments required ──────────────────────────────────────────────────
+    ai-systems-inventory:requiresAssessment ai:BiasAudit ;
+    ai-systems-inventory:requiresAssessment ai:ImpactAssessment ;
+    ai-systems-inventory:requiresAssessment ai:ConformityAssessment ;
+    ai-systems-inventory:requiresAssessment ai:RiskAssessment ;
+.
+
+# ══════════════════════════════════════════════════════════════════════════════
+# 4.  Medical Imaging AI (EU AI Act: HIGH RISK; FDA SaMD Class II)
+# ══════════════════════════════════════════════════════════════════════════════
+
+ai-systems-inventory:MedicalImagingAI
+    a ai-systems-inventory:ClassicalMLSystem ;   # deep CNN — still classical-ML in regulatory sense
+    skos:prefLabel              "Radiology AI — Chest X-Ray Triage"@en ;
+    skos:definition         "Deep learning model detecting pneumonia, COVID-19 consolidation, and pneumothorax in chest radiographs. Deployed on GCP Vertex AI with GPU inference. FDA 510(k) cleared Class II SaMD. EU AI Act Annex III §5 (healthcare) — HIGH RISK."@en ;
+    ai-systems-inventory:systemOwner          "Clinical AI / Health Technology team" ;
+    ai-systems-inventory:processesPersonalData true ;
+    ai-systems-inventory:processesSpecialCategoryData true ;  # health data = GDPR Art. 9
+    ai-systems-inventory:thirdPartyAI         false ;
+    ai-systems-inventory:dataRegion           "us-central1" ;
+    ai-systems-inventory:hostedOn             ai-systems-inventory:GCPVertexAIPlatform ;
+    ai-systems-inventory:deployedInDomain     ai:Healthcare ;
+
+    # ── Regulatory risk tier ──────────────────────────────────────────────────
+    ai-systems-inventory:riskClassifiedAs         ai:HighRisk ;
+    ai-systems-inventory:subjectToRequirement     euai:HighRiskEssentialServices ; # healthcare → Annex III §5
+    ai-systems-inventory:subjectToRequirement     euai:RiskManagementSystem ;
+    ai-systems-inventory:subjectToRequirement     euai:DataGovernance ;
+    ai-systems-inventory:subjectToRequirement     euai:TechnicalDocumentation ;
+    ai-systems-inventory:subjectToRequirement     euai:RecordKeeping ;
+    ai-systems-inventory:subjectToRequirement     euai:HumanOversightRequirement ;  # radiologist review required
+    ai-systems-inventory:subjectToRequirement     euai:AccuracyRobustnessRequirement ;
+    ai-systems-inventory:subjectToRequirement     euai:PostMarketMonitoring ;
+    ai-systems-inventory:requiresAssessment       euai:ConformityAssessmentRequirement ;
+
+    # ── FDA SaMD controls (US) ────────────────────────────────────────────────
+    ai-systems-inventory:subjectToRequirement fda:SoftwareAsMedicalDevice ;
+    ai-systems-inventory:subjectToRequirement fda:AdaptiveAlgorithm ;
+    ai-systems-inventory:subjectToRequirement fda:PredeterminedChangeControlPlan ;
+    ai-systems-inventory:subjectToRequirement fda:AlgorithmChangeProtocol ;
+    ai-systems-inventory:subjectToRequirement fda:GoodMachineLearningPractice ;
+    ai-systems-inventory:subjectToRequirement fda:DataRepresentativeness ;
+    ai-systems-inventory:subjectToRequirement fda:HumanAITeamPerformance ;
+    ai-systems-inventory:subjectToRequirement fda:RealWorldPerformanceMonitoring ;
+    ai-systems-inventory:subjectToRequirement fda:TransparencyToUsersPatients ;
+
+    # ── NIST AI RMF controls ──────────────────────────────────────────────────
+    ai-systems-inventory:subjectToControl nrmf:MS1 ;   # sensitivity, specificity, AUC thresholds
+    ai-systems-inventory:subjectToControl nrmf:MS2 ;   # adversarial robustness (image perturbation)
+    ai-systems-inventory:subjectToControl nrmf:MS4 ;   # real-world performance monitoring
+    ai-systems-inventory:subjectToControl nrmf:MG2 ;   # clinical incident response protocol
+    ai-systems-inventory:subjectToControl nrmf:MG3 ;   # decommission plan when model accuracy degrades
+
+    # ── ISO 42001 controls ────────────────────────────────────────────────────
+    ai-systems-inventory:subjectToControl iso42001:A7ResourcesForAI ;  # training data provenance
+    ai-systems-inventory:subjectToControl iso42001:A8AILifecycle ;
+    ai-systems-inventory:subjectToControl iso42001:A10Documentation ;
+
+    # ── Risks ─────────────────────────────────────────────────────────────────
+    ai-systems-inventory:bearsFace ai:PhysicalHarm ;          # missed diagnosis or false alarm
+    ai-systems-inventory:bearsFace ai:DiscriminationHarm ;    # performance disparity across ethnic groups
+    ai-systems-inventory:bearsFace ai:PrivacyHarm ;           # PHI in training data
+    ai-systems-inventory:bearsFace atlas:MLAttackStaging ;    # adversarial X-ray perturbation attacks
+
+    # ── Assessments required ──────────────────────────────────────────────────
+    ai-systems-inventory:requiresAssessment ai:RiskAssessment ;
+    ai-systems-inventory:requiresAssessment ai:ConformityAssessment ;
+    ai-systems-inventory:requiresAssessment ai:BiasAudit ;       # per FDA — disaggregated by demographics
+    ai-systems-inventory:requiresAssessment ai:RedTeamExercise ; # adversarial image testing
+.
+
+# ══════════════════════════════════════════════════════════════════════════════
+# 5.  Credit Risk Scoring System (High Risk: SR 11-7; EBA; EU AI Act)
+# ══════════════════════════════════════════════════════════════════════════════
+
+ai-systems-inventory:CreditRiskScoringSystem
+    a ai-systems-inventory:ClassicalMLSystem ;
+    skos:prefLabel              "Consumer Credit Risk Scoring System"@en ;
+    skos:definition         "XGBoost model assigning credit risk scores used in automated underwriting decisions for consumer lending. Deployed on AWS SageMaker. Subject to SR 11-7, EBA AI guidelines, and EU AI Act Annex III §5b (access to financial services)."@en ;
+    ai-systems-inventory:systemOwner          "Credit Risk / Model Office team" ;
+    ai-systems-inventory:processesPersonalData true ;
+    ai-systems-inventory:processesSpecialCategoryData false ;
+    ai-systems-inventory:thirdPartyAI         false ;
+    ai-systems-inventory:dataRegion           "eu-central-1" ;
+    ai-systems-inventory:hostedOn             ai-systems-inventory:AWSSageMakerDomain ;
+    ai-systems-inventory:deployedInDomain     ai:Finance ;
+
+    # ── Regulatory risk tier ──────────────────────────────────────────────────
+    ai-systems-inventory:riskClassifiedAs         ai:HighRisk ;
+    ai-systems-inventory:subjectToRequirement     euai:HighRiskEssentialServices ;   # credit = access to services
+    ai-systems-inventory:subjectToRequirement     euai:RiskManagementSystem ;
+    ai-systems-inventory:subjectToRequirement     euai:DataGovernance ;
+    ai-systems-inventory:subjectToRequirement     euai:TechnicalDocumentation ;
+    ai-systems-inventory:subjectToRequirement     euai:RecordKeeping ;
+    ai-systems-inventory:subjectToRequirement     euai:HumanOversightRequirement ;
+    ai-systems-inventory:subjectToRequirement     euai:AccuracyRobustnessRequirement ;
+    ai-systems-inventory:subjectToRequirement     euai:RightToExplanation ;           # GDPR Art. 22 + EU AI Act
+    ai-systems-inventory:requiresAssessment       euai:ConformityAssessmentRequirement ;
+
+    # ── SR 11-7 controls ─────────────────────────────────────────────────────
+    ai-systems-inventory:subjectToControl sr117:ModelDevelopment ;
+    ai-systems-inventory:subjectToControl sr117:ModelDocumentation ;
+    ai-systems-inventory:subjectToControl sr117:ModelTesting ;
+    ai-systems-inventory:subjectToControl sr117:ModelValidation ;
+    ai-systems-inventory:subjectToControl sr117:ConceptualSoundness ;
+    ai-systems-inventory:subjectToControl sr117:OngoingMonitoringSR ;
+    ai-systems-inventory:subjectToControl sr117:OutcomesAnalysis ;
+    ai-systems-inventory:subjectToControl sr117:ModelInventory ;
+    ai-systems-inventory:subjectToControl sr117:ThreeLinesOfDefence ;
+    ai-systems-inventory:subjectToControl sr117:ModelRiskAppetite ;
+
+    # ── EBA AI controls ───────────────────────────────────────────────────────
+    ai-systems-inventory:subjectToControl eba:ICTRiskFramework ;
+    ai-systems-inventory:subjectToControl eba:AIModelExplainabilityEBA ;  # SHAP scores for credit decisions
+    ai-systems-inventory:subjectToControl eba:AIBiasTestingEBA ;
+    ai-systems-inventory:subjectToControl eba:DataQualityEBA ;
+    ai-systems-inventory:subjectToControl eba:ModelValidationEBA ;
+    ai-systems-inventory:subjectToControl eba:AIGovernanceCommitteeEBA ;
+    ai-systems-inventory:subjectToControl eba:SupervisoryReportingEBA ;
+
+    # ── NIST AI RMF controls ──────────────────────────────────────────────────
+    ai-systems-inventory:subjectToControl nrmf:MS1 ;
+    ai-systems-inventory:subjectToControl nrmf:MS3 ;   # ECOA / fair lending bias testing
+    ai-systems-inventory:subjectToControl nrmf:MS4 ;
+    ai-systems-inventory:subjectToControl nrmf:MG1 ;
+    ai-systems-inventory:subjectToControl nrmf:MG2 ;
+
+    # ── ISO 42001 controls ────────────────────────────────────────────────────
+    ai-systems-inventory:subjectToControl iso42001:A8AILifecycle ;
+    ai-systems-inventory:subjectToControl iso42001:A10Documentation ;
+
+    # ── Risks ─────────────────────────────────────────────────────────────────
+    ai-systems-inventory:bearsFace ai:DiscriminationHarm ;   # disparate impact on protected classes
+    ai-systems-inventory:bearsFace ai:FinancialHarm ;        # incorrect credit decisions
+    ai-systems-inventory:bearsFace sr117:ModelRisk ;
+    ai-systems-inventory:bearsFace sr117:ModelUncertainty ;
+
+    # ── Assessments required ──────────────────────────────────────────────────
+    ai-systems-inventory:requiresAssessment ai:ConformityAssessment ;
+    ai-systems-inventory:requiresAssessment ai:BiasAudit ;
+    ai-systems-inventory:requiresAssessment ai:RiskAssessment ;
+.
+
+# ══════════════════════════════════════════════════════════════════════════════
+# 6.  RAG Document Search (Limited Risk — chatbot-like; internal only)
+# ══════════════════════════════════════════════════════════════════════════════
+
+ai-systems-inventory:RAGDocumentSearch
+    a ai-systems-inventory:GenerativeAISystem ;
+    skos:prefLabel              "Internal RAG Document Q&A System"@en ;
+    skos:definition         "Azure OpenAI Service (GPT-4o) + Azure AI Search for document retrieval. Employees query policy manuals, contracts, and technical specs. PII may appear in documents; no customer data. Classified Limited Risk (chatbot disclosure obligation)."@en ;
+    ai-systems-inventory:systemOwner          "Knowledge Management / Enterprise IT team" ;
+    ai-systems-inventory:processesPersonalData true ;    # internal employee documents may contain PII
+    ai-systems-inventory:processesSpecialCategoryData false ;
+    ai-systems-inventory:thirdPartyAI         true ;
+    ai-systems-inventory:dataRegion           "northeurope" ;
+    ai-systems-inventory:hostedOn             ai-systems-inventory:K8sProdCluster, ai-systems-inventory:AzureOpenAIService ;
+
+    # ── Regulatory risk tier ──────────────────────────────────────────────────
+    ai-systems-inventory:riskClassifiedAs     euai:LimitedRisk ;
+    ai-systems-inventory:subjectToRequirement euai:TransparencyObligation ;     # employees must know it's AI
+    ai-systems-inventory:subjectToRequirement euai:HumanOversightRequirement ;
+
+    # ── NIST AI RMF controls ──────────────────────────────────────────────────
+    ai-systems-inventory:subjectToControl nrmf:GV5 ;
+    ai-systems-inventory:subjectToControl nrmf:GV6 ;   # Azure/OpenAI supply chain
+    ai-systems-inventory:subjectToControl nrmf:MP1 ;
+    ai-systems-inventory:subjectToControl nrmf:MS4 ;
+    ai-systems-inventory:subjectToControl nrmf:MG2 ;
+
+    # ── ISO 42001 controls ────────────────────────────────────────────────────
+    ai-systems-inventory:subjectToControl iso42001:A9SupplyChain ;
+    ai-systems-inventory:subjectToControl iso42001:A10Documentation ;
+
+    # ── OWASP LLM risks ───────────────────────────────────────────────────────
+    ai-systems-inventory:bearsFace owasp:LLM01_PromptInjection ;
+    ai-systems-inventory:bearsFace owasp:LLM06_SensitiveInfoDisclosure ;
+    ai-systems-inventory:bearsFace saif:MemoryPoisoningRAG ;       # RAG store poisoning via document upload
+
+    ai-systems-inventory:subjectToControl owasp:PromptValidation ;
+    ai-systems-inventory:subjectToControl owasp:OutputValidation ;
+
+    # ── MITRE ATLAS risks ─────────────────────────────────────────────────────
+    ai-systems-inventory:bearsFace atlas:InitialAccess ;           # unauthorised document injection
+    ai-systems-inventory:bearsFace atlas:DefenceEvasion ;          # prompt crafted to bypass guardrails
+
+    ai-systems-inventory:requiresAssessment ai:RedTeamExercise ;
+    ai-systems-inventory:requiresAssessment ai:RiskAssessment ;
+.
+
+# ══════════════════════════════════════════════════════════════════════════════
+# 7.  Customer Churn Predictor (Minimal Risk — propensity modelling)
+# ══════════════════════════════════════════════════════════════════════════════
+
+ai-systems-inventory:CustomerChurnPredictor
+    a ai-systems-inventory:ClassicalMLSystem ;
+    skos:prefLabel              "Customer Churn Propensity Model"@en ;
+    skos:definition         "Random forest model scoring likelihood of customer churn in the next 90 days. Scores inform outbound retention campaigns. Hosted on Salesforce Einstein Analytics. Processes behavioural data but no consequential automated decisions on individuals."@en ;
+    ai-systems-inventory:systemOwner          "Customer Success / Revenue Operations team" ;
+    ai-systems-inventory:processesPersonalData true ;   # customer behavioural data
+    ai-systems-inventory:processesSpecialCategoryData false ;
+    ai-systems-inventory:thirdPartyAI         true ;
+    ai-systems-inventory:dataRegion           "eu-west-1" ;
+    ai-systems-inventory:hostedOn             ai-systems-inventory:SaaSSalesforceEinstein ;
+    ai-systems-inventory:deployedInDomain     ai:Finance ;       # commercial outcome decisions
+
+    # ── Regulatory risk tier ──────────────────────────────────────────────────
+    # No direct consequential decision on individuals → Minimal Risk
+    # BUT: personal data profiling → GDPR obligations remain
+    ai-systems-inventory:riskClassifiedAs     ai:MinimalRisk ;
+    ai-systems-inventory:subjectToRequirement euai:TransparencyObligation ;  # voluntary best practice
+
+    # ── NIST AI RMF controls ──────────────────────────────────────────────────
+    ai-systems-inventory:subjectToControl nrmf:GV5 ;    # include in AI inventory
+    ai-systems-inventory:subjectToControl nrmf:GV6 ;    # Salesforce supply chain
+    ai-systems-inventory:subjectToControl nrmf:MP1 ;    # deployment context doc
+    ai-systems-inventory:subjectToControl nrmf:MS4 ;    # churn model drift monitoring
+
+    # ── ISO 42001 controls ────────────────────────────────────────────────────
+    ai-systems-inventory:subjectToControl iso42001:A9SupplyChain ;
+    ai-systems-inventory:subjectToControl iso42001:A10Documentation ;
+
+    # ── Risks ─────────────────────────────────────────────────────────────────
+    ai-systems-inventory:bearsFace ai:PrivacyHarm ;     # profiling of individuals for commercial decisions
+
+    ai-systems-inventory:requiresAssessment ai:RiskAssessment ;
+.
+
+# ══════════════════════════════════════════════════════════════════════════════
+# 8.  Code Security Scanner (Minimal Risk — developer tooling)
+# ══════════════════════════════════════════════════════════════════════════════
+
+ai-systems-inventory:CodeSecurityScannerAI
+    a ai-systems-inventory:GenerativeAISystem ;
+    skos:prefLabel              "AI-Powered Code Security Scanner"@en ;
+    skos:definition         "LLM-augmented SAST/SCA tool reviewing pull requests for security vulnerabilities, secrets, and dependency CVEs. Hosted on K8s; integrates with GitHub Copilot for suggested fixes. Internal tool only — no customer-facing decisions."@en ;
+    ai-systems-inventory:systemOwner          "Application Security / Platform Engineering team" ;
+    ai-systems-inventory:processesPersonalData false ;
+    ai-systems-inventory:processesSpecialCategoryData false ;
+    ai-systems-inventory:thirdPartyAI         true ;    # GitHub Copilot for fix suggestions
+    ai-systems-inventory:dataRegion           "eu-west-1" ;
+    ai-systems-inventory:hostedOn             ai-systems-inventory:K8sProdCluster, ai-systems-inventory:SaaSGitHubCopilot ;
+
+    # ── Regulatory risk tier ──────────────────────────────────────────────────
+    ai-systems-inventory:riskClassifiedAs     ai:MinimalRisk ;
+
+    # ── NIST AI RMF / SAIF controls ──────────────────────────────────────────
+    ai-systems-inventory:subjectToControl nrmf:GV5 ;
+    ai-systems-inventory:subjectToControl nrmf:GV6 ;    # GitHub / Microsoft supply chain risk
+    ai-systems-inventory:subjectToControl nrmf:MS4 ;    # track false-negative rate (missed vulns)
+
+    # ── Google SAIF ───────────────────────────────────────────────────────────
+    ai-systems-inventory:subjectToControl saif:ExpandSecureFoundation ;
+
+    # ── ISO 42001 controls ────────────────────────────────────────────────────
+    ai-systems-inventory:subjectToControl iso42001:A9SupplyChain ;
+
+    # ── Risks ─────────────────────────────────────────────────────────────────
+    ai-systems-inventory:bearsFace owasp:LLM05_SupplyChainVulnerabilities ;  # poisoned Copilot suggestions
+    ai-systems-inventory:bearsFace owasp:LLM09_Overreliance ;    # developers trust AI fix suggestions blindly
+    ai-systems-inventory:bearsFace atlas:MLAttackStaging ;       # adversarially crafted code to fool scanner
+
+    ai-systems-inventory:requiresAssessment ai:RiskAssessment ;
+.

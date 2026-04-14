@@ -1,4 +1,4 @@
-@prefix enterprise:   <https://iqns.org/v1/enterprise#> .
+@prefix enterprise-core:   <https://iqns.org/v1/enterprise#> .
 @prefix ai:   <https://iqns.org/v1/ai#> .
 @prefix dct:  <http://purl.org/dc/terms/> .
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .
@@ -9,7 +9,7 @@
 
 # ── Ontology ─────────────────────────────────────────────────────────────────
 
-enterprise:Ontology
+enterprise-core:Ontology
     a owl:Ontology ;
     dct:title       "Enterprise Governance Core Vocabulary"@en ;
     skos:definition "Abstract vocabulary for enterprise governance frameworks."@en ;
@@ -20,64 +20,64 @@ enterprise:Ontology
 # ── Enterprise-Specific Properties ───────────────────────────────────────────
 #  — information security, risk management, business continuity, and corporate governance. Extends ai: with enterprise-specific dimensions, lifecycle stages, and stakeholders
 
-enterprise:hasMaturityLevel
+enterprise-core:hasMaturityLevel
     a owl:ObjectProperty ;
     skos:prefLabel  "has maturity level"@en ;
-    rdfs:range  enterprise:MaturityLevel ;
+    rdfs:range  enterprise-core:MaturityLevel ;
 .
-enterprise:hasControlType
+enterprise-core:hasControlType
     a owl:ObjectProperty ;
     skos:prefLabel  "has control type"@en ;
-    rdfs:range  enterprise:ControlType ;
+    rdfs:range  enterprise-core:ControlType ;
 .
-enterprise:appliesAtOrgLevel
+enterprise-core:appliesAtOrgLevel
     a owl:ObjectProperty ;
     skos:prefLabel  "applies at organisational level"@en ;
-    rdfs:range  enterprise:OrgLevel ;
+    rdfs:range  enterprise-core:OrgLevel ;
 .
 
 # ── Control Types ─────────────────────────────────────────────────────────────
 
-enterprise:PreventiveControl
-    a enterprise:ControlType ; a skos:Concept ;
+enterprise-core:PreventiveControl
+    a enterprise-core:ControlType ; a skos:Concept ;
     skos:prefLabel  "Preventive Control"@en ;
     skos:definition "Control designed to prevent an undesired event from occurring — e.g., access control, encryption, input validation."@en ;
 .
-enterprise:DetectiveControl
-    a enterprise:ControlType ; a skos:Concept ;
+enterprise-core:DetectiveControl
+    a enterprise-core:ControlType ; a skos:Concept ;
     skos:prefLabel  "Detective Control"@en ;
     skos:definition "Control designed to detect and alert on undesired events — e.g., intrusion detection, anomaly monitoring, audit logging."@en ;
 .
-enterprise:CorrectiveControl
-    a enterprise:ControlType ; a skos:Concept ;
+enterprise-core:CorrectiveControl
+    a enterprise-core:ControlType ; a skos:Concept ;
     skos:prefLabel  "Corrective Control"@en ;
     skos:definition "Control designed to respond to and remediate undesired events — e.g., incident response, backup recovery, patch management."@en ;
 .
 
 # ── Maturity Levels ───────────────────────────────────────────────────────────
 
-enterprise:Initial
-    a enterprise:MaturityLevel ; a skos:Concept ;
+enterprise-core:Initial
+    a enterprise-core:MaturityLevel ; a skos:Concept ;
     skos:prefLabel  "Initial (Ad hoc)"@en ;
     skos:definition "Processes are undocumented and in a state of dynamic change — success depends on individual heroics."@en ;
 .
-enterprise:Managed
-    a enterprise:MaturityLevel ; a skos:Concept ;
+enterprise-core:Managed
+    a enterprise-core:MaturityLevel ; a skos:Concept ;
     skos:prefLabel  "Managed (Repeatable)"@en ;
     skos:definition "Processes are documented and partially standardised — basic project management discipline in place."@en ;
 .
-enterprise:Defined
-    a enterprise:MaturityLevel ; a skos:Concept ;
+enterprise-core:Defined
+    a enterprise-core:MaturityLevel ; a skos:Concept ;
     skos:prefLabel  "Defined"@en ;
     skos:definition "Processes are documented and standardised across the organisation — consistent application and tailoring."@en ;
 .
-enterprise:Quantitatively
-    a enterprise:MaturityLevel ; a skos:Concept ;
+enterprise-core:Quantitatively
+    a enterprise-core:MaturityLevel ; a skos:Concept ;
     skos:prefLabel  "Quantitatively Managed"@en ;
     skos:definition "Processes are controlled using statistical and quantitative techniques — predictable within established metrics."@en ;
 .
-enterprise:Optimising
-    a enterprise:MaturityLevel ; a skos:Concept ;
+enterprise-core:Optimising
+    a enterprise-core:MaturityLevel ; a skos:Concept ;
     skos:prefLabel  "Optimising"@en ;
     skos:definition "Processes are continuously improved based on quantitative understanding — agile response to change."@en ;
 .
@@ -90,30 +90,30 @@ ai:InformationSecurity
     skos:definition "Confidentiality, Integrity, and Availability (CIA) of information assets — the primary dimension for ISO 27001 and SOC 2."@en ;
     skos:broadMatch ai:Security ;
 .
-enterprise:BusinessContinuity
+enterprise-core:BusinessContinuity
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Business Continuity"@en ;
     skos:definition "Ability to continue critical business functions during and after a disruption — covers RTO, RPO, disaster recovery, and crisis management."@en ;
     skos:relatedMatch ai:Robustness ;
 .
-enterprise:HealthSafety
+enterprise-core:HealthSafety
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel "Health, Safety, and Environment"@en ;
     skos:definition "Managing employee health, occupational safety, and environmental hazards, including AI-enhanced workplace risk controls."@en ;
     ai:mappedToDimension ai:Safety ;
 .
-enterprise:RiskManagement
+enterprise-core:RiskManagement
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Enterprise Risk Management"@en ;
     skos:definition "Structured approach to identifying, assessing, treating, and monitoring risks across the enterprise — ISO 31000, COSO ERM."@en ;
 .
-enterprise:CorporateGovernance
+enterprise-core:CorporateGovernance
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Corporate Governance"@en ;
     skos:definition "Structures, processes, and policies by which an organisation is directed and controlled — board oversight, delegation, accountability."@en ;
     skos:broadMatch ai:Accountability ;
 .
-enterprise:SupplyChainRisk
+enterprise-core:SupplyChainRisk
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Supply Chain Risk"@en ;
     skos:definition "Risks arising from third-party vendors, suppliers, and partners — including AI model providers, open-source dependencies, and cloud platforms."@en ;
@@ -121,27 +121,27 @@ enterprise:SupplyChainRisk
 
 # ── Enterprise Lifecycle ──────────────────────────────────────────────────────
 
-enterprise:StrategyAndPlanning
+enterprise-core:StrategyAndPlanning
     a ai:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Strategy and Planning"@en ;
     skos:definition "Risk appetite setting, strategic planning, and governance framework design."@en ;
 .
-enterprise:RiskAssessment
+enterprise-core:RiskAssessment
     a ai:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Risk Identification and Assessment"@en ;
     skos:definition "Systematic identification and evaluation of risks — including AI-specific risk assessments (bias, robustness, third-party AI risk)."@en ;
 .
-enterprise:ControlImplementation
+enterprise-core:ControlImplementation
     a ai:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Control Implementation and Operation"@en ;
     skos:definition "Design and deployment of controls to treat identified risks — technical and organisational measures."@en ;
 .
-enterprise:MonitoringAndReview
+enterprise-core:MonitoringAndReview
     a ai:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Monitoring, Measurement, and Review"@en ;
     skos:definition "Ongoing monitoring of control effectiveness, KRI/KPI tracking, internal audit, and management review."@en ;
 .
-enterprise:ContinualImprovement
+enterprise-core:ContinualImprovement
     a ai:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Continual Improvement"@en ;
     skos:definition "Systematic identification and implementation of improvements — PDCA cycle, lessons learned, corrective and preventive actions."@en ;
@@ -149,32 +149,32 @@ enterprise:ContinualImprovement
 
 # ── Stakeholders ──────────────────────────────────────────────────────────────
 
-enterprise:BoardDirectors
+enterprise-core:BoardDirectors
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Board of Directors"@en ;
     skos:definition "Governing body with ultimate accountability for risk appetite, governance framework, and strategic direction — including AI governance at enterprise level."@en ;
 .
-enterprise:CISO
+enterprise-core:CISO
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "CISO — Chief Information Security Officer"@en ;
     skos:definition "Senior executive accountable for information security strategy, policy, and programme — primary owner of ISO 27001 ISMS."@en ;
 .
-enterprise:CRO
+enterprise-core:CRO
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "CRO — Chief Risk Officer"@en ;
     skos:definition "Senior executive responsible for enterprise risk management framework, risk appetite, and risk reporting to the board."@en ;
 .
-enterprise:InternalAudit
+enterprise-core:InternalAudit
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Internal Audit"@en ;
     skos:definition "Independent assurance function evaluating effectiveness of governance, risk, and control processes — the third line of defence."@en ;
 .
-enterprise:ExternalAuditor
+enterprise-core:ExternalAuditor
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "External Auditor / Certification Body"@en ;
     skos:definition "Third-party auditor conducting ISO 27001/42001 certification audits or SOC 2 examination — provides independent attestation."@en ;
 .
-enterprise:ThirdPartyVendor
+enterprise-core:ThirdPartyVendor
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Third-Party Vendor / Supplier"@en ;
     skos:definition "External organisation providing software, services, or AI models — subject to vendor risk management, contractual security requirements, and supply chain risk controls."@en ;

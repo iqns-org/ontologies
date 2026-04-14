@@ -1,4 +1,4 @@
-@prefix ins-crosswalk: <https://iqns.org/v1/ins-crosswalk#> .
+@prefix frameworks-skos: <https://iqns.org/v1/ins-crosswalk#> .
 @prefix ing:   <https://iqns.org/v1/insgraph#> .
 @prefix ai:    <https://iqns.org/v1/ai#> .
 @prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
@@ -9,7 +9,7 @@
 # AI Frameworks applicable to Insurance
 @prefix eu-ai:  <https://iqns.org/v1/eu-ai-act#> .
 
-ins-crosswalk:Ontology a owl:Ontology ; 
+frameworks-skos:Ontology a owl:Ontology ; 
     dct:title "Insurance AI Crosswalk"@en ;
     owl:imports <https://iqns.org/v1/insgraph#> .
 

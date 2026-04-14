@@ -1,4 +1,4 @@
-@prefix ps-crosswalk: <https://iqns.org/v1/ps-crosswalk#> .
+@prefix frameworks-skos: <https://iqns.org/v1/ps-crosswalk#> .
 @prefix psg:   <https://iqns.org/v1/psgraph#> .
 @prefix ai:    <https://iqns.org/v1/ai#> .
 @prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
@@ -11,7 +11,7 @@
 @prefix nist:   <https://iqns.org/v1/nist-ai-rmf#> .
 @prefix mitre:  <https://iqns.org/v1/mitre-atlas#> .
 
-ps-crosswalk:Ontology a owl:Ontology ; 
+frameworks-skos:Ontology a owl:Ontology ; 
     dct:title "Public Safety AI Crosswalk"@en ;
     owl:imports <https://iqns.org/v1/psgraph#> .
 

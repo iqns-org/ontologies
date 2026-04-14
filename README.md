@@ -6,7 +6,7 @@ This repository helps business, policy, and governance teams understand domain k
 
 Ontologies provide a formal, machine-readable framework that defines the concepts, relationships, and rules within a specific domain, allowing AI to reason, infer new knowledge, and act reliably. 
 
-They act as the "skeleton" or "semantic backbone", turning raw data into actionable intelligence by offering structure, grounding, and explainability.
+They act as the "skeleton" or "semantic backbone", turning raw data into interoperable intelligence by offering structure, grounding, and explainability.
 
 
 ## What this repository contains

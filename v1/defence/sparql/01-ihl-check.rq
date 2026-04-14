@@ -2,14 +2,14 @@
 # Goal: Verify Autonomous Systems have IHL compliance controls.
 
 PREFIX gg: <https://iqns.org/v1/ai#>
-PREFIX dg: <https://iqns.org/v1/defgraph#>
+PREFIX defence: <https://iqns.org/v1/defgraph#>
 PREFIX dod: <https://iqns.org/v1/dod-rai#>
 
 SELECT ?this ?label ?ihlControl
 WHERE {
     ?this a gg:System ;
                skos:prefLabel ?label ;
-               gg:mappedToDimension dg:LegalCompliance .
+               gg:mappedToDimension defence:LegalCompliance .
                
     ?this gg:implementsControl ?ihlControl .
     ?ihlControl rdfs:subClassOf* dod:IHLCompliance .

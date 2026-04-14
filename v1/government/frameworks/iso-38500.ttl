@@ -22,7 +22,7 @@ iso-38500:Scheme a skos:ConceptScheme ;
 iso-38500:ISO38500
     a ai:Framework ; a skos:Concept ;
     skos:prefLabel  "ISO/IEC 38500:2015 --- Governance of IT for the Organisation"@en ;
-    skos:definition "Provides principles, definitions, and a model for governing IT usage. Adopted in 30+ countries as the basis for national IT governance standards. The Evaluate-Direct-Monitor (EDM) model and six principles are directly applicable to AI governance structure within government departments."@en ;
+    skos:definition "Provides principles, definitions, and a model for governing IT usage. Adopted in 50+ countries as the basis for national IT governance standards. The Evaluate-Direct-Monitor (EDM) model and six principles are directly applicable to AI governance structure within government departments."@en ;
     skos:inScheme   iso-38500:Scheme ;
     dct:publisher   "ISO/IEC Joint Technical Committee 1 (JTC 1/SC 40)"@en ;
     dct:issued      "2015"^^xsd:gYear ;

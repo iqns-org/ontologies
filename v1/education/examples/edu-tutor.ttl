@@ -1,16 +1,16 @@
 @prefix edu-tutor: <https://iqns.org/v1/education/examples/edu-tutor#> .
 @prefix ex:     <https://iqns.org/v1/example#> .
-@prefix edg:    <https://iqns.org/v1/edugraph#> .
+@prefix edefence:    <https://iqns.org/v1/edugraph#> .
 @prefix ai:     <https://iqns.org/v1/ai#> .
 @prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
 @prefix prov:   <http://www.w3.org/ns/prov#> .
 @prefix unesco: <https://iqns.org/v1/unesco-ai#> .
 
 edu-tutor:SmartTutor a ai:System ;
-    a edg:EdTechProvider ;
+    a edefence:EdTechProvider ;
     skos:prefLabel "SmartTutor Adaptive Learning Platform"@en ;
-    ai:mappedToDimension edg:AlgorithmicBiasInEducation ;
-    ai:appliesToLifecycle edg:AdaptiveLearning ;
+    ai:mappedToDimension edefence:AlgorithmicBiasInEducation ;
+    ai:appliesToLifecycle edefence:AdaptiveLearning ;
     prov:wasDerivedFrom "SmartTutor Product Safety Portfolio" ;
     # Ethical alignment
     ai:implementsControl unesco:Principles ;

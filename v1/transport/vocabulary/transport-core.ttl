@@ -1,4 +1,4 @@
-@prefix tg:  <https://iqns.org/v1/trangraph#> .
+@prefix transport-core:  <https://iqns.org/v1/trangraph#> .
 @prefix ai:  <https://iqns.org/v1/ai#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -9,7 +9,7 @@
 
 # ── Ontology ─────────────────────────────────────────────────────────────────
 
-tg:Ontology
+transport-core:Ontology
     a owl:Ontology ;
     dct:title       "TranGraph: Transport and Autonomous Vehicles Core Vocabulary"@en ;
     skos:definition "Abstract vocabulary for transport and autonomous vehicle AI governance — automated driving systems, ALKS, aviation AI, maritime autonomous surface ships. Extends ai: with transport-specific dimensions, functional safety concepts, lifecycle stages, and stakeholders."@en ;
@@ -19,71 +19,71 @@ tg:Ontology
 
 # ── Transport-Specific Properties ─────────────────────────────────────────────
 
-tg:hasAutomationLevel
+transport-core:hasAutomationLevel
     a owl:ObjectProperty ;
     skos:prefLabel  "has SAE automation level"@en ;
-    rdfs:range  tg:SAELevel ;
+    rdfs:range  transport-core:SAELevel ;
 .
-tg:operatesInDomain
+transport-core:operatesInDomain
     a owl:ObjectProperty ;
     skos:prefLabel  "operates in operational design domain"@en ;
-    rdfs:range  tg:OperationalDesignDomain ;
+    rdfs:range  transport-core:OperationalDesignDomain ;
 .
-tg:hasFunctionalSafetyGoal
+transport-core:hasFunctionalSafetyGoal
     a owl:ObjectProperty ;
     skos:prefLabel  "has functional safety goal"@en ;
 .
 
 # ── SAE Automation Levels (J3016) ─────────────────────────────────────────────
 
-tg:Level0
-    a tg:SAELevel ; a skos:Concept ;
+transport-core:Level0
+    a transport-core:SAELevel ; a skos:Concept ;
     skos:prefLabel  "SAE Level 0 — No Driving Automation"@en ;
 .
-tg:Level1
-    a tg:SAELevel ; a skos:Concept ;
+transport-core:Level1
+    a transport-core:SAELevel ; a skos:Concept ;
     skos:prefLabel  "SAE Level 1 — Driver Assistance"@en ;
 .
-tg:Level2
-    a tg:SAELevel ; a skos:Concept ;
+transport-core:Level2
+    a transport-core:SAELevel ; a skos:Concept ;
     skos:prefLabel  "SAE Level 2 — Partial Driving Automation"@en ;
 .
-tg:Level3
-    a tg:SAELevel ; a skos:Concept ;
+transport-core:Level3
+    a transport-core:SAELevel ; a skos:Concept ;
     skos:prefLabel  "SAE Level 3 — Conditional Driving Automation"@en ;
     skos:definition "System handles all driving; human must respond to system request to intervene — the automation level addressed by UN R157 (ALKS)."@en ;
 .
-tg:Level4
-    a tg:SAELevel ; a skos:Concept ;
+transport-core:Level4
+    a transport-core:SAELevel ; a skos:Concept ;
     skos:prefLabel  "SAE Level 4 — High Driving Automation"@en ;
     skos:definition "System handles all driving within ODD without human fallback — geo-fenced robotaxi operations."@en ;
 .
-tg:Level5
-    a tg:SAELevel ; a skos:Concept ;
+transport-core:Level5
+    a transport-core:SAELevel ; a skos:Concept ;
     skos:prefLabel  "SAE Level 5 — Full Driving Automation"@en ;
 .
 
 # ── Transport AI Dimensions ───────────────────────────────────────────────────
 
-tg:FunctionalSafety
+transport-core:FunctionalSafety
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Functional Safety"@en ;
     skos:definition "Freedom from unreasonable risk of physical injury or damage to the health of people as a result of electrical or electronic system failure — ISO 26262 for road vehicles, DO-178C for aviation software."@en ;
     skos:broadMatch ai:Safety ;
 .
-tg:CybersecurityVehicle
+transport-core:CybersecurityVehicle
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Vehicle Cybersecurity"@en ;
     skos:definition "Protection of vehicle systems and data against cyber threats — UN R155 (CSMS) mandates cybersecurity management systems for vehicle type approval; covers over-the-air updates to AI systems."@en ;
     skos:broadMatch ai:Security ;
 .
-tg:RoadUserSafety
+transport-core:RoadUserSafety
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Road User Safety"@en ;
     skos:definition "Safety of vehicle occupants, pedestrians, cyclists, and other road users — primary objective of all automated driving system regulation."@en ;
     skos:broadMatch ai:Safety ;
 .
-tg:OperationalDesignDomain
+transport-core:OperationalDesignDomain
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Operational Design Domain (ODD)"@en ;
     skos:definition "The specific conditions under which an automated driving system is designed to function — geography, road type, speed range, weather, illumination, traffic density. AI systems must perform within specified ODD and transition safely outside it."@en ;
@@ -92,22 +92,22 @@ tg:OperationalDesignDomain
 
 # ── Vehicle Lifecycle ─────────────────────────────────────────────────────────
 
-tg:ConceptAndDesign
+transport-core:ConceptAndDesign
     a ai:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Concept and System Design"@en ;
     skos:definition "Safety concept, ODD definition, functional architecture, SOTIF analysis — hazard analysis and risk assessment per ISO 21448."@en ;
 .
-tg:VehicleTypeApproval
+transport-core:VehicleTypeApproval
     a ai:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Vehicle Type Approval"@en ;
     skos:definition "Regulatory type approval of vehicle models for sale — UNECE type approval required for automated driving systems under UN R157."@en ;
 .
-tg:ProductionAndDeployment
+transport-core:ProductionAndDeployment
     a ai:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Production and Fleet Deployment"@en ;
     skos:definition "Manufacturing, software deployment, and fleet operation — including OTA update governance for AI components."@en ;
 .
-tg:PostMarketMonitoring
+transport-core:PostMarketMonitoring
     a ai:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Post-Market Safety Monitoring"@en ;
     skos:definition "Ongoing monitoring of fleet safety performance — incident reporting, root cause analysis, and software update deployment. AI model drift in perception systems requires systematic field-data evaluation."@en ;
@@ -115,22 +115,22 @@ tg:PostMarketMonitoring
 
 # ── Stakeholders ──────────────────────────────────────────────────────────────
 
-tg:VehicleManufacturer
+transport-core:VehicleManufacturer
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Vehicle Manufacturer (OEM)"@en ;
     skos:definition "Original equipment manufacturer responsible for the overall vehicle system and type approval — primary obligated party under UN R155, R156, and R157."@en ;
 .
-tg:TypeApprovalAuthority
+transport-core:TypeApprovalAuthority
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Type Approval Authority (Contracting Party)"@en ;
     skos:definition "National authority granting vehicle type approval — evaluates conformity with UNECE regulations; technical services conduct testing."@en ;
 .
-tg:ADSSupplier
+transport-core:ADSSupplier
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "ADS Technology Supplier"@en ;
     skos:definition "Supplier of automated driving system hardware and software components — including AI perception, path planning, and control system providers; subject to ISO 26262 Part 8 supplier requirements."@en ;
 .
-tg:Operator
+transport-core:Operator
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Fleet Operator / Mobility Service Provider"@en ;
     skos:definition "Organisation deploying automated vehicles in commercial service — responsible for geo-fencing ODD, fleet safety monitoring, and incident reporting."@en ;

@@ -10,7 +10,7 @@
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 
 cobit:Ontology a owl:Ontology ;
-    dct:title "COBIT 2019 — Governance and Management of Enterprise IT"@en ;
+    dct:title "COBIT 2020+  — Governance and Management of Enterprise IT"@en ;
     prov:wasDerivedFrom <https://www.isaca.org/resources/cobit> ;
     owl:versionInfo "COBIT 2019" ;
 .

@@ -1,4 +1,4 @@
-@prefix ai:   <https://iqns.org/v1/ai#> .
+@prefix ai-skos:   <https://iqns.org/v1/ai#> .
 
 @prefix dct:  <http://purl.org/dc/terms/> .
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .
@@ -10,7 +10,7 @@
 
 # ── Scheme ──────────────────────────────────────────────────────────────────
 
-ai:Scheme
+ai-skos:Scheme
     a skos:ConceptScheme ;
     skos:prefLabel  "AI Governance"@en ;
     skos:definition "Top-level scheme for canonical governance concepts."@en ;
@@ -18,408 +18,408 @@ ai:Scheme
 
 # ── Abstract Concept Types (classes) ────────────────────────────────────────
 
-ai:Framework
+ai-skos:Framework
     a owl:Class ; a skos:Concept ;
     skos:prefLabel    "Framework"@en ;
     skos:definition   "A named body of rules, principles or guidance governing AI."@en ;
-    skos:inScheme     ai:Scheme ;
+    skos:inScheme     ai-skos:Scheme ;
 .
-ai:Principle
+ai-skos:Principle
     a owl:Class ; a skos:Concept ;
     skos:prefLabel    "Principle"@en ;
     skos:definition   "A normative value that AI systems and actors should embody."@en ;
-    skos:inScheme     ai:Scheme ;
+    skos:inScheme     ai-skos:Scheme ;
 .
-ai:Requirement
+ai-skos:Requirement
     a owl:Class ; a skos:Concept ;
     skos:prefLabel    "Requirement"@en ;
     skos:definition   "A binding obligation expressed as 'shall' or 'must'."@en ;
-    skos:inScheme     ai:Scheme ;
+    skos:inScheme     ai-skos:Scheme ;
 .
-ai:Recommendation
+ai-skos:Recommendation
     a owl:Class ; a skos:Concept ;
     skos:prefLabel    "Recommendation"@en ;
     skos:definition   "A normative suggestion expressed as 'should'."@en ;
-    skos:inScheme     ai:Scheme ;
+    skos:inScheme     ai-skos:Scheme ;
 .
-ai:Control
+ai-skos:Control
     a owl:Class ; a skos:Concept ;
     skos:prefLabel    "Control"@en ;
     skos:definition   "A concrete practice, safeguard, or mitigation measure."@en ;
-    skos:inScheme     ai:Scheme ;
+    skos:inScheme     ai-skos:Scheme ;
 .
-ai:Obligation
+ai-skos:Obligation
     a owl:Class ; a skos:Concept ;
     skos:prefLabel    "Obligation"@en ;
     skos:definition   "A binding duty imposed on a specific stakeholder by a framework."@en ;
-    skos:inScheme     ai:Scheme ;
+    skos:inScheme     ai-skos:Scheme ;
 .
-ai:Right
+ai-skos:Right
     a owl:Class ; a skos:Concept ;
     skos:prefLabel    "Right"@en ;
     skos:definition   "An entitlement held by an individual affected by an AI system."@en ;
-    skos:inScheme     ai:Scheme ;
+    skos:inScheme     ai-skos:Scheme ;
 .
-ai:Risk
+ai-skos:Risk
     a owl:Class ; a skos:Concept ;
     skos:prefLabel    "Risk"@en ;
     skos:definition   "A potential harm, adverse outcome, or threat associated with AI."@en ;
-    skos:inScheme     ai:Scheme ;
+    skos:inScheme     ai-skos:Scheme ;
 .
-ai:RiskCategory
+ai-skos:RiskCategory
     a owl:Class ; a skos:Concept ;
     skos:prefLabel    "Risk Category"@en ;
     skos:definition   "A class of related AI-related risks."@en ;
-    skos:inScheme     ai:Scheme ;
+    skos:inScheme     ai-skos:Scheme ;
 .
-ai:RiskLevel
+ai-skos:RiskLevel
     a owl:Class ; a skos:Concept ;
     skos:prefLabel    "Risk Level"@en ;
     skos:definition   "A severity classification applied to AI risk."@en ;
-    skos:inScheme     ai:Scheme ;
+    skos:inScheme     ai-skos:Scheme ;
 .
-ai:Lifecycle
+ai-skos:Lifecycle
     a owl:Class ; a skos:Concept ;
     skos:prefLabel    "Lifecycle Stage"@en ;
     skos:definition   "A phase in the development and operation of an AI system."@en ;
-    skos:inScheme     ai:Scheme ;
+    skos:inScheme     ai-skos:Scheme ;
 .
-ai:Stakeholder
+ai-skos:Stakeholder
     a owl:Class ; a skos:Concept ;
     skos:prefLabel    "Stakeholder"@en ;
     skos:definition   "A role type with interests or responsibilities in AI governance."@en ;
-    skos:inScheme     ai:Scheme ;
+    skos:inScheme     ai-skos:Scheme ;
 .
-ai:Domain
+ai-skos:Domain
     a owl:Class ; a skos:Concept ;
     skos:prefLabel    "Domain"@en ;
     skos:definition   "A sector or application area in which an AI system operates."@en ;
-    skos:inScheme     ai:Scheme ;
+    skos:inScheme     ai-skos:Scheme ;
 .
-ai:Dimension
+ai-skos:Dimension
     a owl:Class ; a skos:Concept ;
     skos:prefLabel    "Dimension"@en ;
     skos:definition   "An axis of assessment for AI trustworthiness or governance."@en ;
-    skos:inScheme     ai:Scheme ;
+    skos:inScheme     ai-skos:Scheme ;
 .
-ai:Assessment
+ai-skos:Assessment
     a owl:Class ; a skos:Concept ;
     skos:prefLabel    "Assessment"@en ;
     skos:definition   "A structured evaluation activity or artifact for an AI system."@en ;
-    skos:inScheme     ai:Scheme ;
+    skos:inScheme     ai-skos:Scheme ;
 .
 
 # ── Canonical Dimensions ─────────────────────────────────────────────────────
 
-ai:Safety
-    a ai:Dimension ; a skos:Concept ;
+ai-skos:Safety
+    a ai-skos:Dimension ; a skos:Concept ;
     skos:prefLabel  "Safety"@en ;
     skos:definition "AI does not cause physical or psychological harm."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
-ai:Security
-    a ai:Dimension ; a skos:Concept ;
+ai-skos:Security
+    a ai-skos:Dimension ; a skos:Concept ;
     skos:prefLabel  "Security"@en ;
     skos:definition "AI resists adversarial attack, misuse, and unauthorised access."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
-ai:Fairness
-    a ai:Dimension ; a skos:Concept ;
+ai-skos:Fairness
+    a ai-skos:Dimension ; a skos:Concept ;
     skos:prefLabel  "Fairness"@en ;
     skos:definition "AI treats individuals and groups equitably; bias is managed."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
-ai:Transparency
-    a ai:Dimension ; a skos:Concept ;
+ai-skos:Transparency
+    a ai-skos:Dimension ; a skos:Concept ;
     skos:prefLabel  "Transparency"@en ;
     skos:definition "AI behaviour, data, and decisions are open to appropriate scrutiny."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
-ai:Accountability
-    a ai:Dimension ; a skos:Concept ;
+ai-skos:Accountability
+    a ai-skos:Dimension ; a skos:Concept ;
     skos:prefLabel  "Accountability"@en ;
     skos:definition "Actors bear defined responsibility for AI outcomes."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
-ai:Privacy
-    a ai:Dimension ; a skos:Concept ;
+ai-skos:Privacy
+    a ai-skos:Dimension ; a skos:Concept ;
     skos:prefLabel  "Privacy"@en ;
     skos:definition "Personal data processed by AI is protected and minimised."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
-ai:Robustness
-    a ai:Dimension ; a skos:Concept ;
+ai-skos:Robustness
+    a ai-skos:Dimension ; a skos:Concept ;
     skos:prefLabel  "Robustness"@en ;
     skos:definition "AI performs reliably across operational and edge conditions."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
-ai:Sustainability
-    a ai:Dimension ; a skos:Concept ;
+ai-skos:Sustainability
+    a ai-skos:Dimension ; a skos:Concept ;
     skos:prefLabel  "Sustainability"@en ;
     skos:definition "AI minimises environmental and long-term societal harm."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
-ai:HumanOversight
-    a ai:Dimension ; a skos:Concept ;
+ai-skos:HumanOversight
+    a ai-skos:Dimension ; a skos:Concept ;
     skos:prefLabel  "Human Oversight"@en ;
     skos:definition "Humans can monitor, correct, and override AI decisions."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
-ai:Explainability
-    a ai:Dimension ; a skos:Concept ;
+ai-skos:Explainability
+    a ai-skos:Dimension ; a skos:Concept ;
     skos:prefLabel  "Explainability"@en ;
     skos:definition "AI decisions can be described in understandable terms."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
-ai:Reliability
-    a ai:Dimension ; a skos:Concept ;
+ai-skos:Reliability
+    a ai-skos:Dimension ; a skos:Concept ;
     skos:prefLabel  "Reliability"@en ;
     skos:definition "AI produces consistent, valid outputs within its intended scope."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
 
 # ── Canonical Lifecycle Stages ────────────────────────────────────────────────
 
-ai:Design
-    a ai:Lifecycle ; a skos:Concept ;
+ai-skos:Design
+    a ai-skos:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Design"@en ;
     skos:definition "Conceptualisation, requirements, and architecture of the AI system."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
-ai:Development
-    a ai:Lifecycle ; a skos:Concept ;
+ai-skos:Development
+    a ai-skos:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Development"@en ;
     skos:definition "Training, construction, and iteration of the AI model or system."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
-ai:Validation
-    a ai:Lifecycle ; a skos:Concept ;
+ai-skos:Validation
+    a ai-skos:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Validation"@en ;
     skos:definition "Testing, evaluation, and conformity assessment before deployment."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
-ai:Deployment
-    a ai:Lifecycle ; a skos:Concept ;
+ai-skos:Deployment
+    a ai-skos:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Deployment"@en ;
     skos:definition "Release and integration of the AI system into production use."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
-ai:Monitoring
-    a ai:Lifecycle ; a skos:Concept ;
+ai-skos:Monitoring
+    a ai-skos:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Monitoring"@en ;
     skos:definition "Ongoing observation and measurement of AI system behaviour."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
-ai:Decommission
-    a ai:Lifecycle ; a skos:Concept ;
+ai-skos:Decommission
+    a ai-skos:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Decommission"@en ;
     skos:definition "Planned withdrawal, shutdown, or replacement of an AI system."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
 
 # ── Canonical Stakeholder Roles ───────────────────────────────────────────────
 
-ai:Developer
-    a ai:Stakeholder ; a skos:Concept ;
+ai-skos:Developer
+    a ai-skos:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Developer"@en ;
     skos:definition "Entity that designs, builds, or trains an AI system."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
-ai:Deployer
-    a ai:Stakeholder ; a skos:Concept ;
+ai-skos:Deployer
+    a ai-skos:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Deployer"@en ;
     skos:definition "Entity that puts an AI system into operational use."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
-ai:Operator
-    a ai:Stakeholder ; a skos:Concept ;
+ai-skos:Operator
+    a ai-skos:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Operator"@en ;
     skos:definition "Entity that runs and maintains a deployed AI system."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
-ai:User
-    a ai:Stakeholder ; a skos:Concept ;
+ai-skos:User
+    a ai-skos:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "User"@en ;
     skos:definition "Individual who interacts directly with an AI system."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
-ai:AffectedPerson
-    a ai:Stakeholder ; a skos:Concept ;
+ai-skos:AffectedPerson
+    a ai-skos:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Affected Person"@en ;
     skos:definition "Individual subject to decisions or outputs of an AI system."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
-ai:Auditor
-    a ai:Stakeholder ; a skos:Concept ;
+ai-skos:Auditor
+    a ai-skos:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Auditor"@en ;
     skos:definition "Independent party that assesses AI system conformity or risk."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
-ai:Regulator
-    a ai:Stakeholder ; a skos:Concept ;
+ai-skos:Regulator
+    a ai-skos:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Regulator"@en ;
     skos:definition "Public authority with oversight power over AI deployment."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
-ai:StandardsBody
-    a ai:Stakeholder ; a skos:Concept ;
+ai-skos:StandardsBody
+    a ai-skos:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Standards Body"@en ;
     skos:definition "Organisation that develops and maintains technical standards."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
 
 # ── Canonical Risk Levels ─────────────────────────────────────────────────────
 
-ai:UnacceptableRisk
-    a ai:RiskLevel ; a skos:Concept ;
+ai-skos:UnacceptableRisk
+    a ai-skos:RiskLevel ; a skos:Concept ;
     skos:prefLabel  "Unacceptable Risk"@en ;
     skos:definition "AI application is prohibited; harm potential exceeds any benefit."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
-ai:HighRisk
-    a ai:RiskLevel ; a skos:Concept ;
+ai-skos:HighRisk
+    a ai-skos:RiskLevel ; a skos:Concept ;
     skos:prefLabel  "High Risk"@en ;
     skos:definition "Significant harm potential requiring conformity assessment and controls."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
-ai:LimitedRisk
-    a ai:RiskLevel ; a skos:Concept ;
+ai-skos:LimitedRisk
+    a ai-skos:RiskLevel ; a skos:Concept ;
     skos:prefLabel  "Limited Risk"@en ;
     skos:definition "Lower harm potential requiring transparency obligations."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
-ai:MinimalRisk
-    a ai:RiskLevel ; a skos:Concept ;
+ai-skos:MinimalRisk
+    a ai-skos:RiskLevel ; a skos:Concept ;
     skos:prefLabel  "Minimal Risk"@en ;
     skos:definition "Negligible harm potential; no mandatory obligations."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
 
 # ── Canonical Risk Categories ─────────────────────────────────────────────────
 
-ai:PhysicalHarm
-    a ai:RiskCategory ; a skos:Concept ;
+ai-skos:PhysicalHarm
+    a ai-skos:RiskCategory ; a skos:Concept ;
     skos:prefLabel  "Physical Harm"@en ;
     skos:definition "Bodily injury or death caused or enabled by an AI system."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
-ai:PsychologicalHarm
-    a ai:RiskCategory ; a skos:Concept ;
+ai-skos:PsychologicalHarm
+    a ai-skos:RiskCategory ; a skos:Concept ;
     skos:prefLabel  "Psychological Harm"@en ;
     skos:definition "Mental distress, manipulation, or coercion via AI."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
-ai:FinancialHarm
-    a ai:RiskCategory ; a skos:Concept ;
+ai-skos:FinancialHarm
+    a ai-skos:RiskCategory ; a skos:Concept ;
     skos:prefLabel  "Financial Harm"@en ;
     skos:definition "Economic loss or fraud caused or enabled by an AI system."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
-ai:DiscriminationHarm
-    a ai:RiskCategory ; a skos:Concept ;
+ai-skos:DiscriminationHarm
+    a ai-skos:RiskCategory ; a skos:Concept ;
     skos:prefLabel  "Discrimination Harm"@en ;
     skos:definition "Unfair or unlawful differential treatment of individuals or groups."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
-ai:PrivacyHarm
-    a ai:RiskCategory ; a skos:Concept ;
+ai-skos:PrivacyHarm
+    a ai-skos:RiskCategory ; a skos:Concept ;
     skos:prefLabel  "Privacy Harm"@en ;
     skos:definition "Unlawful or harmful disclosure, inference, or use of personal data."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
-ai:SecurityHarm
-    a ai:RiskCategory ; a skos:Concept ;
+ai-skos:SecurityHarm
+    a ai-skos:RiskCategory ; a skos:Concept ;
     skos:prefLabel  "Security Harm"@en ;
     skos:definition "Exploitation of AI for attack, sabotage, or adversarial misuse."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
-ai:SocietalHarm
-    a ai:RiskCategory ; a skos:Concept ;
+ai-skos:SocietalHarm
+    a ai-skos:RiskCategory ; a skos:Concept ;
     skos:prefLabel  "Societal Harm"@en ;
     skos:definition "Damage to democratic processes, rule of law, or social cohesion."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
-ai:ReputationalHarm
-    a ai:RiskCategory ; a skos:Concept ;
+ai-skos:ReputationalHarm
+    a ai-skos:RiskCategory ; a skos:Concept ;
     skos:prefLabel  "Reputational Harm"@en ;
     skos:definition "Loss of trust or standing caused by AI output or failure."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
-ai:EnvironmentalHarm
-    a ai:RiskCategory ; a skos:Concept ;
+ai-skos:EnvironmentalHarm
+    a ai-skos:RiskCategory ; a skos:Concept ;
     skos:prefLabel  "Environmental Harm"@en ;
     skos:definition "Negative ecological impact from AI resource consumption or use."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
 
 # ── Canonical Assessment Types ────────────────────────────────────────────────
 
-ai:ConformityAssessment
-    a ai:Assessment ; a skos:Concept ;
+ai-skos:ConformityAssessment
+    a ai-skos:Assessment ; a skos:Concept ;
     skos:prefLabel  "Conformity Assessment"@en ;
     skos:definition "Verification that an AI system satisfies specified requirements."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
-ai:RiskAssessment
-    a ai:Assessment ; a skos:Concept ;
+ai-skos:RiskAssessment
+    a ai-skos:Assessment ; a skos:Concept ;
     skos:prefLabel  "Risk Assessment"@en ;
     skos:definition "Systematic identification and evaluation of AI risks."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
-ai:ImpactAssessment
-    a ai:Assessment ; a skos:Concept ;
+ai-skos:ImpactAssessment
+    a ai-skos:Assessment ; a skos:Concept ;
     skos:prefLabel  "Impact Assessment"@en ;
     skos:definition "Evaluation of potential societal or fundamental rights impacts."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
-ai:BiasAudit
-    a ai:Assessment ; a skos:Concept ;
+ai-skos:BiasAudit
+    a ai-skos:Assessment ; a skos:Concept ;
     skos:prefLabel  "Bias Audit"@en ;
     skos:definition "Structured testing for discriminatory patterns in AI outputs."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
-ai:RedTeamExercise
-    a ai:Assessment ; a skos:Concept ;
+ai-skos:RedTeamExercise
+    a ai-skos:Assessment ; a skos:Concept ;
     skos:prefLabel  "Red-Team Exercise"@en ;
     skos:definition "Adversarial probing to find safety or security failures in AI."@en ;
-    skos:inScheme   ai:Scheme ;
+    skos:inScheme   ai-skos:Scheme ;
 .
 
 # ── Canonical Application Domains ────────────────────────────────────────────
 
-ai:Healthcare
-    a ai:Domain ; a skos:Concept ;
-    skos:prefLabel  "Healthcare"@en ; skos:inScheme ai:Scheme ;
+ai-skos:Healthcare
+    a ai-skos:Domain ; a skos:Concept ;
+    skos:prefLabel  "Healthcare"@en ; skos:inScheme ai-skos:Scheme ;
 .
-ai:Finance
-    a ai:Domain ; a skos:Concept ;
-    skos:prefLabel  "Finance"@en ; skos:inScheme ai:Scheme ;
+ai-skos:Finance
+    a ai-skos:Domain ; a skos:Concept ;
+    skos:prefLabel  "Finance"@en ; skos:inScheme ai-skos:Scheme ;
 .
-ai:LawEnforcement
-    a ai:Domain ; a skos:Concept ;
-    skos:prefLabel  "Law Enforcement"@en ; skos:inScheme ai:Scheme ;
+ai-skos:LawEnforcement
+    a ai-skos:Domain ; a skos:Concept ;
+    skos:prefLabel  "Law Enforcement"@en ; skos:inScheme ai-skos:Scheme ;
 .
-ai:Employment
-    a ai:Domain ; a skos:Concept ;
-    skos:prefLabel  "Employment"@en ; skos:inScheme ai:Scheme ;
+ai-skos:Employment
+    a ai-skos:Domain ; a skos:Concept ;
+    skos:prefLabel  "Employment"@en ; skos:inScheme ai-skos:Scheme ;
 .
-ai:Education
-    a ai:Domain ; a skos:Concept ;
-    skos:prefLabel  "Education"@en ; skos:inScheme ai:Scheme ;
+ai-skos:Education
+    a ai-skos:Domain ; a skos:Concept ;
+    skos:prefLabel  "Education"@en ; skos:inScheme ai-skos:Scheme ;
 .
-ai:CriticalInfrastructure
-    a ai:Domain ; a skos:Concept ;
-    skos:prefLabel  "Critical Infrastructure"@en ; skos:inScheme ai:Scheme ;
+ai-skos:CriticalInfrastructure
+    a ai-skos:Domain ; a skos:Concept ;
+    skos:prefLabel  "Critical Infrastructure"@en ; skos:inScheme ai-skos:Scheme ;
 .
-ai:Migration
-    a ai:Domain ; a skos:Concept ;
-    skos:prefLabel  "Migration & Border Control"@en ; skos:inScheme ai:Scheme ;
+ai-skos:Migration
+    a ai-skos:Domain ; a skos:Concept ;
+    skos:prefLabel  "Migration & Border Control"@en ; skos:inScheme ai-skos:Scheme ;
 .
-ai:Justice
-    a ai:Domain ; a skos:Concept ;
-    skos:prefLabel  "Justice & Legal"@en ; skos:inScheme ai:Scheme ;
+ai-skos:Justice
+    a ai-skos:Domain ; a skos:Concept ;
+    skos:prefLabel  "Justice & Legal"@en ; skos:inScheme ai-skos:Scheme ;
 .
-ai:Defence
-    a ai:Domain ; a skos:Concept ;
-    skos:prefLabel  "Defence & National Security"@en ; skos:inScheme ai:Scheme ;
+ai-skos:Defence
+    a ai-skos:Domain ; a skos:Concept ;
+    skos:prefLabel  "Defence & National Security"@en ; skos:inScheme ai-skos:Scheme ;
 .

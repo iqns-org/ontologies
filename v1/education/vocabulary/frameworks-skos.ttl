@@ -1,5 +1,5 @@
-@prefix edu-crosswalk: <https://iqns.org/v1/edu-crosswalk#> .
-@prefix edg:   <https://iqns.org/v1/edugraph#> .
+@prefix frameworks-skos: <https://iqns.org/v1/edu-crosswalk#> .
+@prefix edefence:   <https://iqns.org/v1/edugraph#> .
 @prefix ai:    <https://iqns.org/v1/ai#> .
 @prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
@@ -11,11 +11,11 @@
 @prefix eu-ai:  <https://iqns.org/v1/eu-ai-act#> .
 @prefix iso25:  <https://iqns.org/v1/iso-25059#> .
 
-edu-crosswalk:Ontology a owl:Ontology ; 
+frameworks-skos:Ontology a owl:Ontology ; 
     dct:title "Education AI Crosswalk"@en ;
     owl:imports <https://iqns.org/v1/edugraph#> .
 
 # EU AI Act Annex III (3) identifies AI in education/vocation as high-risk
-eu-ai:Ontology skos:relatedMatch edg:Ontology .
-unesco:Framework skos:broadMatch edg:Ontology .
-iso25:Framework skos:relatedMatch edg:Assessment . # Quality of AI in edu
+eu-ai:Ontology skos:relatedMatch edefence:Ontology .
+unesco:Framework skos:broadMatch edefence:Ontology .
+iso25:Framework skos:relatedMatch edefence:Assessment . # Quality of AI in edu

@@ -1,5 +1,5 @@
-@prefix def-crosswalk: <https://iqns.org/v1/def-crosswalk#> .
-@prefix dg:    <https://iqns.org/v1/defgraph#> .
+@prefix frameworks-skos: <https://iqns.org/v1/def-crosswalk#> .
+@prefix defence:    <https://iqns.org/v1/defgraph#> .
 @prefix ai:    <https://iqns.org/v1/ai#> .
 @prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
@@ -11,9 +11,9 @@
 @prefix ieee7000:   <https://iqns.org/v1/ieee-7000#> .
 @prefix pai:    <https://iqns.org/v1/pai-guidelines#> .
 
-def-crosswalk:Ontology a owl:Ontology ; 
+frameworks-skos:Ontology a owl:Ontology ; 
     dct:title "Defence AI Crosswalk"@en ;
     owl:imports <https://iqns.org/v1/defgraph#> .
 
-nist:Framework skos:relatedMatch dg:MissionReliability .
-ieee7000:Framework skos:relatedMatch dg:MeaningfulHumanControl .
+nist:Framework skos:relatedMatch defence:MissionReliability .
+ieee7000:Framework skos:relatedMatch defence:MeaningfulHumanControl .

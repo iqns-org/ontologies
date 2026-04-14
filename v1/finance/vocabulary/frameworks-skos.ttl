@@ -1,4 +1,4 @@
-@prefix fin-crosswalk: <https://iqns.org/v1/fin-crosswalk#> .
+@prefix frameworks-skos: <https://iqns.org/v1/fin-crosswalk#> .
 @prefix finance:    <https://iqns.org/v1/finance#> .
 @prefix ai:    <https://iqns.org/v1/ai#> .
 @prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
@@ -12,7 +12,7 @@
 @prefix sr11:   <https://iqns.org/v1/sr-11-7#> .
 @prefix eba:    <https://iqns.org/v1/eba-ai#> .
 
-fin-crosswalk:Ontology a owl:Ontology ; 
+frameworks-skos:Ontology a owl:Ontology ; 
     dct:title "Finance AI Crosswalk"@en ;
     owl:imports <https://iqns.org/v1/finance#> .
 

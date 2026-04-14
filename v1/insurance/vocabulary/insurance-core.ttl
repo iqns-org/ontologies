@@ -1,4 +1,4 @@
-@prefix ing: <https://iqns.org/v1/insgraph#> .
+@prefix insurance-core: <https://iqns.org/v1/insgraph#> .
 @prefix ai:  <https://iqns.org/v1/ai#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -9,7 +9,7 @@
 
 # ── Ontology ─────────────────────────────────────────────────────────────────
 
-ing:Ontology
+insurance-core:Ontology
     a owl:Ontology ;
     dct:title       "InsGraph: Insurance Core Vocabulary"@en ;
     skos:definition "Abstract vocabulary for insurance regulation and governance frameworks — Solvency II, actuarial model risk, fair treatment of customers, and algorithmic underwriting. Extends ai: with insurance-specific dimensions, lifecycle stages, and stakeholders."@en ;
@@ -19,17 +19,17 @@ ing:Ontology
 
 # ── Insurance-Specific Properties ────────────────────────────────────────────
 
-ing:hasInsuranceLine
+insurance-core:hasInsuranceLine
     a owl:ObjectProperty ;
     skos:prefLabel  "has insurance line of business"@en ;
-    rdfs:range  ing:LineOfBusiness ;
+    rdfs:range  insurance-core:LineOfBusiness ;
 .
-ing:hasSolvencyCapitalImpact
+insurance-core:hasSolvencyCapitalImpact
     a owl:DatatypeProperty ;
     skos:prefLabel  "has SCR impact"@en ;
     rdfs:range  xsd:boolean ;
 .
-ing:requiresActuarialCertification
+insurance-core:requiresActuarialCertification
     a owl:DatatypeProperty ;
     skos:prefLabel  "requires actuarial certification"@en ;
     rdfs:range  xsd:boolean ;
@@ -37,43 +37,43 @@ ing:requiresActuarialCertification
 
 # ── Lines of Business ─────────────────────────────────────────────────────────
 
-ing:LifeInsurance
-    a ing:LineOfBusiness ; a skos:Concept ;
+insurance-core:LifeInsurance
+    a insurance-core:LineOfBusiness ; a skos:Concept ;
     skos:prefLabel  "Life Insurance"@en ;
 .
-ing:NonLifeInsurance
-    a ing:LineOfBusiness ; a skos:Concept ;
+insurance-core:NonLifeInsurance
+    a insurance-core:LineOfBusiness ; a skos:Concept ;
     skos:prefLabel  "Non-Life / General Insurance"@en ;
 .
-ing:Reinsurance
-    a ing:LineOfBusiness ; a skos:Concept ;
+insurance-core:Reinsurance
+    a insurance-core:LineOfBusiness ; a skos:Concept ;
     skos:prefLabel  "Reinsurance"@en ;
 .
-ing:HealthInsurance
-    a ing:LineOfBusiness ; a skos:Concept ;
+insurance-core:HealthInsurance
+    a insurance-core:LineOfBusiness ; a skos:Concept ;
     skos:prefLabel  "Health Insurance / Protection"@en ;
 .
 
 # ── Insurance Dimensions ──────────────────────────────────────────────────────
 
-ing:ActuarialRisk
+insurance-core:ActuarialRisk
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Actuarial / Underwriting Risk"@en ;
     skos:definition "Risk that pricing or reserving models are incorrect — AI underwriting models must be validated for actuarial soundness, calibration, and proxy discrimination."@en ;
     skos:relatedMatch ai:Robustness ;
 .
-ing:SolvencyRisk
+insurance-core:SolvencyRisk
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Solvency and Capital Risk"@en ;
     skos:definition "Risk that an insurer cannot meet its obligations — Solvency II SCR/MCR capital requirements; internal model approval; AI in risk capital models."@en ;
 .
-ing:CustomerFairness
+insurance-core:CustomerFairness
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Fair Treatment of Customers"@en ;
     skos:definition "Obligation to treat customers fairly — prohibitions on unfair discriminatory pricing, algorithmic bias in claims handling, and deceptive product design."@en ;
     skos:broadMatch ai:Fairness ;
 .
-ing:ClaimsIntegrity
+insurance-core:ClaimsIntegrity
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Claims Integrity"@en ;
     skos:definition "Accurate and timely claims assessment — AI-assisted claims handling must avoid systematic under-settlement and must provide recourse for disputed decisions."@en ;
@@ -82,27 +82,27 @@ ing:ClaimsIntegrity
 
 # ── Insurance Lifecycle ───────────────────────────────────────────────────────
 
-ing:ProductDesign
+insurance-core:ProductDesign
     a ai:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Product Design"@en ;
     skos:definition "Design and pricing of insurance products — AI actuarial models used in pricing must be validated before product launch."@en ;
 .
-ing:Underwriting
+insurance-core:Underwriting
     a ai:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Underwriting and Risk Selection"@en ;
     skos:definition "Assessment of individual or portfolio risk — AI underwriting models must be monitored for proxy discrimination and drift."@en ;
 .
-ing:PolicyAdministration
+insurance-core:PolicyAdministration
     a ai:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Policy Administration"@en ;
     skos:definition "Ongoing management of in-force policies — including renewal, endorsement, and lapse prediction."@en ;
 .
-ing:ClaimsHandling
+insurance-core:ClaimsHandling
     a ai:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Claims Handling"@en ;
     skos:definition "Processing, assessment, and settlement of insurance claims — highest-impact AI use case for fair treatment of customers."@en ;
 .
-ing:InvestmentManagement
+insurance-core:InvestmentManagement
     a ai:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Investment Management"@en ;
     skos:definition "Management of the insurer's asset portfolio — quantitative investment models subject to Solvency II liquidity and concentration risk rules."@en ;
@@ -110,27 +110,27 @@ ing:InvestmentManagement
 
 # ── Stakeholders ──────────────────────────────────────────────────────────────
 
-ing:Insurer
+insurance-core:Insurer
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Insurance Undertaking"@en ;
     skos:definition "Licensed insurance company — primary obligated party under Solvency II and national conduct regulations."@en ;
 .
-ing:Policyholder
+insurance-core:Policyholder
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Policyholder / Claimant"@en ;
     skos:definition "Individual or entity holding an insurance policy or making a claim — holds rights to fair treatment, non-discrimination, and claim explanation."@en ;
 .
-ing:ActuaryFunction
+insurance-core:ActuaryFunction
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Actuarial Function"@en ;
     skos:definition "Solvency II-mandated function responsible for technical provisions adequacy and underwriting policy — must opine on AI actuarial model appropriateness."@en ;
 .
-ing:InsuranceSupervisor
+insurance-core:InsuranceSupervisor
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Insurance Supervisor (NCA / EIOPA)"@en ;
     skos:definition "National Competent Authority (NCA) and EIOPA — supervise insurer solvency, conduct, and internal model approval; increasing AI governance expectations from EIOPA Digital Ethics guidelines."@en ;
 .
-ing:Reinsurer
+insurance-core:Reinsurer
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Reinsurer"@en ;
     skos:definition "Firm providing risk transfer to insurers — AI model opacity in reinsurance treaties creates information asymmetry risk."@en ;

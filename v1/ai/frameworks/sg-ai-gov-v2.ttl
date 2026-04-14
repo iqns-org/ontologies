@@ -1,4 +1,4 @@
-@prefix sg-ai: <https://iqns.org/v1/sg-ai#> .
+@prefix sg-ai-gov-v2: <https://iqns.org/v1/sg-ai#> .
 @prefix ai:   <https://iqns.org/v1/ai#> .
 @prefix dct:  <http://purl.org/dc/terms/> .
 @prefix prov:  <http://www.w3.org/ns/prov#> .
@@ -8,123 +8,123 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 
-sg-ai:Ontology a owl:Ontology ;
+sg-ai-gov-v2:Ontology a owl:Ontology ;
     dct:title  "Singapore Model AI Governance Framework (v2, 2020) + AI Verify"@en ;
     prov:wasDerivedFrom <https://www.pdpc.gov.sg/help-and-resources/2020/01/model-ai-governance-framework> .
 
-sg-ai:Scheme a skos:ConceptScheme ;
+sg-ai-gov-v2:Scheme a skos:ConceptScheme ;
     skos:prefLabel  "Singapore PDPC Model AI Governance Framework"@en ;
     skos:definition "Sector-agnostic, practical framework for responsible AI deployment; v2 adds implementation guidance and AI Verify testing toolkit."@en .
 
-sg-ai:SG_ModelAIGov
+sg-ai-gov-v2:SG_ModelAIGov
     a ai:Framework ; a skos:Concept ;
     skos:prefLabel  "Singapore Model AI Governance Framework v2"@en ;
     skos:definition "Voluntary framework from PDPC providing detailed guidance on internal governance, decision-making, operations management, and customer relationships for AI."@en ;
-    skos:inScheme   sg-ai:Scheme ;
+    skos:inScheme   sg-ai-gov-v2:Scheme ;
     dct:publisher   "Personal Data Protection Commission, Singapore"@en ;
     dct:issued      "2020"^^xsd:gYear ;
 .
 
 # ── Pillar 1: Internal Governance ─────────────────────────────────────────────
 
-sg-ai:AIGovernanceStructure
+sg-ai-gov-v2:AIGovernanceStructure
     a ai:Requirement ; a skos:Concept ;
     skos:prefLabel  "Internal AI Governance Structure"@en ;
     skos:definition "Board-level and senior management accountability; designated AI governance roles with defined responsibilities."@en ;
-    skos:inScheme   sg-ai:Scheme ; prov:wasDerivedFrom "SG MAIGF §2.1" ;
+    skos:inScheme   sg-ai-gov-v2:Scheme ; prov:wasDerivedFrom "SG MAIGF §2.1" ;
     skos:exactMatch ai:Accountability ;
 .
-sg-ai:AIRiskFrameworkInternal
+sg-ai-gov-v2:AIRiskFrameworkInternal
     a ai:Requirement ; a skos:Concept ;
     skos:prefLabel  "Enterprise AI Risk Framework"@en ;
     skos:definition "Risk tolerance thresholds defined by management; systematic identification of AI-specific risks across the enterprise."@en ;
-    skos:inScheme   sg-ai:Scheme ; prov:wasDerivedFrom "SG MAIGF §2.2" ;
+    skos:inScheme   sg-ai-gov-v2:Scheme ; prov:wasDerivedFrom "SG MAIGF §2.2" ;
     skos:broadMatch ai:RiskAssessment ;
 .
-sg-ai:StaffCompetency
+sg-ai-gov-v2:StaffCompetency
     a ai:Control ; a skos:Concept ;
     skos:prefLabel  "AI Staff Competency"@en ;
     skos:definition "Training and capability building for staff who design, develop, deploy, or oversee AI systems."@en ;
-    skos:inScheme   sg-ai:Scheme ; prov:wasDerivedFrom "SG MAIGF §2.3" ;
+    skos:inScheme   sg-ai-gov-v2:Scheme ; prov:wasDerivedFrom "SG MAIGF §2.3" ;
     ai:appliesToRole ai:Developer ;
     ai:appliesToRole ai:Operator ;
 .
 
 # ── Pillar 2: Determining AI Decision-Making Model ────────────────────────────
 
-sg-ai:HumanInTheLoop
+sg-ai-gov-v2:HumanInTheLoop
     a ai:Control ; a skos:Concept ;
     skos:prefLabel  "Human-in-the-Loop Decision Structure"@en ;
     skos:definition "Classify AI decisions by probability of error and severity; increase human involvement for higher-risk decisions."@en ;
-    skos:inScheme   sg-ai:Scheme ; prov:wasDerivedFrom "SG MAIGF §3.1" ;
+    skos:inScheme   sg-ai-gov-v2:Scheme ; prov:wasDerivedFrom "SG MAIGF §3.1" ;
     skos:exactMatch ai:HumanOversight ;
 .
-sg-ai:DecisionAuditability
+sg-ai-gov-v2:DecisionAuditability
     a ai:Control ; a skos:Concept ;
     skos:prefLabel  "AI Decision Auditability"@en ;
     skos:definition "AI-assisted decisions must be reviewable; audit logs retained to support post-decision explanation and redress."@en ;
-    skos:inScheme   sg-ai:Scheme ; prov:wasDerivedFrom "SG MAIGF §3.2" ;
+    skos:inScheme   sg-ai-gov-v2:Scheme ; prov:wasDerivedFrom "SG MAIGF §3.2" ;
     skos:broadMatch ai:Transparency ;
     skos:relatedMatch ai:Accountability ;
 .
 
 # ── Pillar 3: Operations Management ──────────────────────────────────────────
 
-sg-ai:MinimiseDataUsed
+sg-ai-gov-v2:MinimiseDataUsed
     a ai:Control ; a skos:Concept ;
     skos:prefLabel  "Data Minimisation in AI"@en ;
     skos:definition "Use no more personal data than necessary; apply anonymisation and aggregation techniques to limit privacy exposure."@en ;
-    skos:inScheme   sg-ai:Scheme ; prov:wasDerivedFrom "SG MAIGF §4.1" ;
+    skos:inScheme   sg-ai-gov-v2:Scheme ; prov:wasDerivedFrom "SG MAIGF §4.1" ;
     skos:exactMatch ai:Privacy ;
 .
-sg-ai:DataLineageManagement
+sg-ai-gov-v2:DataLineageManagement
     a ai:Control ; a skos:Concept ;
     skos:prefLabel  "Data Lineage and Quality Management"@en ;
     skos:definition "Track data provenance, transformation, and quality throughout the AI pipeline to ensure model reliability."@en ;
-    skos:inScheme   sg-ai:Scheme ; prov:wasDerivedFrom "SG MAIGF §4.2" ;
+    skos:inScheme   sg-ai-gov-v2:Scheme ; prov:wasDerivedFrom "SG MAIGF §4.2" ;
     ai:appliesToLifecycle ai:Development ;
     ai:appliesToLifecycle ai:Monitoring ;
 .
-sg-ai:ModelInterpretability
+sg-ai-gov-v2:ModelInterpretability
     a ai:Control ; a skos:Concept ;
     skos:prefLabel  "Model Interpretability"@en ;
     skos:definition "Select models appropriate to context; document trade-offs between accuracy and interpretability; provide explanations proportionate to risk."@en ;
-    skos:inScheme   sg-ai:Scheme ; prov:wasDerivedFrom "SG MAIGF §4.3" ;
+    skos:inScheme   sg-ai-gov-v2:Scheme ; prov:wasDerivedFrom "SG MAIGF §4.3" ;
     skos:exactMatch ai:Explainability ;
 .
-sg-ai:ModelMonitoringDriftSG
+sg-ai-gov-v2:ModelMonitoringDriftSG
     a ai:Control ; a skos:Concept ;
     skos:prefLabel  "Regular Model Monitoring and Review"@en ;
     skos:definition "Continuously monitor deployed AI models for performance degradation, data drift, and unintended outcomes."@en ;
-    skos:inScheme   sg-ai:Scheme ; prov:wasDerivedFrom "SG MAIGF §4.4" ;
+    skos:inScheme   sg-ai-gov-v2:Scheme ; prov:wasDerivedFrom "SG MAIGF §4.4" ;
     ai:appliesToLifecycle ai:Monitoring ;
     skos:broadMatch ai:Robustness ;
 .
 
 # ── Pillar 4: Stakeholder Relationships ───────────────────────────────────────
 
-sg-ai:AIDisclosureToCustomers
+sg-ai-gov-v2:AIDisclosureToCustomers
     a ai:Obligation ; a skos:Concept ;
     skos:prefLabel  "AI Disclosure to Customers"@en ;
     skos:definition "Inform customers when AI is used in decisions affecting them; disclose AI identity where persons interact with AI agents."@en ;
-    skos:inScheme   sg-ai:Scheme ; prov:wasDerivedFrom "SG MAIGF §5.1" ;
+    skos:inScheme   sg-ai-gov-v2:Scheme ; prov:wasDerivedFrom "SG MAIGF §5.1" ;
     skos:exactMatch ai:Transparency ;
     ai:appliesToRole ai:User ;
 .
-sg-ai:FeedbackAndRedress
+sg-ai-gov-v2:FeedbackAndRedress
     a ai:Right ; a skos:Concept ;
     skos:prefLabel  "Customer Feedback and Redress"@en ;
     skos:definition "Provide accessible channels for customers to query, contest, and seek redress for AI-influenced decisions."@en ;
-    skos:inScheme   sg-ai:Scheme ; prov:wasDerivedFrom "SG MAIGF §5.2" ;
+    skos:inScheme   sg-ai-gov-v2:Scheme ; prov:wasDerivedFrom "SG MAIGF §5.2" ;
     ai:appliesToRole ai:AffectedPerson ;
 .
 
 # ── AI Verify ─────────────────────────────────────────────────────────────────
 
-sg-ai:AIVerify
+sg-ai-gov-v2:AIVerify
     a ai:Assessment ; a skos:Concept ;
     skos:prefLabel  "AI Verify Testing Framework and Toolkit"@en ;
     skos:definition "Singapore's AI governance testing toolkit (2022); validates 11 AI ethics principles through objective test results and process checks."@en ;
-    skos:inScheme   sg-ai:Scheme ; prov:wasDerivedFrom "IMDA AI Verify v1.0" ;
+    skos:inScheme   sg-ai-gov-v2:Scheme ; prov:wasDerivedFrom "IMDA AI Verify v1.0" ;
     skos:broadMatch ai:ConformityAssessment ;
 .

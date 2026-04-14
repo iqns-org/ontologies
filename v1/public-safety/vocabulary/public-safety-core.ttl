@@ -1,4 +1,4 @@
-@prefix psg: <https://iqns.org/v1/psgraph#> .
+@prefix public-safety-core: <https://iqns.org/v1/psgraph#> .
 @prefix ai:  <https://iqns.org/v1/ai#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -9,7 +9,7 @@
 
 # ── Ontology ─────────────────────────────────────────────────────────────────
 
-psg:Ontology
+public-safety-core:Ontology
     a owl:Ontology ;
     dct:title       "Public Safety Core Vocabulary"@en ;
     skos:definition "General vocabulary for public safety AI governance"@en ;
@@ -19,13 +19,13 @@ psg:Ontology
 
 # ── Public Safety Dimensions ──────────────────────────────────────────────────
 
-psg:PublicSafetyRisk
+public-safety-core:PublicSafetyRisk
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Public Safety Risk"@en ;
     skos:definition "Risk to physical security of persons and property arising from AI system failures or misuse in law enforcement, emergency response, or critical infrastructure contexts."@en ;
     skos:broadMatch ai:Safety ;
 .
-psg:CivilLibertiesRisk
+public-safety-core:CivilLibertiesRisk
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Civil Liberties and Fundamental Rights"@en ;
     skos:definition "Risk of AI use in public safety contexts infringing fundamental rights — arbitrary surveillance, biometric mass surveillance, racial profiling, right to privacy, freedom of assembly."@en ;
@@ -33,13 +33,13 @@ psg:CivilLibertiesRisk
     skos:relatedMatch ai:Fairness ;
     skos:relatedMatch ai:Accountability ;
 .
-psg:AlgorithmicBiasLawEnforcement
+public-safety-core:AlgorithmicBiasLawEnforcement
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Algorithmic Bias in Law Enforcement AI"@en ;
     skos:definition "Systematic disparate impact of predictive policing, recidivism scoring, and facial recognition on racial and ethnic minorities — a central concern of EU AI Act Art. 5 prohibited practices and high-risk classification."@en ;
     skos:broadMatch ai:Fairness ;
 .
-psg:BiometricSurveillance
+public-safety-core:BiometricSurveillance
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Biometric Surveillance"@en ;
     skos:definition "Use of biometric identification technologies in public spaces — EU AI Act prohibits real-time remote biometric identification in public spaces with narrow exceptions; retrospective biometric identification is high-risk."@en ;
@@ -49,17 +49,17 @@ psg:BiometricSurveillance
 
 # ── Public Safety Lifecycle ───────────────────────────────────────────────────
 
-psg:PolicingAndInvestigation
+public-safety-core:PolicingAndInvestigation
     a ai:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Policing and Investigation"@en ;
     skos:definition "Law enforcement use of AI for crime detection, investigation, and facial recognition — subject to EU AI Act high-risk obligations, GDPR Law Enforcement Directive, and constitutional scrutiny."@en ;
 .
-psg:RiskAssessmentCriminalJustice
+public-safety-core:RiskAssessmentCriminalJustice
     a ai:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Risk Assessment in Criminal Justice"@en ;
     skos:definition "AI tools for bail, sentencing, parole, and recidivism risk assessment — EU AI Act high-risk; requires human oversight, explainability, and bias testing across demographic groups."@en ;
 .
-psg:EmergencyResponse
+public-safety-core:EmergencyResponse
     a ai:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Emergency Response and Dispatch"@en ;
     skos:definition "AI-assisted emergency call triage, resource dispatch, and disaster response — high reliability requirements; errors can be life-threatening."@en ;
@@ -67,22 +67,22 @@ psg:EmergencyResponse
 
 # ── Stakeholders ──────────────────────────────────────────────────────────────
 
-psg:LawEnforcementAgency
+public-safety-core:LawEnforcementAgency
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Law Enforcement Agency"@en ;
     skos:definition "Police, border control, or investigative authority deploying AI systems — EU AI Act deployer obligations for high-risk AI; must conduct fundamental rights impact assessments."@en ;
 .
-psg:AffectedIndividual
+public-safety-core:AffectedIndividual
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Affected Individual / Suspect"@en ;
     skos:definition "Person subject to law enforcement AI decision — rights: right to explanation of automated decisions, right to human review, right to contest biometric identification."@en ;
 .
-psg:DataProtectionAuthority
+public-safety-core:DataProtectionAuthority
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Data Protection Authority"@en ;
     skos:definition "National authority enforcing GDPR and Law Enforcement Directive (Directive 2016/680) — biometric surveillance and predictive policing AI are within DPA jurisdiction."@en ;
 .
-psg:CivilSociety
+public-safety-core:CivilSociety
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Civil Society and Oversight Bodies"@en ;
     skos:definition "NGOs, oversight committees, and ombudsmen monitoring law enforcement AI — algorithmic accountability organisations and police oversight bodies."@en ;

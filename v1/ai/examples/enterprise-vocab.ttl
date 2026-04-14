@@ -1,4 +1,4 @@
-@prefix ex:   <https://iqns.org/v1/example#> .
+@prefix enterprise-vocab:   <https://iqns.org/v1/example#> .
 @prefix ai:   <https://iqns.org/v1/ai#> .
 @prefix prov:  <http://www.w3.org/ns/prov#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
@@ -16,12 +16,12 @@
 # link each asset to the ai: governance control framework.
 #
 # Namespace convention:
-#   ex:ClassName     — a class
-#   ex:propertyName  — a property
-#   ex:SomeInstance  — a concrete asset (defined in the other example files)
+#   enterprise-vocab:ClassName     — a class
+#   enterprise-vocab:propertyName  — a property
+#   enterprise-vocab:SomeInstance  — a concrete asset (defined in the other example files)
 # ══════════════════════════════════════════════════════════════════════════════
 
-ex:Ontology
+enterprise-vocab:Ontology
     a owl:Ontology ;
     dct:title       "Enterprise AI Asset Vocabulary — IQ:NS Extension"@en ;
     skos:definition "Vocabulary for modelling enterprise AI systems, ML pipelines, and hosting infrastructure, cross-mapped to the ai: governance framework."@en ;
@@ -32,209 +32,209 @@ ex:Ontology
 
 # ── Asset Class Hierarchy ─────────────────────────────────────────────────────
 
-ex:AISystem
+enterprise-vocab:AISystem
     a owl:Class ;
     skos:prefLabel       "AI System"@en ;
     rdfs:comment     "A deployed or planned AI system owned or operated by the enterprise. Distinct from ai:Framework (which models governance instruments)."@en ;
-    rdfs:isDefinedBy ex:Ontology ;
+    rdfs:isDefinedBy enterprise-vocab:Ontology ;
 .
-ex:GenerativeAISystem
+enterprise-vocab:GenerativeAISystem
     a owl:Class ;
-    rdfs:subClassOf  ex:AISystem ;
+    rdfs:subClassOf  enterprise-vocab:AISystem ;
     skos:prefLabel       "Generative AI System"@en ;
     rdfs:comment     "An AI system built upon a large language model, diffusion model, or other generative foundation model."@en ;
 .
-ex:ClassicalMLSystem
+enterprise-vocab:ClassicalMLSystem
     a owl:Class ;
-    rdfs:subClassOf  ex:AISystem ;
+    rdfs:subClassOf  enterprise-vocab:AISystem ;
     skos:prefLabel       "Classical ML System"@en ;
     rdfs:comment     "An AI system built on supervised/unsupervised/reinforcement learning (not generative)."@en ;
 .
-ex:RuleBasedAISystem
+enterprise-vocab:RuleBasedAISystem
     a owl:Class ;
-    rdfs:subClassOf  ex:AISystem ;
+    rdfs:subClassOf  enterprise-vocab:AISystem ;
     skos:prefLabel       "Rule-Based / Expert AI System"@en ;
     rdfs:comment     "An AI system using symbolic reasoning, decision trees, or hand-crafted rules."@en ;
 .
-ex:MLPipeline
+enterprise-vocab:MLPipeline
     a owl:Class ;
     skos:prefLabel       "ML Pipeline"@en ;
     rdfs:comment     "A training, fine-tuning, or evaluation workflow associated with an AI system."@en ;
 .
-ex:InferenceEndpoint
+enterprise-vocab:InferenceEndpoint
     a owl:Class ;
     skos:prefLabel       "Inference Endpoint"@en ;
     rdfs:comment     "A live API or service exposing a model for inference or prediction requests."@en ;
 .
-ex:RAGPipeline
+enterprise-vocab:RAGPipeline
     a owl:Class ;
-    rdfs:subClassOf  ex:MLPipeline ;
+    rdfs:subClassOf  enterprise-vocab:MLPipeline ;
     skos:prefLabel       "RAG Pipeline"@en ;
     rdfs:comment     "A retrieval-augmented generation pipeline coupling a retrieval store with an LLM."@en ;
 .
 
 # ── Platform / Infrastructure Hierarchy ──────────────────────────────────────
 
-ex:Platform
+enterprise-vocab:Platform
     a owl:Class ;
     skos:prefLabel       "Platform"@en ;
     rdfs:comment     "A hosting, orchestration, or managed service platform on which AI system components run."@en ;
 .
-ex:ContainerPlatform
+enterprise-vocab:ContainerPlatform
     a owl:Class ;
-    rdfs:subClassOf  ex:Platform ;
+    rdfs:subClassOf  enterprise-vocab:Platform ;
     skos:prefLabel       "Container Platform"@en ;
     rdfs:comment     "A Kubernetes or container-orchestration platform."@en ;
 .
-ex:CloudAIPlatform
+enterprise-vocab:CloudAIPlatform
     a owl:Class ;
-    rdfs:subClassOf  ex:Platform ;
+    rdfs:subClassOf  enterprise-vocab:Platform ;
     skos:prefLabel       "Cloud AI / ML Platform"@en ;
     rdfs:comment     "A managed cloud-based ML platform (e.g., AWS SageMaker, Azure ML, GCP Vertex AI)."@en ;
 .
-ex:FoundationModelAPI
+enterprise-vocab:FoundationModelAPI
     a owl:Class ;
-    rdfs:subClassOf  ex:Platform ;
+    rdfs:subClassOf  enterprise-vocab:Platform ;
     skos:prefLabel       "Foundation Model API"@en ;
     rdfs:comment     "An API providing access to a hosted foundation model (e.g., AWS Bedrock, Azure OpenAI Service, GCP Gemini API)."@en ;
 .
-ex:SaaSAIService
+enterprise-vocab:SaaSAIService
     a owl:Class ;
-    rdfs:subClassOf  ex:Platform ;
+    rdfs:subClassOf  enterprise-vocab:Platform ;
     skos:prefLabel       "SaaS AI Service"@en ;
     rdfs:comment     "A third-party SaaS product with embedded AI capabilities (e.g., Salesforce Einstein, Workday AI, GitHub Copilot)."@en ;
 .
 
 # ── Asset-to-Platform Properties ─────────────────────────────────────────────
 
-ex:hostedOn
+enterprise-vocab:hostedOn
     a owl:ObjectProperty ;
     skos:prefLabel   "hosted on"@en ;
     rdfs:comment "AI system components run on this platform."@en ;
-    rdfs:domain  ex:AISystem ;
-    rdfs:range   ex:Platform ;
+    rdfs:domain  enterprise-vocab:AISystem ;
+    rdfs:range   enterprise-vocab:Platform ;
 .
-ex:trainsOn
+enterprise-vocab:trainsOn
     a owl:ObjectProperty ;
     skos:prefLabel   "trains on"@en ;
     rdfs:comment "ML pipeline executes training on this platform."@en ;
-    rdfs:domain  ex:MLPipeline ;
-    rdfs:range   ex:Platform ;
+    rdfs:domain  enterprise-vocab:MLPipeline ;
+    rdfs:range   enterprise-vocab:Platform ;
 .
-ex:orchestratedBy
+enterprise-vocab:orchestratedBy
     a owl:ObjectProperty ;
     skos:prefLabel   "orchestrated by"@en ;
     rdfs:comment "The pipeline or endpoint is orchestrated by this platform."@en ;
-    rdfs:domain  [ owl:unionOf (ex:MLPipeline ex:InferenceEndpoint) ] ;
-    rdfs:range   ex:ContainerPlatform ;
+    rdfs:domain  [ owl:unionOf (enterprise-vocab:MLPipeline enterprise-vocab:InferenceEndpoint) ] ;
+    rdfs:range   enterprise-vocab:ContainerPlatform ;
 .
-ex:upstreamOf
+enterprise-vocab:upstreamOf
     a owl:ObjectProperty ;
     skos:prefLabel   "upstream of"@en ;
     rdfs:comment "This asset produces output consumed by the downstream AI system."@en ;
-    rdfs:domain  [ owl:unionOf (ex:AISystem ex:MLPipeline ex:Platform) ] ;
-    rdfs:range   [ owl:unionOf (ex:AISystem ex:MLPipeline) ] ;
+    rdfs:domain  [ owl:unionOf (enterprise-vocab:AISystem enterprise-vocab:MLPipeline enterprise-vocab:Platform) ] ;
+    rdfs:range   [ owl:unionOf (enterprise-vocab:AISystem enterprise-vocab:MLPipeline) ] ;
 .
 
 # ── Asset Metadata Properties ─────────────────────────────────────────────────
 
-ex:systemOwner
+enterprise-vocab:systemOwner
     a owl:DatatypeProperty ;
     skos:prefLabel   "system owner"@en ;
     rdfs:comment "Name of the team or business unit accountable for this asset."@en ;
-    rdfs:domain  ex:AISystem ;
+    rdfs:domain  enterprise-vocab:AISystem ;
     rdfs:range   xsd:string ;
 .
-ex:vendor
+enterprise-vocab:vendor
     a owl:DatatypeProperty ;
     skos:prefLabel   "vendor"@en ;
     rdfs:comment "Name of the technology vendor supplying the platform or SaaS service."@en ;
-    rdfs:domain  ex:Platform ;
+    rdfs:domain  enterprise-vocab:Platform ;
     rdfs:range   xsd:string ;
 .
-ex:dataRegion
+enterprise-vocab:dataRegion
     a owl:DatatypeProperty ;
     skos:prefLabel   "data region"@en ;
     rdfs:comment "Primary geographic data residency region for this asset."@en ;
     rdfs:range   xsd:string ;
 .
-ex:processesPersonalData
+enterprise-vocab:processesPersonalData
     a owl:DatatypeProperty ;
     skos:prefLabel   "processes personal data"@en ;
     rdfs:comment "Whether this AI system processes personal data (true/false)."@en ;
-    rdfs:domain  ex:AISystem ;
+    rdfs:domain  enterprise-vocab:AISystem ;
     rdfs:range   xsd:boolean ;
 .
-ex:processesSpecialCategoryData
+enterprise-vocab:processesSpecialCategoryData
     a owl:DatatypeProperty ;
     skos:prefLabel   "processes special category data"@en ;
     rdfs:comment "Whether this system processes GDPR Art. 9 special category data (health, biometrics, etc.)."@en ;
-    rdfs:domain  ex:AISystem ;
+    rdfs:domain  enterprise-vocab:AISystem ;
     rdfs:range   xsd:boolean ;
 .
-ex:thirdPartyAI
+enterprise-vocab:thirdPartyAI
     a owl:DatatypeProperty ;
     skos:prefLabel   "third-party AI"@en ;
     rdfs:comment "True if the AI capability is provided by an external vendor rather than built in-house."@en ;
-    rdfs:domain  ex:AISystem ;
+    rdfs:domain  enterprise-vocab:AISystem ;
     rdfs:range   xsd:boolean ;
 .
 
 # ── Governance Link Properties ────────────────────────────────────────────────
 
-ex:riskClassifiedAs
+enterprise-vocab:riskClassifiedAs
     a owl:ObjectProperty ;
     skos:prefLabel   "risk classified as"@en ;
     rdfs:comment "The regulatory risk tier assigned to this AI system (maps to ai:RiskLevel)."@en ;
-    rdfs:domain  ex:AISystem ;
+    rdfs:domain  enterprise-vocab:AISystem ;
     rdfs:range   ai:RiskLevel ;
 .
-ex:deployedInDomain
+enterprise-vocab:deployedInDomain
     a owl:ObjectProperty ;
     skos:prefLabel   "deployed in domain"@en ;
     rdfs:comment "The application domain in which this AI system operates (maps to ai:Domain)."@en ;
-    rdfs:domain  ex:AISystem ;
+    rdfs:domain  enterprise-vocab:AISystem ;
     rdfs:range   ai:Domain ;
 .
-ex:subjectToControl
+enterprise-vocab:subjectToControl
     a owl:ObjectProperty ;
     skos:prefLabel   "subject to control"@en ;
     rdfs:comment "A ai:Control that this AI system (or its owning team) must implement."@en ;
-    rdfs:domain  ex:AISystem ;
+    rdfs:domain  enterprise-vocab:AISystem ;
     rdfs:range   ai:Control ;
 .
-ex:subjectToRequirement
+enterprise-vocab:subjectToRequirement
     a owl:ObjectProperty ;
     skos:prefLabel   "subject to requirement"@en ;
     rdfs:comment "A regulatory ai:Requirement that applies to this AI system."@en ;
-    rdfs:domain  ex:AISystem ;
+    rdfs:domain  enterprise-vocab:AISystem ;
     rdfs:range   ai:Requirement ;
 .
-ex:requiresAssessment
+enterprise-vocab:requiresAssessment
     a owl:ObjectProperty ;
     skos:prefLabel   "requires assessment"@en ;
     rdfs:comment "A ai:Assessment that must be conducted for this AI system before deployment or on an ongoing basis."@en ;
-    rdfs:domain  ex:AISystem ;
+    rdfs:domain  enterprise-vocab:AISystem ;
     rdfs:range   ai:Assessment ;
 .
-ex:bearsFace
+enterprise-vocab:bearsFace
     a owl:ObjectProperty ;
     skos:prefLabel   "bears risk"@en ;
     rdfs:comment "A ai:Risk that this AI system is exposed to or introduces."@en ;
-    rdfs:domain  [ owl:unionOf (ex:AISystem ex:Platform) ] ;
+    rdfs:domain  [ owl:unionOf (enterprise-vocab:AISystem enterprise-vocab:Platform) ] ;
     rdfs:range   ai:Risk ;
 .
-ex:implementsNatively
+enterprise-vocab:implementsNatively
     a owl:ObjectProperty ;
     skos:prefLabel   "implements natively"@en ;
     rdfs:comment "A ai:Control that this platform delivers out of the box — reducing the burden on AI system teams."@en ;
-    rdfs:domain  ex:Platform ;
+    rdfs:domain  enterprise-vocab:Platform ;
     rdfs:range   ai:Control ;
 .
-ex:mitigates
+enterprise-vocab:mitigates
     a owl:ObjectProperty ;
     skos:prefLabel   "mitigates"@en ;
     rdfs:comment "A ai:Risk that this platform's built-in capabilities help reduce."@en ;
-    rdfs:domain  ex:Platform ;
+    rdfs:domain  enterprise-vocab:Platform ;
     rdfs:range   ai:Risk ;
 .

@@ -1,4 +1,4 @@
-@prefix azure: <https://iqns.org/v1/skms/azure#> .
+@prefix skms-azure: <https://iqns.org/v1/skms/azure#> .
 @prefix itil:  <https://iqns.org/itil#> .
 @prefix dct:   <http://purl.org/dc/terms/> .
 @prefix owl:   <http://www.w3.org/2002/07/owl#> .
@@ -10,7 +10,7 @@
 
 # ── Ontology ─────────────────────────────────────────────────────────────────
 
-azure:Ontology
+skms-azure:Ontology
     a owl:Ontology ;
     dct:title       "Microsoft Azure Cloud Service Offerings mapped to ITIL"@en ;
     skos:definition "SKOS concept scheme mapping Microsoft Azure cloud services to ITIL Service Knowledge Management System practices, configuration items, and service records."@en ;
@@ -20,7 +20,7 @@ azure:Ontology
     owl:imports     <https://iqns.org/itil#> ;
 .
 
-azure:AzureScheme
+skms-azure:AzureScheme
     a skos:ConceptScheme ;
     skos:prefLabel  "Microsoft Azure Cloud Services"@en ;
     skos:definition "A SKOS scheme mapping Azure cloud offerings to ITIL practices, service components, and configuration item types."@en ;
@@ -32,66 +32,66 @@ azure:AzureScheme
 #  COMPUTE & INFRASTRUCTURE
 # ═══════════════════════════════════════════════════════════════
 
-azure:VirtualMachines
+skms-azure:VirtualMachines
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Virtual Machines"@en ;
     skos:definition     "Scalable on-demand computing resources providing Windows and Linux virtual machines."@en ;
-    skos:inScheme       azure:AzureScheme ;
+    skos:inScheme       skms-azure:AzureScheme ;
     prov:wasDerivedFrom <https://azure.microsoft.com/en-us/services/virtual-machines/> ;
     skos:exactMatch     itil:HardwareCI ;
     skos:relatedMatch   itil:InfrastructureAndPlatformManagement ;
     skos:relatedMatch   itil:ServiceConfigurationManagement ;
 .
 
-azure:AppService
+skms-azure:AppService
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "App Service"@en ;
     skos:definition     "Managed hosting platform for web apps, mobile backends, and RESTful APIs supporting multiple languages."@en ;
-    skos:inScheme       azure:AzureScheme ;
+    skos:inScheme       skms-azure:AzureScheme ;
     prov:wasDerivedFrom <https://azure.microsoft.com/en-us/services/app-service/> ;
     skos:exactMatch     itil:SoftwareCI ;
     skos:relatedMatch   itil:SoftwareDevelopmentAndManagement ;
     skos:relatedMatch   itil:DeploymentManagement ;
 .
 
-azure:Functions
+skms-azure:Functions
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Azure Functions"@en ;
     skos:definition     "Serverless compute service for running event-driven code without infrastructure management."@en ;
-    skos:inScheme       azure:AzureScheme ;
+    skos:inScheme       skms-azure:AzureScheme ;
     prov:wasDerivedFrom <https://azure.microsoft.com/en-us/services/functions/> ;
     skos:exactMatch     itil:SoftwareCI ;
     skos:relatedMatch   itil:SoftwareDevelopmentAndManagement ;
     skos:relatedMatch   itil:DeploymentManagement ;
 .
 
-azure:ContainerInstances
+skms-azure:ContainerInstances
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Container Instances"@en ;
     skos:definition     "Simplest way to run containers in Azure without managing virtual machines."@en ;
-    skos:inScheme       azure:AzureScheme ;
+    skos:inScheme       skms-azure:AzureScheme ;
     prov:wasDerivedFrom <https://azure.microsoft.com/en-us/services/container-instances/> ;
     skos:exactMatch     itil:SoftwareCI ;
     skos:relatedMatch   itil:DeploymentManagement ;
     skos:relatedMatch   itil:CapacityAndPerformanceManagement ;
 .
 
-azure:AKS
+skms-azure:AKS
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Azure Kubernetes Service (AKS)"@en ;
     skos:definition     "Managed Kubernetes container orchestration service simplifying deployment and management."@en ;
-    skos:inScheme       azure:AzureScheme ;
+    skos:inScheme       skms-azure:AzureScheme ;
     prov:wasDerivedFrom <https://azure.microsoft.com/en-us/services/kubernetes-service/> ;
     skos:exactMatch     itil:SoftwareCI ;
     skos:relatedMatch   itil:DeploymentManagement ;
     skos:relatedMatch   itil:CapacityAndPerformanceManagement ;
 .
 
-azure:ServiceFabric
+skms-azure:ServiceFabric
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Service Fabric"@en ;
     skos:definition     "Distributed systems platform for building and managing scalable microservices applications."@en ;
-    skos:inScheme       azure:AzureScheme ;
+    skos:inScheme       skms-azure:AzureScheme ;
     prov:wasDerivedFrom <https://azure.microsoft.com/en-us/services/service-fabric/> ;
     skos:exactMatch     itil:SoftwareCI ;
     skos:relatedMatch   itil:SoftwareDevelopmentAndManagement ;
@@ -102,42 +102,42 @@ azure:ServiceFabric
 #  STORAGE
 # ═══════════════════════════════════════════════════════════════
 
-azure:StorageAccounts
+skms-azure:StorageAccounts
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Storage Accounts"@en ;
     skos:definition     "Managed storage service providing blob, file, queue, and table storage with high availability."@en ;
-    skos:inScheme       azure:AzureScheme ;
+    skos:inScheme       skms-azure:AzureScheme ;
     prov:wasDerivedFrom <https://azure.microsoft.com/en-us/services/storage/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:ServiceConfigurationManagement ;
     skos:relatedMatch   itil:ITAssetManagement ;
 .
 
-azure:BlobStorage
+skms-azure:BlobStorage
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Blob Storage"@en ;
     skos:definition     "Object storage for unstructured data including documents, media, and archives."@en ;
-    skos:inScheme       azure:AzureScheme ;
+    skos:inScheme       skms-azure:AzureScheme ;
     prov:wasDerivedFrom <https://azure.microsoft.com/en-us/services/storage/blobs/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:ServiceConfigurationManagement ;
 .
 
-azure:FileShare
+skms-azure:FileShare
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Azure Files"@en ;
     skos:definition     "Managed file shares accessible over SMB protocol for cloud-based or on-premises scenarios."@en ;
-    skos:inScheme       azure:AzureScheme ;
+    skos:inScheme       skms-azure:AzureScheme ;
     prov:wasDerivedFrom <https://azure.microsoft.com/en-us/services/storage/files/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:ServiceConfigurationManagement ;
 .
 
-azure:DataLake
+skms-azure:DataLake
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Azure Data Lake Storage"@en ;
     skos:definition     "Massively scalable cloud storage for big data analytics workloads."@en ;
-    skos:inScheme       azure:AzureScheme ;
+    skos:inScheme       skms-azure:AzureScheme ;
     prov:wasDerivedFrom <https://azure.microsoft.com/en-us/services/storage/data-lake-storage/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:MeasurementAndReporting ;
@@ -148,11 +148,11 @@ azure:DataLake
 #  DATABASES
 # ═══════════════════════════════════════════════════════════════
 
-azure:SQLDatabase
+skms-azure:SQLDatabase
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Azure SQL Database"@en ;
     skos:definition     "Managed relational database with built-in intelligence, security, and automatic scaling."@en ;
-    skos:inScheme       azure:AzureScheme ;
+    skos:inScheme       skms-azure:AzureScheme ;
     prov:wasDerivedFrom <https://azure.microsoft.com/en-us/services/sql-database/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:ServiceConfigurationManagement ;
@@ -160,74 +160,74 @@ azure:SQLDatabase
     skos:relatedMatch   itil:ServiceLevelManagement ;
 .
 
-azure:SQLManagedInstance
+skms-azure:SQLManagedInstance
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Azure SQL Managed Instance"@en ;
     skos:definition     "Fully managed SQL Server instance with near 100% feature parity for legacy migrations."@en ;
-    skos:inScheme       azure:AzureScheme ;
+    skos:inScheme       skms-azure:AzureScheme ;
     prov:wasDerivedFrom <https://azure.microsoft.com/en-us/services/azure-sql/sql-managed-instance/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:ServiceConfigurationManagement ;
 .
 
-azure:CosmosDB
+skms-azure:CosmosDB
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Azure Cosmos DB"@en ;
     skos:definition     "Globally distributed NoSQL database supporting multiple data models with automatic scaling."@en ;
-    skos:inScheme       azure:AzureScheme ;
+    skos:inScheme       skms-azure:AzureScheme ;
     prov:wasDerivedFrom <https://azure.microsoft.com/en-us/services/cosmos-db/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:CapacityAndPerformanceManagement ;
     skos:relatedMatch   itil:ServiceLevelManagement ;
 .
 
-azure:TableStorage
+skms-azure:TableStorage
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Azure Table Storage"@en ;
     skos:definition     "NoSQL key-value store for semi-structured data with high-scale cloud applications."@en ;
-    skos:inScheme       azure:AzureScheme ;
+    skos:inScheme       skms-azure:AzureScheme ;
     prov:wasDerivedFrom <https://azure.microsoft.com/en-us/services/storage/tables/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:ServiceConfigurationManagement ;
 .
 
-azure:PostgreSQL
+skms-azure:PostgreSQL
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Azure Database for PostgreSQL"@en ;
     skos:definition     "Managed PostgreSQL relational database with automatic backups and geo-redundancy."@en ;
-    skos:inScheme       azure:AzureScheme ;
+    skos:inScheme       skms-azure:AzureScheme ;
     prov:wasDerivedFrom <https://azure.microsoft.com/en-us/services/postgresql/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:ServiceConfigurationManagement ;
     skos:relatedMatch   itil:ServiceContinuityManagement ;
 .
 
-azure:MySQL
+skms-azure:MySQL
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Azure Database for MySQL"@en ;
     skos:definition     "Managed MySQL relational database with high availability and automated patching."@en ;
-    skos:inScheme       azure:AzureScheme ;
+    skos:inScheme       skms-azure:AzureScheme ;
     prov:wasDerivedFrom <https://azure.microsoft.com/en-us/services/mysql/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:ServiceConfigurationManagement ;
 .
 
-azure:Cache
+skms-azure:Cache
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Azure Cache for Redis"@en ;
     skos:definition     "In-memory Redis cache for improving application latency and throughput."@en ;
-    skos:inScheme       azure:AzureScheme ;
+    skos:inScheme       skms-azure:AzureScheme ;
     prov:wasDerivedFrom <https://azure.microsoft.com/en-us/services/cache/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:CapacityAndPerformanceManagement ;
     skos:relatedMatch   itil:MonitoringAndEventManagement ;
 .
 
-azure:DataFactory
+skms-azure:DataFactory
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Azure Data Factory"@en ;
     skos:definition     "Managed ETL and data integration service orchestrating data pipelines."@en ;
-    skos:inScheme       azure:AzureScheme ;
+    skos:inScheme       skms-azure:AzureScheme ;
     prov:wasDerivedFrom <https://azure.microsoft.com/en-us/services/data-factory/> ;
     skos:exactMatch     itil:SoftwareCI ;
     skos:relatedMatch   itil:SoftwareDevelopmentAndManagement ;
@@ -237,66 +237,66 @@ azure:DataFactory
 #  NETWORKING
 # ═══════════════════════════════════════════════════════════════
 
-azure:VirtualNetwork
+skms-azure:VirtualNetwork
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Virtual Network"@en ;
     skos:definition     "Isolated network environment in Azure with configurable IP address space and subnets."@en ;
-    skos:inScheme       azure:AzureScheme ;
+    skos:inScheme       skms-azure:AzureScheme ;
     prov:wasDerivedFrom <https://azure.microsoft.com/en-us/services/virtual-network/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:ServiceConfigurationManagement ;
     skos:relatedMatch   itil:InformationSecurityManagement ;
 .
 
-azure:LoadBalancer
+skms-azure:LoadBalancer
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Azure Load Balancer"@en ;
     skos:definition     "Layer 4 (TCP/UDP) load balancing distributing traffic with high availability."@en ;
-    skos:inScheme       azure:AzureScheme ;
+    skos:inScheme       skms-azure:AzureScheme ;
     prov:wasDerivedFrom <https://azure.microsoft.com/en-us/services/load-balancer/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:AvailabilityManagement ;
     skos:relatedMatch   itil:CapacityAndPerformanceManagement ;
 .
 
-azure:ApplicationGateway
+skms-azure:ApplicationGateway
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Application Gateway"@en ;
     skos:definition     "Layer 7 (application) load balancer with WAF and SSL/TLS termination."@en ;
-    skos:inScheme       azure:AzureScheme ;
+    skos:inScheme       skms-azure:AzureScheme ;
     prov:wasDerivedFrom <https://azure.microsoft.com/en-us/services/application-gateway/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:InformationSecurityManagement ;
     skos:relatedMatch   itil:AvailabilityManagement ;
 .
 
-azure:CDN
+skms-azure:CDN
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Azure Content Delivery Network"@en ;
     skos:definition     "Content Delivery Network caching and serving content from edge locations globally."@en ;
-    skos:inScheme       azure:AzureScheme ;
+    skos:inScheme       skms-azure:AzureScheme ;
     prov:wasDerivedFrom <https://azure.microsoft.com/en-us/services/cdn/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:CapacityAndPerformanceManagement ;
     skos:relatedMatch   itil:MonitoringAndEventManagement ;
 .
 
-azure:TrafficManager
+skms-azure:TrafficManager
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Traffic Manager"@en ;
     skos:definition     "DNS-based load balancing for global traffic distribution and failover."@en ;
-    skos:inScheme       azure:AzureScheme ;
+    skos:inScheme       skms-azure:AzureScheme ;
     prov:wasDerivedFrom <https://azure.microsoft.com/en-us/services/traffic-manager/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:AvailabilityManagement ;
     skos:relatedMatch   itil:ServiceLevelManagement ;
 .
 
-azure:APIManagement
+skms-azure:APIManagement
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "API Management"@en ;
     skos:definition     "Full lifecycle API management with publishing, versioning, and analytics."@en ;
-    skos:inScheme       azure:AzureScheme ;
+    skos:inScheme       skms-azure:AzureScheme ;
     prov:wasDerivedFrom <https://azure.microsoft.com/en-us/services/api-management/> ;
     skos:exactMatch     itil:SoftwareCI ;
     skos:relatedMatch   itil:ServiceConfigurationManagement ;
@@ -307,42 +307,42 @@ azure:APIManagement
 #  SECURITY & IDENTITY
 # ═══════════════════════════════════════════════════════════════
 
-azure:ActiveDirectory
+skms-azure:ActiveDirectory
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Azure Active Directory"@en ;
     skos:definition     "Identity and access management service for cloud and hybrid environments."@en ;
-    skos:inScheme       azure:AzureScheme ;
+    skos:inScheme       skms-azure:AzureScheme ;
     prov:wasDerivedFrom <https://azure.microsoft.com/en-us/services/active-directory/> ;
     skos:exactMatch     itil:InformationSecurityManagement ;
     skos:relatedMatch   itil:WorkforceAndTalentManagement ;
 .
 
-azure:KeyVault
+skms-azure:KeyVault
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Azure Key Vault"@en ;
     skos:definition     "Managed service for securely storing and accessing secrets, keys, and certificates."@en ;
-    skos:inScheme       azure:AzureScheme ;
+    skos:inScheme       skms-azure:AzureScheme ;
     prov:wasDerivedFrom <https://azure.microsoft.com/en-us/services/key-vault/> ;
     skos:exactMatch     itil:InformationSecurityManagement ;
     skos:relatedMatch   itil:KnowledgeManagement ;
 .
 
-azure:Sentinel
+skms-azure:Sentinel
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Azure Sentinel"@en ;
     skos:definition     "Cloud-native SIEM for intelligent security analytics and threat detection."@en ;
-    skos:inScheme       azure:AzureScheme ;
+    skos:inScheme       skms-azure:AzureScheme ;
     prov:wasDerivedFrom <https://azure.microsoft.com/en-us/services/microsoft-sentinel/> ;
     skos:relatedMatch   itil:InformationSecurityManagement ;
     skos:relatedMatch   itil:MonitoringAndEventManagement ;
     skos:relatedMatch   itil:RiskManagement ;
 .
 
-azure:Defender
+skms-azure:Defender
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Microsoft Defender for Cloud"@en ;
     skos:definition     "Unified security management and threat protection across cloud and on-premises."@en ;
-    skos:inScheme       azure:AzureScheme ;
+    skos:inScheme       skms-azure:AzureScheme ;
     prov:wasDerivedFrom <https://azure.microsoft.com/en-us/services/defender-for-cloud/> ;
     skos:relatedMatch   itil:InformationSecurityManagement ;
     skos:relatedMatch   itil:RiskManagement ;
@@ -353,53 +353,53 @@ azure:Defender
 #  MONITORING & MANAGEMENT
 # ═══════════════════════════════════════════════════════════════
 
-azure:Monitor
+skms-azure:Monitor
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Azure Monitor"@en ;
     skos:definition     "Monitoring and diagnostics service collecting metrics, logs, and traces from resources."@en ;
-    skos:inScheme       azure:AzureScheme ;
+    skos:inScheme       skms-azure:AzureScheme ;
     prov:wasDerivedFrom <https://azure.microsoft.com/en-us/services/monitor/> ;
     skos:exactMatch     itil:MonitoringAndEventManagement ;
     skos:relatedMatch   itil:MeasurementAndReporting ;
     skos:relatedMatch   itil:CapacityAndPerformanceManagement ;
 .
 
-azure:ResourceManager
+skms-azure:ResourceManager
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Azure Resource Manager"@en ;
     skos:definition     "Infrastructure-as-Code service for managing Azure resources via templates."@en ;
-    skos:inScheme       azure:AzureScheme ;
+    skos:inScheme       skms-azure:AzureScheme ;
     prov:wasDerivedFrom <https://azure.microsoft.com/en-us/features/resource-manager/> ;
     skos:relatedMatch   itil:ServiceConfigurationManagement ;
     skos:relatedMatch   itil:DeploymentManagement ;
     skos:relatedMatch   itil:ChangeEnablement ;
 .
 
-azure:UpdateManagement
+skms-azure:UpdateManagement
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Update Management"@en ;
     skos:definition     "Service for managing OS updates and patches across Azure and on-premises machines."@en ;
-    skos:inScheme       azure:AzureScheme ;
+    skos:inScheme       skms-azure:AzureScheme ;
     prov:wasDerivedFrom <https://azure.microsoft.com/en-us/services/automation/> ;
     skos:relatedMatch   itil:ChangeEnablement ;
     skos:relatedMatch   itil:ServiceConfigurationManagement ;
 .
 
-azure:Automation
+skms-azure:Automation
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Azure Automation"@en ;
     skos:definition     "Cloud-based automation service for infrastructure and application management."@en ;
-    skos:inScheme       azure:AzureScheme ;
+    skos:inScheme       skms-azure:AzureScheme ;
     prov:wasDerivedFrom <https://azure.microsoft.com/en-us/services/automation/> ;
     skos:relatedMatch   itil:InfrastructureAndPlatformManagement ;
     skos:relatedMatch   itil:DeploymentManagement ;
 .
 
-azure:Advisor
+skms-azure:Advisor
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Azure Advisor"@en ;
     skos:definition     "Personalised best practices advisor for optimising cost, performance, and reliability."@en ;
-    skos:inScheme       azure:AzureScheme ;
+    skos:inScheme       skms-azure:AzureScheme ;
     prov:wasDerivedFrom <https://azure.microsoft.com/en-us/services/advisor/> ;
     skos:relatedMatch   itil:ContinualImprovementPractice ;
     skos:relatedMatch   itil:RiskManagement ;
@@ -409,43 +409,43 @@ azure:Advisor
 #  AI/ML & ANALYTICS
 # ═══════════════════════════════════════════════════════════════
 
-azure:MachineLearning
+skms-azure:MachineLearning
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Azure Machine Learning"@en ;
     skos:definition     "Managed platform for building, training, and deploying ML models at scale."@en ;
-    skos:inScheme       azure:AzureScheme ;
+    skos:inScheme       skms-azure:AzureScheme ;
     prov:wasDerivedFrom <https://azure.microsoft.com/en-us/services/machine-learning/> ;
     skos:exactMatch     itil:SoftwareCI ;
     skos:relatedMatch   itil:SoftwareDevelopmentAndManagement ;
     skos:relatedMatch   itil:KnowledgeManagement ;
 .
 
-azure:Synapse
+skms-azure:Synapse
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Azure Synapse Analytics"@en ;
     skos:definition     "Unified analytics platform combining SQL, Spark, and data pipelines."@en ;
-    skos:inScheme       azure:AzureScheme ;
+    skos:inScheme       skms-azure:AzureScheme ;
     prov:wasDerivedFrom <https://azure.microsoft.com/en-us/services/synapse-analytics/> ;
     skos:exactMatch     itil:SoftwareCI ;
     skos:relatedMatch   itil:MeasurementAndReporting ;
     skos:relatedMatch   itil:CapacityAndPerformanceManagement ;
 .
 
-azure:StreamAnalytics
+skms-azure:StreamAnalytics
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Stream Analytics"@en ;
     skos:definition     "Real-time stream processing and analytics service for IoT and streaming data."@en ;
-    skos:inScheme       azure:AzureScheme ;
+    skos:inScheme       skms-azure:AzureScheme ;
     prov:wasDerivedFrom <https://azure.microsoft.com/en-us/services/stream-analytics/> ;
     skos:exactMatch     itil:SoftwareCI ;
     skos:relatedMatch   itil:MonitoringAndEventManagement ;
 .
 
-azure:CognitiveServices
+skms-azure:CognitiveServices
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Cognitive Services"@en ;
     skos:definition     "API collection providing AI capabilities for vision, language, and decision-making."@en ;
-    skos:inScheme       azure:AzureScheme ;
+    skos:inScheme       skms-azure:AzureScheme ;
     prov:wasDerivedFrom <https://azure.microsoft.com/en-us/services/cognitive-services/> ;
     skos:exactMatch     itil:SoftwareCI ;
     skos:relatedMatch   itil:SoftwareDevelopmentAndManagement ;
@@ -455,74 +455,74 @@ azure:CognitiveServices
 #  COLLECTIONS
 # ═══════════════════════════════════════════════════════════════
 
-azure:ComputeServices
+skms-azure:ComputeServices
     a skos:Collection ;
     skos:prefLabel "Azure Compute Services"@en ;
-    skos:member azure:VirtualMachines ;
-    skos:member azure:AppService ;
-    skos:member azure:Functions ;
-    skos:member azure:ContainerInstances ;
-    skos:member azure:AKS ;
-    skos:member azure:ServiceFabric ;
+    skos:member skms-azure:VirtualMachines ;
+    skos:member skms-azure:AppService ;
+    skos:member skms-azure:Functions ;
+    skos:member skms-azure:ContainerInstances ;
+    skos:member skms-azure:AKS ;
+    skos:member skms-azure:ServiceFabric ;
 .
 
-azure:StorageServices
+skms-azure:StorageServices
     a skos:Collection ;
     skos:prefLabel "Azure Storage Services"@en ;
-    skos:member azure:StorageAccounts ;
-    skos:member azure:BlobStorage ;
-    skos:member azure:FileShare ;
-    skos:member azure:DataLake ;
+    skos:member skms-azure:StorageAccounts ;
+    skos:member skms-azure:BlobStorage ;
+    skos:member skms-azure:FileShare ;
+    skos:member skms-azure:DataLake ;
 .
 
-azure:DatabaseServices
+skms-azure:DatabaseServices
     a skos:Collection ;
     skos:prefLabel "Azure Database Services"@en ;
-    skos:member azure:SQLDatabase ;
-    skos:member azure:SQLManagedInstance ;
-    skos:member azure:CosmosDB ;
-    skos:member azure:TableStorage ;
-    skos:member azure:PostgreSQL ;
-    skos:member azure:MySQL ;
-    skos:member azure:Cache ;
-    skos:member azure:DataFactory ;
+    skos:member skms-azure:SQLDatabase ;
+    skos:member skms-azure:SQLManagedInstance ;
+    skos:member skms-azure:CosmosDB ;
+    skos:member skms-azure:TableStorage ;
+    skos:member skms-azure:PostgreSQL ;
+    skos:member skms-azure:MySQL ;
+    skos:member skms-azure:Cache ;
+    skos:member skms-azure:DataFactory ;
 .
 
-azure:NetworkingServices
+skms-azure:NetworkingServices
     a skos:Collection ;
     skos:prefLabel "Azure Networking Services"@en ;
-    skos:member azure:VirtualNetwork ;
-    skos:member azure:LoadBalancer ;
-    skos:member azure:ApplicationGateway ;
-    skos:member azure:CDN ;
-    skos:member azure:TrafficManager ;
-    skos:member azure:APIManagement ;
+    skos:member skms-azure:VirtualNetwork ;
+    skos:member skms-azure:LoadBalancer ;
+    skos:member skms-azure:ApplicationGateway ;
+    skos:member skms-azure:CDN ;
+    skos:member skms-azure:TrafficManager ;
+    skos:member skms-azure:APIManagement ;
 .
 
-azure:SecurityServices
+skms-azure:SecurityServices
     a skos:Collection ;
     skos:prefLabel "Azure Security & Identity Services"@en ;
-    skos:member azure:ActiveDirectory ;
-    skos:member azure:KeyVault ;
-    skos:member azure:Sentinel ;
-    skos:member azure:Defender ;
+    skos:member skms-azure:ActiveDirectory ;
+    skos:member skms-azure:KeyVault ;
+    skos:member skms-azure:Sentinel ;
+    skos:member skms-azure:Defender ;
 .
 
-azure:ManagementServices
+skms-azure:ManagementServices
     a skos:Collection ;
     skos:prefLabel "Azure Management & Monitoring Services"@en ;
-    skos:member azure:Monitor ;
-    skos:member azure:ResourceManager ;
-    skos:member azure:UpdateManagement ;
-    skos:member azure:Automation ;
-    skos:member azure:Advisor ;
+    skos:member skms-azure:Monitor ;
+    skos:member skms-azure:ResourceManager ;
+    skos:member skms-azure:UpdateManagement ;
+    skos:member skms-azure:Automation ;
+    skos:member skms-azure:Advisor ;
 .
 
-azure:AnalyticsServices
+skms-azure:AnalyticsServices
     a skos:Collection ;
     skos:prefLabel "Azure AI/ML & Analytics Services"@en ;
-    skos:member azure:MachineLearning ;
-    skos:member azure:Synapse ;
-    skos:member azure:StreamAnalytics ;
-    skos:member azure:CognitiveServices ;
+    skos:member skms-azure:MachineLearning ;
+    skos:member skms-azure:Synapse ;
+    skos:member skms-azure:StreamAnalytics ;
+    skos:member skms-azure:CognitiveServices ;
 .

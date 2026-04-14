@@ -1,4 +1,4 @@
-@prefix legal-crosswalk: <https://iqns.org/v1/legal-crosswalk#> .
+@prefix frameworks-skos: <https://iqns.org/v1/legal-crosswalk#> .
 @prefix lg:    <https://iqns.org/v1/leggraph#> .
 @prefix ai:    <https://iqns.org/v1/ai#> .
 @prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
@@ -10,7 +10,7 @@
 @prefix ieee7000:   <https://iqns.org/v1/ieee-7000#> .
 @prefix eu-ai:  <https://iqns.org/v1/eu-ai-act#> .
 
-legal-crosswalk:Ontology a owl:Ontology ; 
+frameworks-skos:Ontology a owl:Ontology ; 
     dct:title "Legal AI Crosswalk"@en ;
     owl:imports <https://iqns.org/v1/leggraph#> .
 

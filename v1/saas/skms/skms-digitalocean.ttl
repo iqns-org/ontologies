@@ -1,4 +1,4 @@
-@prefix do:   <https://iqns.org/v1/skms/digitalocean#> .
+@prefix skms-digitalocean:   <https://iqns.org/v1/skms/digitalocean#> .
 @prefix itil: <https://iqns.org/itil#> .
 @prefix dct:  <http://purl.org/dc/terms/> .
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .
@@ -10,7 +10,7 @@
 
 # ── Ontology ─────────────────────────────────────────────────────────────────
 
-do:Ontology
+skms-digitalocean:Ontology
     a owl:Ontology ;
     dct:title       "DigitalOcean Cloud Services mapped to ITIL"@en ;
     skos:definition "SKOS concept scheme mapping DigitalOcean cloud services to ITIL Service Knowledge Management System practices, configuration items, and service records."@en ;
@@ -20,7 +20,7 @@ do:Ontology
     owl:imports     <https://iqns.org/itil#> ;
 .
 
-do:DOScheme
+skms-digitalocean:DOScheme
     a skos:ConceptScheme ;
     skos:prefLabel  "DigitalOcean Cloud Services"@en ;
     skos:definition "A SKOS scheme mapping DigitalOcean offerings to ITIL practices, service components, and configuration item types."@en ;
@@ -32,44 +32,44 @@ do:DOScheme
 #  COMPUTE & INFRASTRUCTURE
 # ═══════════════════════════════════════════════════════════════
 
-do:Droplets
+skms-digitalocean:Droplets
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Droplets"@en ;
     skos:definition     "Scalable Linux and Windows virtual machines with configurable CPU, memory, and SSD storage."@en ;
-    skos:inScheme       do:DOScheme ;
+    skos:inScheme       skms-digitalocean:DOScheme ;
     prov:wasDerivedFrom <https://www.digitalocean.com/products/droplets/> ;
     skos:exactMatch     itil:HardwareCI ;
     skos:relatedMatch   itil:InfrastructureAndPlatformManagement ;
     skos:relatedMatch   itil:ServiceConfigurationManagement ;
 .
 
-do:AppPlatform
+skms-digitalocean:AppPlatform
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "App Platform"@en ;
     skos:definition     "Platform-as-a-Service for deploying web and mobile applications with git-based workflows."@en ;
-    skos:inScheme       do:DOScheme ;
+    skos:inScheme       skms-digitalocean:DOScheme ;
     prov:wasDerivedFrom <https://www.digitalocean.com/products/app-platform/> ;
     skos:exactMatch     itil:SoftwareCI ;
     skos:relatedMatch   itil:SoftwareDevelopmentAndManagement ;
     skos:relatedMatch   itil:DeploymentManagement ;
 .
 
-do:Functions
+skms-digitalocean:Functions
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Functions"@en ;
     skos:definition     "Serverless function execution service for running code in response to events."@en ;
-    skos:inScheme       do:DOScheme ;
+    skos:inScheme       skms-digitalocean:DOScheme ;
     prov:wasDerivedFrom <https://www.digitalocean.com/products/functions/> ;
     skos:exactMatch     itil:SoftwareCI ;
     skos:relatedMatch   itil:SoftwareDevelopmentAndManagement ;
     skos:relatedMatch   itil:DeploymentManagement ;
 .
 
-do:Kubernetes
+skms-digitalocean:Kubernetes
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Kubernetes (DOKS)"@en ;
     skos:definition     "DigitalOcean Kubernetes Service for container orchestration and management."@en ;
-    skos:inScheme       do:DOScheme ;
+    skos:inScheme       skms-digitalocean:DOScheme ;
     prov:wasDerivedFrom <https://www.digitalocean.com/products/kubernetes/> ;
     skos:exactMatch     itil:SoftwareCI ;
     skos:relatedMatch   itil:DeploymentManagement ;
@@ -80,22 +80,22 @@ do:Kubernetes
 #  STORAGE
 # ═══════════════════════════════════════════════════════════════
 
-do:Spaces
+skms-digitalocean:Spaces
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Spaces (Object Storage)"@en ;
     skos:definition     "S3-compatible object storage for storing unstructured data at scale."@en ;
-    skos:inScheme       do:DOScheme ;
+    skos:inScheme       skms-digitalocean:DOScheme ;
     prov:wasDerivedFrom <https://www.digitalocean.com/products/spaces/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:ServiceConfigurationManagement ;
     skos:relatedMatch   itil:ITAssetManagement ;
 .
 
-do:Volumes
+skms-digitalocean:Volumes
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Block Storage (Volumes)"@en ;
     skos:definition     "Scalable block storage volumes for Droplets with snapshots and backups."@en ;
-    skos:inScheme       do:DOScheme ;
+    skos:inScheme       skms-digitalocean:DOScheme ;
     prov:wasDerivedFrom <https://www.digitalocean.com/products/block-storage/> ;
     skos:exactMatch     itil:HardwareCI ;
     skos:relatedMatch   itil:CapacityAndPerformanceManagement ;
@@ -105,11 +105,11 @@ do:Volumes
 #  DATABASES
 # ═══════════════════════════════════════════════════════════════
 
-do:Databases
+skms-digitalocean:Databases
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Managed Databases"@en ;
     skos:definition     "Fully managed databases supporting PostgreSQL, MySQL, Redis, and MongoDB."@en ;
-    skos:inScheme       do:DOScheme ;
+    skos:inScheme       skms-digitalocean:DOScheme ;
     prov:wasDerivedFrom <https://www.digitalocean.com/products/managed-databases/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:ServiceConfigurationManagement ;
@@ -117,42 +117,42 @@ do:Databases
     skos:relatedMatch   itil:ServiceLevelManagement ;
 .
 
-do:PostgreSQL
+skms-digitalocean:PostgreSQL
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Managed PostgreSQL"@en ;
     skos:definition     "Fully managed PostgreSQL database with automated backups and replication."@en ;
-    skos:inScheme       do:DOScheme ;
+    skos:inScheme       skms-digitalocean:DOScheme ;
     prov:wasDerivedFrom <https://www.digitalocean.com/products/managed-databases-postgresql/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:ServiceConfigurationManagement ;
 .
 
-do:MySQL
+skms-digitalocean:MySQL
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Managed MySQL"@en ;
     skos:definition     "Fully managed MySQL database with high availability and automated scaling."@en ;
-    skos:inScheme       do:DOScheme ;
+    skos:inScheme       skms-digitalocean:DOScheme ;
     prov:wasDerivedFrom <https://www.digitalocean.com/products/managed-databases-mysql/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:ServiceConfigurationManagement ;
 .
 
-do:Redis
+skms-digitalocean:Redis
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Managed Redis"@en ;
     skos:definition     "Fully managed Redis cache for in-memory data storage and caching."@en ;
-    skos:inScheme       do:DOScheme ;
+    skos:inScheme       skms-digitalocean:DOScheme ;
     prov:wasDerivedFrom <https://www.digitalocean.com/products/managed-databases-redis/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:CapacityAndPerformanceManagement ;
     skos:relatedMatch   itil:MonitoringAndEventManagement ;
 .
 
-do:MongoDB
+skms-digitalocean:MongoDB
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Managed MongoDB"@en ;
     skos:definition     "Fully managed MongoDB NoSQL database for document storage."@en ;
-    skos:inScheme       do:DOScheme ;
+    skos:inScheme       skms-digitalocean:DOScheme ;
     prov:wasDerivedFrom <https://www.digitalocean.com/products/managed-databases-mongodb/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:ServiceConfigurationManagement ;
@@ -162,54 +162,54 @@ do:MongoDB
 #  NETWORKING
 # ═══════════════════════════════════════════════════════════════
 
-do:VPC
+skms-digitalocean:VPC
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Virtual Private Cloud (VPC)"@en ;
     skos:definition     "Isolated network environment with subnets and access controls."@en ;
-    skos:inScheme       do:DOScheme ;
+    skos:inScheme       skms-digitalocean:DOScheme ;
     prov:wasDerivedFrom <https://www.digitalocean.com/products/vpc/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:ServiceConfigurationManagement ;
     skos:relatedMatch   itil:InformationSecurityManagement ;
 .
 
-do:LoadBalancer
+skms-digitalocean:LoadBalancer
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Load Balancer"@en ;
     skos:definition     "Load balancing service distributing traffic across multiple Droplets."@en ;
-    skos:inScheme       do:DOScheme ;
+    skos:inScheme       skms-digitalocean:DOScheme ;
     prov:wasDerivedFrom <https://www.digitalocean.com/products/load-balancer/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:AvailabilityManagement ;
     skos:relatedMatch   itil:CapacityAndPerformanceManagement ;
 .
 
-do:CDN
+skms-digitalocean:CDN
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Content Delivery Network (CDN)"@en ;
     skos:definition     "CDN service for caching and serving content from edge locations."@en ;
-    skos:inScheme       do:DOScheme ;
+    skos:inScheme       skms-digitalocean:DOScheme ;
     prov:wasDerivedFrom <https://www.digitalocean.com/products/cdn/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:CapacityAndPerformanceManagement ;
     skos:relatedMatch   itil:MonitoringAndEventManagement ;
 .
 
-do:Firewall
+skms-digitalocean:Firewall
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Cloud Firewall"@en ;
     skos:definition     "Stateful firewall service controlling inbound and outbound traffic."@en ;
-    skos:inScheme       do:DOScheme ;
+    skos:inScheme       skms-digitalocean:DOScheme ;
     prov:wasDerivedFrom <https://www.digitalocean.com/products/cloud-firewall/> ;
     skos:exactMatch     itil:InformationSecurityManagement ;
     skos:relatedMatch   itil:RiskManagement ;
 .
 
-do:FloatingIP
+skms-digitalocean:FloatingIP
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Floating IPs"@en ;
     skos:definition     "Static IP addresses assignable to Droplets for high availability."@en ;
-    skos:inScheme       do:DOScheme ;
+    skos:inScheme       skms-digitalocean:DOScheme ;
     prov:wasDerivedFrom <https://www.digitalocean.com/products/floating-ip/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:ServiceConfigurationManagement ;
@@ -219,32 +219,32 @@ do:FloatingIP
 #  MONITORING & MANAGEMENT
 # ═══════════════════════════════════════════════════════════════
 
-do:Monitoring
+skms-digitalocean:Monitoring
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Monitoring"@en ;
     skos:definition     "Monitoring alerts and dashboards for tracking resource metrics."@en ;
-    skos:inScheme       do:DOScheme ;
+    skos:inScheme       skms-digitalocean:DOScheme ;
     prov:wasDerivedFrom <https://www.digitalocean.com/products/monitoring/> ;
     skos:exactMatch     itil:MonitoringAndEventManagement ;
     skos:relatedMatch   itil:MeasurementAndReporting ;
     skos:relatedMatch   itil:CapacityAndPerformanceManagement ;
 .
 
-do:Snapshots
+skms-digitalocean:Snapshots
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Snapshots (Backups)"@en ;
     skos:definition     "Point-in-time copies of Droplets, volumes, and databases for recovery."@en ;
-    skos:inScheme       do:DOScheme ;
+    skos:inScheme       skms-digitalocean:DOScheme ;
     prov:wasDerivedFrom <https://www.digitalocean.com/products/snapshots/> ;
     skos:relatedMatch   itil:ServiceContinuityManagement ;
     skos:relatedMatch   itil:ITAssetManagement ;
 .
 
-do:API
+skms-digitalocean:API
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "API"@en ;
     skos:definition     "RESTful API for programmatic control and automation of DigitalOcean resources."@en ;
-    skos:inScheme       do:DOScheme ;
+    skos:inScheme       skms-digitalocean:DOScheme ;
     prov:wasDerivedFrom <https://docs.digitalocean.com/reference/api/> ;
     skos:relatedMatch   itil:SoftwareDevelopmentAndManagement ;
     skos:relatedMatch   itil:ServiceConfigurationManagement ;
@@ -254,46 +254,46 @@ do:API
 #  COLLECTIONS
 # ═══════════════════════════════════════════════════════════════
 
-do:ComputeServices
+skms-digitalocean:ComputeServices
     a skos:Collection ;
     skos:prefLabel "DigitalOcean Compute Services"@en ;
-    skos:member do:Droplets ;
-    skos:member do:AppPlatform ;
-    skos:member do:Functions ;
-    skos:member do:Kubernetes ;
+    skos:member skms-digitalocean:Droplets ;
+    skos:member skms-digitalocean:AppPlatform ;
+    skos:member skms-digitalocean:Functions ;
+    skos:member skms-digitalocean:Kubernetes ;
 .
 
-do:StorageServices
+skms-digitalocean:StorageServices
     a skos:Collection ;
     skos:prefLabel "DigitalOcean Storage Services"@en ;
-    skos:member do:Spaces ;
-    skos:member do:Volumes ;
+    skos:member skms-digitalocean:Spaces ;
+    skos:member skms-digitalocean:Volumes ;
 .
 
-do:DatabaseServices
+skms-digitalocean:DatabaseServices
     a skos:Collection ;
     skos:prefLabel "DigitalOcean Managed Database Services"@en ;
-    skos:member do:Databases ;
-    skos:member do:PostgreSQL ;
-    skos:member do:MySQL ;
-    skos:member do:Redis ;
-    skos:member do:MongoDB ;
+    skos:member skms-digitalocean:Databases ;
+    skos:member skms-digitalocean:PostgreSQL ;
+    skos:member skms-digitalocean:MySQL ;
+    skos:member skms-digitalocean:Redis ;
+    skos:member skms-digitalocean:MongoDB ;
 .
 
-do:NetworkingServices
+skms-digitalocean:NetworkingServices
     a skos:Collection ;
     skos:prefLabel "DigitalOcean Networking Services"@en ;
-    skos:member do:VPC ;
-    skos:member do:LoadBalancer ;
-    skos:member do:CDN ;
-    skos:member do:Firewall ;
-    skos:member do:FloatingIP ;
+    skos:member skms-digitalocean:VPC ;
+    skos:member skms-digitalocean:LoadBalancer ;
+    skos:member skms-digitalocean:CDN ;
+    skos:member skms-digitalocean:Firewall ;
+    skos:member skms-digitalocean:FloatingIP ;
 .
 
-do:ManagementServices
+skms-digitalocean:ManagementServices
     a skos:Collection ;
     skos:prefLabel "DigitalOcean Management & Monitoring Services"@en ;
-    skos:member do:Monitoring ;
-    skos:member do:Snapshots ;
-    skos:member do:API ;
+    skos:member skms-digitalocean:Monitoring ;
+    skos:member skms-digitalocean:Snapshots ;
+    skos:member skms-digitalocean:API ;
 .

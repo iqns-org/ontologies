@@ -1,4 +1,4 @@
-@prefix finance:   <https://iqns.org/v1/finance#> .
+@prefix finance-core:   <https://iqns.org/v1/finance#> .
 @prefix ai:   <https://iqns.org/v1/ai#> .
 @prefix dct:  <http://purl.org/dc/terms/> .
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .
@@ -9,9 +9,9 @@
 
 # ── Ontology ─────────────────────────────────────────────────────────────────
 
-finance:Ontology
+finance-core:Ontology
     a owl:Ontology ;
-    dct:title       "finance: Financial Regulation Core Vocabulary"@en ;
+    dct:title       "finance-core: Financial Regulation Core Vocabulary"@en ;
     skos:definition "Abstract vocabulary shared by all financial regulation framework ontologies. Extends ai: with finance-specific dimensions, lifecycle stages, stakeholders, and properties."@en ;
     owl:imports     <https://iqns.org/v1/ai#> ;
     owl:versionInfo "0.1" ;
@@ -19,102 +19,102 @@ finance:Ontology
 
 # ── Finance-Specific Properties ───────────────────────────────────────────────
 
-finance:hasModelType
+finance-core:hasModelType
     a owl:ObjectProperty ;
     skos:prefLabel  "has model type"@en ;
     rdfs:domain ai:Control ;
-    rdfs:range  finance:ModelType ;
+    rdfs:range  finance-core:ModelType ;
 .
-finance:requiresIndependentValidation
+finance-core:requiresIndependentValidation
     a owl:DatatypeProperty ;
     skos:prefLabel  "requires independent validation"@en ;
     rdfs:range  xsd:boolean ;
 .
-finance:hasCapitalImplication
+finance-core:hasCapitalImplication
     a owl:DatatypeProperty ;
     skos:prefLabel  "has capital implication"@en ;
     rdfs:range  xsd:boolean ;
 .
-finance:requiresRegulatoryApproval
+finance-core:requiresRegulatoryApproval
     a owl:DatatypeProperty ;
     skos:prefLabel  "requires regulatory approval"@en ;
     rdfs:range  xsd:boolean ;
 .
-finance:appliesFromDate
+finance-core:appliesFromDate
     a owl:DatatypeProperty ;
     skos:prefLabel  "applies from date"@en ;
     rdfs:range  xsd:date ;
 .
-finance:supervisedBy
+finance-core:supervisedBy
     a owl:ObjectProperty ;
     skos:prefLabel  "supervised by"@en ;
-    rdfs:range  finance:Regulator ;
+    rdfs:range  finance-core:Regulator ;
 .
 
 # ── Model Types ───────────────────────────────────────────────────────────────
 
-finance:CreditModel
-    a finance:ModelType ; a skos:Concept ;
+finance-core:CreditModel
+    a finance-core:ModelType ; a skos:Concept ;
     skos:prefLabel  "Credit Risk Model"@en ;
     skos:definition "Model used to estimate probability of default, loss given default, or exposure at default for credit risk capital and IFRS 9 purposes."@en ;
 .
-finance:MarketRiskModel
-    a finance:ModelType ; a skos:Concept ;
+finance-core:MarketRiskModel
+    a finance-core:ModelType ; a skos:Concept ;
     skos:prefLabel  "Market Risk Model"@en ;
     skos:definition "Model used to estimate VaR, ES, or risk-measure for traded book positions under FRTB."@en ;
 .
-finance:FraudDetectionModel
-    a finance:ModelType ; a skos:Concept ;
+finance-core:FraudDetectionModel
+    a finance-core:ModelType ; a skos:Concept ;
     skos:prefLabel  "Fraud Detection Model"@en ;
     skos:definition "AI/ML model deployed to identify anomalous transactions or behaviour patterns indicative of fraud."@en ;
 .
-finance:ALMModel
-    a finance:ModelType ; a skos:Concept ;
+finance-core:ALMModel
+    a finance-core:ModelType ; a skos:Concept ;
     skos:prefLabel  "ALM / Liquidity Model"@en ;
     skos:definition "Model used for asset-liability management, net interest income projection, and liquidity stress testing."@en ;
 .
 
 # ── Canonical Finance Dimensions ──────────────────────────────────────────────
 
-finance:CreditRisk
+finance-core:CreditRisk
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Credit Risk"@en ;
     skos:definition "Risk of loss from a counterparty failing to meet contractual obligations — the primary capital driver for banking book."@en ;
 .
-finance:MarketRisk
+finance-core:MarketRisk
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Market Risk"@en ;
     skos:definition "Risk of loss from adverse movements in market prices, rates, or volatility — governs the trading book and FRTB."@en ;
 .
-finance:OperationalRisk
+finance-core:OperationalRisk
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Operational Risk"@en ;
     skos:definition "Risk of loss from failed internal processes, people, systems, or external events — includes AI model failures, cyber incidents, and conduct."@en ;
 .
-finance:LiquidityRisk
+finance-core:LiquidityRisk
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Liquidity Risk"@en ;
     skos:definition "Risk of being unable to meet obligations as they fall due — governed by LCR and NSFR under Basel III."@en ;
 .
-finance:ModelRisk
+finance-core:ModelRisk
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Model Risk"@en ;
     skos:definition "Risk of loss from errors in model development, implementation, or use — directly maps to ai:Reliability and ai:Robustness for AI models."@en ;
     skos:relatedMatch ai:Reliability ;
     skos:relatedMatch ai:Robustness ;
 .
-finance:ConcentrationRisk
+finance-core:ConcentrationRisk
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Concentration Risk"@en ;
     skos:definition "Risk from excessive exposure to a single counterparty, sector, or geography."@en ;
 .
-finance:ConductRisk
+finance-core:ConductRisk
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Conduct Risk"@en ;
     skos:definition "Risk of harm to customers or market integrity from inappropriate behaviour — governs AI in lending, advice, and trading."@en ;
     skos:relatedMatch ai:Fairness ;
 .
-finance:ICTRisk
+finance-core:ICTRisk
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "ICT / Cyber Risk"@en ;
     skos:definition "Risk from failures or attacks on information and communication technology systems — governed primarily by DORA for EU financial entities."@en ;
@@ -123,37 +123,37 @@ finance:ICTRisk
 
 # ── Model Development Lifecycle ───────────────────────────────────────────────
 
-finance:ModelConception
+finance-core:ModelConception
     a ai:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Model Conception"@en ;
     skos:definition "Initial scoping: business use case, data availability assessment, model type selection, and governance pre-approval."@en ;
 .
-finance:ModelDevelopment
+finance-core:ModelDevelopment
     a ai:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Model Development"@en ;
     skos:definition "Statistical development, feature engineering, training, back-testing, and documentation."@en ;
 .
-finance:ModelValidation
+finance-core:ModelValidation
     a ai:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Independent Model Validation"@en ;
     skos:definition "Challenge by a function independent of the developer: conceptual soundness, data quality, outcome analysis, and on-going monitoring design."@en ;
 .
-finance:ModelApproval
+finance-core:ModelApproval
     a ai:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Model Approval"@en ;
     skos:definition "Governance and (where required) regulatory approval before production use — includes internal MRC and regulator pre-notification for IRB models."@en ;
 .
-finance:ModelProduction
+finance-core:ModelProduction
     a ai:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Model Production"@en ;
     skos:definition "Live deployment: model outputs used in business and/or regulatory decisions."@en ;
 .
-finance:ModelMonitoring
+finance-core:ModelMonitoring
     a ai:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Model Monitoring"@en ;
     skos:definition "Ongoing tracking of model stability, performance, outcomes, and data drift — triggers recalibration or redevelopment."@en ;
 .
-finance:ModelRetirement
+finance-core:ModelRetirement
     a ai:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Model Retirement"@en ;
     skos:definition "Managed withdrawal: archiving documentation, replacing outputs, and notifying regulators where required."@en ;
@@ -161,42 +161,42 @@ finance:ModelRetirement
 
 # ── Stakeholders ──────────────────────────────────────────────────────────────
 
-finance:CreditInstitution
+finance-core:CreditInstitution
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Credit Institution"@en ;
     skos:definition "Bank or building society authorised to take deposits and carry on banking business — primary obligated entity under Basel, DORA, and EBA guidelines."@en ;
 .
-finance:InvestmentFirm
+finance-core:InvestmentFirm
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Investment Firm"@en ;
     skos:definition "Firm authorised to provide investment services — primary obligated entity under MiFID II."@en ;
 .
-finance:ModelDeveloper
+finance-core:ModelDeveloper
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Model Developer"@en ;
     skos:definition "Quantitative analyst, data scientist, or team responsible for building and documenting a financial model."@en ;
 .
-finance:ModelValidator
+finance-core:ModelValidator
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Model Validator"@en ;
     skos:definition "Independent validation unit (IVU) responsible for challenging model conceptual soundness and empirical performance."@en ;
 .
-finance:CROFunction
+finance-core:CROFunction
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Chief Risk Officer / CRO Function"@en ;
     skos:definition "Senior management accountability for model risk governance, escalation, and regulatory engagement."@en ;
 .
-finance:BoardRiskCommittee
+finance-core:BoardRiskCommittee
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Board Risk Committee"@en ;
     skos:definition "Board-level governance body approving model risk appetite, material model changes, and regulatory submissions."@en ;
 .
-finance:PrudentialRegulator
+finance-core:PrudentialRegulator
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Prudential Regulator"@en ;
     skos:definition "ECB/SSM, Bank of England PRA, US Federal Reserve, OCC — responsible for capital adequacy and financial stability oversight."@en ;
 .
-finance:ConductRegulator
+finance-core:ConductRegulator
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Conduct Regulator"@en ;
     skos:definition "FCA, ESMA, SEC, CFTC — responsible for market integrity, consumer protection, and fair treatment obligations."@en ;

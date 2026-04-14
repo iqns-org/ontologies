@@ -1,4 +1,4 @@
-@prefix startup: <https://iqns.org/v1/startup#> .
+@prefix startup-core: <https://iqns.org/v1/startup#> .
 @prefix ai:  <https://iqns.org/v1/ai#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -9,7 +9,7 @@
 
 # ── Ontology ─────────────────────────────────────────────────────────────────
 
-startup:Ontology
+startup-core:Ontology
     a owl:Ontology ;
     dct:title       "StarGraph: Startup and Early-Stage AI Company Core Vocabulary"@en ;
     skos:definition "Abstract vocabulary for startup AI governance — responsibly scaling AI products from MVP to enterprise, managing cross-framework compliance obligations, and AI governance as a product differentiator. Extends ai: with startup-specific maturity dimensions and growth-stage framing."@en ;
@@ -19,25 +19,25 @@ startup:Ontology
 
 # ── Startup Dimensions ────────────────────────────────────────────────────────
 
-startup:RegulatoryReadiness
+startup-core:RegulatoryReadiness
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Regulatory Readiness"@en ;
     skos:definition "Current and projected compliance posture relative to applicable frameworks — startups must identify their minimum compliance obligations by use-case risk level and target market, then sequence investments to match growth-stage priorities."@en ;
     skos:relatedMatch ai:Accountability ;
 .
-startup:TrustAndSafety
+startup-core:TrustAndSafety
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Trust and Safety (Product)"@en ;
     skos:definition "Product-level governance controls preventing harms — content moderation, abuse detection, and AI safety guardrails. Proactive investment in trust and safety accelerates enterprise sales and reduces regulatory risk."@en ;
     skos:relatedMatch ai:Safety ;
 .
-startup:InvestorGovernance
+startup-core:InvestorGovernance
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Investor and Board AI Governance"@en ;
     skos:definition "Board-level AI governance expectations from institutional investors — ESG and responsible AI disclosure requirements; AI risk is increasingly part of venture due diligence."@en ;
     skos:relatedMatch ai:Accountability ;
 .
-startup:EnterpriseReadiness
+startup-core:EnterpriseReadiness
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Enterprise AI Compliance Readiness"@en ;
     skos:definition "Ability to satisfy enterprise customer security, privacy, and AI governance requirements — SOC 2, ISO 27001, GDPR DPA, EU AI Act Technical Documentation — required for enterprise sales in regulated industries."@en ;
@@ -46,22 +46,22 @@ startup:EnterpriseReadiness
 
 # ── Growth Stage Lifecycle ────────────────────────────────────────────────────
 
-startup:MVPStage
+startup-core:MVPStage
     a ai:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "MVP Stage"@en ;
     skos:definition "Minimum viable product — define AI risk level, implement basic input/output guardrails, establish data handling principles. Minimum: GDPR privacy policy, basic security controls, use-case risk assessment."@en ;
 .
-startup:ProductMarketFit
+startup-core:ProductMarketFit
     a ai:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Product-Market Fit"@en ;
     skos:definition "Early scaling — implement SOC 2 Type I, GDPR DPA/SCCs for EU customers, AI use policy, model documentation. First enterprise sales require security questionnaire readiness."@en ;
 .
-startup:ScaleUp
+startup-core:ScaleUp
     a ai:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Scale-Up"@en ;
     skos:definition "Growth stage — pursue ISO 27001, EU AI Act conformity assessment if deploying high-risk AI, sector-specific certifications (FedRAMP for US government, HIPAA BAA for healthcare). Build compliance programme as product differentiator."@en ;
 .
-startup:Enterprise
+startup-core:Enterprise
     a ai:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Enterprise / Late Stage"@en ;
     skos:definition "Full enterprise readiness — complete AI governance programme, market-specific certifications, regulatory engagement, Board AI governance policy, and ESG reporting."@en ;
@@ -69,22 +69,22 @@ startup:Enterprise
 
 # ── Stakeholders ──────────────────────────────────────────────────────────────
 
-startup:Founder
+startup-core:Founder
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Founder / CEO"@en ;
     skos:definition "Startup founder responsible for setting AI governance tone at the top — embedded in AI governance posture decisions from day one."@en ;
 .
-startup:EnterpriseCustomer
+startup-core:EnterpriseCustomer
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Enterprise Customer"@en ;
     skos:definition "Large organisation purchasing AI software — primary driver of compliance requirements through vendor security questionnaires, DPAs, and AI governance addenda."@en ;
 .
-startup:Investor
+startup-core:Investor
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Investor (VC / PE)"@en ;
     skos:definition "Venture capital or growth equity investor — increasingly conducting AI governance due diligence; ESG commitments driving AI ethics portfolio standards."@en ;
 .
-startup:Regulator
+startup-core:Regulator
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Regulator"@en ;
     skos:definition "Regulatory body with jurisdiction over the startup's AI use cases — DPA (privacy), sector-specific regulator, EU AI Authority (EU AI Act Market Surveillance Authority)."@en ;

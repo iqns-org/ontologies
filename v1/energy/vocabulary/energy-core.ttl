@@ -1,4 +1,4 @@
-@prefix eng:  <https://iqns.org/v1/energy#> .
+@prefix energy-core:  <https://iqns.org/v1/energy#> .
 @prefix ai:   <https://iqns.org/v1/ai#> .
 @prefix dct:  <http://purl.org/dc/terms/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
@@ -10,7 +10,7 @@
 
 # ── Ontology ──────────────────────────────────────────────────────────────────
 
-eng:Ontology a owl:Ontology ;
+energy-core:Ontology a owl:Ontology ;
     dct:title       "IQ:NS Energy Domain Core Vocabulary"@en ;
     dct:description "Core classes, properties, dimensions, lifecycle stages, and stakeholders for the energy sector governance graph. Provides the canonical spine imported by all energy framework files."@en ;
     owl:imports     <https://iqns.org/v1/ai#> ;
@@ -19,35 +19,35 @@ eng:Ontology a owl:Ontology ;
 # ── Energy-Specific Dimensions ────────────────────────────────────────────────
 # Sub-dimensions of ai:Dimension scoped to energy sector
 
-eng:GridResilience
+energy-core:GridResilience
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Grid Resilience"@en ;
     skos:definition "The ability of an electricity grid to withstand and recover from disruptions including extreme weather events, cyberattacks, and equipment failures. AI-driven grid management must satisfy resilience requirements set by national and regional regulators."@en ;
     skos:broader    ai:Reliability ;
 .
 
-eng:RenewableIntegration
+energy-core:RenewableIntegration
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Renewable Energy Integration"@en ;
     skos:definition "The technical and operational challenges of incorporating variable renewable energy sources (solar, wind, hydro) into grid operations. AI forecasting and dispatch optimisation are central but introduce model uncertainty that must be quantified."@en ;
     skos:broader    ai:Sustainability ;
 .
 
-eng:CarbonAccounting
+energy-core:CarbonAccounting
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Carbon Accounting and Emissions Tracking"@en ;
     skos:definition "Systematic measurement, reporting, and verification of greenhouse gas emissions across the energy value chain. AI systems used for emissions estimation must meet MRV (Measurement, Reporting, Verification) standards including ISO 14064."@en ;
     skos:broader    ai:Sustainability ;
 .
 
-eng:CriticalInfrastructureSecurity
+energy-core:CriticalInfrastructureSecurity
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Critical Infrastructure Security"@en ;
     skos:definition "Protection of energy infrastructure — power plants, transmission networks, gas pipelines, and substations — from physical and cyber threats. Designated critical infrastructure in all major jurisdictions; AI-driven SCADA and EMS systems are high-priority attack surfaces."@en ;
     skos:broader    ai:Security ;
 .
 
-eng:MarketIntegrity
+energy-core:MarketIntegrity
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Energy Market Integrity"@en ;
     skos:definition "Fairness and transparency of energy market operations including wholesale electricity and gas markets. AI-based algorithmic trading and demand-response optimisation must comply with market abuse regulations (EU REMIT, FERC)."@en ;
@@ -57,31 +57,31 @@ eng:MarketIntegrity
 # ── Energy Lifecycle Stages ───────────────────────────────────────────────────
 # Sub-stages of ai:Lifecycle for the energy value chain
 
-eng:Generation
+energy-core:Generation
     a ai:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Generation"@en ;
     skos:definition "Production of electricity or heat from primary energy sources including thermal, nuclear, hydro, wind, solar, and biomass. AI applications: predictive maintenance, output optimisation, grid dispatch scheduling."@en ;
 .
 
-eng:Transmission
+energy-core:Transmission
     a ai:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Transmission"@en ;
     skos:definition "High-voltage transport of electricity from generation sources to distribution networks via interconnectors and transmission system operator (TSO) infrastructure. AI applications: fault detection, load flow optimisation, stability monitoring."@en ;
 .
 
-eng:Distribution
+energy-core:Distribution
     a ai:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Distribution"@en ;
     skos:definition "Medium and low-voltage delivery of electricity to end consumers via distribution system operator (DSO) networks. AI applications: Distributed Energy Resource (DER) management, smart metering analytics, outage prediction."@en ;
 .
 
-eng:Retail
+energy-core:Retail
     a ai:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Retail and Customer Services"@en ;
     skos:definition "Commercial supply of energy to residential, commercial, and industrial customers. AI applications: tariff design, demand forecasting, customer churn prediction, smart home energy management, dynamic pricing."@en ;
 .
 
-eng:Storage
+energy-core:Storage
     a ai:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Energy Storage"@en ;
     skos:definition "Battery, pumped hydro, hydrogen, and other energy storage systems that shift supply temporally. AI applications: state-of-charge optimisation, degradation modelling, charge/discharge scheduling."@en ;
@@ -89,31 +89,31 @@ eng:Storage
 
 # ── Energy Stakeholder Roles ──────────────────────────────────────────────────
 
-eng:GridOperator
+energy-core:GridOperator
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Grid Operator (TSO / DSO)"@en ;
     skos:definition "Transmission System Operators (TSOs) and Distribution System Operators (DSOs) responsible for operating and maintaining electrical networks. Regulated in all jurisdictions; primary consumers of AI for grid management and stability applications."@en ;
 .
 
-eng:EnergyRegulator
+energy-core:EnergyRegulator
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Energy Regulator"@en ;
     skos:definition "National or regional bodies regulating energy markets and infrastructure, e.g. ACER (EU), OFGEM (UK), FERC (US), AEMC (Australia). Increasingly responsible for algorithmic market conduct oversight and AI-in-infrastructure safety rulings."@en ;
 .
 
-eng:EnergyProducer
+energy-core:EnergyProducer
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Energy Producer / Generator"@en ;
     skos:definition "Entities that generate electricity or heat for sale, including utilities, independent power producers (IPPs), and prosumers with distributed generation. Use AI for plant optimisation, trading, and ancillary service markets."@en ;
 .
 
-eng:EnergySurveyor
+energy-core:EnergySurveyor
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Energy Surveyor / ESCo"@en ;
     skos:definition "Energy Services Companies (ESCos) and auditors providing technical and financial services to improve energy performance under contracts such as Energy Performance Contracting (EPC). Deliver ISO 50001 audit services and AI-powered energy analytics."@en ;
 .
 
-eng:Consumer
+energy-core:Consumer
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Energy Consumer"@en ;
     skos:definition "Residential, commercial, and industrial customers of electricity and gas. Increasingly active as demand response participants and prosumers. AI personalisation of tariffs and usage advice must comply with consumer protection and data privacy regulations."@en ;
@@ -121,15 +121,15 @@ eng:Consumer
 
 # ── Cross-domain Properties ───────────────────────────────────────────────────
 
-eng:acrossGridBoundary
+energy-core:acrossGridBoundary
     a owl:ObjectProperty ;
     rdfs:label   "Crosses Grid Boundary"@en ;
     rdfs:comment "Indicates that an AI system operates across transmission or distribution boundaries requiring cross-TSO/DSO coordination and data sharing agreements."@en ;
     rdfs:domain  ai:Assessment ;
-    rdfs:range   eng:GridOperator ;
+    rdfs:range   energy-core:GridOperator ;
 .
 
-eng:hasEnPI
+energy-core:hasEnPI
     a owl:DatatypeProperty ;
     rdfs:label   "Has Energy Performance Indicator"@en ;
     rdfs:comment "Associates an energy system or AI workload with an Energy Performance Indicator (EnPI) value or expression as defined under ISO 50001:2018 Clause 6.4."@en ;
@@ -137,7 +137,7 @@ eng:hasEnPI
     rdfs:range   xsd:string ;
 .
 
-eng:reportedPUE
+energy-core:reportedPUE
     a owl:DatatypeProperty ;
     rdfs:label   "Reported PUE"@en ;
     rdfs:comment "Power Usage Effectiveness value for a data centre or compute facility, used as an Energy Performance Indicator under ISO 50001 and EU Energy Efficiency Directive reporting."@en ;

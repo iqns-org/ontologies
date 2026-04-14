@@ -1,4 +1,4 @@
-@prefix ex:      <https://iqns.org/v1/example#> .
+@prefix aws-platform:      <https://iqns.org/v1/example#> .
 @prefix ai:      <https://iqns.org/v1/ai#> .
 @prefix euai:    <https://iqns.org/v1/eu-ai-act#> .
 @prefix nrmf:    <https://iqns.org/v1/nist-ai-rmf#> .
@@ -12,7 +12,7 @@
 @prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
 
-ex:AWSOntology a owl:Ontology ;
+aws-platform:AWSOntology a owl:Ontology ;
     dct:title       "Enterprise AWS AI Platform Assets"@en ;
     skos:definition "AWS managed AI/ML service assets used by the enterprise, mapped to IQ:NS controls."@en ;
     owl:versionInfo "0.1" ;
@@ -23,110 +23,110 @@ ex:AWSOntology a owl:Ontology ;
 # Amazon SageMaker Domain
 # ══════════════════════════════════════════════════════════════════════════════
 
-ex:AWSSageMakerDomain
-    a ex:CloudAIPlatform ;
+aws-platform:AWSSageMakerDomain
+    a aws-platform:CloudAIPlatform ;
     skos:prefLabel       "Amazon SageMaker Domain (EU-Central)"@en ;
     skos:definition  "AWS SageMaker Studio Domain in eu-central-1 (Frankfurt). Hosts training jobs (ml.p4d.24xlarge), processing jobs, real-time inference endpoints, and Model Registry. SageMaker Role Manager enforces per-team IAM boundaries. Model cards required for all registered models."@en ;
-    ex:vendor        "Amazon Web Services" ;
-    ex:dataRegion    "eu-central-1" ;
+    aws-platform:vendor        "Amazon Web Services" ;
+    aws-platform:dataRegion    "eu-central-1" ;
 
     # ── Native controls: SageMaker is natively governed ML platform ───────────
-    ex:implementsNatively iso42001:A8AILifecycle ;       # Studio → experiment → training → registry → endpoint
-    ex:implementsNatively iso42001:A10Documentation ;    # SageMaker Model Cards (built-in)
-    ex:implementsNatively nrmf:GV5 ;                    # SageMaker Model Registry = AI system inventory
-    ex:implementsNatively nrmf:MS1 ;                    # SageMaker Clarify: bias metrics + feature importance
-    ex:implementsNatively nrmf:MS3 ;                    # SageMaker Clarify: fairness analysis
-    ex:implementsNatively nrmf:MS4 ;                    # SageMaker Model Monitor: data drift + model quality
-    ex:implementsNatively sr117:ModelDocumentation ;     # Model Card schema aligns to SR 11-7 documentation
-    ex:implementsNatively sr117:ModelInventory ;         # Model Registry with lifecycle stages
-    ex:implementsNatively saif:HarmonisePlatformControls ; # VPC isolation, IAM roles, S3 encryption
+    aws-platform:implementsNatively iso42001:A8AILifecycle ;       # Studio → experiment → training → registry → endpoint
+    aws-platform:implementsNatively iso42001:A10Documentation ;    # SageMaker Model Cards (built-in)
+    aws-platform:implementsNatively nrmf:GV5 ;                    # SageMaker Model Registry = AI system inventory
+    aws-platform:implementsNatively nrmf:MS1 ;                    # SageMaker Clarify: bias metrics + feature importance
+    aws-platform:implementsNatively nrmf:MS3 ;                    # SageMaker Clarify: fairness analysis
+    aws-platform:implementsNatively nrmf:MS4 ;                    # SageMaker Model Monitor: data drift + model quality
+    aws-platform:implementsNatively sr117:ModelDocumentation ;     # Model Card schema aligns to SR 11-7 documentation
+    aws-platform:implementsNatively sr117:ModelInventory ;         # Model Registry with lifecycle stages
+    aws-platform:implementsNatively saif:HarmonisePlatformControls ; # VPC isolation, IAM roles, S3 encryption
 
     # ── Risks mitigated ───────────────────────────────────────────────────────
-    ex:mitigates owasp:LLM10_ModelTheft ;     # IAM resource policies on model artifacts in S3
-    ex:mitigates atlas:Reconnaissance ;        # VPC endpoint — SageMaker API not on public internet
-    ex:mitigates sr117:ModelUncertainty ;      # Clarify feature attribution reduces unexplained drift
+    aws-platform:mitigates owasp:LLM10_ModelTheft ;     # IAM resource policies on model artifacts in S3
+    aws-platform:mitigates atlas:Reconnaissance ;        # VPC endpoint — SageMaker API not on public internet
+    aws-platform:mitigates sr117:ModelUncertainty ;      # Clarify feature attribution reduces unexplained drift
 
     # ── Residual risks ────────────────────────────────────────────────────────
-    ex:bearsFace owasp:LLM05_SupplyChainVulnerabilities ; # custom training containers from ECR
-    ex:bearsFace atlas:MLAttackStaging ;       # adversarial inputs to real-time endpoints
-    ex:bearsFace atlas:PrivilegeEscalation ;   # over-provisioned SageMaker execution role
+    aws-platform:bearsFace owasp:LLM05_SupplyChainVulnerabilities ; # custom training containers from ECR
+    aws-platform:bearsFace atlas:MLAttackStaging ;       # adversarial inputs to real-time endpoints
+    aws-platform:bearsFace atlas:PrivilegeEscalation ;   # over-provisioned SageMaker execution role
 .
 
 # ══════════════════════════════════════════════════════════════════════════════
 # Amazon Bedrock — Foundation Model API
 # ══════════════════════════════════════════════════════════════════════════════
 
-ex:AWSBedrockAPI
-    a ex:FoundationModelAPI ;
+aws-platform:AWSBedrockAPI
+    a aws-platform:FoundationModelAPI ;
     skos:prefLabel       "Amazon Bedrock (Anthropic Claude + Amazon Titan)"@en ;
     skos:definition  "AWS Bedrock API providing access to Claude 3 Sonnet/Opus (Anthropic), Amazon Titan Embeddings, and Cohere Command. Used by EnterpriseLLMAssistant via custom RAG. All requests stay within AWS VPC via PrivateLink. Bedrock Guardrails enabled for PII redaction, content filtering, and groundedness checking."@en ;
-    ex:vendor        "Amazon Web Services (models: Anthropic, Amazon, Cohere)" ;
-    ex:dataRegion    "eu-west-1" ;
+    aws-platform:vendor        "Amazon Web Services (models: Anthropic, Amazon, Cohere)" ;
+    aws-platform:dataRegion    "eu-west-1" ;
 
     # ── Native controls ───────────────────────────────────────────────────────
-    ex:implementsNatively owasp:PromptValidation ;        # Bedrock Guardrails: input filters
-    ex:implementsNatively owasp:OutputValidation ;        # Bedrock Guardrails: output filters + PII redaction
-    ex:implementsNatively owasp:LeastPrivilegeLLM ;       # IAM condition-key per model ARN
-    ex:implementsNatively saif:HarmonisePlatformControls ; # PrivateLink — no public endpoint
-    ex:implementsNatively nrmf:GV6 ;                     # AWS responsibility for model provenance (Anthropic SOC2)
+    aws-platform:implementsNatively owasp:PromptValidation ;        # Bedrock Guardrails: input filters
+    aws-platform:implementsNatively owasp:OutputValidation ;        # Bedrock Guardrails: output filters + PII redaction
+    aws-platform:implementsNatively owasp:LeastPrivilegeLLM ;       # IAM condition-key per model ARN
+    aws-platform:implementsNatively saif:HarmonisePlatformControls ; # PrivateLink — no public endpoint
+    aws-platform:implementsNatively nrmf:GV6 ;                     # AWS responsibility for model provenance (Anthropic SOC2)
 
     # ── Risks mitigated ───────────────────────────────────────────────────────
-    ex:mitigates owasp:LLM06_SensitiveInfoDisclosure ; # PII redaction in Guardrails
-    ex:mitigates owasp:LLM01_PromptInjection ;         # Guardrail topic block + injection detection
-    ex:mitigates owasp:LLM10_ModelTheft ;              # weights are opaque API; no extraction possible
+    aws-platform:mitigates owasp:LLM06_SensitiveInfoDisclosure ; # PII redaction in Guardrails
+    aws-platform:mitigates owasp:LLM01_PromptInjection ;         # Guardrail topic block + injection detection
+    aws-platform:mitigates owasp:LLM10_ModelTheft ;              # weights are opaque API; no extraction possible
 
     # ── Residual risks ────────────────────────────────────────────────────────
-    ex:bearsFace owasp:LLM03_TrainingDataPoisoning ;   # fine-tuning dataset quality (if used)
-    ex:bearsFace owasp:LLM08_ExcessiveAgency ;         # Bedrock Agents with tool use — action scope
-    ex:bearsFace owasp:LLM09_Overreliance ;            # users treating Claude output as authoritative
-    ex:bearsFace saif:MemoryPoisoningRAG ;             # knowledge base documents curated externally
+    aws-platform:bearsFace owasp:LLM03_TrainingDataPoisoning ;   # fine-tuning dataset quality (if used)
+    aws-platform:bearsFace owasp:LLM08_ExcessiveAgency ;         # Bedrock Agents with tool use — action scope
+    aws-platform:bearsFace owasp:LLM09_Overreliance ;            # users treating Claude output as authoritative
+    aws-platform:bearsFace saif:MemoryPoisoningRAG ;             # knowledge base documents curated externally
 
     # ── Supply chain obligations ──────────────────────────────────────────────
     # EU AI Act — placing a GPAI-model-backed app → obligations under Art. 53
-    ex:bearsFace euai:GPAIModel ;         # Bedrock uses GPAI models subject to Art. 53 obligations
+    aws-platform:bearsFace euai:GPAIModel ;         # Bedrock uses GPAI models subject to Art. 53 obligations
 .
 
 # ══════════════════════════════════════════════════════════════════════════════
 # AWS GuardDuty with ML Threat Detection
 # ══════════════════════════════════════════════════════════════════════════════
 
-ex:AWSGuardDutyML
-    a ex:CloudAIPlatform ;
+aws-platform:AWSGuardDutyML
+    a aws-platform:CloudAIPlatform ;
     skos:prefLabel       "Amazon GuardDuty — ML-Based Threat Detection"@en ;
     skos:definition  "GuardDuty uses ML anomaly detection to identify unusual API calls, S3 access patterns, and EC2/EKS behaviour. Integrated with Security Hub and EventBridge for automated response. Especially relevant for detecting ATLAS-style ML pipeline compromise."@en ;
-    ex:vendor        "Amazon Web Services" ;
-    ex:dataRegion    "eu-west-1, eu-central-1, us-east-1" ;
+    aws-platform:vendor        "Amazon Web Services" ;
+    aws-platform:dataRegion    "eu-west-1, eu-central-1, us-east-1" ;
 
     # ── Native controls ───────────────────────────────────────────────────────
-    ex:implementsNatively saif:ExtendDetectionToAI ; # AI telemetry → threat detection
-    ex:implementsNatively saif:AutomateAIDefences ;  # automated finding → Lambda remediation
-    ex:implementsNatively nrmf:MG2 ;                # automated incident response pipeline
-    ex:implementsNatively saif:AdaptControls ;       # GuardDuty threat intel feed auto-updates
+    aws-platform:implementsNatively saif:ExtendDetectionToAI ; # AI telemetry → threat detection
+    aws-platform:implementsNatively saif:AutomateAIDefences ;  # automated finding → Lambda remediation
+    aws-platform:implementsNatively nrmf:MG2 ;                # automated incident response pipeline
+    aws-platform:implementsNatively saif:AdaptControls ;       # GuardDuty threat intel feed auto-updates
 
     # ── Risks mitigated ───────────────────────────────────────────────────────
-    ex:mitigates atlas:Reconnaissance ;       # unusual DescribeModel API calls detected
-    ex:mitigates atlas:InitialAccess ;        # credential compromise → anomalous API patterns
-    ex:mitigates atlas:Persistence ;          # unusual Lambda/EKS API calls post-compromise
-    ex:mitigates atlas:PrivilegeEscalation ;  # IAM role escalation detection
+    aws-platform:mitigates atlas:Reconnaissance ;       # unusual DescribeModel API calls detected
+    aws-platform:mitigates atlas:InitialAccess ;        # credential compromise → anomalous API patterns
+    aws-platform:mitigates atlas:Persistence ;          # unusual Lambda/EKS API calls post-compromise
+    aws-platform:mitigates atlas:PrivilegeEscalation ;  # IAM role escalation detection
 .
 
 # ══════════════════════════════════════════════════════════════════════════════
 # Amazon CodeWhisperer / Q Developer
 # ══════════════════════════════════════════════════════════════════════════════
 
-ex:AWSCodeWhisperer
-    a ex:SaaSAIService ;
+aws-platform:AWSCodeWhisperer
+    a aws-platform:SaaSAIService ;
     skos:prefLabel       "Amazon Q Developer (CodeWhisperer)"@en ;
     skos:definition  "AI code completion and security scanning tool integrated into developer IDEs and CI/CD pipelines. Provides real-time code suggestions and flags security vulnerabilities (OWASP Top 10, CWE). No training on enterprise code unless opted in."@en ;
-    ex:vendor        "Amazon Web Services" ;
-    ex:dataRegion    "us-east-1" ;
+    aws-platform:vendor        "Amazon Web Services" ;
+    aws-platform:dataRegion    "us-east-1" ;
 
     # ── Native controls ───────────────────────────────────────────────────────
-    ex:implementsNatively nrmf:GV6 ;      # AWS supply chain assurance (SOC2 Type II)
-    ex:implementsNatively saif:ExpandSecureFoundation ; # security scanning in CI
+    aws-platform:implementsNatively nrmf:GV6 ;      # AWS supply chain assurance (SOC2 Type II)
+    aws-platform:implementsNatively saif:ExpandSecureFoundation ; # security scanning in CI
 
     # ── Residual risks ────────────────────────────────────────────────────────
-    ex:bearsFace owasp:LLM09_Overreliance ;           # developers accepting insecure suggestions
-    ex:bearsFace owasp:LLM05_SupplyChainVulnerabilities ; # model recommendations include known-bad patterns
-    ex:bearsFace owasp:LLM06_SensitiveInfoDisclosure ; # code context sent to AWS API (PII in comments)
+    aws-platform:bearsFace owasp:LLM09_Overreliance ;           # developers accepting insecure suggestions
+    aws-platform:bearsFace owasp:LLM05_SupplyChainVulnerabilities ; # model recommendations include known-bad patterns
+    aws-platform:bearsFace owasp:LLM06_SensitiveInfoDisclosure ; # code context sent to AWS API (PII in comments)
 .

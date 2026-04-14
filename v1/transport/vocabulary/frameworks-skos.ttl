@@ -1,4 +1,4 @@
-@prefix tran-crosswalk: <https://iqns.org/v1/tran-crosswalk#> .
+@prefix frameworks-skos: <https://iqns.org/v1/tran-crosswalk#> .
 @prefix tg:    <https://iqns.org/v1/trangraph#> .
 @prefix ai:    <https://iqns.org/v1/ai#> .
 @prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
@@ -12,7 +12,7 @@
 @prefix iso24029: <https://iqns.org/v1/iso-24029#> .
 @prefix eu-ai:    <https://iqns.org/v1/eu-ai-act#> .
 
-tran-crosswalk:Ontology a owl:Ontology ; 
+frameworks-skos:Ontology a owl:Ontology ; 
     dct:title "Transport AI Crosswalk"@en ;
     owl:imports <https://iqns.org/v1/trangraph#> .
 

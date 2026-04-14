@@ -1,4 +1,4 @@
-@prefix cn-ai: <https://iqns.org/v1/cn-ai#> .
+@prefix cn-govgraph: <https://iqns.org/v1/cn-ai#> .
 @prefix ai:   <https://iqns.org/v1/ai#> .
 @prefix dct:  <http://purl.org/dc/terms/> .
 @prefix prov:  <http://www.w3.org/ns/prov#> .
@@ -8,129 +8,129 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
 
-cn-ai:Ontology a owl:Ontology ;
+cn-govgraph:Ontology a owl:Ontology ;
     dct:title  "China AI Governance — MOST Principles (2019) + CAC Interim Measures for Generative AI (2023)"@en ;
     prov:wasDerivedFrom <https://www.gov.cn/zhengce/zhengceku/2023-07/13/content_5741346.htm> .
 
-cn-ai:Scheme a skos:ConceptScheme ;
+cn-govgraph:Scheme a skos:ConceptScheme ;
     skos:prefLabel  "China AI Governance Framework"@en ;
     skos:definition "China's multi-instrument AI governance: MOST/NGAS principles (2019), Regulations on Deep Synthesis (2022), Interim Measures on Generative AI Services (2023)."@en .
 
-cn-ai:CN_AIGov
+cn-govgraph:CN_AIGov
     a ai:Framework ; a skos:Concept ;
     skos:prefLabel  "China AI Governance Framework"@en ;
     skos:definition "Composite Chinese regulatory framework for AI ethics and governance, covering foundational principles and generative AI service regulations."@en ;
-    skos:inScheme   cn-ai:Scheme ;
+    skos:inScheme   cn-govgraph:Scheme ;
     dct:publisher   "Ministry of Science and Technology, Cyberspace Administration of China"@en ;
 .
 
 # ── MOST New Generation AI Governance Principles (2019) ──────────────────────
 
-cn-ai:HarmonyBenefit
+cn-govgraph:HarmonyBenefit
     a ai:Principle ; a skos:Concept ;
     skos:prefLabel  "Harmony and Shared Benefit"@en ;
     skos:definition "AI should promote human well-being and fair distribution of AI benefits across society."@en ;
-    skos:inScheme   cn-ai:Scheme ; prov:wasDerivedFrom "MOST NGAS Principles 2019 §1" ;
+    skos:inScheme   cn-govgraph:Scheme ; prov:wasDerivedFrom "MOST NGAS Principles 2019 §1" ;
     skos:broadMatch ai:Fairness ;
 .
-cn-ai:FairnessJustice
+cn-govgraph:FairnessJustice
     a ai:Principle ; a skos:Concept ;
     skos:prefLabel  "Fairness and Justice"@en ;
     skos:definition "AI must not discriminate; algorithms must be fair; data must reflect diversity and avoid bias."@en ;
-    skos:inScheme   cn-ai:Scheme ; prov:wasDerivedFrom "MOST NGAS Principles 2019 §2" ;
+    skos:inScheme   cn-govgraph:Scheme ; prov:wasDerivedFrom "MOST NGAS Principles 2019 §2" ;
     skos:exactMatch ai:Fairness ;
 .
-cn-ai:InclusionSharing
+cn-govgraph:InclusionSharing
     a ai:Principle ; a skos:Concept ;
     skos:prefLabel  "Inclusion and Open Sharing"@en ;
     skos:definition "AI capabilities and benefits should be broadly accessible; AI should serve all segments of society."@en ;
-    skos:inScheme   cn-ai:Scheme ; prov:wasDerivedFrom "MOST NGAS Principles 2019 §3" ;
+    skos:inScheme   cn-govgraph:Scheme ; prov:wasDerivedFrom "MOST NGAS Principles 2019 §3" ;
     ai:mappedToDimension ai:Fairness ;
 .
-cn-ai:RespectToPrivacy
+cn-govgraph:RespectToPrivacy
     a ai:Principle ; a skos:Concept ;
     skos:prefLabel  "Respect for Privacy"@en ;
     skos:definition "AI must protect personal information; no illegal collection, storage, or misuse of personal data."@en ;
-    skos:inScheme   cn-ai:Scheme ; prov:wasDerivedFrom "MOST NGAS Principles 2019 §4" ;
+    skos:inScheme   cn-govgraph:Scheme ; prov:wasDerivedFrom "MOST NGAS Principles 2019 §4" ;
     skos:exactMatch ai:Privacy ;
 .
-cn-ai:SafeSecurity
+cn-govgraph:SafeSecurity
     a ai:Principle ; a skos:Concept ;
     skos:prefLabel  "Safety and Security"@en ;
     skos:definition "AI systems must be safe and controllable; adversarial risks and dual-use hazards must be mitigated."@en ;
-    skos:inScheme   cn-ai:Scheme ; prov:wasDerivedFrom "MOST NGAS Principles 2019 §5" ;
+    skos:inScheme   cn-govgraph:Scheme ; prov:wasDerivedFrom "MOST NGAS Principles 2019 §5" ;
     skos:exactMatch ai:Safety ;
     skos:exactMatch ai:Security ;
 .
-cn-ai:SharedResponsibility
+cn-govgraph:SharedResponsibility
     a ai:Principle ; a skos:Concept ;
     skos:prefLabel  "Shared Responsibility"@en ;
     skos:definition "All AI actors — developers, deployers, and users — share responsibility for AI outcomes."@en ;
-    skos:inScheme   cn-ai:Scheme ; prov:wasDerivedFrom "MOST NGAS Principles 2019 §6" ;
+    skos:inScheme   cn-govgraph:Scheme ; prov:wasDerivedFrom "MOST NGAS Principles 2019 §6" ;
     skos:exactMatch ai:Accountability ;
 .
-cn-ai:OpenGovernance
+cn-govgraph:OpenGovernance
     a ai:Principle ; a skos:Concept ;
     skos:prefLabel  "Open and Collaborative Governance"@en ;
     skos:definition "AI governance should be participatory; promote international cooperation and standard-setting."@en ;
-    skos:inScheme   cn-ai:Scheme ; prov:wasDerivedFrom "MOST NGAS Principles 2019 §7" ;
+    skos:inScheme   cn-govgraph:Scheme ; prov:wasDerivedFrom "MOST NGAS Principles 2019 §7" ;
     ai:mappedToDimension ai:Transparency ;
 .
-cn-ai:AgilityAdaptability
+cn-govgraph:AgilityAdaptability
     a ai:Principle ; a skos:Concept ;
     skos:prefLabel  "Agility and Adaptability"@en ;
     skos:definition "Governance should be flexible and evolve with AI capability to prevent regulatory lag."@en ;
-    skos:inScheme   cn-ai:Scheme ; prov:wasDerivedFrom "MOST NGAS Principles 2019 §8" ;
+    skos:inScheme   cn-govgraph:Scheme ; prov:wasDerivedFrom "MOST NGAS Principles 2019 §8" ;
     ai:mappedToDimension ai:Robustness ;
 .
 
 # ── CAC Interim Measures for Generative AI Services (2023) ───────────────────
 
-cn-ai:SocialistCoreValues
+cn-govgraph:SocialistCoreValues
     a ai:Requirement ; a skos:Concept ;
     skos:prefLabel  "Compliance with Core Socialist Values"@en ;
     skos:definition "Generative AI content must not undermine socialist core values, state authority, or social stability."@en ;
-    skos:inScheme   cn-ai:Scheme ; prov:wasDerivedFrom "CAC Interim Measures GenAI 2023 Art.4" ;
+    skos:inScheme   cn-govgraph:Scheme ; prov:wasDerivedFrom "CAC Interim Measures GenAI 2023 Art.4" ;
     ai:appliesToDomain ai:GenerativeAI ;
 .
-cn-ai:ContentLabellingGenAI
+cn-govgraph:ContentLabellingGenAI
     a ai:Obligation ; a skos:Concept ;
     skos:prefLabel  "AI-Generated Content Labelling"@en ;
     skos:definition "Providers must add explicit labels to AI-generated images, audio, and video to prevent deception."@en ;
-    skos:inScheme   cn-ai:Scheme ; prov:wasDerivedFrom "CAC Interim Measures GenAI 2023 Art.12" ;
+    skos:inScheme   cn-govgraph:Scheme ; prov:wasDerivedFrom "CAC Interim Measures GenAI 2023 Art.12" ;
     skos:exactMatch ai:Transparency ;
     ai:appliesToDomain ai:GenerativeAI ;
 .
-cn-ai:TrainingDataCompliance
+cn-govgraph:TrainingDataCompliance
     a ai:Obligation ; a skos:Concept ;
     skos:prefLabel  "Training Data Legitimacy"@en ;
     skos:definition "Training data must be lawfully obtained; copyright, personal data protections, and IP rights must be respected."@en ;
-    skos:inScheme   cn-ai:Scheme ; prov:wasDerivedFrom "CAC Interim Measures GenAI 2023 Art.7" ;
+    skos:inScheme   cn-govgraph:Scheme ; prov:wasDerivedFrom "CAC Interim Measures GenAI 2023 Art.7" ;
     ai:appliesToLifecycle ai:Development ;
     skos:broadMatch ai:Privacy ;
 .
-cn-ai:UserComplaintMechanism
+cn-govgraph:UserComplaintMechanism
     a ai:Obligation ; a skos:Concept ;
     skos:prefLabel  "User Complaint and Redress Mechanism"@en ;
     skos:definition "Generative AI service providers must establish accessible complaint channels and timely redress processes."@en ;
-    skos:inScheme   cn-ai:Scheme ; prov:wasDerivedFrom "CAC Interim Measures GenAI 2023 Art.16" ;
+    skos:inScheme   cn-govgraph:Scheme ; prov:wasDerivedFrom "CAC Interim Measures GenAI 2023 Art.16" ;
     ai:appliesToRole ai:User ;
 .
-cn-ai:SecurityAssessmentGenAI
+cn-govgraph:SecurityAssessmentGenAI
     a ai:Assessment ; a skos:Concept ;
     skos:prefLabel  "Generative AI Security Assessment"@en ;
     skos:definition "Providers of generative AI with public impact must conduct security assessments and register with regulators before launch."@en ;
-    skos:inScheme   cn-ai:Scheme ; prov:wasDerivedFrom "CAC Interim Measures GenAI 2023 Art.17" ;
+    skos:inScheme   cn-govgraph:Scheme ; prov:wasDerivedFrom "CAC Interim Measures GenAI 2023 Art.17" ;
     skos:broadMatch ai:RiskAssessment ;
     ai:appliesToLifecycle ai:Validation ;
 .
 
 # ── Deep Synthesis Regulations (2022) ─────────────────────────────────────────
 
-cn-ai:DeepSynthesisDisclosure
+cn-govgraph:DeepSynthesisDisclosure
     a ai:Obligation ; a skos:Concept ;
     skos:prefLabel  "Deep Synthesis Content Disclosure"@en ;
     skos:definition "Deepfake and AI-synthesised content must be clearly labelled; impersonation without consent is prohibited."@en ;
-    skos:inScheme   cn-ai:Scheme ; prov:wasDerivedFrom "CAC Deep Synthesis Regulations 2022 Art.16" ;
+    skos:inScheme   cn-govgraph:Scheme ; prov:wasDerivedFrom "CAC Deep Synthesis Regulations 2022 Art.16" ;
     skos:exactMatch ai:Transparency ;
 .

@@ -1,4 +1,4 @@
-@prefix sta-crosswalk: <https://iqns.org/v1/sta-crosswalk#> .
+@prefix frameworks-skos: <https://iqns.org/v1/sta-crosswalk#> .
 @prefix stg:   <https://iqns.org/v1/stargraph#> .
 @prefix ai:    <https://iqns.org/v1/ai#> .
 @prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
@@ -12,7 +12,7 @@
 @prefix owasp:  <https://iqns.org/v1/owasp-llm#> .
 @prefix sg-v2:  <https://iqns.org/v1/sg-ai-gov-v2#> .
 
-sta-crosswalk:Ontology a owl:Ontology ; 
+frameworks-skos:Ontology a owl:Ontology ; 
     dct:title "Startup AI Crosswalk"@en ;
     owl:imports <https://iqns.org/v1/stargraph#> .
 

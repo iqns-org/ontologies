@@ -1,4 +1,4 @@
-@prefix health-crosswalk: <https://iqns.org/v1/health-crosswalk#> .
+@prefix frameworks-skos: <https://iqns.org/v1/health-crosswalk#> .
 @prefix hg:    <https://iqns.org/v1/healthgraph#> .
 @prefix ai:    <https://iqns.org/v1/ai#> .
 @prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
@@ -11,7 +11,7 @@
 @prefix iso25:  <https://iqns.org/v1/iso-25059#> .
 @prefix onc:    <https://iqns.org/v1/onc-trustworthy#> .
 
-health-crosswalk:Ontology a owl:Ontology ; 
+frameworks-skos:Ontology a owl:Ontology ; 
     dct:title "Health AI Crosswalk"@en ;
     owl:imports <https://iqns.org/v1/healthgraph#> .
 

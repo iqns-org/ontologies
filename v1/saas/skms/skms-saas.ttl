@@ -1,4 +1,4 @@
-@prefix saas: <https://iqns.org/v1/skms/saas#> .
+@prefix skms-saas: <https://iqns.org/v1/skms/saas#> .
 @prefix itil: <https://iqns.org/itil#> .
 @prefix dct:  <http://purl.org/dc/terms/> .
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .
@@ -10,7 +10,7 @@
 
 # ── Ontology ─────────────────────────────────────────────────────────────────
 
-saas:Ontology
+skms-saas:Ontology
     a owl:Ontology ;
     dct:title       "SaaS & Platform Vendor Service Offerings mapped to ITIL"@en ;
     skos:definition "SKOS concept scheme mapping major SaaS vendors and platforms (Salesforce, Slack, Datadog, GitHub, Atlassian, etc.) to ITIL Service Knowledge Management System practices, configuration items, and service records."@en ;
@@ -19,7 +19,7 @@ saas:Ontology
     owl:imports     <https://iqns.org/itil#> ;
 .
 
-saas:SaaSScheme
+skms-saas:SaaSScheme
     a skos:ConceptScheme ;
     skos:prefLabel  "SaaS & Platform Services"@en ;
     skos:definition "A SKOS scheme mapping major SaaS vendors and platforms to ITIL practices, service components, and configuration item types."@en ;
@@ -30,32 +30,32 @@ saas:SaaSScheme
 #  SALESFORCE
 # ═══════════════════════════════════════════════════════════════
 
-saas:SalesforceCloud
+skms-saas:SalesforceCloud
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Salesforce (Core CRM)"@en ;
     skos:definition     "Customer Relationship Management platform for sales, service, and marketing."@en ;
-    skos:inScheme       saas:SaaSScheme ;
+    skos:inScheme       skms-saas:SaaSScheme ;
     prov:wasDerivedFrom <https://www.salesforce.com/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:RelationshipManagement ;
     skos:relatedMatch   itil:ServiceConfigurationManagement ;
 .
 
-saas:SalesforceCommerceCloud
+skms-saas:SalesforceCommerceCloud
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Salesforce Commerce Cloud"@en ;
     skos:definition     "E-commerce platform for digital commerce and omnichannel experiences."@en ;
-    skos:inScheme       saas:SaaSScheme ;
+    skos:inScheme       skms-saas:SaaSScheme ;
     prov:wasDerivedFrom <https://www.salesforce.com/products/commerce-cloud/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:PortfolioManagement ;
 .
 
-saas:SalesforceServiceCloud
+skms-saas:SalesforceServiceCloud
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Salesforce Service Cloud"@en ;
     skos:definition     "Customer service platform with case management, knowledge base, and omnichannel support."@en ;
-    skos:inScheme       saas:SaaSScheme ;
+    skos:inScheme       skms-saas:SaaSScheme ;
     prov:wasDerivedFrom <https://www.salesforce.com/products/service-cloud/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:ServiceDesk ;
@@ -66,54 +66,54 @@ saas:SalesforceServiceCloud
 #  COMMUNICATION & COLLABORATION
 # ═══════════════════════════════════════════════════════════════
 
-saas:Slack
+skms-saas:Slack
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Slack"@en ;
     skos:definition     "Team messaging and communication platform with integrations and workflow automation."@en ;
-    skos:inScheme       saas:SaaSScheme ;
+    skos:inScheme       skms-saas:SaaSScheme ;
     prov:wasDerivedFrom <https://slack.com/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:CollaborateAndPromoteVisibility ;
     skos:relatedMatch   itil:RelationshipManagement ;
 .
 
-saas:MicrosoftTeams
+skms-saas:MicrosoftTeams
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Microsoft Teams"@en ;
     skos:definition     "Unified communications platform combining chat, meetings, and file collaboration."@en ;
-    skos:inScheme       saas:SaaSScheme ;
+    skos:inScheme       skms-saas:SaaSScheme ;
     prov:wasDerivedFrom <https://www.microsoft.com/en/microsoft-teams/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:RelationshipManagement ;
     skos:relatedMatch   itil:WorkforceAndTalentManagement ;
 .
 
-saas:Zoom
+skms-saas:Zoom
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Zoom"@en ;
     skos:definition     "Video conferencing and virtual meeting platform with screen sharing and recordings."@en ;
-    skos:inScheme       saas:SaaSScheme ;
+    skos:inScheme       skms-saas:SaaSScheme ;
     prov:wasDerivedFrom <https://zoom.us/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:RelationshipManagement ;
 .
 
-saas:Asana
+skms-saas:Asana
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Asana"@en ;
     skos:definition     "Work management platform for project planning, task tracking, and team collaboration."@en ;
-    skos:inScheme       saas:SaaSScheme ;
+    skos:inScheme       skms-saas:SaaSScheme ;
     prov:wasDerivedFrom <https://asana.com/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:ProjectManagement ;
     skos:relatedMatch   itil:PortfolioManagement ;
 .
 
-saas:Jira
+skms-saas:Jira
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Jira (Atlassian)"@en ;
     skos:definition     "Issue tracking and project management platform for agile software development."@en ;
-    skos:inScheme       saas:SaaSScheme ;
+    skos:inScheme       skms-saas:SaaSScheme ;
     prov:wasDerivedFrom <https://www.atlassian.com/software/jira/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:ChangeEnablement ;
@@ -121,22 +121,22 @@ saas:Jira
     skos:relatedMatch   itil:ProblemManagement ;
 .
 
-saas:Confluence
+skms-saas:Confluence
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Confluence (Atlassian)"@en ;
     skos:definition     "Knowledge management and documentation platform for team collaboration."@en ;
-    skos:inScheme       saas:SaaSScheme ;
+    skos:inScheme       skms-saas:SaaSScheme ;
     prov:wasDerivedFrom <https://www.atlassian.com/software/confluence/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:KnowledgeManagement ;
     skos:relatedMatch   itil:DocumentCI ;
 .
 
-saas:Miro
+skms-saas:Miro
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Miro"@en ;
     skos:definition     "Online whiteboarding platform for collaborative diagramming and brainstorming."@en ;
-    skos:inScheme       saas:SaaSScheme ;
+    skos:inScheme       skms-saas:SaaSScheme ;
     prov:wasDerivedFrom <https://miro.com/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:RelationshipManagement ;
@@ -146,11 +146,11 @@ saas:Miro
 #  DEVELOPMENT & CICD  
 # ═══════════════════════════════════════════════════════════════
 
-saas:GitHub
+skms-saas:GitHub
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "GitHub"@en ;
     skos:definition     "Version control and DevOps platform for Git repositories with CI/CD pipelines."@en ;
-    skos:inScheme       saas:SaaSScheme ;
+    skos:inScheme       skms-saas:SaaSScheme ;
     prov:wasDerivedFrom <https://github.com/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:SoftwareDevelopmentAndManagement ;
@@ -159,11 +159,11 @@ saas:GitHub
     skos:relatedMatch   itil:ServiceConfigurationManagement ;
 .
 
-saas:GitLab
+skms-saas:GitLab
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "GitLab"@en ;
     skos:definition     "DevOps platform for Git repositories with integrated CI/CD, security, and monitoring."@en ;
-    skos:inScheme       saas:SaaSScheme ;
+    skos:inScheme       skms-saas:SaaSScheme ;
     prov:wasDerivedFrom <https://gitlab.com/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:SoftwareDevelopmentAndManagement ;
@@ -171,33 +171,33 @@ saas:GitLab
     skos:relatedMatch   itil:InformationSecurityManagement ;
 .
 
-saas:Bitbucket
+skms-saas:Bitbucket
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Bitbucket (Atlassian)"@en ;
     skos:definition     "Git repository management and CI/CD service for distributed teams."@en ;
-    skos:inScheme       saas:SaaSScheme ;
+    skos:inScheme       skms-saas:SaaSScheme ;
     prov:wasDerivedFrom <https://bitbucket.org/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:SoftwareDevelopmentAndManagement ;
     skos:relatedMatch   itil:ReleaseManagement ;
 .
 
-saas:JenkinsCloud
+skms-saas:JenkinsCloud
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Jenkins Cloud / Cloud Build Platforms"@en ;
     skos:definition     "Continuous Integration and Continuous Deployment automation platforms."@en ;
-    skos:inScheme       saas:SaaSScheme ;
+    skos:inScheme       skms-saas:SaaSScheme ;
     prov:wasDerivedFrom <https://www.jenkins.io/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:DeploymentManagement ;
     skos:relatedMatch   itil:ReleaseManagement ;
 .
 
-saas:Docker
+skms-saas:Docker
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Docker Hub & Docker Cloud"@en ;
     skos:definition     "Container management and registry platform for building and sharing container images."@en ;
-    skos:inScheme       saas:SaaSScheme ;
+    skos:inScheme       skms-saas:SaaSScheme ;
     prov:wasDerivedFrom <https://www.docker.com/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:SoftwareDevelopmentAndManagement ;
@@ -208,11 +208,11 @@ saas:Docker
 #  MONITORING, OBSERVABILITY & SECURITY
 # ═══════════════════════════════════════════════════════════════
 
-saas:Datadog
+skms-saas:Datadog
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Datadog"@en ;
     skos:definition     "Comprehensive monitoring platform for infrastructure, applications, logs, and user experience."@en ;
-    skos:inScheme       saas:SaaSScheme ;
+    skos:inScheme       skms-saas:SaaSScheme ;
     prov:wasDerivedFrom <https://www.datadoghq.com/> ;
     skos:exactMatch     itil:MonitoringAndEventManagement ;
     skos:relatedMatch   itil:MeasurementAndReporting ;
@@ -220,76 +220,76 @@ saas:Datadog
     skos:relatedMatch   itil:InformationSecurityManagement ;
 .
 
-saas:NewRelic
+skms-saas:NewRelic
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "New Relic"@en ;
     skos:definition     "Application performance monitoring and full stack observability platform."@en ;
-    skos:inScheme       saas:SaaSScheme ;
+    skos:inScheme       skms-saas:SaaSScheme ;
     prov:wasDerivedFrom <https://newrelic.com/> ;
     skos:exactMatch     itil:MonitoringAndEventManagement ;
     skos:relatedMatch   itil:CapacityAndPerformanceManagement ;
     skos:relatedMatch   itil:MeasurementAndReporting ;
 .
 
-saas:PagerDuty
+skms-saas:PagerDuty
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "PagerDuty"@en ;
     skos:definition     "Incident response platform for alerting, on-call scheduling, and incident management."@en ;
-    skos:inScheme       saas:SaaSScheme ;
+    skos:inScheme       skms-saas:SaaSScheme ;
     prov:wasDerivedFrom <https://www.pagerduty.com/> ;
     skos:exactMatch     itil:IncidentManagementPractice ;
     skos:relatedMatch   itil:RiskManagement ;
     skos:relatedMatch   itil:ServiceContinuityManagement ;
 .
 
-saas:Splunk
+skms-saas:Splunk
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Splunk Cloud"@en ;
     skos:definition     "Data platform for searching, monitoring, and analysing machine data and logs."@en ;
-    skos:inScheme       saas:SaaSScheme ;
+    skos:inScheme       skms-saas:SaaSScheme ;
     prov:wasDerivedFrom <https://www.splunk.com/> ;
     skos:exactMatch     itil:MonitoringAndEventManagement ;
     skos:relatedMatch   itil:MeasurementAndReporting ;
     skos:relatedMatch   itil:InformationSecurityManagement ;
 .
 
-saas:Elastic
+skms-saas:Elastic
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Elastic Cloud (Elasticsearch, Kibana, Beats)"@en ;
     skos:definition     "Search and analytics platform for logs, metrics, and traces."@en ;
-    skos:inScheme       saas:SaaSScheme ;
+    skos:inScheme       skms-saas:SaaSScheme ;
     prov:wasDerivedFrom <https://www.elastic.co/cloud/> ;
     skos:exactMatch     itil:MonitoringAndEventManagement ;
     skos:relatedMatch   itil:MeasurementAndReporting ;
 .
 
-saas:CloudflareSecuity
+skms-saas:CloudflareSecuity
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Cloudflare"@en ;
     skos:definition     "Security and performance platform for DDoS protection, WAF, and CDN."@en ;
-    skos:inScheme       saas:SaaSScheme ;
+    skos:inScheme       skms-saas:SaaSScheme ;
     prov:wasDerivedFrom <https://www.cloudflare.com/> ;
     skos:exactMatch     itil:InformationSecurityManagement ;
     skos:relatedMatch   itil:RiskManagement ;
     skos:relatedMatch   itil:CapacityAndPerformanceManagement ;
 .
 
-saas:Okta
+skms-saas:Okta
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Okta"@en ;
     skos:definition     "Identity and access management platform for authentication and authorisation."@en ;
-    skos:inScheme       saas:SaaSScheme ;
+    skos:inScheme       skms-saas:SaaSScheme ;
     prov:wasDerivedFrom <https://www.okta.com/> ;
     skos:exactMatch     itil:InformationSecurityManagement ;
     skos:relatedMatch   itil:WorkforceAndTalentManagement ;
     skos:relatedMatch   itil:AccessControl ;
 .
 
-saas:Auth0
+skms-saas:Auth0
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Auth0"@en ;
     skos:definition     "Authentication and authorisation platform for applications and APIs."@en ;
-    skos:inScheme       saas:SaaSScheme ;
+    skos:inScheme       skms-saas:SaaSScheme ;
     prov:wasDerivedFrom <https://auth0.com/> ;
     skos:exactMatch     itil:InformationSecurityManagement ;
     skos:relatedMatch   itil:SoftwareDevelopmentAndManagement ;
@@ -299,33 +299,33 @@ saas:Auth0
 #  PRODUCTIVITY & OFFICE
 # ═══════════════════════════════════════════════════════════════
 
-saas:Office365
+skms-saas:Office365
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Microsoft 365 (Office 365)"@en ;
     skos:definition     "Productivity suite including Office apps, email, OneDrive, and sharing capabilities."@en ;
-    skos:inScheme       saas:SaaSScheme ;
+    skos:inScheme       skms-saas:SaaSScheme ;
     prov:wasDerivedFrom <https://www.microsoft.com/en/microsoft-365/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:KnowledgeManagement ;
     skos:relatedMatch   itil:DocumentCI ;
 .
 
-saas:GoogleWorkspace
+skms-saas:GoogleWorkspace
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Google Workspace"@en ;
     skos:definition     "Cloud collaboration suite including Gmail, Docs, Sheets, Meet, and Drive."@en ;
-    skos:inScheme       saas:SaaSScheme ;
+    skos:inScheme       skms-saas:SaaSScheme ;
     prov:wasDerivedFrom <https://workspace.google.com/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:KnowledgeManagement ;
     skos:relatedMatch   itil:RelationshipManagement ;
 .
 
-saas:Notion
+skms-saas:Notion
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Notion"@en ;
     skos:definition     "All-in-one workspace for notes, databases, wikis, and project management."@en ;
-    skos:inScheme       saas:SaaSScheme ;
+    skos:inScheme       skms-saas:SaaSScheme ;
     prov:wasDerivedFrom <https://www.notion.so/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:KnowledgeManagement ;
@@ -336,22 +336,22 @@ saas:Notion
 #  HR & TALENT MANAGEMENT
 # ═══════════════════════════════════════════════════════════════
 
-saas:Workday
+skms-saas:Workday
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Workday"@en ;
     skos:definition     "Human capital management and financial management system for enterprises."@en ;
-    skos:inScheme       saas:SaaSScheme ;
+    skos:inScheme       skms-saas:SaaSScheme ;
     prov:wasDerivedFrom <https://www.workday.com/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:WorkforceAndTalentManagement ;
     skos:relatedMatch   itil:ServiceFinancialManagement ;
 .
 
-saas:SuccessFactors
+skms-saas:SuccessFactors
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "SuccessFactors (SAP)"@en ;
     skos:definition     "Cloud-native human experience management suite."@en ;
-    skos:inScheme       saas:SaaSScheme ;
+    skos:inScheme       skms-saas:SaaSScheme ;
     prov:wasDerivedFrom <https://www.sap.com/products/hcm/successfactors.html/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:WorkforceAndTalentManagement ;
@@ -361,33 +361,33 @@ saas:SuccessFactors
 #  FINANCIAL & ERP
 # ═══════════════════════════════════════════════════════════════
 
-saas:NetSuite
+skms-saas:NetSuite
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "NetSuite (Oracle)"@en ;
     skos:definition     "Cloud-based enterprise resource planning (ERP) system."@en ;
-    skos:inScheme       saas:SaaSScheme ;
+    skos:inScheme       skms-saas:SaaSScheme ;
     prov:wasDerivedFrom <https://www.oracle.com/netsuite/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:ServiceFinancialManagement ;
     skos:relatedMatch   itil:StrategyManagement ;
 .
 
-saas:DynamicsAX
+skms-saas:DynamicsAX
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Dynamics 365 (Microsoft)"@en ;
     skos:definition     "Cloud ERP and CRM platform with supply chain and operations capabilities."@en ;
-    skos:inScheme       saas:SaaSScheme ;
+    skos:inScheme       skms-saas:SaaSScheme ;
     prov:wasDerivedFrom <https://dynamics.microsoft.com/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:ServiceFinancialManagement ;
     skos:relatedMatch   itil:PortfolioManagement ;
 .
 
-saas:Stripe
+skms-saas:Stripe
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Stripe"@en ;
     skos:definition     "Payment processing platform for online transactions and subscription management."@en ;
-    skos:inScheme       saas:SaaSScheme ;
+    skos:inScheme       skms-saas:SaaSScheme ;
     prov:wasDerivedFrom <https://stripe.com/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:ServiceFinancialManagement ;
@@ -397,32 +397,32 @@ saas:Stripe
 #  ANALYTICS & BUSINESS INTELLIGENCE
 # ═══════════════════════════════════════════════════════════════
 
-saas:Tableau
+skms-saas:Tableau
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Tableau (Salesforce)"@en ;
     skos:definition     "Business intelligence and data visualisation platform."@en ;
-    skos:inScheme       saas:SaaSScheme ;
+    skos:inScheme       skms-saas:SaaSScheme ;
     prov:wasDerivedFrom <https://www.tableau.com/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:MeasurementAndReporting ;
     skos:relatedMatch   itil:KnowledgeManagement ;
 .
 
-saas:PowerBI
+skms-saas:PowerBI
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Microsoft Power BI"@en ;
     skos:definition     "Business analytics and reporting platform with interactive dashboards."@en ;
-    skos:inScheme       saas:SaaSScheme ;
+    skos:inScheme       skms-saas:SaaSScheme ;
     prov:wasDerivedFrom <https://powerbi.microsoft.com/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:MeasurementAndReporting ;
 .
 
-saas:Looker
+skms-saas:Looker
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Looker (Google)"@en ;
     skos:definition     "Modern BI and data application platform for insights and analytics."@en ;
-    skos:inScheme       saas:SaaSScheme ;
+    skos:inScheme       skms-saas:SaaSScheme ;
     prov:wasDerivedFrom <https://looker.com/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:MeasurementAndReporting ;
@@ -432,32 +432,32 @@ saas:Looker
 #  MARKETING & CMS
 # ═══════════════════════════════════════════════════════════════
 
-saas:HubSpot
+skms-saas:HubSpot
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "HubSpot"@en ;
     skos:definition     "Inbound marketing, sales, and customer service software."@en ;
-    skos:inScheme       saas:SaaSScheme ;
+    skos:inScheme       skms-saas:SaaSScheme ;
     prov:wasDerivedFrom <https://www.hubspot.com/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:RelationshipManagement ;
     skos:relatedMatch   itil:PortfolioManagement ;
 .
 
-saas:Marketo
+skms-saas:Marketo
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "Marketo (Adobe)"@en ;
     skos:definition     "Marketing automation platform for lead management and engagement."@en ;
-    skos:inScheme       saas:SaaSScheme ;
+    skos:inScheme       skms-saas:SaaSScheme ;
     prov:wasDerivedFrom <https://www.marketo.com/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:RelationshipManagement ;
 .
 
-saas:Wordpress
+skms-saas:Wordpress
     a owl:Class ; a skos:Concept ;
     skos:prefLabel      "WordPress.com & WordPress VIP"@en ;
     skos:definition     "Content management system for blogs, websites, and digital publishing."@en ;
-    skos:inScheme       saas:SaaSScheme ;
+    skos:inScheme       skms-saas:SaaSScheme ;
     prov:wasDerivedFrom <https://wordpress.com/> ;
     skos:exactMatch     itil:ConfigurationItem ;
     skos:relatedMatch   itil:DocumentCI ;
@@ -467,89 +467,89 @@ saas:Wordpress
 #  COLLECTIONS
 # ═══════════════════════════════════════════════════════════════
 
-saas:SalesforceServices
+skms-saas:SalesforceServices
     a skos:Collection ;
     skos:prefLabel "Salesforce Services"@en ;
-    skos:member saas:SalesforceCloud ;
-    skos:member saas:SalesforceCommerceCloud ;
-    skos:member saas:SalesforceServiceCloud ;
+    skos:member skms-saas:SalesforceCloud ;
+    skos:member skms-saas:SalesforceCommerceCloud ;
+    skos:member skms-saas:SalesforceServiceCloud ;
 .
 
-saas:CommunicationServices
+skms-saas:CommunicationServices
     a skos:Collection ;
     skos:prefLabel "Communication & Collaboration Services"@en ;
-    skos:member saas:Slack ;
-    skos:member saas:MicrosoftTeams ;
-    skos:member saas:Zoom ;
-    skos:member saas:Asana ;
-    skos:member saas:Jira ;
-    skos:member saas:Confluence ;
-    skos:member saas:Miro ;
+    skos:member skms-saas:Slack ;
+    skos:member skms-saas:MicrosoftTeams ;
+    skos:member skms-saas:Zoom ;
+    skos:member skms-saas:Asana ;
+    skos:member skms-saas:Jira ;
+    skos:member skms-saas:Confluence ;
+    skos:member skms-saas:Miro ;
 .
 
-saas:DevOpsServices
+skms-saas:DevOpsServices
     a skos:Collection ;
     skos:prefLabel "Development & DevOps Services"@en ;
-    skos:member saas:GitHub ;
-    skos:member saas:GitLab ;
-    skos:member saas:Bitbucket ;
-    skos:member saas:JenkinsCloud ;
-    skos:member saas:Docker ;
+    skos:member skms-saas:GitHub ;
+    skos:member skms-saas:GitLab ;
+    skos:member skms-saas:Bitbucket ;
+    skos:member skms-saas:JenkinsCloud ;
+    skos:member skms-saas:Docker ;
 .
 
-saas:MonitoringServices
+skms-saas:MonitoringServices
     a skos:Collection ;
     skos:prefLabel "Monitoring & Observability Services"@en ;
-    skos:member saas:Datadog ;
-    skos:member saas:NewRelic ;
-    skos:member saas:PagerDuty ;
-    skos:member saas:Splunk ;
-    skos:member saas:Elastic ;
+    skos:member skms-saas:Datadog ;
+    skos:member skms-saas:NewRelic ;
+    skos:member skms-saas:PagerDuty ;
+    skos:member skms-saas:Splunk ;
+    skos:member skms-saas:Elastic ;
 .
 
-saas:SecurityServices
+skms-saas:SecurityServices
     a skos:Collection ;
     skos:prefLabel "Security & Identity Services"@en ;
-    skos:member saas:CloudflareSecuity ;
-    skos:member saas:Okta ;
-    skos:member saas:Auth0 ;
+    skos:member skms-saas:CloudflareSecuity ;
+    skos:member skms-saas:Okta ;
+    skos:member skms-saas:Auth0 ;
 .
 
-saas:ProductivityServices
+skms-saas:ProductivityServices
     a skos:Collection ;
     skos:prefLabel "Productivity & Office Services"@en ;
-    skos:member saas:Office365 ;
-    skos:member saas:GoogleWorkspace ;
-    skos:member saas:Notion ;
+    skos:member skms-saas:Office365 ;
+    skos:member skms-saas:GoogleWorkspace ;
+    skos:member skms-saas:Notion ;
 .
 
-saas:HRServices
+skms-saas:HRServices
     a skos:Collection ;
     skos:prefLabel "HR & Talent Management Services"@en ;
-    skos:member saas:Workday ;
-    skos:member saas:SuccessFactors ;
+    skos:member skms-saas:Workday ;
+    skos:member skms-saas:SuccessFactors ;
 .
 
-saas:FinanceServices
+skms-saas:FinanceServices
     a skos:Collection ;
     skos:prefLabel "Financial & ERP Services"@en ;
-    skos:member saas:NetSuite ;
-    skos:member saas:DynamicsAX ;
-    skos:member saas:Stripe ;
+    skos:member skms-saas:NetSuite ;
+    skos:member skms-saas:DynamicsAX ;
+    skos:member skms-saas:Stripe ;
 .
 
-saas:AnalyticsServices
+skms-saas:AnalyticsServices
     a skos:Collection ;
     skos:prefLabel "Analytics & Business Intelligence Services"@en ;
-    skos:member saas:Tableau ;
-    skos:member saas:PowerBI ;
-    skos:member saas:Looker ;
+    skos:member skms-saas:Tableau ;
+    skos:member skms-saas:PowerBI ;
+    skos:member skms-saas:Looker ;
 .
 
-saas:MarketingServices
+skms-saas:MarketingServices
     a skos:Collection ;
     skos:prefLabel "Marketing & CMS Services"@en ;
-    skos:member saas:HubSpot ;
-    skos:member saas:Marketo ;
-    skos:member saas:Wordpress ;
+    skos:member skms-saas:HubSpot ;
+    skos:member skms-saas:Marketo ;
+    skos:member skms-saas:Wordpress ;
 .

@@ -1,4 +1,4 @@
-@prefix media-crosswalk: <https://iqns.org/v1/media-crosswalk#> .
+@prefix frameworks-skos: <https://iqns.org/v1/media-crosswalk#> .
 @prefix mg:    <https://iqns.org/v1/medgraph#> .
 @prefix ai:    <https://iqns.org/v1/ai#> .
 @prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
@@ -10,7 +10,7 @@
 @prefix owasp:  <https://iqns.org/v1/owasp-llm#> .
 @prefix eu-ai:   <https://iqns.org/v1/eu-ai-act#> .
 
-media-crosswalk:Ontology a owl:Ontology ; 
+frameworks-skos:Ontology a owl:Ontology ; 
     dct:title "Media AI Crosswalk"@en ;
     owl:imports <https://iqns.org/v1/medgraph#> .
 

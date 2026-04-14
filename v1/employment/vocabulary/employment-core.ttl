@@ -1,4 +1,4 @@
-@prefix emg: <https://iqns.org/v1/emgraph#> .
+@prefix employment-core: <https://iqns.org/v1/emgraph#> .
 @prefix ai:  <https://iqns.org/v1/ai#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -9,7 +9,7 @@
 
 # ── Ontology ─────────────────────────────────────────────────────────────────
 
-emg:Ontology
+employment-core:Ontology
     a owl:Ontology ;
     dct:title       "EmGraph: Employment and Labour Law Core Vocabulary"@en ;
     skos:definition "Abstract vocabulary for employment law and algorithmic hiring frameworks — covering anti-discrimination, automated hiring, monitoring at work, and worker rights. Extends ai: with employment-specific dimensions, lifecycle stages, and stakeholders."@en ;
@@ -19,17 +19,17 @@ emg:Ontology
 
 # ── Employment-Specific Properties ───────────────────────────────────────────
 
-emg:hasProtectedCharacteristic
+employment-core:hasProtectedCharacteristic
     a owl:ObjectProperty ;
     skos:prefLabel  "has protected characteristic"@en ;
-    rdfs:range  emg:ProtectedCharacteristic ;
+    rdfs:range  employment-core:ProtectedCharacteristic ;
 .
-emg:appliesToEmploymentStage
+employment-core:appliesToEmploymentStage
     a owl:ObjectProperty ;
     skos:prefLabel  "applies to employment stage"@en ;
-    rdfs:range  emg:EmploymentStage ;
+    rdfs:range  employment-core:EmploymentStage ;
 .
-emg:isAutomatedDecision
+employment-core:isAutomatedDecision
     a owl:DatatypeProperty ;
     skos:prefLabel  "involves automated decision-making"@en ;
     rdfs:range  xsd:boolean ;
@@ -37,89 +37,89 @@ emg:isAutomatedDecision
 
 # ── Protected Characteristics ─────────────────────────────────────────────────
 
-emg:Race
-    a emg:ProtectedCharacteristic ; a skos:Concept ;
+employment-core:Race
+    a employment-core:ProtectedCharacteristic ; a skos:Concept ;
     skos:prefLabel  "Race / Ethnicity"@en ;
 .
-emg:Sex
-    a emg:ProtectedCharacteristic ; a skos:Concept ;
+employment-core:Sex
+    a employment-core:ProtectedCharacteristic ; a skos:Concept ;
     skos:prefLabel  "Sex / Gender"@en ;
 .
-emg:Age
-    a emg:ProtectedCharacteristic ; a skos:Concept ;
+employment-core:Age
+    a employment-core:ProtectedCharacteristic ; a skos:Concept ;
     skos:prefLabel  "Age"@en ;
 .
-emg:Disability
-    a emg:ProtectedCharacteristic ; a skos:Concept ;
+employment-core:Disability
+    a employment-core:ProtectedCharacteristic ; a skos:Concept ;
     skos:prefLabel  "Disability"@en ;
 .
-emg:NationalOrigin
-    a emg:ProtectedCharacteristic ; a skos:Concept ;
+employment-core:NationalOrigin
+    a employment-core:ProtectedCharacteristic ; a skos:Concept ;
     skos:prefLabel  "National Origin"@en ;
 .
-emg:Religion
-    a emg:ProtectedCharacteristic ; a skos:Concept ;
+employment-core:Religion
+    a employment-core:ProtectedCharacteristic ; a skos:Concept ;
     skos:prefLabel  "Religion or Belief"@en ;
 .
-emg:SexualOrientation
-    a emg:ProtectedCharacteristic ; a skos:Concept ;
+employment-core:SexualOrientation
+    a employment-core:ProtectedCharacteristic ; a skos:Concept ;
     skos:prefLabel  "Sexual Orientation"@en ;
 .
 
 # ── Employment Stages ─────────────────────────────────────────────────────────
 
-emg:Recruitment
-    a emg:EmploymentStage ; a skos:Concept ;
+employment-core:Recruitment
+    a employment-core:EmploymentStage ; a skos:Concept ;
     skos:prefLabel  "Recruitment and Selection"@en ;
     skos:definition "Job advertising, CV screening, candidate ranking, interview scheduling, and hiring decisions — highest AI adoption and regulatory focus."@en ;
 .
-emg:HiringDecision
-    a emg:EmploymentStage ; a skos:Concept ;
+employment-core:HiringDecision
+    a employment-core:EmploymentStage ; a skos:Concept ;
     skos:prefLabel  "Hiring Decision"@en ;
     skos:definition "Final offer/reject decision — if automated or AI-assisted, subject to equal treatment obligations."@en ;
 .
-emg:PerformanceManagement
-    a emg:EmploymentStage ; a skos:Concept ;
+employment-core:PerformanceManagement
+    a employment-core:EmploymentStage ; a skos:Concept ;
     skos:prefLabel  "Performance Management"@en ;
     skos:definition "Employee performance evaluation, rating, and feedback — AI scoring of worker performance creates disparate impact risk."@en ;
 .
-emg:Promotion
-    a emg:EmploymentStage ; a skos:Concept ;
+employment-core:Promotion
+    a employment-core:EmploymentStage ; a skos:Concept ;
     skos:prefLabel  "Promotion and Advancement"@en ;
     skos:definition "Career progression decisions — AI systems making or influencing promotion eligibility must not encode historical bias."@en ;
 .
-emg:Dismissal
-    a emg:EmploymentStage ; a skos:Concept ;
+employment-core:Dismissal
+    a employment-core:EmploymentStage ; a skos:Concept ;
     skos:prefLabel  "Dismissal and Redundancy"@en ;
     skos:definition "Termination and redundancy selection — algorithm-assisted redundancy selection is high-risk under EU AI Act and EU equal treatment law."@en ;
 .
-emg:WorkerMonitoring
-    a emg:EmploymentStage ; a skos:Concept ;
+employment-core:WorkerMonitoring
+    a employment-core:EmploymentStage ; a skos:Concept ;
     skos:prefLabel  "Worker Monitoring and Surveillance"@en ;
     skos:definition "Productivity tracking, biometric monitoring, keystroke logging, location tracking — regulated under GDPR/EPRIVACY and national employment law."@en ;
 .
 
 # ── Dimensions ────────────────────────────────────────────────────────────────
 
-emg:EqualTreatment
+employment-core:EqualTreatment
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Equal Treatment and Non-Discrimination"@en ;
     skos:definition "Prohibition on direct and indirect discrimination based on protected characteristics in employment decisions — core employment law dimension for all AI hiring and management tools."@en ;
     skos:broadMatch ai:Fairness ;
 .
-emg:WorkerDignity
+employment-core:WorkerDignity
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Worker Dignity"@en ;
     skos:definition "Protection of workers' inherent dignity and right not to be subject to degrading treatment — relevant to AI surveillance, emotion recognition, and intrusive monitoring systems."@en ;
     skos:relatedMatch ai:HumanOversight ;
 .
-emg:WorkplacePrivacy
+employment-core:WorkplacePrivacy
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Workplace Privacy"@en ;
     skos:definition "Right to a reasonable expectation of privacy in the workplace — limits on monitoring frequency, scope, and purpose; GDPR applies to biometric data processing."@en ;
     skos:broadMatch ai:Privacy ;
 .
-emg:AlgorithmicTransparency
+employment-core:AlgorithmicTransparency
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Algorithmic Transparency in Employment"@en ;
     skos:definition "Workers' right to understand how automated systems affect their employment — explanation of AI-driven hiring and management decisions."@en ;
@@ -128,27 +128,27 @@ emg:AlgorithmicTransparency
 
 # ── Stakeholders ──────────────────────────────────────────────────────────────
 
-emg:Employer
+employment-core:Employer
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Employer"@en ;
     skos:definition "Organisation that employs workers — responsible for ensuring employment AI systems comply with equal treatment obligations."@en ;
 .
-emg:Worker
+employment-core:Worker
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Worker / Job Applicant"@en ;
     skos:definition "Individual subject to employer AI decisions — holds rights to non-discrimination, explanation, and challenge of automated employment decisions."@en ;
 .
-emg:LabourInspectorate
+employment-core:LabourInspectorate
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Labour Inspectorate / Equality Body"@en ;
     skos:definition "Regulatory body enforcing employment law and equal treatment obligations — investigates complaints about discriminatory AI hiring tools."@en ;
 .
-emg:TradeUnion
+employment-core:TradeUnion
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Trade Union / Works Council"@en ;
     skos:definition "Worker representative body — under EU AI Act Art. 68, AI systems used in employment must be disclosed to works councils or trade unions prior to deployment."@en ;
 .
-emg:HiringTechProvider
+employment-core:HiringTechProvider
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "HR Technology Provider"@en ;
     skos:definition "Third-party vendor supplying AI-powered applicant tracking systems, CV screening, or video interview analysis tools — subject to EU AI Act high-risk obligations as deployer or provider."@en ;

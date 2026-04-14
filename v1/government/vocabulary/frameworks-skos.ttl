@@ -1,4 +1,4 @@
-@prefix gov-crosswalk: <https://iqns.org/v1/gov-crosswalk#> .
+@prefix frameworks-skos: <https://iqns.org/v1/gov-crosswalk#> .
 @prefix gov:   <https://iqns.org/v1/govtgraph#> .
 @prefix ai:    <https://iqns.org/v1/ai#> .
 @prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
@@ -13,7 +13,7 @@
 @prefix oecd:   <https://iqns.org/v1/oecd-ai#> .
 @prefix unesco: <https://iqns.org/v1/unesco-ai#> .
 
-gov-crosswalk:Ontology a owl:Ontology ; 
+frameworks-skos:Ontology a owl:Ontology ; 
     dct:title "Government AI Crosswalk"@en ;
     owl:imports <https://iqns.org/v1/govtgraph#> .
 

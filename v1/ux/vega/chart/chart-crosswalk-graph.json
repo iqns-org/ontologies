@@ -16,7 +16,7 @@
     {
       "name": "color",
       "type": "ordinal",
-      "domain": ["ai", "enterprise", "hse", "governance"],
+      "domain": ["ai", "enterprise", "hse", "ontologies"],
       "range": ["#1f77b4", "#2ca02c", "#ff7f0e", "#9467bd"]
     }
   ],

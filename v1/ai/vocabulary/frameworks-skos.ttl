@@ -1,4 +1,4 @@
-@prefix ai-crosswalk: <https://iqns.org/v1/ai-crosswalk#> .
+@prefix frameworks-skos: <https://iqns.org/v1/ai-crosswalk#> .
 @prefix enterprise: <https://iqns.org/v1/enterprise#> .
 @prefix iso45001: <https://iqns.org/v1/iso-45001#> .
 @prefix soc2: <https://iqns.org/v1/soc-2#> .
@@ -39,12 +39,12 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 
-ai-crosswalk:Ontology a owl:Ontology ;
+frameworks-skos:Ontology a owl:Ontology ;
     dct:title  "IQ:NS Compliance Crosswalk — SKOS Alignments Across All Frameworks"@en ;
     skos:definition "N×M mapping of equivalent and related concepts across all ai compliance frameworks, anchored via the ai: core vocabulary."@en .
 
 # Enterprise+IT/cyber/HSE frameworks in AI crosswalk
-ai-crosswalk:EnterpriseGovernance a skos:Collection ;
+frameworks-skos:EnterpriseGovernance a skos:Collection ;
     skos:prefLabel "Enterprise Governance and Risk Architecture"@en ;
     skos:member cobit:GovernanceFramework ;
     skos:member iso45001:ISO45001 ;
@@ -55,14 +55,14 @@ ai-crosswalk:EnterpriseGovernance a skos:Collection ;
 .
 
 
-ai-crosswalk:Scheme a skos:ConceptScheme ;
+frameworks-skos:Scheme a skos:ConceptScheme ;
     skos:prefLabel "IQ:NS Compliance Crosswalk"@en .
 
 # ════════════════════════════════════════════════════════════════════
 # DIMENSION: TRANSPARENCY / EXPLAINABILITY
 # ════════════════════════════════════════════════════════════════════
 
-ai-crosswalk:Transparency a skos:Collection ;
+frameworks-skos:Transparency a skos:Collection ;
     skos:prefLabel "Transparency and Explainability"@en ;
     skos:member ai:Transparency ;
     skos:member ai:Explainability ;
@@ -111,7 +111,7 @@ iso25059:Interpretability
 # DIMENSION: FAIRNESS
 # ════════════════════════════════════════════════════════════════════
 
-ai-crosswalk:Fairness a skos:Collection ;
+frameworks-skos:Fairness a skos:Collection ;
     skos:prefLabel "Fairness and Non-Discrimination"@en ;
     skos:member ai:Fairness ;
     skos:member euai:HighRiskAISystem ;
@@ -156,7 +156,7 @@ msft:FairnessMSFT
 # DIMENSION: ACCOUNTABILITY
 # ════════════════════════════════════════════════════════════════════
 
-ai-crosswalk:Accountability a skos:Collection ;
+frameworks-skos:Accountability a skos:Collection ;
     skos:prefLabel "Accountability"@en ;
     skos:member ai:Accountability ;
     skos:member iso42001:Clause5Leadership ;
@@ -195,7 +195,7 @@ euai:ProviderObligation
 # DIMENSION: SAFETY
 # ════════════════════════════════════════════════════════════════════
 
-ai-crosswalk:Safety a skos:Collection ;
+frameworks-skos:Safety a skos:Collection ;
     skos:prefLabel "Safety"@en ;
     skos:member ai:Safety ;
     skos:member euai:UnacceptableRiskTier ;
@@ -230,7 +230,7 @@ fda:ClinicalSafetyONC
 # DIMENSION: SECURITY
 # ════════════════════════════════════════════════════════════════════
 
-ai-crosswalk:Security a skos:Collection ;
+frameworks-skos:Security a skos:Collection ;
     skos:prefLabel "Security"@en ;
     skos:member ai:Security ;
     skos:member euai:CybersecurityRequirements ;
@@ -282,7 +282,7 @@ owasp:LLM08_ExcessiveAgency
 # DIMENSION: PRIVACY
 # ════════════════════════════════════════════════════════════════════
 
-ai-crosswalk:Privacy a skos:Collection ;
+frameworks-skos:Privacy a skos:Collection ;
     skos:prefLabel "Privacy"@en ;
     skos:member ai:Privacy ;
     skos:member gdprai:DataProtectionByDesign ;
@@ -316,7 +316,7 @@ cn:RespectToPrivacy
 # DIMENSION: ROBUSTNESS / RELIABILITY
 # ════════════════════════════════════════════════════════════════════
 
-ai-crosswalk:Robustness a skos:Collection ;
+frameworks-skos:Robustness a skos:Collection ;
     skos:prefLabel "Robustness and Reliability"@en ;
     skos:member ai:Robustness ;
     skos:member ai:Reliability ;
@@ -353,7 +353,7 @@ fda:RealWorldPerformanceMonitoring
 # DIMENSION: HUMAN OVERSIGHT
 # ════════════════════════════════════════════════════════════════════
 
-ai-crosswalk:HumanOversight a skos:Collection ;
+frameworks-skos:HumanOversight a skos:Collection ;
     skos:prefLabel "Human Oversight"@en ;
     skos:member ai:HumanOversight ;
     skos:member euai:HumanOversightMeasure ;
@@ -383,7 +383,7 @@ euai:HumanOversightMeasure
 # DIMENSION: RISK ASSESSMENT
 # ════════════════════════════════════════════════════════════════════
 
-ai-crosswalk:RiskAssessment a skos:Collection ;
+frameworks-skos:RiskAssessment a skos:Collection ;
     skos:prefLabel "Risk Assessment"@en ;
     skos:member ai:RiskAssessment ;
     skos:member ai:ImpactAssessment ;
@@ -421,7 +421,7 @@ nrmf:MAP
 # RISK LEVELS ALIGNMENT
 # ════════════════════════════════════════════════════════════════════
 
-ai-crosswalk:RiskLevels a skos:Collection ;
+frameworks-skos:RiskLevels a skos:Collection ;
     skos:prefLabel "Risk Level Tiers"@en ;
     skos:member ai:UnacceptableRisk ;
     skos:member ai:HighRisk ;
@@ -447,7 +447,7 @@ euai:MinimalRiskTier        skos:exactMatch ai:MinimalRisk ;       skos:broadMat
 # LIFECYCLE ALIGNMENT
 # ════════════════════════════════════════════════════════════════════
 
-ai-crosswalk:Lifecycle a skos:Collection ;
+frameworks-skos:Lifecycle a skos:Collection ;
     skos:prefLabel "AI Lifecycle Stages"@en ;
     skos:member ai:Design ;
     skos:member ai:Development ;
@@ -468,7 +468,7 @@ ai-crosswalk:Lifecycle a skos:Collection ;
 # CONFORMITY ASSESSMENT ALIGNMENT
 # ════════════════════════════════════════════════════════════════════
 
-ai-crosswalk:ConformityAssessment a skos:Collection ;
+frameworks-skos:ConformityAssessment a skos:Collection ;
     skos:prefLabel "Conformity Assessment"@en ;
     skos:member ai:ConformityAssessment ;
     skos:member euai:ConformityAssessment ;
@@ -496,7 +496,7 @@ euai:ConformityAssessment
 # GENERATIVE AI CLUSTER
 # ════════════════════════════════════════════════════════════════════
 
-ai-crosswalk:GenerativeAI a skos:Collection ;
+frameworks-skos:GenerativeAI a skos:Collection ;
     skos:prefLabel "Generative AI Obligations"@en ;
     skos:member euai:GPAIObligation ;
     skos:member n1001:Hallucination ;
@@ -528,7 +528,7 @@ n1001:Hallucination
 # DOCUMENTATION / MODEL CARDS
 # ════════════════════════════════════════════════════════════════════
 
-ai-crosswalk:Documentation a skos:Collection ;
+frameworks-skos:Documentation a skos:Collection ;
     skos:prefLabel "AI Documentation Norms"@en ;
     skos:member msft:ModelCardsMSFT ;
     skos:member msft:DataSheetsForDatasets ;

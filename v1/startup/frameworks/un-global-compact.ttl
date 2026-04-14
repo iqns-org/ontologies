@@ -1,4 +1,4 @@
-@prefix ungc: <https://iqns.org/v1/ungc#> .
+@prefix un-global-compact: <https://iqns.org/v1/ungc#> .
 @prefix startup: <https://iqns.org/v1/startup#> .
 @prefix ai:     <https://iqns.org/v1/ai#> .
 @prefix dct:    <http://purl.org/dc/terms/> .
@@ -9,21 +9,21 @@
 @prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
 
-ungc:Ontology a owl:Ontology ;
+un-global-compact:Ontology a owl:Ontology ;
     dct:title       "UN Global Compact Ten Principles"@en ;
     prov:wasDerivedFrom <https://unglobalcompact.org/what-is-gc/mission/principles> ;
     owl:imports     <https://iqns.org/v1/ai#> ;
     owl:versionInfo "2000" .
 
-ungc:Scheme a skos:ConceptScheme ;
+un-global-compact:Scheme a skos:ConceptScheme ;
     skos:prefLabel  "UN Global Compact Ten Principles"@en ;
     skos:definition "Launched in 2000, the UN Global Compact is the world's largest corporate sustainability initiative with 20,000+ signatories across 160+ countries. The Ten Principles derive from the Universal Declaration of Human Rights, ILO Core Conventions, Rio Declaration on Environment, and UN Convention Against Corruption. Startups adopting the UNGC signal responsible business practice to investors and enterprise customers."@en .
 
-ungc:UNGC
+un-global-compact:UNGC
     a ai:Framework ; a skos:Concept ;
     skos:prefLabel  "UN Global Compact Ten Principles"@en ;
     skos:definition "Voluntary corporate commitment framework covering human rights, labour standards, environmental responsibility, and anti-corruption. Signatory companies commit to embed the Ten Principles in their operations and strategy and publish an annual Communication on Progress (CoP)."@en ;
-    skos:inScheme   ungc:Scheme ;
+    skos:inScheme   un-global-compact:Scheme ;
     dct:publisher   "UN Global Compact"@en ;
     dct:issued      "2000"^^xsd:gYear ;
     prov:wasDerivedFrom <https://unglobalcompact.org/what-is-gc/mission/principles> ;
@@ -32,57 +32,57 @@ ungc:UNGC
     ai:mappedToDimension ai:Accountability ;
 .
 
-ungc:Principle1
+un-global-compact:Principle1
     a ai:Principle ; a skos:Concept ;
     skos:prefLabel  "Principle 1: Support and Respect Human Rights"@en ;
     skos:definition "Businesses should support and respect the protection of internationally proclaimed human rights. For AI startups: implement bias testing, algorithmic impact assessments, and human review before deployment of systems affecting individuals."@en ;
-    skos:inScheme   ungc:Scheme ;
+    skos:inScheme   un-global-compact:Scheme ;
     prov:wasDerivedFrom "UN Global Compact Principle 1" ;
     ai:mappedToDimension ai:Fairness ;
     ai:mappedToDimension ai:HumanOversight ;
 .
 
-ungc:Principle2
+un-global-compact:Principle2
     a ai:Principle ; a skos:Concept ;
     skos:prefLabel  "Principle 2: Not Complicit in Human Rights Abuses"@en ;
     skos:definition "Businesses should make sure they are not complicit in human rights abuses. For AI: refuse contracts for surveillance, social scoring, or weapons guidance without robust ethical review; vet downstream customers."@en ;
-    skos:inScheme   ungc:Scheme ;
+    skos:inScheme   un-global-compact:Scheme ;
     prov:wasDerivedFrom "UN Global Compact Principle 2" ;
     ai:mappedToDimension ai:Accountability ;
 .
 
-ungc:Principles3to6
+un-global-compact:Principles3to6
     a ai:Principle ; a skos:Concept ;
     skos:prefLabel  "Principles 3-6: Labour Standards"@en ;
     skos:definition "Uphold freedom of association and collective bargaining (P3), eliminate forced labour (P4), abolish child labour (P5), and eliminate employment discrimination (P6). For AI startups: applies to hiring algorithms, gig economy platforms, content moderation labour practices, and global supply chains."@en ;
-    skos:inScheme   ungc:Scheme ;
+    skos:inScheme   un-global-compact:Scheme ;
     prov:wasDerivedFrom "UN Global Compact Principles 3-6" ;
     ai:mappedToDimension ai:Fairness ;
 .
 
-ungc:Principle7
+un-global-compact:Principle7
     a ai:Principle ; a skos:Concept ;
     skos:prefLabel  "Principle 7: Precautionary Approach to Environmental Challenges"@en ;
     skos:definition "Businesses should support a precautionary approach to environmental challenges. For AI: model carbon cost disclosures, energy use reporting for training runs, and infrastructure sustainability assessments."@en ;
-    skos:inScheme   ungc:Scheme ;
+    skos:inScheme   un-global-compact:Scheme ;
     prov:wasDerivedFrom "UN Global Compact Principle 7" ;
     ai:mappedToDimension ai:Sustainability ;
 .
 
-ungc:Principle10
+un-global-compact:Principle10
     a ai:Principle ; a skos:Concept ;
     skos:prefLabel  "Principle 10: Anti-Corruption"@en ;
     skos:definition "Businesses should work against corruption in all its forms including extortion and bribery. For AI startups: applies to procurement data, contract award algorithms, and use of AI in financial compliance or regulatory reporting."@en ;
-    skos:inScheme   ungc:Scheme ;
+    skos:inScheme   un-global-compact:Scheme ;
     prov:wasDerivedFrom "UN Global Compact Principle 10" ;
     ai:mappedToDimension ai:Accountability ;
 .
 
-ungc:CommunicationOnProgress
+un-global-compact:CommunicationOnProgress
     a ai:Obligation ; a skos:Concept ;
     skos:prefLabel  "Communication on Progress (CoP) Obligation"@en ;
     skos:definition "Signatory companies must publish an annual Communication on Progress reporting how the Ten Principles are embedded in strategy and operations. Failure to submit for two consecutive years results in delisting. Startups should integrate CoP with ESG investor reporting and product ethics documentation."@en ;
-    skos:inScheme   ungc:Scheme ;
+    skos:inScheme   un-global-compact:Scheme ;
     prov:wasDerivedFrom <https://unglobalcompact.org/participation/report/cop> ;
     ai:appliesToLifecycle ai:Deploy ;
     ai:mappedToDimension ai:Accountability ;

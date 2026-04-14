@@ -1,4 +1,4 @@
-@prefix ent-crosswalk: <https://iqns.org/v1/ent-crosswalk#> .
+@prefix frameworks-skos: <https://iqns.org/v1/ent-crosswalk#> .
 @prefix enterprise:    <https://iqns.org/v1/enterprise#> .
 @prefix ai:    <https://iqns.org/v1/ai#> .
 @prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
@@ -15,7 +15,7 @@
 @prefix soc2: <https://iqns.org/v1/soc-2#> .
 @prefix cobit: <https://iqns.org/v1/cobit#> .
 
-ent-crosswalk:Ontology a owl:Ontology ; 
+frameworks-skos:Ontology a owl:Ontology ; 
     dct:title "Enterprise AI Crosswalk"@en ;
     owl:imports <https://iqns.org/v1/enterprise#> .
 

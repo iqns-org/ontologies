@@ -1,4 +1,4 @@
-@prefix em-crosswalk: <https://iqns.org/v1/em-crosswalk#> .
+@prefix frameworks-skos: <https://iqns.org/v1/em-crosswalk#> .
 @prefix emg:   <https://iqns.org/v1/emgraph#> .
 @prefix ai:    <https://iqns.org/v1/ai#> .
 @prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
@@ -9,7 +9,7 @@
 # AI Frameworks applicable to Employment
 @prefix eu-ai:  <https://iqns.org/v1/eu-ai-act#> .
 
-em-crosswalk:Ontology a owl:Ontology ; 
+frameworks-skos:Ontology a owl:Ontology ; 
     dct:title "Employment AI Crosswalk"@en ;
     owl:imports <https://iqns.org/v1/emgraph#> .
 

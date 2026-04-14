@@ -1,4 +1,4 @@
-@prefix edg: <https://iqns.org/v1/edugraph#> .
+@prefix education-core: <https://iqns.org/v1/edugraph#> .
 @prefix ai:  <https://iqns.org/v1/ai#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -9,7 +9,7 @@
 
 # ── Ontology ─────────────────────────────────────────────────────────────────
 
-edg:Ontology
+education-core:Ontology
     a owl:Ontology ;
     dct:title       "EduGraph: Education Core Vocabulary"@en ;
     skos:definition "Abstract vocabulary for education AI governance — adaptive learning systems, academic integrity, student data privacy (FERPA, UK Children's Code), automated grading, and AI literacy. Extends ai: with education-specific dimensions, lifecycle stages, and stakeholders."@en ;
@@ -19,25 +19,25 @@ edg:Ontology
 
 # ── Education Dimensions ──────────────────────────────────────────────────────
 
-edg:StudentDataPrivacy
+education-core:StudentDataPrivacy
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Student Data Privacy"@en ;
     skos:definition "Protection of personally identifiable information in student education records — FERPA (US), COPPA (children under 13), UK Children's Code; AI tools used in education that process student data must comply."@en ;
     skos:broadMatch ai:Privacy ;
 .
-edg:AcademicIntegrity
+education-core:AcademicIntegrity
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Academic Integrity"@en ;
     skos:definition "AI use in assessment — disclosure requirements for AI-assisted work, AI detection tool accuracy and bias, institutional policies on permissible AI assistance."@en ;
     skos:relatedMatch ai:Accountability ;
 .
-edg:AlgorithmicBiasInEducation
+education-core:AlgorithmicBiasInEducation
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Algorithmic Bias in Educational AI"@en ;
     skos:definition "Risk that AI grading, admissions, or adaptive learning systems encode and amplify bias against students from disadvantaged groups."@en ;
     skos:broadMatch ai:Fairness ;
 .
-edg:ChildSafety
+education-core:ChildSafety
     a ai:Dimension ; a skos:Concept ;
     skos:prefLabel  "Child Safety and Age-Appropriate Design"@en ;
     skos:definition "Heightened protection obligations for AI systems used by children — UK Children's Code (Age Appropriate Design Code), COPPA; by-default privacy settings, no profiling of children for advertising."@en ;
@@ -47,22 +47,22 @@ edg:ChildSafety
 
 # ── Education Lifecycle ───────────────────────────────────────────────────────
 
-edg:CurriculumDesign
+education-core:CurriculumDesign
     a ai:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Curriculum and Content Design"@en ;
     skos:definition "AI tools assisting in curriculum development and content generation — accuracy, bias in content, and intellectual property risks."@en ;
 .
-edg:AdaptiveLearning
+education-core:AdaptiveLearning
     a ai:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Adaptive Learning and Tutoring"@en ;
     skos:definition "AI personalisation of learning pathways — student profiling, learning analytics, and intervention recommendations."@en ;
 .
-edg:Assessment
+education-core:Assessment
     a ai:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Assessment and Grading"@en ;
     skos:definition "AI-assisted grading and exam invigilation — bias in automated grading, explainability of grade outcomes, human review of AI grades."@en ;
 .
-edg:Admission
+education-core:Admission
     a ai:Lifecycle ; a skos:Concept ;
     skos:prefLabel  "Admissions and Enrolment"@en ;
     skos:definition "AI-assisted admissions screening — equal treatment, proxy discrimination, and transparency of admissions algorithm."@en ;
@@ -70,22 +70,22 @@ edg:Admission
 
 # ── Stakeholders ──────────────────────────────────────────────────────────────
 
-edg:Student
+education-core:Student
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Student / Learner"@en ;
     skos:definition "Individual enrolled in an educational programme — holds rights to educational record privacy, fair assessment, and explanation of AI-driven decisions affecting their learning."@en ;
 .
-edg:Educator
+education-core:Educator
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Educator / Teacher"@en ;
     skos:definition "Professional responsible for teaching and assessment — responsible for appropriate use of AI tools and maintaining professional judgement over AI-generated outputs."@en ;
 .
-edg:Institution
+education-core:Institution
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "Educational Institution"@en ;
     skos:definition "School, college, or university — responsible for AI procurement decisions, student data governance, and academic integrity policies."@en ;
 .
-edg:EdTechProvider
+education-core:EdTechProvider
     a ai:Stakeholder ; a skos:Concept ;
     skos:prefLabel  "EdTech Provider"@en ;
     skos:definition "Company providing AI-powered educational technology — subject to FERPA school official exception, COPPA, and EU AI Act high-risk obligations for AI in education."@en ;

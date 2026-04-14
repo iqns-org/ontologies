@@ -2,7 +2,7 @@
 # Goal: Find education systems (?this) mapped to academic integrity or student data privacy.
 
 PREFIX gg: <https://iqns.org/v1/ai#>
-PREFIX edg: <https://iqns.org/v1/edugraph#>
+PREFIX edefence: <https://iqns.org/v1/edugraph#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 
 SELECT ?this ?label ?dimension ?dimensionLabel
@@ -11,7 +11,7 @@ WHERE {
           skos:prefLabel ?label ;
           gg:mappedToDimension ?dimension .
 
-    VALUES ?dimension { edg:AcademicIntegrity edg:StudentDataPrivacy }
+    VALUES ?dimension { edefence:AcademicIntegrity edefence:StudentDataPrivacy }
 
     ?dimension skos:prefLabel ?dimensionLabel .
 }
