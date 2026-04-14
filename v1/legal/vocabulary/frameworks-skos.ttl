@@ -1,18 +1,18 @@
-@prefix legal-crosswalk: <https://iqns.org/v0/legal-crosswalk#> .
-@prefix lg:    <https://iqns.org/v0/leggraph#> .
-@prefix ai:    <https://iqns.org/v0/ai#> .
+@prefix legal-crosswalk: <https://iqns.org/v1/legal-crosswalk#> .
+@prefix lg:    <https://iqns.org/v1/leggraph#> .
+@prefix ai:    <https://iqns.org/v1/ai#> .
 @prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
 @prefix dct:   <http://purl.org/dc/terms/> .
 @prefix owl:   <http://www.w3.org/2002/07/owl#> .
 
 # AI Frameworks applicable to Legal
-@prefix ieee7000:   <https://iqns.org/v0/ieee-7000#> .
-@prefix eu-ai:  <https://iqns.org/v0/eu-ai-act#> .
+@prefix ieee7000:   <https://iqns.org/v1/ieee-7000#> .
+@prefix eu-ai:  <https://iqns.org/v1/eu-ai-act#> .
 
 legal-crosswalk:Ontology a owl:Ontology ; 
     dct:title "Legal AI Crosswalk"@en ;
-    owl:imports <https://iqns.org/v0/leggraph#> .
+    owl:imports <https://iqns.org/v1/leggraph#> .
 
 # EU AI Act Annex III (8) identifies AI in administration of justice as high-risk
 eu-ai:Ontology skos:relatedMatch lg:Ontology .

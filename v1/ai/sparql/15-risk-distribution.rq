@@ -5,7 +5,7 @@
 # CUJ: Visualize dominant AI risk categories for prioritization.
 # ──────────────────────────────────────────────────────────────────────────────
 
-PREFIX ai:   <https://iqns.org/v0/ai#>
+PREFIX ai:   <https://iqns.org/v1/ai#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 
 SELECT ?category (SUM(?riskValue) AS ?score)

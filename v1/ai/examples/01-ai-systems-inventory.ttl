@@ -1,14 +1,14 @@
-@prefix ex:      <https://iqns.org/v0/example#> .
-@prefix ai:      <https://iqns.org/v0/ai#> .
-@prefix euai:    <https://iqns.org/v0/eu-ai-act#> .
-@prefix nrmf:    <https://iqns.org/v0/nist-ai-rmf#> .
-@prefix iso42001:<https://iqns.org/v0/iso-42001#> .
-@prefix owasp:   <https://iqns.org/v0/owasp-llm#> .
-@prefix saif:    <https://iqns.org/v0/google-saif#> .
-@prefix atlas:   <https://iqns.org/v0/mitre-atlas#> .
-@prefix sr117:   <https://iqns.org/v0/sr-11-7#> .
-@prefix eba:     <https://iqns.org/v0/eba-ai#> .
-@prefix fda:     <https://iqns.org/v0/fda-aiml-samd#> .
+@prefix ex:      <https://iqns.org/v1/example#> .
+@prefix ai:      <https://iqns.org/v1/ai#> .
+@prefix euai:    <https://iqns.org/v1/eu-ai-act#> .
+@prefix nrmf:    <https://iqns.org/v1/nist-ai-rmf#> .
+@prefix iso42001:<https://iqns.org/v1/iso-42001#> .
+@prefix owasp:   <https://iqns.org/v1/owasp-llm#> .
+@prefix saif:    <https://iqns.org/v1/google-saif#> .
+@prefix atlas:   <https://iqns.org/v1/mitre-atlas#> .
+@prefix sr117:   <https://iqns.org/v1/sr-11-7#> .
+@prefix eba:     <https://iqns.org/v1/eba-ai#> .
+@prefix fda:     <https://iqns.org/v1/fda-aiml-samd#> .
 @prefix dct:     <http://purl.org/dc/terms/> .
 @prefix prov:  <http://www.w3.org/ns/prov#> .
 @prefix owl:     <http://www.w3.org/2002/07/owl#> .
@@ -19,9 +19,9 @@
 ex:Inventory a owl:Ontology ;
     dct:title       "Enterprise AI Systems Inventory"@en ;
     skos:definition "Concrete AI system instances for a hypothetical global enterprise, each mapped to applicable ai: governance controls."@en ;
-    prov:wasDerivedFrom      <https://iqns.org/v0/example> ;
+    prov:wasDerivedFrom      <https://iqns.org/v1/example> ;
     owl:versionInfo "0.1" ;
-    owl:imports     <https://iqns.org/v0/example> ;
+    owl:imports     <https://iqns.org/v1/example> ;
 .
 
 # ══════════════════════════════════════════════════════════════════════════════

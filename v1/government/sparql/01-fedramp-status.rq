@@ -1,9 +1,9 @@
 # 01-gov-fedramp-readiness.rq
 # Goal: Check FedRAMP Authorization readiness for Agency systems.
 
-PREFIX gg: <https://iqns.org/v0/ai#>
-PREFIX gov: <https://iqns.org/v0/govtgraph#>
-PREFIX fedramp: <https://iqns.org/v0/fedramp#>
+PREFIX gg: <https://iqns.org/v1/ai#>
+PREFIX gov: <https://iqns.org/v1/govtgraph#>
+PREFIX fedramp: <https://iqns.org/v1/fedramp#>
 
 SELECT ?this ?baseline ?conmonStatus
 WHERE {

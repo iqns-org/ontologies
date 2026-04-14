@@ -1,23 +1,23 @@
-@prefix ent-crosswalk: <https://iqns.org/v0/ent-crosswalk#> .
-@prefix enterprise:    <https://iqns.org/v0/enterprise#> .
-@prefix ai:    <https://iqns.org/v0/ai#> .
+@prefix ent-crosswalk: <https://iqns.org/v1/ent-crosswalk#> .
+@prefix enterprise:    <https://iqns.org/v1/enterprise#> .
+@prefix ai:    <https://iqns.org/v1/ai#> .
 @prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
 @prefix dct:   <http://purl.org/dc/terms/> .
 @prefix owl:   <http://www.w3.org/2002/07/owl#> .
 
 # AI Frameworks applicable to Enterprise
-@prefix iso42001:  <https://iqns.org/v0/iso-42001#> .
-@prefix nist:   <https://iqns.org/v0/nist-ai-rmf#> .
-@prefix ms-rai: <https://iqns.org/v0/microsoft-rai#> .
-@prefix google: <https://iqns.org/v0/google-saif#> .
-@prefix iso45001: <https://iqns.org/v0/iso-45001#> .
-@prefix soc2: <https://iqns.org/v0/soc-2#> .
-@prefix cobit: <https://iqns.org/v0/cobit#> .
+@prefix iso42001:  <https://iqns.org/v1/iso-42001#> .
+@prefix nist:   <https://iqns.org/v1/nist-ai-rmf#> .
+@prefix ms-rai: <https://iqns.org/v1/microsoft-rai#> .
+@prefix google: <https://iqns.org/v1/google-saif#> .
+@prefix iso45001: <https://iqns.org/v1/iso-45001#> .
+@prefix soc2: <https://iqns.org/v1/soc-2#> .
+@prefix cobit: <https://iqns.org/v1/cobit#> .
 
 ent-crosswalk:Ontology a owl:Ontology ; 
     dct:title "Enterprise AI Crosswalk"@en ;
-    owl:imports <https://iqns.org/v0/enterprise#> .
+    owl:imports <https://iqns.org/v1/enterprise#> .
 
 iso42001:Framework skos:broadMatch enterprise:Ontology .
 nist:Framework skos:relatedMatch enterprise:Ontology .

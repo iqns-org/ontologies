@@ -1,8 +1,8 @@
 # 01-legal-responsibility.rq
 # Goal: Find systems (?this) mapped to professional responsibility or due process dimensions.
 
-PREFIX gg: <https://iqns.org/v0/ai#>
-PREFIX lg: <https://iqns.org/v0/leggraph#>
+PREFIX gg: <https://iqns.org/v1/ai#>
+PREFIX lg: <https://iqns.org/v1/leggraph#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 
 SELECT ?this ?label ?dimension ?dimensionLabel

@@ -1,6 +1,6 @@
-@prefix dora: <https://iqns.org/v0/dora#> .
-@prefix finance:   <https://iqns.org/v0/finance#> .
-@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dora: <https://iqns.org/v1/dora#> .
+@prefix finance:   <https://iqns.org/v1/finance#> .
+@prefix ai:   <https://iqns.org/v1/ai#> .
 @prefix dct:  <http://purl.org/dc/terms/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .
@@ -190,7 +190,7 @@ dora:AISystemsBCPCoverage
     prov:wasDerivedFrom "DORA Art. 11; DORA Art. 8 (asset management)" ;
     ai:mappedToDimension finance:ICTRisk ;
     ai:mappedToDimension ai:HumanOversight ;
-    skos:relatedMatch <https://iqns.org/v0/ai#HumanOversight> ;
+    skos:relatedMatch <https://iqns.org/v1/ai#HumanOversight> ;
 .
 dora:ThirdPartyAIProviderRisk
     a ai:Risk ; a skos:Concept ;

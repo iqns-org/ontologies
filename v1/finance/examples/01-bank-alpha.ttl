@@ -1,11 +1,11 @@
-@prefix bank-alpha: <https://iqns.org/v0/finance/examples/bank-alpha#> .
-@prefix ex:     <https://iqns.org/v0/example#> .
-@prefix finance:     <https://iqns.org/v0/finance#> .
-@prefix ai:     <https://iqns.org/v0/ai#> .
+@prefix bank-alpha: <https://iqns.org/v1/finance/examples/bank-alpha#> .
+@prefix ex:     <https://iqns.org/v1/example#> .
+@prefix finance:     <https://iqns.org/v1/finance#> .
+@prefix ai:     <https://iqns.org/v1/ai#> .
 @prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
 @prefix prov:   <http://www.w3.org/ns/prov#> .
-@prefix dora:   <https://iqns.org/v0/dora#> .
-@prefix basel:  <https://iqns.org/v0/basel-iii#> .
+@prefix dora:   <https://iqns.org/v1/dora#> .
+@prefix basel:  <https://iqns.org/v1/basel-iii#> .
 
 bank-alpha:AlphaCreditEngine a ai:System ;
     a finance:CreditInstitution ;

@@ -1,5 +1,5 @@
-@prefix lg:  <https://iqns.org/v0/leggraph#> .
-@prefix ai:  <https://iqns.org/v0/ai#> .
+@prefix lg:  <https://iqns.org/v1/leggraph#> .
+@prefix ai:  <https://iqns.org/v1/ai#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -13,7 +13,7 @@ lg:Ontology
     a owl:Ontology ;
     dct:title       "LegGraph: Legal Profession Core Vocabulary"@en ;
     skos:definition "Abstract vocabulary for legal profession AI governance — AI in legal practice, court use of AI, professional responsibility for legal AI tools, and AI-assisted judgment. Extends ai: with legal-sector dimensions, lifecycle stages, and stakeholders."@en ;
-    owl:imports     <https://iqns.org/v0/ai#> ;
+    owl:imports     <https://iqns.org/v1/ai#> ;
     owl:versionInfo "0.1" ;
 .
 

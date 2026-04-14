@@ -1,5 +1,5 @@
-@prefix eu-ai-act: <https://iqns.org/v0/eu-ai-act#> .
-@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix eu-ai-act: <https://iqns.org/v1/eu-ai-act#> .
+@prefix ai:   <https://iqns.org/v1/ai#> .
 @prefix dct:  <http://purl.org/dc/terms/> .
 @prefix prov:  <http://www.w3.org/ns/prov#> .
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .

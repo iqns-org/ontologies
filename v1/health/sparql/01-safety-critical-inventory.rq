@@ -1,8 +1,8 @@
 # 01-health-safety-critical-systems.rq
 # Goal: Identify Health systems in safety-critical lifecycle stages.
 
-PREFIX gg: <https://iqns.org/v0/ai#>
-PREFIX hg: <https://iqns.org/v0/healthgraph#>
+PREFIX gg: <https://iqns.org/v1/ai#>
+PREFIX hg: <https://iqns.org/v1/healthgraph#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 
 SELECT ?this ?label ?stage ?riskClass

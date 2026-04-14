@@ -1,4 +1,4 @@
-PREFIX ai: <https://iqns.org/v0/ai#>
+PREFIX ai: <https://iqns.org/v1/ai#>
 
 SELECT ?framework1 ?framework2 ?gapStatus WHERE {
   ?gap a ai:GapAnalysis ;

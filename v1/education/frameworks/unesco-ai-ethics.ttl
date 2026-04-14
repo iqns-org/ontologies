@@ -1,6 +1,6 @@
-@prefix unesco-ai-ethics: <https://iqns.org/v0/unesco-ai-ethics#> .
-@prefix edg:  <https://iqns.org/v0/edugraph#> .
-@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix unesco-ai-ethics: <https://iqns.org/v1/unesco-ai-ethics#> .
+@prefix edg:  <https://iqns.org/v1/edugraph#> .
+@prefix ai:   <https://iqns.org/v1/ai#> .
 @prefix dct:  <http://purl.org/dc/terms/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .
@@ -12,7 +12,7 @@
 unesco-ai-ethics:Ontology a owl:Ontology ;
     dct:title       "UNESCO Recommendation on the Ethics of Artificial Intelligence"@en ;
     prov:wasDerivedFrom <https://unesdoc.unesco.org/ark:/48223/pf0000380455> ;
-    owl:imports     <https://iqns.org/v0/ai#> ;
+    owl:imports     <https://iqns.org/v1/ai#> ;
     owl:versionInfo "2021" .
 
 unesco-ai-ethics:Scheme a skos:ConceptScheme ;

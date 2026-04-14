@@ -1,6 +1,6 @@
-@prefix ungp-bhr: <https://iqns.org/v0/ungp-bhr#> .
-@prefix lg:   <https://iqns.org/v0/leggraph#> .
-@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix ungp-bhr: <https://iqns.org/v1/ungp-bhr#> .
+@prefix lg:   <https://iqns.org/v1/leggraph#> .
+@prefix ai:   <https://iqns.org/v1/ai#> .
 @prefix dct:  <http://purl.org/dc/terms/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .
@@ -12,7 +12,7 @@
 ungp-bhr:Ontology a owl:Ontology ;
     dct:title       "UN Guiding Principles on Business and Human Rights"@en ;
     prov:wasDerivedFrom <https://www.ohchr.org/sites/default/files/documents/publications/guidingprinciplesbusinesshr_en.pdf> ;
-    owl:imports     <https://iqns.org/v0/ai#> ;
+    owl:imports     <https://iqns.org/v1/ai#> ;
     owl:versionInfo "2011" .
 
 ungp-bhr:Scheme a skos:ConceptScheme ;

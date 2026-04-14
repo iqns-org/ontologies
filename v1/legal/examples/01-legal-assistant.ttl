@@ -1,10 +1,10 @@
-@prefix lex-search: <https://iqns.org/v0/legal/examples/lex-search#> .
-@prefix ex:     <https://iqns.org/v0/example#> .
-@prefix lg:     <https://iqns.org/v0/leggraph#> .
-@prefix ai:     <https://iqns.org/v0/ai#> .
+@prefix lex-search: <https://iqns.org/v1/legal/examples/lex-search#> .
+@prefix ex:     <https://iqns.org/v1/example#> .
+@prefix lg:     <https://iqns.org/v1/leggraph#> .
+@prefix ai:     <https://iqns.org/v1/ai#> .
 @prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
 @prefix prov:   <http://www.w3.org/ns/prov#> .
-@prefix euai:   <https://iqns.org/v0/eu-ai-act#> .
+@prefix euai:   <https://iqns.org/v1/eu-ai-act#> .
 
 lex-search:LexSearchAI a ai:System ;
     a lg:Lawyer ;

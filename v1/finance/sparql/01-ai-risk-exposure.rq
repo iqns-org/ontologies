@@ -1,8 +1,8 @@
 # 01-finance-exposure-to-ai-risk.rq
 # Goal: Find Financial Institutions (finance:CreditInstitution, etc.) and their alignment to AI dimensions.
 
-PREFIX gg: <https://iqns.org/v0/ai#>
-PREFIX fg: <https://iqns.org/v0/fingraph#>
+PREFIX gg: <https://iqns.org/v1/ai#>
+PREFIX fg: <https://iqns.org/v1/fingraph#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 
 SELECT ?this ?thisLabel ?aiDimension ?aiDimensionLabel

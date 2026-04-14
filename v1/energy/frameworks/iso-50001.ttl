@@ -1,5 +1,5 @@
-@prefix iso-50001: <https://iqns.org/v0/iso-50001#> .
-@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix iso-50001: <https://iqns.org/v1/iso-50001#> .
+@prefix ai:   <https://iqns.org/v1/ai#> .
 @prefix dct:  <http://purl.org/dc/terms/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .
@@ -11,7 +11,7 @@
 iso-50001:Ontology a owl:Ontology ;
     dct:title       "ISO 50001: Energy Management Systems"@en ;
     prov:wasDerivedFrom <https://www.iso.org/standard/69426.html> ;
-    owl:imports     <https://iqns.org/v0/ai#> ;
+    owl:imports     <https://iqns.org/v1/ai#> ;
     owl:versionInfo "2018" .
 
 iso-50001:Scheme a skos:ConceptScheme ;

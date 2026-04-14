@@ -4,7 +4,7 @@ This directory contains SKOS alignment files that map semantically equivalent co
 
 ## Purpose
 
-While each domain (`v0/ai/`, `v0/finance/`, `v0/health/`, etc.) has internal coherence, many obligations and controls span multiple domains:
+While each domain (`v1/ai/`, `v1/finance/`, `v1/health/`, etc.) has internal coherence, many obligations and controls span multiple domains:
 
 - **Automated decision-making** is regulated by both EU AI Act (Title III) and GDPR (Article 22)
 - **Model risk** appears in both AI frameworks (NIST AI RMF) and financial regulations (SR 11-7, Basel III)
@@ -37,8 +37,8 @@ ai-health-skos.ttl      ← EU AI Act ↔ FDA SaMD, HIPAA, EU MDR
 **Find all GDPR obligations related to a given EU AI Act concept:**
 
 ```sparql
-PREFIX euai: <https://iqns.org/v0/eu-ai-act#>
-PREFIX gdpr: <https://iqns.org/v0/eu-gdpr-ai#>
+PREFIX euai: <https://iqns.org/v1/eu-ai-act#>
+PREFIX gdpr: <https://iqns.org/v1/eu-gdpr-ai#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 
 SELECT ?gdrpConcept ?relation WHERE {
@@ -50,8 +50,8 @@ SELECT ?gdrpConcept ?relation WHERE {
 **Find all high-risk AI contexts that also implicate privacy law:**
 
 ```sparql
-PREFIX euai:   <https://iqns.org/v0/eu-ai-act#>
-PREFIX gdpr:   <https://iqns.org/v0/eu-gdpr-ai#>
+PREFIX euai:   <https://iqns.org/v1/eu-ai-act#>
+PREFIX gdpr:   <https://iqns.org/v1/eu-gdpr-ai#>
 PREFIX skos:   <http://www.w3.org/2004/02/skos/core#>
 
 SELECT ?aiConcept ?gdprConcept (SAMPLE(?def) AS ?definition) WHERE {

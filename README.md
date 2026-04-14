@@ -18,16 +18,16 @@ The four pillars are the product in one sentence:
 ## Sample Repository Layout
 
 ```
-v0/
-├── ai/                 ← AI governance (v0)
-├── finance/            ← FinanceGraph (v0)
-├── health/             ← HealthGraph (v0)
-├── employment/         ← EmploymentGraph (v0)
-├── legal/              ← LegalGraph (v0)
-├── government/         ← GovtGraph (v0)
-├── insurance/          ← InsuranceGraph (v0)
-├── enterprise/         ← EnterpriseGraph (v0)
-└── startup/            ← StartupGraph (v0)
+v1/
+├── ai/                 ← AI governance (v1)
+├── finance/            ← FinanceGraph (v1)
+├── health/             ← HealthGraph (v1)
+├── employment/         ← EmploymentGraph (v1)
+├── legal/              ← LegalGraph (v1)
+├── government/         ← GovtGraph (v1)
+├── insurance/          ← InsuranceGraph (v1)
+├── enterprise/         ← EnterpriseGraph (v1)
+└── startup/            ← StartupGraph (v1)
 ```
 
 ---

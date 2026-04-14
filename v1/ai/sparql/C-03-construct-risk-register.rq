@@ -5,7 +5,7 @@
 #           Export and import into any GRC tool that accepts RDF/JSON-LD.
 # ─────────────────────────────────────────────────────────────────────────────
 
-PREFIX ai:   <https://iqns.org/v0/ai#>
+PREFIX ai:   <https://iqns.org/v1/ai#>
 PREFIX dct:  <http://purl.org/dc/terms/>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 

@@ -1,5 +1,5 @@
-@prefix google-saif: <https://iqns.org/v0/google-saif#> .
-@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix google-saif: <https://iqns.org/v1/google-saif#> .
+@prefix ai:   <https://iqns.org/v1/ai#> .
 @prefix dct:  <http://purl.org/dc/terms/> .
 @prefix prov:  <http://www.w3.org/ns/prov#> .
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .

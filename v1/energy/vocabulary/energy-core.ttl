@@ -1,5 +1,5 @@
-@prefix eng:  <https://iqns.org/v0/energy#> .
-@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix eng:  <https://iqns.org/v1/energy#> .
+@prefix ai:   <https://iqns.org/v1/ai#> .
 @prefix dct:  <http://purl.org/dc/terms/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .
@@ -13,7 +13,7 @@
 eng:Ontology a owl:Ontology ;
     dct:title       "IQ:NS Energy Domain Core Vocabulary"@en ;
     dct:description "Core classes, properties, dimensions, lifecycle stages, and stakeholders for the energy sector governance graph. Provides the canonical spine imported by all energy framework files."@en ;
-    owl:imports     <https://iqns.org/v0/ai#> ;
+    owl:imports     <https://iqns.org/v1/ai#> ;
     owl:versionInfo "0.1" .
 
 # ── Energy-Specific Dimensions ────────────────────────────────────────────────

@@ -1,9 +1,9 @@
 # 01-def-ihl-compliance.rq
 # Goal: Verify Autonomous Systems have IHL compliance controls.
 
-PREFIX gg: <https://iqns.org/v0/ai#>
-PREFIX dg: <https://iqns.org/v0/defgraph#>
-PREFIX dod: <https://iqns.org/v0/dod-rai#>
+PREFIX gg: <https://iqns.org/v1/ai#>
+PREFIX dg: <https://iqns.org/v1/defgraph#>
+PREFIX dod: <https://iqns.org/v1/dod-rai#>
 
 SELECT ?this ?label ?ihlControl
 WHERE {

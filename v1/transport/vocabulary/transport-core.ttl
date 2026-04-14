@@ -1,5 +1,5 @@
-@prefix tg:  <https://iqns.org/v0/trangraph#> .
-@prefix ai:  <https://iqns.org/v0/ai#> .
+@prefix tg:  <https://iqns.org/v1/trangraph#> .
+@prefix ai:  <https://iqns.org/v1/ai#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -13,7 +13,7 @@ tg:Ontology
     a owl:Ontology ;
     dct:title       "TranGraph: Transport and Autonomous Vehicles Core Vocabulary"@en ;
     skos:definition "Abstract vocabulary for transport and autonomous vehicle AI governance — automated driving systems, ALKS, aviation AI, maritime autonomous surface ships. Extends ai: with transport-specific dimensions, functional safety concepts, lifecycle stages, and stakeholders."@en ;
-    owl:imports     <https://iqns.org/v0/ai#> ;
+    owl:imports     <https://iqns.org/v1/ai#> ;
     owl:versionInfo "0.1" ;
 .
 

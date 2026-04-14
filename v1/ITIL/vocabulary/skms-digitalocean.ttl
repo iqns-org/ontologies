@@ -1,4 +1,4 @@
-@prefix do:   <https://iqns.org/v0/itil/digitalocean#> .
+@prefix do:   <https://iqns.org/v1/itil/digitalocean#> .
 @prefix itil: <https://iqns.org/itil#> .
 @prefix dct:  <http://purl.org/dc/terms/> .
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .

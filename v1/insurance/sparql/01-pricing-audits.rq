@@ -1,9 +1,9 @@
 # 01-ins-actuarial-transparency.rq
 # Goal: Solvency II transparency lookup for pricing models.
 
-PREFIX gg: <https://iqns.org/v0/ai#>
-PREFIX ing: <https://iqns.org/v0/insgraph#>
-PREFIX sol2: <https://iqns.org/v0/solvency-ii#>
+PREFIX gg: <https://iqns.org/v1/ai#>
+PREFIX ing: <https://iqns.org/v1/insgraph#>
+PREFIX sol2: <https://iqns.org/v1/solvency-ii#>
 
 SELECT ?this ?label ?transparencyObligation
 WHERE {

@@ -1,6 +1,6 @@
-@prefix nato-ai: <https://iqns.org/v0/nato-ai#> .
-@prefix dg:   <https://iqns.org/v0/defence#> .
-@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix nato-ai: <https://iqns.org/v1/nato-ai#> .
+@prefix dg:   <https://iqns.org/v1/defence#> .
+@prefix ai:   <https://iqns.org/v1/ai#> .
 @prefix dct:  <http://purl.org/dc/terms/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .
@@ -12,7 +12,7 @@
 nato-ai:Ontology a owl:Ontology ;
     dct:title       "NATO Principles of Responsible Use of AI in Defence"@en ;
     prov:wasDerivedFrom <https://www.nato.int/cps/en/natohq/official_texts_187617.htm> ;
-    owl:imports     <https://iqns.org/v0/ai#> ;
+    owl:imports     <https://iqns.org/v1/ai#> ;
     owl:versionInfo "2021" .
 
 nato-ai:Scheme a skos:ConceptScheme ;

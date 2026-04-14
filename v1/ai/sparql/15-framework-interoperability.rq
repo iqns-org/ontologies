@@ -1,11 +1,11 @@
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-PREFIX ai: <https://iqns.org/v0/ai#>
-PREFIX nrmf: <https://iqns.org/v0/nist-ai-rmf#>
-PREFIX iso42001: <https://iqns.org/v0/iso-42001#>
-PREFIX iso45001: <https://iqns.org/v0/iso-45001#>
-PREFIX soc2: <https://iqns.org/v0/soc-2#>
-PREFIX cobit: <https://iqns.org/v0/cobit#>
-PREFIX enterprise: <https://iqns.org/v0/enterprise#>
+PREFIX ai: <https://iqns.org/v1/ai#>
+PREFIX nrmf: <https://iqns.org/v1/nist-ai-rmf#>
+PREFIX iso42001: <https://iqns.org/v1/iso-42001#>
+PREFIX iso45001: <https://iqns.org/v1/iso-45001#>
+PREFIX soc2: <https://iqns.org/v1/soc-2#>
+PREFIX cobit: <https://iqns.org/v1/cobit#>
+PREFIX enterprise: <https://iqns.org/v1/enterprise#>
 
 # Cross-framework interoperability and risk dimension mapping.
 # Shows core frameworks and key aligned dimensions for enterprise AI governance.

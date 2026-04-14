@@ -1,12 +1,12 @@
-@prefix ex:      <https://iqns.org/v0/enterprise-example#> .
-@prefix ai:      <https://iqns.org/v0/ai#> .
-@prefix euai:    <https://iqns.org/v0/eu-ai-act#> .
-@prefix nrmf:    <https://iqns.org/v0/nist-ai-rmf#> .
-@prefix iso42001:<https://iqns.org/v0/iso-42001#> .
-@prefix owasp:   <https://iqns.org/v0/owasp-llm#> .
-@prefix saif:    <https://iqns.org/v0/google-saif#> .
-@prefix atlas:   <https://iqns.org/v0/mitre-atlas#> .
-@prefix fda:     <https://iqns.org/v0/fda-aiml-samd#> .
+@prefix ex:      <https://iqns.org/v1/enterprise-example#> .
+@prefix ai:      <https://iqns.org/v1/ai#> .
+@prefix euai:    <https://iqns.org/v1/eu-ai-act#> .
+@prefix nrmf:    <https://iqns.org/v1/nist-ai-rmf#> .
+@prefix iso42001:<https://iqns.org/v1/iso-42001#> .
+@prefix owasp:   <https://iqns.org/v1/owasp-llm#> .
+@prefix saif:    <https://iqns.org/v1/google-saif#> .
+@prefix atlas:   <https://iqns.org/v1/mitre-atlas#> .
+@prefix fda:     <https://iqns.org/v1/fda-aiml-samd#> .
 @prefix dct:     <http://purl.org/dc/terms/> .
 @prefix owl:     <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
@@ -16,7 +16,7 @@ ex:GCPOntology a owl:Ontology ;
     dct:title       "Enterprise GCP AI Platform Assets"@en ;
     skos:definition "Google Cloud Platform managed AI/ML service assets used by the enterprise, mapped to IQ:NS controls."@en ;
     owl:versionInfo "0.1" ;
-    owl:imports     <https://iqns.org/v0/enterprise-example> ;
+    owl:imports     <https://iqns.org/v1/enterprise-example> ;
 .
 
 # ══════════════════════════════════════════════════════════════════════════════

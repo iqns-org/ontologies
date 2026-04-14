@@ -1,5 +1,5 @@
 @prefix sh:   <http://www.w3.org/ns/shacl#> .
-@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix ai:   <https://iqns.org/v1/ai#> .
 @prefix dct:  <http://purl.org/dc/terms/> .
 @prefix prov:  <http://www.w3.org/ns/prov#> .
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .
@@ -463,7 +463,7 @@ ai:SupersessionShape
         sh:message "If a requirement supersedes another, it should have supporting documentation."@en ;
         sh:severity sh:Warning ;
         sh:select """
-            PREFIX ai: <https://iqns.org/v0/ai#>
+            PREFIX ai: <https://iqns.org/v1/ai#>
             PREFIX prov: <http://www.w3.org/ns/prov#>
             SELECT $this ?superseded
             WHERE {
@@ -485,7 +485,7 @@ ai:DateConsistencyShape
     sh:sparql [
         sh:message "If expiryDate exists, it must be later than effectiveDate."@en ;
         sh:select """
-            PREFIX ai: <https://iqns.org/v0/ai#>
+            PREFIX ai: <https://iqns.org/v1/ai#>
             PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
             SELECT $this ?ed ?ex
             WHERE {

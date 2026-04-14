@@ -1,9 +1,9 @@
 # 01-tran-safety-approvals.rq
 # Goal: List UN R157 (ALKS) approved Highway Pilots.
 
-PREFIX gg: <https://iqns.org/v0/ai#>
-PREFIX tg: <https://iqns.org/v0/trangraph#>
-PREFIX r157: <https://iqns.org/v0/un-r157#>
+PREFIX gg: <https://iqns.org/v1/ai#>
+PREFIX tg: <https://iqns.org/v1/trangraph#>
+PREFIX r157: <https://iqns.org/v1/un-r157#>
 
 SELECT ?this ?label ?safetyControl
 WHERE {

@@ -1,5 +1,5 @@
-@prefix edg: <https://iqns.org/v0/edugraph#> .
-@prefix ai:  <https://iqns.org/v0/ai#> .
+@prefix edg: <https://iqns.org/v1/edugraph#> .
+@prefix ai:  <https://iqns.org/v1/ai#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -13,7 +13,7 @@ edg:Ontology
     a owl:Ontology ;
     dct:title       "EduGraph: Education Core Vocabulary"@en ;
     skos:definition "Abstract vocabulary for education AI governance — adaptive learning systems, academic integrity, student data privacy (FERPA, UK Children's Code), automated grading, and AI literacy. Extends ai: with education-specific dimensions, lifecycle stages, and stakeholders."@en ;
-    owl:imports     <https://iqns.org/v0/ai#> ;
+    owl:imports     <https://iqns.org/v1/ai#> ;
     owl:versionInfo "0.1" ;
 .
 

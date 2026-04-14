@@ -1,11 +1,11 @@
-@prefix clinic-care: <https://iqns.org/v0/health/examples/clinic-care#> .
-@prefix ex:     <https://iqns.org/v0/example#> .
-@prefix hg:     <https://iqns.org/v0/healthgraph#> .
-@prefix ai:     <https://iqns.org/v0/ai#> .
+@prefix clinic-care: <https://iqns.org/v1/health/examples/clinic-care#> .
+@prefix ex:     <https://iqns.org/v1/example#> .
+@prefix hg:     <https://iqns.org/v1/healthgraph#> .
+@prefix ai:     <https://iqns.org/v1/ai#> .
 @prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
 @prefix prov:   <http://www.w3.org/ns/prov#> .
-@prefix hipaa:  <https://iqns.org/v0/hipaa#> .
-@prefix mdr:    <https://iqns.org/v0/eu-mdr#> .
+@prefix hipaa:  <https://iqns.org/v1/hipaa#> .
+@prefix mdr:    <https://iqns.org/v1/eu-mdr#> .
 
 clinic-care:RadiologyAI a ai:System ;
     a hg:ClassIIb ;

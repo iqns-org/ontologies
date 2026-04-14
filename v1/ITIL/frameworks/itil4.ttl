@@ -1,6 +1,6 @@
 @prefix itil: <https://iqns.org/itil/frameworks/itil4#> .
 @prefix itil: <https://iqns.org/itil#> .
-@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix ai:   <https://iqns.org/v1/ai#> .
 @prefix dct:  <http://purl.org/dc/terms/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .

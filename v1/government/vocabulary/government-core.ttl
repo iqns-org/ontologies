@@ -1,5 +1,5 @@
-@prefix gov: <https://iqns.org/v0/government#> .
-@prefix ai:  <https://iqns.org/v0/ai#> .
+@prefix gov: <https://iqns.org/v1/government#> .
+@prefix ai:  <https://iqns.org/v1/ai#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -13,7 +13,7 @@ gov:Ontology
     a owl:Ontology ;
     dct:title       "GovtGraph: Government and Public Sector Governance Core Vocabulary"@en ;
     skos:definition "Abstract vocabulary for government and public sector frameworks — cybersecurity risk management, FedRAMP cloud authorisation, and public sector AI governance. Extends ai: with government-specific dimensions, lifecycle stages, and stakeholders."@en ;
-    owl:imports     <https://iqns.org/v0/ai#> ;
+    owl:imports     <https://iqns.org/v1/ai#> ;
     owl:versionInfo "0.1" ;
 .
 

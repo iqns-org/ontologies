@@ -1,6 +1,6 @@
-@prefix iso-22320: <https://iqns.org/v0/iso-22320#> .
-@prefix psg:  <https://iqns.org/v0/psgraph#> .
-@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix iso-22320: <https://iqns.org/v1/iso-22320#> .
+@prefix psg:  <https://iqns.org/v1/psgraph#> .
+@prefix ai:   <https://iqns.org/v1/ai#> .
 @prefix dct:  <http://purl.org/dc/terms/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .
@@ -12,7 +12,7 @@
 iso-22320:Ontology a owl:Ontology ;
     dct:title       "ISO 22320: Emergency Management -- Incident Management"@en ;
     prov:wasDerivedFrom <https://www.iso.org/standard/67851.html> ;
-    owl:imports     <https://iqns.org/v0/ai#> ;
+    owl:imports     <https://iqns.org/v1/ai#> ;
     owl:versionInfo "2018" .
 
 iso-22320:Scheme a skos:ConceptScheme ;

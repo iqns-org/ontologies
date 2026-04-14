@@ -1,5 +1,5 @@
-@prefix emg: <https://iqns.org/v0/emgraph#> .
-@prefix ai:  <https://iqns.org/v0/ai#> .
+@prefix emg: <https://iqns.org/v1/emgraph#> .
+@prefix ai:  <https://iqns.org/v1/ai#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -13,7 +13,7 @@ emg:Ontology
     a owl:Ontology ;
     dct:title       "EmGraph: Employment and Labour Law Core Vocabulary"@en ;
     skos:definition "Abstract vocabulary for employment law and algorithmic hiring frameworks — covering anti-discrimination, automated hiring, monitoring at work, and worker rights. Extends ai: with employment-specific dimensions, lifecycle stages, and stakeholders."@en ;
-    owl:imports     <https://iqns.org/v0/ai#> ;
+    owl:imports     <https://iqns.org/v1/ai#> ;
     owl:versionInfo "0.1" ;
 .
 

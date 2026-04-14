@@ -1,20 +1,20 @@
-@prefix fin-crosswalk: <https://iqns.org/v0/fin-crosswalk#> .
-@prefix finance:    <https://iqns.org/v0/finance#> .
-@prefix ai:    <https://iqns.org/v0/ai#> .
+@prefix fin-crosswalk: <https://iqns.org/v1/fin-crosswalk#> .
+@prefix finance:    <https://iqns.org/v1/finance#> .
+@prefix ai:    <https://iqns.org/v1/ai#> .
 @prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
 @prefix dct:   <http://purl.org/dc/terms/> .
 @prefix owl:   <http://www.w3.org/2002/07/owl#> .
 
 # AI Frameworks applicable to Finance
-@prefix eu-ai:  <https://iqns.org/v0/eu-ai-act#> .
-@prefix nist:   <https://iqns.org/v0/nist-ai-rmf#> .
-@prefix sr11:   <https://iqns.org/v0/sr-11-7#> .
-@prefix eba:    <https://iqns.org/v0/eba-ai#> .
+@prefix eu-ai:  <https://iqns.org/v1/eu-ai-act#> .
+@prefix nist:   <https://iqns.org/v1/nist-ai-rmf#> .
+@prefix sr11:   <https://iqns.org/v1/sr-11-7#> .
+@prefix eba:    <https://iqns.org/v1/eba-ai#> .
 
 fin-crosswalk:Ontology a owl:Ontology ; 
     dct:title "Finance AI Crosswalk"@en ;
-    owl:imports <https://iqns.org/v0/finance#> .
+    owl:imports <https://iqns.org/v1/finance#> .
 
 # Cross-domain mappings
 finance:ModelRisk skos:relatedMatch nist:Ontology .

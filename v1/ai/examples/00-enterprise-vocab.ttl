@@ -1,5 +1,5 @@
-@prefix ex:   <https://iqns.org/v0/example#> .
-@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix ex:   <https://iqns.org/v1/example#> .
+@prefix ai:   <https://iqns.org/v1/ai#> .
 @prefix prov:  <http://www.w3.org/ns/prov#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix dct:  <http://purl.org/dc/terms/> .
@@ -25,9 +25,9 @@ ex:Ontology
     a owl:Ontology ;
     dct:title       "Enterprise AI Asset Vocabulary — IQ:NS Extension"@en ;
     skos:definition "Vocabulary for modelling enterprise AI systems, ML pipelines, and hosting infrastructure, cross-mapped to the ai: governance framework."@en ;
-    prov:wasDerivedFrom      <https://iqns.org/v0/example> ;
+    prov:wasDerivedFrom      <https://iqns.org/v1/example> ;
     owl:versionInfo "0.1" ;
-    owl:imports     <https://iqns.org/v0/ai> ;
+    owl:imports     <https://iqns.org/v1/ai> ;
 .
 
 # ── Asset Class Hierarchy ─────────────────────────────────────────────────────

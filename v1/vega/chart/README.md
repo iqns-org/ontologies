@@ -14,7 +14,7 @@ Example:
 import fs from 'fs'
 import Mustache from 'mustache'
 
-const template = fs.readFileSync('v0/vega/chart-risk-level.json', 'utf-8')
+const template = fs.readFileSync('v1/vega/chart-risk-level.json', 'utf-8')
 const renderData = {
   title: 'AI Risk by Category',
   data: JSON.stringify([...]),

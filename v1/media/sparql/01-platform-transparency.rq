@@ -1,9 +1,9 @@
 # 01-med-dsa-recommender-transparency.rq
 # Goal: Query platform systems in VLOP categories for DSA Art. 27.
 
-PREFIX gg: <https://iqns.org/v0/ai#>
-PREFIX mg: <https://iqns.org/v0/medgraph#>
-PREFIX dsa: <https://iqns.org/v0/dsa#>
+PREFIX gg: <https://iqns.org/v1/ai#>
+PREFIX mg: <https://iqns.org/v1/medgraph#>
+PREFIX dsa: <https://iqns.org/v1/dsa#>
 
 SELECT ?this ?label ?dsaObligation
 WHERE {

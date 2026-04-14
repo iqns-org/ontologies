@@ -1,6 +1,6 @@
-@prefix ungc: <https://iqns.org/v0/ungc#> .
-@prefix startup: <https://iqns.org/v0/startup#> .
-@prefix ai:     <https://iqns.org/v0/ai#> .
+@prefix ungc: <https://iqns.org/v1/ungc#> .
+@prefix startup: <https://iqns.org/v1/startup#> .
+@prefix ai:     <https://iqns.org/v1/ai#> .
 @prefix dct:    <http://purl.org/dc/terms/> .
 @prefix prov:   <http://www.w3.org/ns/prov#> .
 @prefix owl:    <http://www.w3.org/2002/07/owl#> .
@@ -12,7 +12,7 @@
 ungc:Ontology a owl:Ontology ;
     dct:title       "UN Global Compact Ten Principles"@en ;
     prov:wasDerivedFrom <https://unglobalcompact.org/what-is-gc/mission/principles> ;
-    owl:imports     <https://iqns.org/v0/ai#> ;
+    owl:imports     <https://iqns.org/v1/ai#> ;
     owl:versionInfo "2000" .
 
 ungc:Scheme a skos:ConceptScheme ;

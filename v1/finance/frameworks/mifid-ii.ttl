@@ -1,6 +1,6 @@
-@prefix mifid-ii: <https://iqns.org/v0/mifid-ii#> .
-@prefix finance:   <https://iqns.org/v0/finance#> .
-@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix mifid-ii: <https://iqns.org/v1/mifid-ii#> .
+@prefix finance:   <https://iqns.org/v1/finance#> .
+@prefix ai:   <https://iqns.org/v1/ai#> .
 @prefix dct:  <http://purl.org/dc/terms/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .
@@ -110,7 +110,7 @@ mifid-ii:RoboAdviceExplainability
     prov:wasDerivedFrom "ESMA Supervisory Briefing on Suitability (2021); MiFID II Art. 25(6)" ;
     ai:mappedToDimension ai:Explainability ;
     ai:mappedToDimension finance:ConductRisk ;
-    skos:relatedMatch <https://iqns.org/v0/eu-ai-act#TransparencyObligation> ;
+    skos:relatedMatch <https://iqns.org/v1/eu-ai-act#TransparencyObligation> ;
 .
 
 # ── Product Governance (Art. 16, 24) ─────────────────────────────────────────

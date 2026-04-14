@@ -1,10 +1,10 @@
-@prefix dept-security: <https://iqns.org/v0/government/examples/dept-security#> .
-@prefix ex:     <https://iqns.org/v0/example#> .
-@prefix gov:    <https://iqns.org/v0/govtgraph#> .
-@prefix ai:     <https://iqns.org/v0/ai#> .
+@prefix dept-security: <https://iqns.org/v1/government/examples/dept-security#> .
+@prefix ex:     <https://iqns.org/v1/example#> .
+@prefix gov:    <https://iqns.org/v1/govtgraph#> .
+@prefix ai:     <https://iqns.org/v1/ai#> .
 @prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
 @prefix prov:   <http://www.w3.org/ns/prov#> .
-@prefix fedramp: <https://iqns.org/v0/fedramp#> .
+@prefix fedramp: <https://iqns.org/v1/fedramp#> .
 
 dept-security:FedCloudPortal a ai:System ;
     a gov:GovernmentAgency ;

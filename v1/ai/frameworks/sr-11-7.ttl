@@ -1,5 +1,5 @@
-@prefix sr-11-7: <https://iqns.org/v0/sr-11-7#> .
-@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix sr-11-7: <https://iqns.org/v1/sr-11-7#> .
+@prefix ai:   <https://iqns.org/v1/ai#> .
 @prefix dct:  <http://purl.org/dc/terms/> .
 @prefix prov:  <http://www.w3.org/ns/prov#> .
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .

@@ -1,5 +1,5 @@
-@prefix hg:   <https://iqns.org/v0/health#> .
-@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix hg:   <https://iqns.org/v1/health#> .
+@prefix ai:   <https://iqns.org/v1/ai#> .
 @prefix dct:  <http://purl.org/dc/terms/> .
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -13,7 +13,7 @@ hg:Ontology
     a owl:Ontology ;
     dct:title       "HealthGraph: Healthcare & Life Sciences Core Vocabulary"@en ;
     skos:definition "Abstract vocabulary shared by all healthcare and life sciences regulation framework ontologies. Extends ai: with health-specific dimensions, lifecycle stages, stakeholders, and properties."@en ;
-    owl:imports     <https://iqns.org/v0/ai#> ;
+    owl:imports     <https://iqns.org/v1/ai#> ;
     owl:versionInfo "0.1" ;
 .
 

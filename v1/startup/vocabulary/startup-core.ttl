@@ -1,5 +1,5 @@
-@prefix startup: <https://iqns.org/v0/startup#> .
-@prefix ai:  <https://iqns.org/v0/ai#> .
+@prefix startup: <https://iqns.org/v1/startup#> .
+@prefix ai:  <https://iqns.org/v1/ai#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -13,7 +13,7 @@ startup:Ontology
     a owl:Ontology ;
     dct:title       "StarGraph: Startup and Early-Stage AI Company Core Vocabulary"@en ;
     skos:definition "Abstract vocabulary for startup AI governance — responsibly scaling AI products from MVP to enterprise, managing cross-framework compliance obligations, and AI governance as a product differentiator. Extends ai: with startup-specific maturity dimensions and growth-stage framing."@en ;
-    owl:imports     <https://iqns.org/v0/ai#> ;
+    owl:imports     <https://iqns.org/v1/ai#> ;
     owl:versionInfo "0.1" ;
 .
 

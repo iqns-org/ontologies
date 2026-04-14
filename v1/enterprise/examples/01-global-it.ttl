@@ -1,10 +1,10 @@
-@prefix corp-it: <https://iqns.org/v0/enterprise/examples/corp-it#> .
-@prefix ex:     <https://iqns.org/v0/example#> .
-@prefix enterprise:     <https://iqns.org/v0/enterprise#> .
-@prefix ai:     <https://iqns.org/v0/ai#> .
+@prefix corp-it: <https://iqns.org/v1/enterprise/examples/corp-it#> .
+@prefix ex:     <https://iqns.org/v1/example#> .
+@prefix enterprise:     <https://iqns.org/v1/enterprise#> .
+@prefix ai:     <https://iqns.org/v1/ai#> .
 @prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
 @prefix prov:   <http://www.w3.org/ns/prov#> .
-@prefix iso27:  <https://iqns.org/v0/iso-27001#> .
+@prefix iso27:  <https://iqns.org/v1/iso-27001#> .
 
 corp-it:GlobalInfrastucture a ai:System ;
     skos:prefLabel "Global Enterprise IT Shared Services"@en ;

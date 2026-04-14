@@ -1,10 +1,10 @@
-@prefix talent-search: <https://iqns.org/v0/employment/examples/talent-search#> .
-@prefix ex:     <https://iqns.org/v0/example#> .
-@prefix emg:    <https://iqns.org/v0/emgraph#> .
-@prefix ai:     <https://iqns.org/v0/ai#> .
+@prefix talent-search: <https://iqns.org/v1/employment/examples/talent-search#> .
+@prefix ex:     <https://iqns.org/v1/example#> .
+@prefix emg:    <https://iqns.org/v1/emgraph#> .
+@prefix ai:     <https://iqns.org/v1/ai#> .
 @prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
 @prefix prov:   <http://www.w3.org/ns/prov#> .
-@prefix eeoc:   <https://iqns.org/v0/eeoc#> .
+@prefix eeoc:   <https://iqns.org/v1/eeoc#> .
 
 talent-search:HiringCopilot a ai:System ;
     a emg:Employer ;

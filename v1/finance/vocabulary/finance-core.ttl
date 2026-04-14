@@ -1,5 +1,5 @@
-@prefix finance:   <https://iqns.org/v0/finance#> .
-@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix finance:   <https://iqns.org/v1/finance#> .
+@prefix ai:   <https://iqns.org/v1/ai#> .
 @prefix dct:  <http://purl.org/dc/terms/> .
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .
 @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -13,7 +13,7 @@ finance:Ontology
     a owl:Ontology ;
     dct:title       "finance: Financial Regulation Core Vocabulary"@en ;
     skos:definition "Abstract vocabulary shared by all financial regulation framework ontologies. Extends ai: with finance-specific dimensions, lifecycle stages, stakeholders, and properties."@en ;
-    owl:imports     <https://iqns.org/v0/ai#> ;
+    owl:imports     <https://iqns.org/v1/ai#> ;
     owl:versionInfo "0.1" ;
 .
 

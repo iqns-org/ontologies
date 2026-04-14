@@ -1,4 +1,4 @@
-@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix ai:   <https://iqns.org/v1/ai#> .
 
 @prefix dct:  <http://purl.org/dc/terms/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
@@ -15,7 +15,7 @@ ai:Ontology
     dct:title       "GovGraph: AI Governance Core Vocabulary"@en ;
     skos:definition "Abstract vocabulary shared by all AI governance framework ontologies."@en ;
     owl:versionInfo "0.1" ;
-    prov:wasDerivedFrom <https://iqns.org/v0/ai-core#> ;
+    prov:wasDerivedFrom <https://iqns.org/v1/ai-core#> ;
 .
 
 # ── Properties ───────────────────────────────────────────────────────────────
@@ -295,77 +295,77 @@ ai:Safety
     a ai:Dimension, skos:Concept ;
     skos:prefLabel  "Safety"@en ;
     skos:definition "Freedom from hazard, harm, or unintended adverse consequences." ;
-    skos:inScheme <https://iqns.org/v0/ai-core#DimensionScheme> ;
+    skos:inScheme <https://iqns.org/v1/ai-core#DimensionScheme> ;
 .
 
 ai:Security
     a ai:Dimension, skos:Concept ;
     skos:prefLabel  "Security"@en ;
     skos:definition "Protection against unauthorized access, manipulation, or attack." ;
-    skos:inScheme <https://iqns.org/v0/ai-core#DimensionScheme> ;
+    skos:inScheme <https://iqns.org/v1/ai-core#DimensionScheme> ;
 .
 
 ai:Fairness
     a ai:Dimension, skos:Concept ;
     skos:prefLabel  "Fairness"@en ;
     skos:definition "Equitable treatment without discrimination or bias." ;
-    skos:inScheme <https://iqns.org/v0/ai-core#DimensionScheme> ;
+    skos:inScheme <https://iqns.org/v1/ai-core#DimensionScheme> ;
 .
 
 ai:Transparency
     a ai:Dimension, skos:Concept ;
     skos:prefLabel  "Transparency"@en ;
     skos:definition "Openness and clarity about system operation and design." ;
-    skos:inScheme <https://iqns.org/v0/ai-core#DimensionScheme> ;
+    skos:inScheme <https://iqns.org/v1/ai-core#DimensionScheme> ;
 .
 
 ai:Accountability
     a ai:Dimension, skos:Concept ;
     skos:prefLabel  "Accountability"@en ;
     skos:definition "Responsibility for decisions and outcomes." ;
-    skos:inScheme <https://iqns.org/v0/ai-core#DimensionScheme> ;
+    skos:inScheme <https://iqns.org/v1/ai-core#DimensionScheme> ;
 .
 
 ai:Privacy
     a ai:Dimension, skos:Concept ;
     skos:prefLabel  "Privacy"@en ;
     skos:definition "Protection of personal data and individual privacy rights." ;
-    skos:inScheme <https://iqns.org/v0/ai-core#DimensionScheme> ;
+    skos:inScheme <https://iqns.org/v1/ai-core#DimensionScheme> ;
 .
 
 ai:Robustness
     a ai:Dimension, skos:Concept ;
     skos:prefLabel  "Robustness"@en ;
     skos:definition "Resilience and reliability under stress, adversity, or edge cases." ;
-    skos:inScheme <https://iqns.org/v0/ai-core#DimensionScheme> ;
+    skos:inScheme <https://iqns.org/v1/ai-core#DimensionScheme> ;
 .
 
 ai:Reliability
     a ai:Dimension, skos:Concept ;
     skos:prefLabel  "Reliability"@en ;
     skos:definition "Consistent, predictable, and accurate performance over time." ;
-    skos:inScheme <https://iqns.org/v0/ai-core#DimensionScheme> ;
+    skos:inScheme <https://iqns.org/v1/ai-core#DimensionScheme> ;
 .
 
 ai:HumanOversight
     a ai:Dimension, skos:Concept ;
     skos:prefLabel  "Human Oversight"@en ;
     skos:definition "Human control, review, and governance of AI systems." ;
-    skos:inScheme <https://iqns.org/v0/ai-core#DimensionScheme> ;
+    skos:inScheme <https://iqns.org/v1/ai-core#DimensionScheme> ;
 .
 
 ai:Explainability
     a ai:Dimension, skos:Concept ;
     skos:prefLabel  "Explainability"@en ;
     skos:definition "Intelligibility and explainability of AI system decisions." ;
-    skos:inScheme <https://iqns.org/v0/ai-core#DimensionScheme> ;
+    skos:inScheme <https://iqns.org/v1/ai-core#DimensionScheme> ;
 .
 
 ai:Sustainability
     a ai:Dimension, skos:Concept ;
     skos:prefLabel  "Sustainability"@en ;
     skos:definition "Environmental and social sustainability impact." ;
-    skos:inScheme <https://iqns.org/v0/ai-core#DimensionScheme> ;
+    skos:inScheme <https://iqns.org/v1/ai-core#DimensionScheme> ;
 .
 
 # ── Lifecycle Stages ──────────────────────────────────────────────────────
@@ -374,42 +374,42 @@ ai:Design
     a ai:Lifecycle, skos:Concept ;
     skos:prefLabel  "Design"@en ;
     skos:definition "AI system design and planning phase." ;
-    skos:inScheme <https://iqns.org/v0/ai-core#LifecycleScheme> ;
+    skos:inScheme <https://iqns.org/v1/ai-core#LifecycleScheme> ;
 .
 
 ai:Development
     a ai:Lifecycle, skos:Concept ;
     skos:prefLabel  "Development"@en ;
     skos:definition "AI system development and implementation phase." ;
-    skos:inScheme <https://iqns.org/v0/ai-core#LifecycleScheme> ;
+    skos:inScheme <https://iqns.org/v1/ai-core#LifecycleScheme> ;
 .
 
 ai:Validation
     a ai:Lifecycle, skos:Concept ;
     skos:prefLabel  "Validation"@en ;
     skos:definition "Testing and validation phase before deployment." ;
-    skos:inScheme <https://iqns.org/v0/ai-core#LifecycleScheme> ;
+    skos:inScheme <https://iqns.org/v1/ai-core#LifecycleScheme> ;
 .
 
 ai:Deployment
     a ai:Lifecycle, skos:Concept ;
     skos:prefLabel  "Deployment"@en ;
     skos:definition "AI system deployment to production environment." ;
-    skos:inScheme <https://iqns.org/v0/ai-core#LifecycleScheme> ;
+    skos:inScheme <https://iqns.org/v1/ai-core#LifecycleScheme> ;
 .
 
 ai:Monitoring
     a ai:Lifecycle, skos:Concept ;
     skos:prefLabel  "Monitoring"@en ;
     skos:definition "Post-deployment monitoring and performance tracking." ;
-    skos:inScheme <https://iqns.org/v0/ai-core#LifecycleScheme> ;
+    skos:inScheme <https://iqns.org/v1/ai-core#LifecycleScheme> ;
 .
 
 ai:Decommission
     a ai:Lifecycle, skos:Concept ;
     skos:prefLabel  "Decommission"@en ;
     skos:definition "Retirement and decommissioning of AI system." ;
-    skos:inScheme <https://iqns.org/v0/ai-core#LifecycleScheme> ;
+    skos:inScheme <https://iqns.org/v1/ai-core#LifecycleScheme> ;
 .
 
 # ── Risk Levels ───────────────────────────────────────────────────────────
@@ -418,45 +418,45 @@ ai:UnacceptableRisk
     a ai:RiskLevel, skos:Concept ;
     skos:prefLabel  "Unacceptable Risk"@en ;
     skos:definition "Risk level that is unacceptable and prohibits system use." ;
-    skos:inScheme <https://iqns.org/v0/ai-core#RiskLevelScheme> ;
+    skos:inScheme <https://iqns.org/v1/ai-core#RiskLevelScheme> ;
 .
 
 ai:HighRisk
     a ai:RiskLevel, skos:Concept ;
     skos:prefLabel  "High Risk"@en ;
     skos:definition "Risk level requiring heightened oversight and controls." ;
-    skos:inScheme <https://iqns.org/v0/ai-core#RiskLevelScheme> ;
+    skos:inScheme <https://iqns.org/v1/ai-core#RiskLevelScheme> ;
 .
 
 ai:LimitedRisk
     a ai:RiskLevel, skos:Concept ;
     skos:prefLabel  "Limited Risk"@en ;
     skos:definition "Risk level requiring some controls and transparency." ;
-    skos:inScheme <https://iqns.org/v0/ai-core#RiskLevelScheme> ;
+    skos:inScheme <https://iqns.org/v1/ai-core#RiskLevelScheme> ;
 .
 
 ai:MinimalRisk
     a ai:RiskLevel, skos:Concept ;
     skos:prefLabel  "Minimal Risk"@en ;
     skos:definition "Risk level with minimal governance requirements." ;
-    skos:inScheme <https://iqns.org/v0/ai-core#RiskLevelScheme> ;
+    skos:inScheme <https://iqns.org/v1/ai-core#RiskLevelScheme> ;
 .
 
 # ── SKOS ConceptScheme Definitions ────────────────────────────────────────
 
-<https://iqns.org/v0/ai-core#DimensionScheme>
+<https://iqns.org/v1/ai-core#DimensionScheme>
     a skos:ConceptScheme ;
     skos:prefLabel  "Governance Dimensions"@en ;
     skos:definition "Canonical quality and governance dimensions across AI frameworks." ;
 .
 
-<https://iqns.org/v0/ai-core#LifecycleScheme>
+<https://iqns.org/v1/ai-core#LifecycleScheme>
     a skos:ConceptScheme ;
     skos:prefLabel  "AI System Lifecycle Stages"@en ;
     skos:definition "Stages in the development, deployment, and retirement of AI systems." ;
 .
 
-<https://iqns.org/v0/ai-core#RiskLevelScheme>
+<https://iqns.org/v1/ai-core#RiskLevelScheme>
     a skos:ConceptScheme ;
     skos:prefLabel  "Risk Levels"@en ;
     skos:definition "Categories of risk magnitude used across governance frameworks." ;

@@ -1,6 +1,6 @@
-@prefix basel-iii: <https://iqns.org/v0/basel-iii#> .
-@prefix finance:   <https://iqns.org/v0/finance#> .
-@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix basel-iii: <https://iqns.org/v1/basel-iii#> .
+@prefix finance:   <https://iqns.org/v1/finance#> .
+@prefix ai:   <https://iqns.org/v1/ai#> .
 @prefix dct:  <http://purl.org/dc/terms/> .
 @prefix prov: <http://www.w3.org/ns/prov#> .
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .
@@ -131,7 +131,7 @@ basel-iii:ModelRiskManagementRequirement
     prov:wasDerivedFrom "Basel III §718(ix) (EBA GL on IRM; ECB Guide to Internal Models)" ;
     ai:mappedToDimension finance:ModelRisk ;
     finance:requiresIndependentValidation true ;
-    skos:broadMatch <https://iqns.org/v0/sr-11-7#ModelRiskManagement> ;
+    skos:broadMatch <https://iqns.org/v1/sr-11-7#ModelRiskManagement> ;
 .
 basel-iii:IndependentModelValidation
     a ai:Control ; a skos:Concept ;

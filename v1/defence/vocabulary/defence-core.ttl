@@ -1,5 +1,5 @@
-@prefix dg:  <https://iqns.org/v0/defence#> .
-@prefix ai:  <https://iqns.org/v0/ai#> .
+@prefix dg:  <https://iqns.org/v1/defence#> .
+@prefix ai:  <https://iqns.org/v1/ai#> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -13,7 +13,7 @@ dg:Ontology
     a owl:Ontology ;
     dct:title       "Defence and National Security Core Vocabulary"@en ;
     skos:definition "Abstract vocabulary for defence and national security AI governance — autonomous weapons, lethal autonomy, responsible AI for national security, and counter-AI capabilities. Extends ai: with defence-specific dimensions, lifecycle stages, and stakeholders."@en ;
-    owl:imports     <https://iqns.org/v0/ai#> ;
+    owl:imports     <https://iqns.org/v1/ai#> ;
     owl:versionInfo "0.1" ;
 .
 

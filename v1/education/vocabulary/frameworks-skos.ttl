@@ -1,19 +1,19 @@
-@prefix edu-crosswalk: <https://iqns.org/v0/edu-crosswalk#> .
-@prefix edg:   <https://iqns.org/v0/edugraph#> .
-@prefix ai:    <https://iqns.org/v0/ai#> .
+@prefix edu-crosswalk: <https://iqns.org/v1/edu-crosswalk#> .
+@prefix edg:   <https://iqns.org/v1/edugraph#> .
+@prefix ai:    <https://iqns.org/v1/ai#> .
 @prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
 @prefix dct:   <http://purl.org/dc/terms/> .
 @prefix owl:   <http://www.w3.org/2002/07/owl#> .
 
 # AI Frameworks applicable to Education
-@prefix unesco: <https://iqns.org/v0/unesco-ai#> .
-@prefix eu-ai:  <https://iqns.org/v0/eu-ai-act#> .
-@prefix iso25:  <https://iqns.org/v0/iso-25059#> .
+@prefix unesco: <https://iqns.org/v1/unesco-ai#> .
+@prefix eu-ai:  <https://iqns.org/v1/eu-ai-act#> .
+@prefix iso25:  <https://iqns.org/v1/iso-25059#> .
 
 edu-crosswalk:Ontology a owl:Ontology ; 
     dct:title "Education AI Crosswalk"@en ;
-    owl:imports <https://iqns.org/v0/edugraph#> .
+    owl:imports <https://iqns.org/v1/edugraph#> .
 
 # EU AI Act Annex III (3) identifies AI in education/vocation as high-risk
 eu-ai:Ontology skos:relatedMatch edg:Ontology .
