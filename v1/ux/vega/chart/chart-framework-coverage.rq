@@ -1,14 +1,4 @@
 PREFIX ai: <https://iqns.org/v1/ai#>PREFIX ai: <https://iqns.org/v1/ai#>
-
-
-
-
-
-
-
-
-
-
 ORDER BY ?framework ?dimension}             ai:coverageLevel ?coverageLevel .  ?framework ai:addressesDimension ?dimension ;  ?dimension a ai:Dimension .  ?framework a ai:Framework .SELECT ?framework ?dimension ?coverageLevel WHERE {PREFIX skos: <http://www.w3.org/2004/02/skos/core#>PREFIX enterprise: <https://iqns.org/v1/enterprise#>
 
 SELECT ?framework ?dimension ?coverage WHERE {

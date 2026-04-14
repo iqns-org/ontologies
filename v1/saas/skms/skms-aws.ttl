@@ -379,9 +379,9 @@ aws:CloudTrail
     skos:relatedMatch   itil:MeasurementAndReporting ;
 .
 
-aws:Systems Manager
+aws:SystemsManager
     a owl:Class ; a skos:Concept ;
-    skos:prefLabel      "Systems Manager"@en ;
+    skos:prefLabel      "SystemsManager"@en ;
     skos:definition     "Operations service providing visibility and control over AWS infrastructure with automation and patching capabilities."@en ;
     skos:inScheme       aws:AWSScheme ;
     prov:wasDerivedFrom <https://aws.amazon.com/systems-manager/> ;
@@ -530,7 +530,7 @@ aws:ManagementServices
     skos:prefLabel "AWS Management & Monitoring Services"@en ;
     skos:member aws:CloudWatch ;
     skos:member aws:CloudTrail ;
-    skos:member aws:Systems Manager ;
+    skos:member aws:SystemsManager ;
     skos:member aws:OpsWorks ;
     skos:member aws:CloudFormation ;
     skos:member aws:Config ;
