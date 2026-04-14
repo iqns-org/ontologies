@@ -1,0 +1,557 @@
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# ══════════════════════════════════════════════════════════════════════════════
+# IQ:NS SHACL Shapes
+# Validates that every RDF resource in a framework file conforms to the
+# ai-core.ttl modelling conventions.
+# ══════════════════════════════════════════════════════════════════════════════
+
+# ── Framework ─────────────────────────────────────────────────────────────────
+
+ai:FrameworkShape
+    a sh:NodeShape ;
+    sh:targetClass ai:Framework ;
+    sh:name "Framework" ;
+    sh:description "Every ai:Framework must have a label, definition, and dual skos:Concept type." ;
+
+    # Must also be a skos:Concept
+    sh:property [
+        sh:path  rdf:type ;
+        sh:hasValue skos:Concept ;
+        sh:minCount 1 ;
+        sh:message "ai:Framework instance must also be typed as skos:Concept."@en ;
+    ] ;
+    sh:property [
+        sh:path   skos:prefLabel ;
+        sh:minCount 1 ;
+        sh:datatype xsd:string ;
+        sh:languageIn ("en") ;
+        sh:uniqueLang true ;
+        sh:message "Framework must have exactly one English skos:prefLabel."@en ;
+    ] ;
+    sh:property [
+        sh:path   skos:definition ;
+        sh:minCount 1 ;
+        sh:message "Framework must have a skos:definition."@en ;
+    ] ;
+    sh:property [
+        sh:path   skos:inScheme ;
+        sh:minCount 1 ;
+        sh:nodeKind sh:IRI ;
+        sh:message "Framework must belong to a skos:ConceptScheme."@en ;
+    ] ;
+    sh:property [
+        sh:path   prov:wasDerivedFrom ;
+        sh:minCount 0 ;   # optional but encouraged
+        sh:message "Framework should cite its source URI or document reference."@en ;
+    ] ;
+.
+
+# ── Concept — generic SKOS baseline ──────────────────────────────────────────
+
+ai:ConceptBaseShape
+    a sh:NodeShape ;
+    sh:targetClass skos:Concept ;
+    sh:name "Concept (SKOS Baseline)" ;
+
+    sh:property [
+        sh:path    skos:prefLabel ;
+        sh:minCount 1 ;
+        sh:message "Every skos:Concept must have at least one skos:prefLabel."@en ;
+    ] ;
+    sh:property [
+        sh:path   skos:inScheme ;
+        sh:minCount 1 ;
+        sh:nodeKind sh:IRI ;
+        sh:message "Every skos:Concept must declare skos:inScheme."@en ;
+    ] ;
+.
+
+# ── Requirement ───────────────────────────────────────────────────────────────
+
+ai:RequirementShape
+    a sh:NodeShape ;
+    sh:targetClass ai:Requirement ;
+    sh:name "Requirement" ;
+
+    sh:property [
+        sh:path   skos:prefLabel ;
+        sh:minCount 1 ;
+        sh:languageIn ("en") ;
+        sh:message "Requirement must have an English skos:prefLabel."@en ;
+    ] ;
+    sh:property [
+        sh:path   skos:definition ;
+        sh:minCount 1 ;
+        sh:message "Requirement must have a skos:definition."@en ;
+    ] ;
+    sh:property [
+        sh:path   prov:wasDerivedFrom ;
+        sh:minCount 1 ;
+        sh:message "Requirement must cite a normative source (article/clause)."@en ;
+    ] ;
+    sh:property [
+        sh:path   skos:inScheme ;
+        sh:minCount 1 ;
+        sh:message "Requirement must belong to a skos:ConceptScheme."@en ;
+    ] ;
+    # Lifecycle linkage is strongly encouraged
+    sh:property [
+        sh:path    ai:appliesToLifecycle ;
+        sh:minCount 0 ;
+        sh:class   ai:Lifecycle ;
+        sh:message "If appliesToLifecycle is used, value must be a ai:Lifecycle individual."@en ;
+    ] ;
+    sh:property [
+        sh:path    ai:hasRiskLevel ;
+        sh:minCount 0 ;
+        sh:class   ai:RiskLevel ;
+        sh:message "If hasRiskLevel is used, value must be a ai:RiskLevel individual."@en ;
+    ] ;
+    sh:property [
+        sh:path    ai:mappedToDimension ;
+        sh:minCount 0 ;
+        sh:class   ai:Dimension ;
+        sh:message "If mappedToDimension is used, value must be a ai:Dimension individual."@en ;
+    ] ;
+.
+
+# ── Control ───────────────────────────────────────────────────────────────────
+
+ai:ControlShape
+    a sh:NodeShape ;
+    sh:targetClass ai:Control ;
+    sh:name "Control" ;
+
+    sh:property [
+        sh:path   skos:prefLabel ;
+        sh:minCount 1 ;
+        sh:message "Control must have an English skos:prefLabel."@en ;
+    ] ;
+    sh:property [
+        sh:path   skos:definition ;
+        sh:minCount 1 ;
+        sh:message "Control must have a skos:definition."@en ;
+    ] ;
+    sh:property [
+        sh:path   prov:wasDerivedFrom ;
+        sh:minCount 1 ;
+        sh:message "Control must cite a normative source (article/clause/section)."@en ;
+    ] ;
+    sh:property [
+        sh:path    ai:mappedToDimension ;
+        sh:minCount 1 ;
+        sh:class   ai:Dimension ;
+        sh:message "Control must map to at least one ai:Dimension (e.g., ai:Safety)."@en ;
+    ] ;
+.
+
+# ── Obligation ────────────────────────────────────────────────────────────────
+
+ai:ObligationShape
+    a sh:NodeShape ;
+    sh:targetClass ai:Obligation ;
+    sh:name "Obligation" ;
+
+    sh:property [
+        sh:path   skos:prefLabel ;
+        sh:minCount 1 ;
+        sh:message "Obligation must have an English skos:prefLabel."@en ;
+    ] ;
+    sh:property [
+        sh:path   skos:definition ;
+        sh:minCount 1 ;
+        sh:message "Obligation must have a skos:definition."@en ;
+    ] ;
+    sh:property [
+        sh:path   prov:wasDerivedFrom ;
+        sh:minCount 1 ;
+        sh:message "Obligation must cite the legal/regulatory source."@en ;
+    ] ;
+.
+
+# ── Right ─────────────────────────────────────────────────────────────────────
+
+ai:RightShape
+    a sh:NodeShape ;
+    sh:targetClass ai:Right ;
+    sh:name "Right" ;
+
+    sh:property [
+        sh:path   skos:prefLabel ;
+        sh:minCount 1 ;
+        sh:message "Right must have an English skos:prefLabel."@en ;
+    ] ;
+    sh:property [
+        sh:path   skos:definition ;
+        sh:minCount 1 ;
+        sh:message "Right must have a skos:definition."@en ;
+    ] ;
+    sh:property [
+        sh:path   prov:wasDerivedFrom ;
+        sh:minCount 1 ;
+        sh:message "Right must cite the legal source."@en ;
+    ] ;
+.
+
+# ── Risk ──────────────────────────────────────────────────────────────────────
+
+ai:RiskShape
+    a sh:NodeShape ;
+    sh:targetClass ai:Risk ;
+    sh:name "Risk" ;
+
+    sh:property [
+        sh:path   skos:prefLabel ;
+        sh:minCount 1 ;
+        sh:message "Risk must have a skos:prefLabel."@en ;
+    ] ;
+    sh:property [
+        sh:path   skos:definition ;
+        sh:minCount 1 ;
+        sh:message "Risk must have a skos:definition."@en ;
+    ] ;
+    sh:property [
+        sh:path    ai:hasRiskLevel ;
+        sh:minCount 1 ;
+        sh:class   ai:RiskLevel ;
+        sh:message "Risk must declare a ai:hasRiskLevel."@en ;
+    ] ;
+    sh:property [
+        sh:path    ai:hasRiskCategory ;
+        sh:minCount 1 ;
+        sh:class   ai:RiskCategory ;
+        sh:message "Risk must declare a ai:hasRiskCategory."@en ;
+    ] ;
+    sh:property [
+        sh:path   prov:wasDerivedFrom ;
+        sh:minCount 1 ;
+        sh:message "Risk must cite its normative source."@en ;
+    ] ;
+.
+
+# ── Principle ─────────────────────────────────────────────────────────────────
+
+ai:PrincipleShape
+    a sh:NodeShape ;
+    sh:targetClass ai:Principle ;
+    sh:name "Principle" ;
+
+    sh:property [
+        sh:path   skos:prefLabel ;
+        sh:minCount 1 ;
+        sh:message "Principle must have a skos:prefLabel."@en ;
+    ] ;
+    sh:property [
+        sh:path   skos:definition ;
+        sh:minCount 1 ;
+        sh:message "Principle must have a skos:definition."@en ;
+    ] ;
+    sh:property [
+        sh:path    ai:mappedToDimension ;
+        sh:minCount 1 ;
+        sh:class   ai:Dimension ;
+        sh:message "Principle must map to at least one ai:Dimension."@en ;
+    ] ;
+.
+
+# ── Assessment ────────────────────────────────────────────────────────────────
+
+ai:AssessmentShape
+    a sh:NodeShape ;
+    sh:targetClass ai:Assessment ;
+    sh:name "Assessment" ;
+
+    sh:property [
+        sh:path   skos:prefLabel ;
+        sh:minCount 1 ;
+        sh:message "Assessment must have a skos:prefLabel."@en ;
+    ] ;
+    sh:property [
+        sh:path   skos:definition ;
+        sh:minCount 1 ;
+        sh:message "Assessment must have a skos:definition."@en ;
+    ] ;
+.
+
+# ── SKOS Alignment Integrity ──────────────────────────────────────────────────
+
+ai:ExactMatchShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf skos:exactMatch ;
+    sh:name "ExactMatch Constraint" ;
+
+    # exactMatch must not be used reflexively
+    sh:sparql [
+        sh:message "skos:exactMatch must not be asserted between a concept and itself."@en ;
+        sh:select """
+            PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+            SELECT $this
+            WHERE {
+                $this skos:exactMatch $this .
+            }
+        """ ;
+    ] ;
+.
+
+# ── No Blank Nodes ────────────────────────────────────────────────────────────
+
+ai:NoBlankNodeSubjectShape
+    a sh:NodeShape ;
+    sh:targetClass skos:Concept ;
+    sh:nodeKind sh:IRI ;
+    sh:message "All ai concepts must be named IRIs — blank nodes are not permitted."@en ;
+.
+
+# ── Jurisdiction ─────────────────────────────────────────────────────────────
+
+ai:JurisdictionShape
+    a sh:NodeShape ;
+    sh:targetClass ai:Jurisdiction ;
+    sh:name "Jurisdiction" ;
+
+    sh:property [
+        sh:path   skos:prefLabel ;
+        sh:minCount 1 ;
+        sh:languageIn ("en") ;
+        sh:message "Jurisdiction must have an English skos:prefLabel (e.g., 'European Union', 'United Kingdom')."@en ;
+    ] ;
+    sh:property [
+        sh:path   skos:definition ;
+        sh:minCount 0 ;
+        sh:message "Jurisdiction should have a skos:definition for clarity."@en ;
+    ] ;
+.
+
+# ── Sector ────────────────────────────────────────────────────────────────────
+
+ai:SectorShape
+    a sh:NodeShape ;
+    sh:targetClass ai:Sector ;
+    sh:name "Sector" ;
+
+    sh:property [
+        sh:path   skos:prefLabel ;
+        sh:minCount 1 ;
+        sh:languageIn ("en") ;
+        sh:message "Sector must have an English skos:prefLabel (e.g., 'Healthcare', 'Finance', 'Employment')."@en ;
+    ] ;
+    sh:property [
+        sh:path   skos:definition ;
+        sh:minCount 0 ;
+        sh:message "Sector should have a skos:definition."@en ;
+    ] ;
+.
+
+# ── Capability ───────────────────────────────────────────────────────────────
+
+ai:CapabilityShape
+    a sh:NodeShape ;
+    sh:targetClass ai:Capability ;
+    sh:name "Capability" ;
+
+    sh:property [
+        sh:path   skos:prefLabel ;
+        sh:minCount 1 ;
+        sh:languageIn ("en") ;
+        sh:message "Capability must have an English skos:prefLabel (e.g., 'Natural Language Processing', 'Computer Vision')."@en ;
+    ] ;
+    sh:property [
+        sh:path   skos:definition ;
+        sh:minCount 0 ;
+        sh:message "Capability should define what this AI capability entails."@en ;
+    ] ;
+.
+
+# ── Threshold ────────────────────────────────────────────────────────────────
+
+ai:ThresholdShape
+    a sh:NodeShape ;
+    sh:targetClass ai:Threshold ;
+    sh:name "Threshold" ;
+
+    sh:property [
+        sh:path   skos:prefLabel ;
+        sh:minCount 1 ;
+        sh:message "Threshold must have a skos:prefLabel (e.g., 'Revenue > €10M', 'Users > 1M')."@en ;
+    ] ;
+    sh:property [
+        sh:path   skos:definition ;
+        sh:minCount 0 ;
+        sh:message "Threshold should define the measurable condition."@en ;
+    ] ;
+.
+
+# ── Evidence Type ─────────────────────────────────────────────────────────────
+
+ai:EvidenceTypeShape
+    a sh:NodeShape ;
+    sh:targetClass ai:EvidenceType ;
+    sh:name "Evidence Type" ;
+
+    sh:property [
+        sh:path   skos:prefLabel ;
+        sh:minCount 1 ;
+        sh:languageIn ("en") ;
+        sh:message "EvidenceType must have an English skos:prefLabel (e.g., 'Conformity Assessment Report', 'Audit Evidence')."@en ;
+    ] ;
+    sh:property [
+        sh:path   skos:definition ;
+        sh:minCount 0 ;
+        sh:message "EvidenceType should describe what evidence qualifies."@en ;
+    ] ;
+.
+
+# ── Extended Requirement Shape — with jurisdiction/sector/capability constraints ──
+
+ai:ExtendedRequirementShape
+    a sh:NodeShape ;
+    sh:targetClass ai:Requirement ;
+    sh:name "Requirement with Governance Metadata" ;
+    sh:description "Requirement optionally linked to jurisdiction, sector, capability, threshold, and evidence requirements." ;
+
+    # New optional governance properties
+    sh:property [
+        sh:path    ai:appliesToJurisdiction ;
+        sh:minCount 0 ;
+        sh:class   ai:Jurisdiction ;
+        sh:message "If appliesToJurisdiction is used, value must be a ai:Jurisdiction."@en ;
+    ] ;
+    sh:property [
+        sh:path    ai:appliesToSector ;
+        sh:minCount 0 ;
+        sh:class   ai:Sector ;
+        sh:message "If appliesToSector is used, value must be a ai:Sector."@en ;
+    ] ;
+    sh:property [
+        sh:path    ai:requiresCapability ;
+        sh:minCount 0 ;
+        sh:class   ai:Capability ;
+        sh:message "If requiresCapability is used, value must be a ai:Capability."@en ;
+    ] ;
+    sh:property [
+        sh:path    ai:hasThreshold ;
+        sh:minCount 0 ;
+        sh:class   ai:Threshold ;
+        sh:message "If hasThreshold is used, value must be a ai:Threshold."@en ;
+    ] ;
+    sh:property [
+        sh:path    ai:requiredEvidence ;
+        sh:minCount 0 ;
+        sh:class   ai:EvidenceType ;
+        sh:message "If requiredEvidence is used, value must be a ai:EvidenceType."@en ;
+    ] ;
+.
+
+# ── Supersession Integrity ────────────────────────────────────────────────────
+# If requirement A supersedes B, then A must have a later or equal effectiveDate than B.
+
+ai:SupersessionShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf ai:supersedes ;
+    sh:name "Supersession Integrity" ;
+
+    sh:sparql [
+        sh:message "If a requirement supersedes another, it should have supporting documentation."@en ;
+        sh:severity sh:Warning ;
+        sh:select """
+            PREFIX ai: <https://iqns.org/v0/ai#>
+            PREFIX prov: <http://www.w3.org/ns/prov#>
+            SELECT $this ?superseded
+            WHERE {
+                $this ai:supersedes ?superseded .
+                FILTER NOT EXISTS { $this prov:wasDerivedFrom ?source . }
+            }
+        """ ;
+    ] ;
+.
+
+# ── Date Consistency ──────────────────────────────────────────────────────────
+# If a requirement has both effectiveDate and expiryDate, expiryDate must be after effectiveDate.
+
+ai:DateConsistencyShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf ai:effectiveDate ;
+    sh:name "Date Consistency" ;
+
+    sh:sparql [
+        sh:message "If expiryDate exists, it must be later than effectiveDate."@en ;
+        sh:select """
+            PREFIX ai: <https://iqns.org/v0/ai#>
+            PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+            SELECT $this ?ed ?ex
+            WHERE {
+                $this ai:effectiveDate ?ed ;
+                       ai:expiryDate ?ex .
+                FILTER (?ed >= ?ex)
+            }
+        """ ;
+    ] ;
+.
+
+# ── Article Reference Format ─────────────────────────────────────────────────
+# Article references should be in recognizable format (Article X, Article X.Y, etc.)
+
+ai:ArticleReferenceShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf ai:articleReference ;
+    sh:name "Article Reference Format" ;
+
+    sh:property [
+        sh:path   ai:articleReference ;
+        sh:datatype xsd:string ;
+        sh:minCount 0 ;
+        sh:message "articleReference should be a string (e.g., 'Article 6(1)(a)')."@en ;
+    ] ;
+.
+
+# ── Estimated Effort Bounds ──────────────────────────────────────────────────
+# estimatedEffort should be numeric (days/hours)
+
+ai:EstimatedEffortShape
+    a sh:NodeShape ;
+    sh:targetSubjectsOf ai:estimatedEffort ;
+    sh:name "Estimated Effort" ;
+
+    sh:property [
+        sh:path   ai:estimatedEffort ;
+        sh:datatype xsd:decimal ;
+        sh:minCount 0 ;
+        sh:minInclusive 0.0 ;
+        sh:maxInclusive 10000.0 ;
+        sh:message "estimatedEffort should be a numeric value (0–10000 effort units)."@en ;
+    ] ;
+.
+
+# ── Ontology Declaration ──────────────────────────────────────────────────────
+# Each framework file must declare an owl:Ontology with dct:title and prov:wasDerivedFrom.
+
+ai:OntologyShape
+    a sh:NodeShape ;
+    sh:targetClass owl:Ontology ;
+    sh:name "Ontology Declaration" ;
+
+    sh:property [
+        sh:path   dct:title ;
+        sh:minCount 1 ;
+        sh:message "owl:Ontology must have a dct:title."@en ;
+    ] ;
+    sh:property [
+        sh:path   prov:wasDerivedFrom ;
+        sh:minCount 1 ;
+        sh:message "owl:Ontology must have a prov:wasDerivedFrom (URI of the authoritative document)."@en ;
+    ] ;
+    sh:property [
+        sh:path   owl:versionInfo ;
+        sh:minCount 1 ;
+        sh:message "owl:Ontology must declare owl:versionInfo."@en ;
+    ] ;
+.

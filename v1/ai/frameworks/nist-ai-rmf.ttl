@@ -1,0 +1,272 @@
+@prefix nist-ai-rmf: <https://iqns.org/v0/nist-ai-rmf#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+nist-ai-rmf:Ontology a owl:Ontology ;
+    dct:title  "NIST AI Risk Management Framework 1.0"@en ;
+    prov:wasDerivedFrom <https://doi.org/10.6028/NIST.AI.100-1> .
+
+nist-ai-rmf:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "NIST AI RMF 1.0"@en ;
+    skos:definition "Voluntary framework for managing AI risks across Govern, Map, Measure, and Manage functions."@en .
+
+nist-ai-rmf:NISTRMF
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "NIST AI RMF 1.0"@en ;
+    skos:definition "Voluntary, rights-preserving, non-sector-specific framework for managing AI risks; structured around GOVERN, MAP, MEASURE, and MANAGE core functions."@en ;
+    skos:inScheme   nist-ai-rmf:Scheme ;
+    dct:publisher   "NIST"@en ;
+    dct:issued      "2023"^^xsd:gYear ;
+.
+
+# ── Core Functions ─────────────────────────────────────────────────────────────
+
+nist-ai-rmf:Govern
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "GOVERN"@en ;
+    skos:definition "Establish and institutionalise policies, processes, roles, and culture for AI risk management across the organisation."@en ;
+    skos:inScheme   nist-ai-rmf:Scheme ; prov:wasDerivedFrom "NIST AI RMF 1.0 §3.1" ;
+    ai:mappedToDimension ai:Accountability ;
+    ai:appliesToLifecycle ai:Design ;
+.
+nist-ai-rmf:Map
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "MAP"@en ;
+    skos:definition "Identify context, categorise AI risks, and assess which risks are relevant to the system and its stakeholders."@en ;
+    skos:inScheme   nist-ai-rmf:Scheme ; prov:wasDerivedFrom "NIST AI RMF 1.0 §3.2" ;
+    skos:broadMatch ai:RiskAssessment ;
+    ai:appliesToLifecycle ai:Design ;
+.
+nist-ai-rmf:Measure
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "MEASURE"@en ;
+    skos:definition "Analyse and evaluate identified AI risks using metrics, testing, and evaluation tools."@en ;
+    skos:inScheme   nist-ai-rmf:Scheme ; prov:wasDerivedFrom "NIST AI RMF 1.0 §3.3" ;
+    skos:broadMatch ai:RiskAssessment ;
+    ai:appliesToLifecycle ai:Validation ;
+    ai:appliesToLifecycle ai:Monitoring ;
+.
+nist-ai-rmf:Manage
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "MANAGE"@en ;
+    skos:definition "Prioritise and implement risk responses; document decisions; oversee ongoing residual risk."@en ;
+    skos:inScheme   nist-ai-rmf:Scheme ; prov:wasDerivedFrom "NIST AI RMF 1.0 §3.4" ;
+    ai:appliesToLifecycle ai:Deployment ;
+    ai:appliesToLifecycle ai:Monitoring ;
+.
+
+# ── GOVERN sub-categories ─────────────────────────────────────────────────────
+
+nist-ai-rmf:GV1
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "GV 1 — Policies and Accountability"@en ;
+    skos:definition "Organisational policies establish AI risk tolerance and senior roles accountable for AI governance."@en ;
+    skos:inScheme   nist-ai-rmf:Scheme ; prov:wasDerivedFrom "NIST AI RMF 1.0 GV-1" ;
+    skos:broader    nist-ai-rmf:Govern ;
+    ai:mappedToDimension ai:Accountability ;
+.
+nist-ai-rmf:GV2
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "GV 2 — Organisational Culture"@en ;
+    skos:definition "Workforce is aware of AI risks and benefits; culture of responsible AI is cultivated."@en ;
+    skos:inScheme   nist-ai-rmf:Scheme ; prov:wasDerivedFrom "NIST AI RMF 1.0 GV-2" ;
+    skos:broader    nist-ai-rmf:Govern ;
+.
+nist-ai-rmf:GV3
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "GV 3 — Feedback and Improvement"@en ;
+    skos:definition "Feedback mechanisms exist to detect and respond to AI risk materialisation."@en ;
+    skos:inScheme   nist-ai-rmf:Scheme ; prov:wasDerivedFrom "NIST AI RMF 1.0 GV-3" ;
+    skos:broader    nist-ai-rmf:Govern ;
+    ai:appliesToLifecycle ai:Monitoring ;
+.
+nist-ai-rmf:GV4
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "GV 4 — Stakeholder Engagement"@en ;
+    skos:definition "Internal and external stakeholders — users, affected parties, red teams — inform AI governance."@en ;
+    skos:inScheme   nist-ai-rmf:Scheme ; prov:wasDerivedFrom "NIST AI RMF 1.0 GV-4" ;
+    skos:broader    nist-ai-rmf:Govern ;
+    ai:mappedToDimension ai:Transparency ;
+.
+nist-ai-rmf:GV5
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "GV 5 — AI Risk and Benefits Inventory"@en ;
+    skos:definition "AI systems are inventoried; risks and benefits are assessed and documented per system."@en ;
+    skos:inScheme   nist-ai-rmf:Scheme ; prov:wasDerivedFrom "NIST AI RMF 1.0 GV-5" ;
+    skos:broader    nist-ai-rmf:Govern ;
+.
+nist-ai-rmf:GV6
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "GV 6 — Third-Party and Supply Chain"@en ;
+    skos:definition "Policies address AI risk arising from third parties, suppliers, and open-source components."@en ;
+    skos:inScheme   nist-ai-rmf:Scheme ; prov:wasDerivedFrom "NIST AI RMF 1.0 GV-6" ;
+    skos:broader    nist-ai-rmf:Govern ;
+    ai:mappedToDimension ai:Security ;
+.
+
+# ── MAP sub-categories ─────────────────────────────────────────────────────────
+
+nist-ai-rmf:MP1
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "MP 1 — Context Established"@en ;
+    skos:definition "System purpose, use cases, intended users, and deployment context are documented."@en ;
+    skos:inScheme   nist-ai-rmf:Scheme ; prov:wasDerivedFrom "NIST AI RMF 1.0 MP-1" ;
+    skos:broader    nist-ai-rmf:Map ;
+    ai:appliesToLifecycle ai:Design ;
+.
+nist-ai-rmf:MP2
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "MP 2 — Risk Categories Classified"@en ;
+    skos:definition "Risks are classified by type (safety, bias, security, etc.) and likelihood × impact."@en ;
+    skos:inScheme   nist-ai-rmf:Scheme ; prov:wasDerivedFrom "NIST AI RMF 1.0 MP-2" ;
+    skos:broader    nist-ai-rmf:Map ;
+.
+nist-ai-rmf:MP3
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "MP 3 — AI Lifecycle Risks Identified"@en ;
+    skos:definition "Risks at each AI lifecycle stage are identified and associated with responsible parties."@en ;
+    skos:inScheme   nist-ai-rmf:Scheme ; prov:wasDerivedFrom "NIST AI RMF 1.0 MP-3" ;
+    skos:broader    nist-ai-rmf:Map ;
+.
+nist-ai-rmf:MP4
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "MP 4 — Risks Prioritised"@en ;
+    skos:definition "Risks are ranked by severity, breadth, and organisational risk tolerance."@en ;
+    skos:inScheme   nist-ai-rmf:Scheme ; prov:wasDerivedFrom "NIST AI RMF 1.0 MP-4" ;
+    skos:broader    nist-ai-rmf:Map ;
+.
+nist-ai-rmf:MP5
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "MP 5 — Impacts on Rights and Safety"@en ;
+    skos:definition "Negative impacts on civil liberties, fairness, and safety are explicitly assessed."@en ;
+    skos:inScheme   nist-ai-rmf:Scheme ; prov:wasDerivedFrom "NIST AI RMF 1.0 MP-5" ;
+    skos:broader    nist-ai-rmf:Map ;
+    ai:mappedToDimension ai:Fairness ;
+    ai:mappedToDimension ai:Safety ;
+.
+
+# ── MEASURE sub-categories ────────────────────────────────────────────────────
+
+nist-ai-rmf:MS1
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "MS 1 — Risk Metrics and Testing"@en ;
+    skos:definition "Quantitative and qualitative metrics are used to evaluate AI risks against defined thresholds."@en ;
+    skos:inScheme   nist-ai-rmf:Scheme ; prov:wasDerivedFrom "NIST AI RMF 1.0 MS-1" ;
+    skos:broader    nist-ai-rmf:Measure ;
+.
+nist-ai-rmf:MS2
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "MS 2 — AI Evaluations including Red-Teaming"@en ;
+    skos:definition "Evaluations include independent review, bias testing, adversarial testing, and red-team exercises."@en ;
+    skos:inScheme   nist-ai-rmf:Scheme ; prov:wasDerivedFrom "NIST AI RMF 1.0 MS-2" ;
+    skos:broader    nist-ai-rmf:Measure ;
+    skos:relatedMatch ai:RedTeamExercise ;
+.
+nist-ai-rmf:MS3
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "MS 3 — Bias and Fairness Evaluation"@en ;
+    skos:definition "Systematic evaluation of AI outputs for discriminatory patterns across demographic groups."@en ;
+    skos:inScheme   nist-ai-rmf:Scheme ; prov:wasDerivedFrom "NIST AI RMF 1.0 MS-3" ;
+    skos:broader    nist-ai-rmf:Measure ;
+    skos:relatedMatch ai:BiasAudit ;
+    ai:mappedToDimension ai:Fairness ;
+.
+nist-ai-rmf:MS4
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "MS 4 — Performance Monitoring"@en ;
+    skos:definition "AI system performance is tracked in production; deviations from expected behaviour are flagged."@en ;
+    skos:inScheme   nist-ai-rmf:Scheme ; prov:wasDerivedFrom "NIST AI RMF 1.0 MS-4" ;
+    skos:broader    nist-ai-rmf:Measure ;
+    ai:appliesToLifecycle ai:Monitoring ;
+.
+
+# ── MANAGE sub-categories ─────────────────────────────────────────────────────
+
+nist-ai-rmf:MG1
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "MG 1 — Risk Response"@en ;
+    skos:definition "Prioritised risks have documented response plans: avoid, mitigate, transfer, or accept."@en ;
+    skos:inScheme   nist-ai-rmf:Scheme ; prov:wasDerivedFrom "NIST AI RMF 1.0 MG-1" ;
+    skos:broader    nist-ai-rmf:Manage ;
+.
+nist-ai-rmf:MG2
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "MG 2 — Incident Response"@en ;
+    skos:definition "Mechanisms exist to detect, report, and respond to AI-related incidents and near-misses."@en ;
+    skos:inScheme   nist-ai-rmf:Scheme ; prov:wasDerivedFrom "NIST AI RMF 1.0 MG-2" ;
+    skos:broader    nist-ai-rmf:Manage ;
+    ai:appliesToLifecycle ai:Monitoring ;
+.
+nist-ai-rmf:MG3
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "MG 3 — Decommissioning"@en ;
+    skos:definition "Criteria and plans exist for retiring or decommissioning AI systems that present unacceptable risk."@en ;
+    skos:inScheme   nist-ai-rmf:Scheme ; prov:wasDerivedFrom "NIST AI RMF 1.0 MG-3" ;
+    skos:broader    nist-ai-rmf:Manage ;
+    ai:appliesToLifecycle ai:Decommission ;
+.
+nist-ai-rmf:MG4
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "MG 4 — Benefit-Risk Tradeoffs"@en ;
+    skos:definition "Decisions to deploy or continue operating AI weigh documented risks against demonstrated benefits."@en ;
+    skos:inScheme   nist-ai-rmf:Scheme ; prov:wasDerivedFrom "NIST AI RMF 1.0 MG-4" ;
+    skos:broader    nist-ai-rmf:Manage ;
+.
+
+# ── AI Trustworthiness Characteristics ───────────────────────────────────────
+
+nist-ai-rmf:ValidAndReliable
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Valid and Reliable"@en ;
+    skos:definition "AI outputs are accurate and consistent across intended use contexts."@en ;
+    skos:inScheme   nist-ai-rmf:Scheme ; prov:wasDerivedFrom "NIST AI RMF 1.0 §2.5" ;
+    skos:exactMatch ai:Reliability ;
+.
+nist-ai-rmf:SafeNIST
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Safe"@en ;
+    skos:definition "AI does not cause harm to persons or property under intended and foreseeable use."@en ;
+    skos:inScheme   nist-ai-rmf:Scheme ; prov:wasDerivedFrom "NIST AI RMF 1.0 §2.5" ;
+    skos:exactMatch ai:Safety ;
+.
+nist-ai-rmf:SecureAndResilient
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Secure and Resilient"@en ;
+    skos:definition "AI withstands and recovers from adversarial attacks, disruptions, and misuse."@en ;
+    skos:inScheme   nist-ai-rmf:Scheme ; prov:wasDerivedFrom "NIST AI RMF 1.0 §2.5" ;
+    skos:exactMatch ai:Security ;
+.
+nist-ai-rmf:ExplainableInterpretable
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Explainable and Interpretable"@en ;
+    skos:definition "AI behaviour can be explained and understood by relevant actors."@en ;
+    skos:inScheme   nist-ai-rmf:Scheme ; prov:wasDerivedFrom "NIST AI RMF 1.0 §2.5" ;
+    skos:exactMatch ai:Explainability ;
+.
+nist-ai-rmf:PrivacyEnhanced
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Privacy-Enhanced"@en ;
+    skos:definition "AI manages privacy risks associated with training data and inference."@en ;
+    skos:inScheme   nist-ai-rmf:Scheme ; prov:wasDerivedFrom "NIST AI RMF 1.0 §2.5" ;
+    skos:exactMatch ai:Privacy ;
+.
+nist-ai-rmf:FairBiasManaged
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Fair with Managed Bias"@en ;
+    skos:definition "Demographically harmful bias is identified, assessed, and minimised."@en ;
+    skos:inScheme   nist-ai-rmf:Scheme ; prov:wasDerivedFrom "NIST AI RMF 1.0 §2.5" ;
+    skos:exactMatch ai:Fairness ;
+.
+nist-ai-rmf:AccountableAndTransparent
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Accountable and Transparent"@en ;
+    skos:definition "Organisations and AI actors are answerable for AI decisions and communicate openly."@en ;
+    skos:inScheme   nist-ai-rmf:Scheme ; prov:wasDerivedFrom "NIST AI RMF 1.0 §2.5" ;
+    skos:exactMatch ai:Accountability ;
+.

@@ -1,0 +1,163 @@
+@prefix hg:   <https://iqns.org/v0/health#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# ── Ontology ─────────────────────────────────────────────────────────────────
+
+hg:Ontology
+    a owl:Ontology ;
+    dct:title       "HealthGraph: Healthcare & Life Sciences Core Vocabulary"@en ;
+    skos:definition "Abstract vocabulary shared by all healthcare and life sciences regulation framework ontologies. Extends ai: with health-specific dimensions, lifecycle stages, stakeholders, and properties."@en ;
+    owl:imports     <https://iqns.org/v0/ai#> ;
+    owl:versionInfo "0.1" ;
+.
+
+# ── Health-Specific Properties ────────────────────────────────────────────────
+
+hg:hasIntendedUse
+    a owl:DatatypeProperty ;
+    skos:prefLabel  "has intended use"@en ;
+    rdfs:comment    "Clinical intended use statement for a Software as a Medical Device or AI/ML system."@en ;
+    rdfs:range  xsd:string ;
+.
+hg:hasRiskClass
+    a owl:ObjectProperty ;
+    skos:prefLabel  "has medical device risk class"@en ;
+    rdfs:range  hg:MedicalDeviceRiskClass ;
+.
+hg:processesProtectedHealthInfo
+    a owl:DatatypeProperty ;
+    skos:prefLabel  "processes PHI"@en ;
+    rdfs:range  xsd:boolean ;
+.
+hg:hasChangeControl
+    a owl:ObjectProperty ;
+    skos:prefLabel  "has change control plan"@en ;
+    rdfs:range  hg:ChangeControlPlan ;
+.
+hg:requiresClinicalValidation
+    a owl:DatatypeProperty ;
+    skos:prefLabel  "requires clinical validation"@en ;
+    rdfs:range  xsd:boolean ;
+.
+
+# ── Medical Device Risk Classes ───────────────────────────────────────────────
+
+hg:ClassI
+    a hg:MedicalDeviceRiskClass ; a skos:Concept ;
+    skos:prefLabel  "Class I — Lowest Risk"@en ;
+    skos:definition "Lowest-risk medical devices — generally exempt from 510(k) premarket notification; EU Rule 1–4."@en ;
+.
+hg:ClassIIa
+    a hg:MedicalDeviceRiskClass ; a skos:Concept ;
+    skos:prefLabel  "Class IIa — Medium-Low Risk"@en ;
+    skos:definition "EU classification: medium-low risk; requires conformity assessment by Notified Body."@en ;
+.
+hg:ClassIIb
+    a hg:MedicalDeviceRiskClass ; a skos:Concept ;
+    skos:prefLabel  "Class IIb — Medium-High Risk"@en ;
+    skos:definition "EU classification: medium-high risk; more stringent conformity assessment required."@en ;
+.
+hg:ClassIII
+    a hg:MedicalDeviceRiskClass ; a skos:Concept ;
+    skos:prefLabel  "Class III — Highest Risk"@en ;
+    skos:definition "Highest-risk medical devices — life-supporting, life-sustaining, or implantable. Full design dossier review by Notified Body required (EU); PMA required (FDA)."@en ;
+.
+
+# ── Health AI Lifecycle ───────────────────────────────────────────────────────
+
+hg:ClinicalNeedDefinition
+    a ai:Lifecycle ; a skos:Concept ;
+    skos:prefLabel  "Clinical Need and Intended Use Definition"@en ;
+    skos:definition "Scoping stage: defining the clinical problem, patient population, intended use, contraindications, and performance requirements for the AI/ML system."@en ;
+.
+hg:DataCuration
+    a ai:Lifecycle ; a skos:Concept ;
+    skos:prefLabel  "Training Data Curation and Bias Assessment"@en ;
+    skos:definition "Collection, labelling, quality assurance, and bias characterisation of training datasets — critical for FDA SaMD and EU MDR clinical evidence."@en ;
+.
+hg:AlgorithmDevelopment
+    a ai:Lifecycle ; a skos:Concept ;
+    skos:prefLabel  "Algorithm Development and Locked Model"@en ;
+    skos:definition "Model training, tuning, and locking — once locked for SaMD submission, changes require new conformity assessment or PMA supplement."@en ;
+.
+hg:ClinicalValidation
+    a ai:Lifecycle ; a skos:Concept ;
+    skos:prefLabel  "Clinical Validation Study"@en ;
+    skos:definition "Prospective or retrospective study demonstrating clinical performance — the primary evidence basis for regulatory clearance or approval."@en ;
+.
+hg:RegulatorySubmission
+    a ai:Lifecycle ; a skos:Concept ;
+    skos:prefLabel  "Regulatory Submission and Clearance/Approval"@en ;
+    skos:definition "510(k), De Novo, PMA (FDA) or CE marking conformity assessment (EU MDR) — the formal regulatory gate before market entry."@en ;
+.
+hg:PostMarketSurveillance
+    a ai:Lifecycle ; a skos:Concept ;
+    skos:prefLabel  "Post-Market Surveillance"@en ;
+    skos:definition "Continuous monitoring of real-world performance, adverse events, and near-misses — mandatory under EU MDR and FDA's SaMD action plan."@en ;
+.
+
+# ── Canonical Health Dimensions ───────────────────────────────────────────────
+
+hg:ClinicalSafety
+    a ai:Dimension ; a skos:Concept ;
+    skos:prefLabel  "Clinical Safety"@en ;
+    skos:definition "Direct risk to patient safety from AI/ML system failures, mis-diagnoses, or inappropriate recommendations — the primary regulatory concern for health AI."@en ;
+    skos:broadMatch ai:Safety ;
+.
+hg:ClinicalEfficacy
+    a ai:Dimension ; a skos:Concept ;
+    skos:prefLabel  "Clinical Efficacy / Performance"@en ;
+    skos:definition "Demonstrated ability of the AI system to improve clinical outcomes or assist clinical decision-making — required evidence for regulatory clearance."@en ;
+    skos:relatedMatch ai:Reliability ;
+.
+hg:HealthDataPrivacy
+    a ai:Dimension ; a skos:Concept ;
+    skos:prefLabel  "Health Data Privacy"@en ;
+    skos:definition "Protection of protected health information (PHI), special category health data (GDPR Art. 9), and patient rights — HIPAA, GDPR, and national health data laws."@en ;
+    skos:broadMatch ai:Privacy ;
+.
+hg:EquityAndBias
+    a ai:Dimension ; a skos:Concept ;
+    skos:prefLabel  "Health AI Equity and Bias"@en ;
+    skos:definition "Risk that AI systems trained on non-representative data perform less well for underserved demographic groups — the leading patient safety and fairness concern for diagnostic AI."@en ;
+    skos:broadMatch ai:Fairness ;
+.
+
+# ── Stakeholders ──────────────────────────────────────────────────────────────
+
+hg:AIMLDeveloper
+    a ai:Stakeholder ; a skos:Concept ;
+    skos:prefLabel  "AI/ML Developer (SaMD Manufacturer)"@en ;
+    skos:definition "Organisation developing the AI/ML algorithm — the 'manufacturer' under EU MDR and 'device developer' under FDA SaMD — bears primary regulatory obligation."@en ;
+.
+hg:ClinicalSite
+    a ai:Stakeholder ; a skos:Concept ;
+    skos:prefLabel  "Clinical Site / Hospital System"@en ;
+    skos:definition "Healthcare provider deploying the AI system — the 'deployer' in EU AI Act terms; also subject to HIPAA business associate obligations when processing PHI."@en ;
+.
+hg:Clinician
+    a ai:Stakeholder ; a skos:Concept ;
+    skos:prefLabel  "Clinician / HCP"@en ;
+    skos:definition "Licensed healthcare professional making clinical decisions informed by (but not delegating to) the AI system — the mandatory human in the loop for clinical AI."@en ;
+.
+hg:Patient
+    a ai:Stakeholder ; a skos:Concept ;
+    skos:prefLabel  "Patient / Research Subject"@en ;
+    skos:definition "Individual whose health data is processed and who is directly affected by AI-informed clinical decisions — holds GDPR Art. 9 rights and FDA patient rights."@en ;
+.
+hg:FDAClinicalReviewer
+    a ai:Stakeholder ; a skos:Concept ;
+    skos:prefLabel  "FDA Clinical Reviewer"@en ;
+    skos:definition "FDA reviewer responsible for evaluating SaMD submissions — assesses intended use, training data, clinical validation, and algorithm change control."@en ;
+.
+hg:NotifiedBody
+    a ai:Stakeholder ; a skos:Concept ;
+    skos:prefLabel  "EU Notified Body (MDR/IVDR)"@en ;
+    skos:definition "Accredited third-party conformity assessment body for EU MDR/IVDR — reviews technical files and clinical evaluation reports for Class IIa/IIb/III medical devices."@en ;
+.

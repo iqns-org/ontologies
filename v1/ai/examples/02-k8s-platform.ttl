@@ -1,0 +1,170 @@
+@prefix ex:      <https://iqns.org/v0/example#> .
+@prefix ai:      <https://iqns.org/v0/ai#> .
+@prefix euai:    <https://iqns.org/v0/eu-ai-act#> .
+@prefix nrmf:    <https://iqns.org/v0/nist-ai-rmf#> .
+@prefix iso42001:<https://iqns.org/v0/iso-42001#> .
+@prefix owasp:   <https://iqns.org/v0/owasp-llm#> .
+@prefix saif:    <https://iqns.org/v0/google-saif#> .
+@prefix atlas:   <https://iqns.org/v0/mitre-atlas#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+ex:K8sOntology a owl:Ontology ;
+    dct:title       "Enterprise Kubernetes AI Platform Assets"@en ;
+    skos:definition "Kubernetes container platform assets used to host, train, and serve enterprise AI systems — mapped to IQ:NS controls."@en ;
+    owl:versionInfo "0.1" ;
+    owl:imports     <https://iqns.org/v0/example> ;
+.
+
+# ══════════════════════════════════════════════════════════════════════════════
+# Production GPU Kubernetes Cluster
+# ══════════════════════════════════════════════════════════════════════════════
+
+ex:K8sProdCluster
+    a ex:ContainerPlatform ;
+    skos:prefLabel       "Production AI/ML Kubernetes Cluster"@en ;
+    skos:definition  "Multi-tenant EKS (AWS) Kubernetes 1.30 cluster with dedicated GPU node pools (A100, H100). Hosts model inference, MLflow tracking, Kubeflow Pipelines, and Istio service mesh. Namespaced per BU with RBAC and NetworkPolicy isolation."@en ;
+    ex:vendor        "Kubernetes / Amazon EKS" ;
+    ex:dataRegion    "eu-west-1, us-east-1" ;
+
+    # ── Native controls provided by the platform ──────────────────────────────
+    # Namespace + RBAC isolation → reduces lateral movement from MITRE ATLAS PrivilegeEscalation
+    ex:implementsNatively nrmf:GV6 ;   # supply-chain: image provenance via cosign
+    ex:implementsNatively saif:ExpandSecureFoundation ;   # secure-by-default cluster hardening
+    ex:implementsNatively saif:HarmonisePlatformControls ; # consistent RBAC + NetworkPolicy
+
+    # ── Risks this platform introduces ───────────────────────────────────────
+    ex:bearsFace atlas:Reconnaissance ;      # API server exposure to tenant pods
+    ex:bearsFace atlas:PrivilegeEscalation ; # misconfigured RBAC / pod security
+    ex:bearsFace atlas:Persistence ;         # backdoor via compromised container image
+    ex:bearsFace owasp:LLM04_ModelDenialOfService ; # context-window floods exhaust GPU
+
+    # ── Controls the cluster must implement ──────────────────────────────────
+    ex:implementsNatively nrmf:MS4 ; # Prometheus + Grafana dashboards for model endpoints
+    ex:implementsNatively nrmf:MG2 ; # PagerDuty integration for k8s-level incidents
+.
+
+# ══════════════════════════════════════════════════════════════════════════════
+# KServe — Model Serving Infrastructure
+# ══════════════════════════════════════════════════════════════════════════════
+
+ex:KServePlatform
+    a ex:ContainerPlatform ;
+    skos:prefLabel       "KServe Model Serving Platform"@en ;
+    skos:definition  "KServe (formerly KFServing) on K8s providing canary rollouts, A/B testing, explainability (SHAP adapter), request/response logging, and auto-scaling for all inference endpoints. Enables model-level observability required by SR 11-7 and EU AI Act."@en ;
+    ex:vendor        "KServe (CNCF)" ;
+    ex:dataRegion    "eu-west-1" ;
+
+    # ── Native controls ───────────────────────────────────────────────────────
+    ex:implementsNatively nrmf:MS4 ;             # request/response logging → drift detection
+    ex:implementsNatively nrmf:MS1 ;             # canary metrics capture
+    ex:implementsNatively iso42001:A10Documentation ; # model serving audit trail
+    ex:implementsNatively saif:ExtendDetectionToAI ;  # model inference telemetry to SIEM
+
+    # Canary rollouts with shadow mode → supports sr117:ModelValidation
+    ex:implementsNatively nrmf:MG1 ;             # traffic routing = risk response mechanism
+
+    # ── Risks mitigated ───────────────────────────────────────────────────────
+    ex:mitigates owasp:LLM04_ModelDenialOfService ; # auto-scaling + rate limiting
+    ex:mitigates atlas:Reconnaissance ;             # mTLS via Istio on all endpoints
+
+    # ── Residual risks ────────────────────────────────────────────────────────
+    ex:bearsFace owasp:LLM10_ModelTheft ;    # model weights accessible from serving pods
+    ex:bearsFace atlas:MLAttackStaging ;     # adversarial inputs to production endpoints
+.
+
+# ══════════════════════════════════════════════════════════════════════════════
+# MLflow Experiment Tracking & Model Registry
+# ══════════════════════════════════════════════════════════════════════════════
+
+ex:MLflowTracking
+    a ex:ContainerPlatform ;
+    skos:prefLabel       "MLflow Model Registry & Experiment Tracking"@en ;
+    skos:definition  "MLflow 2.x deployed on K8s with PostgreSQL backend for run metadata and MinIO for artifact storage. All models must be registered here before promotion to KServe. Enforces model lineage, version control, and pre-deployment gate checks."@en ;
+    ex:vendor        "MLflow (Databricks OSS)" ;
+    ex:dataRegion    "eu-west-1" ;
+
+    # ── Native controls ───────────────────────────────────────────────────────
+    ex:implementsNatively iso42001:A8AILifecycle ;     # lifecycle stage gating (Staging → Prod)
+    ex:implementsNatively iso42001:A10Documentation ;  # experiment, dataset, and param lineage
+    ex:implementsNatively nrmf:GV5 ;                  # de-facto AI system inventory
+    ex:implementsNatively nrmf:MS1 ;                  # metric capture per run
+    ex:implementsNatively saif:ExpandSecureFoundation ; # model signing via MLflow Model Signatures
+
+    # ── Risks mitigated ───────────────────────────────────────────────────────
+    ex:mitigates owasp:LLM03_TrainingDataPoisoning ;   # dataset hash stored per registered model
+    ex:mitigates atlas:Persistence ;                   # model version history detects weight tampering
+
+    # ── Residual risks ────────────────────────────────────────────────────────
+    ex:bearsFace atlas:InitialAccess ;       # MLflow UI exposed to internal network
+    ex:bearsFace owasp:LLM05_SupplyChainVulnerabilities ; # upstream model artifacts from untrusted sources
+.
+
+# ══════════════════════════════════════════════════════════════════════════════
+# Kubeflow Pipelines — ML Workflow Automation
+# ══════════════════════════════════════════════════════════════════════════════
+
+ex:KubeflowPipelines
+    a ex:ContainerPlatform ;
+    skos:prefLabel       "Kubeflow Pipelines — ML Workflow Orchestration"@en ;
+    skos:definition  "Kubeflow Pipelines 2.x on K8s. Orchestrates data ingestion, feature engineering, model training, evaluation, and registration workflows. Each pipeline step is a signed OCI container. Pipeline definitions are version-controlled in Git."@en ;
+    ex:vendor        "Kubeflow (CNCF)" ;
+    ex:dataRegion    "eu-west-1, us-east-1" ;
+
+    # ── Native controls ───────────────────────────────────────────────────────
+    ex:implementsNatively iso42001:A8AILifecycle ;       # end-to-end lifecycle automation
+    ex:implementsNatively nrmf:GV6 ;                    # pipeline dependency SBOM
+    ex:implementsNatively saif:ExpandSecureFoundation ;  # signed container steps
+    ex:implementsNatively nrmf:MP3 ;                    # lifecycle risk identification at each step
+
+    # ── Risks ────────────────────────────────────────────────────────────────
+    ex:bearsFace atlas:MLAttackStaging ;               # malicious pipeline step injection
+    ex:bearsFace owasp:LLM03_TrainingDataPoisoning ;   # upstream data source compromise
+    ex:bearsFace atlas:InitialAccess ;                 # pipeline API exposed to K8s RBAC
+.
+
+# ══════════════════════════════════════════════════════════════════════════════
+# Istio Service Mesh — mTLS and Traffic Control
+# ══════════════════════════════════════════════════════════════════════════════
+
+ex:IstioServiceMesh
+    a ex:ContainerPlatform ;
+    skos:prefLabel       "Istio Service Mesh"@en ;
+    skos:definition  "Istio 1.21 providing mTLS between all AI microservices on K8s, traffic management, circuit breaking, rate limiting, and distributed tracing (Jaeger). Critical security boundary between inference endpoints, RAG stores, and data pipelines."@en ;
+    ex:vendor        "Istio / CNCF" ;
+    ex:dataRegion    "eu-west-1, us-east-1" ;
+
+    # ── Native controls ───────────────────────────────────────────────────────
+    ex:implementsNatively saif:HarmonisePlatformControls ; # uniform mTLS + auth policy
+    ex:implementsNatively saif:ExtendDetectionToAI ;       # distributed tracing → SIEM
+    ex:implementsNatively nrmf:MS4 ;                      # latency + error rate metrics
+
+    # ── Risks mitigated ───────────────────────────────────────────────────────
+    ex:mitigates atlas:Reconnaissance ;       # mTLS prevents traffic inspection between pods
+    ex:mitigates atlas:PrivilegeEscalation ;  # AuthorizationPolicy limits service-to-service calls
+    ex:mitigates owasp:LLM01_PromptInjection ; # input/output logged and inspectable
+
+    # ── Residual risks ────────────────────────────────────────────────────────
+    ex:bearsFace atlas:DefenceEvasion ;  # Istio config misconfiguration allowing policy bypass
+.
+
+# ══════════════════════════════════════════════════════════════════════════════
+# NVIDIA GPU Operator — Compute Management
+# ══════════════════════════════════════════════════════════════════════════════
+
+ex:NVIDIAGPUOperator
+    a ex:ContainerPlatform ;
+    skos:prefLabel       "NVIDIA GPU Operator"@en ;
+    skos:definition  "NVIDIA GPU Operator managing driver, CUDA, DCGMExporter, and MIG partitioning on K8s GPU nodes. Enables multi-tenant GPU isolation for inference and training workloads. DCGM metrics feed into Prometheus for SLO tracking."@en ;
+    ex:vendor        "NVIDIA" ;
+
+    # ── Native controls ───────────────────────────────────────────────────────
+    ex:implementsNatively nrmf:MS1 ;   # GPU utilisation metrics underpin capacity SLOs
+    ex:implementsNatively nrmf:GV6 ;   # NVIDIA supply chain — driver provenance
+
+    # ── Risks ────────────────────────────────────────────────────────────────
+    ex:bearsFace atlas:PrivilegeEscalation ; # GPU driver CVEs → host escape
+    ex:bearsFace owasp:LLM04_ModelDenialOfService ; # GPU memory exhaustion from adversarial inputs
+.

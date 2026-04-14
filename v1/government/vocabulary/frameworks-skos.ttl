@@ -1,0 +1,24 @@
+@prefix gov-crosswalk: <https://iqns.org/v0/gov-crosswalk#> .
+@prefix gov:   <https://iqns.org/v0/govtgraph#> .
+@prefix ai:    <https://iqns.org/v0/ai#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct:   <http://purl.org/dc/terms/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+
+# AI Frameworks applicable to Government
+@prefix canada: <https://iqns.org/v0/canada-dcdd#> .
+@prefix eo:     <https://iqns.org/v0/eo-14110#> .
+@prefix nist:   <https://iqns.org/v0/nist-ai-100-1#> .
+@prefix oecd:   <https://iqns.org/v0/oecd-ai#> .
+@prefix unesco: <https://iqns.org/v0/unesco-ai#> .
+
+gov-crosswalk:Ontology a owl:Ontology ; 
+    dct:title "Government AI Crosswalk"@en ;
+    owl:imports <https://iqns.org/v0/govtgraph#> .
+
+canada:Framework skos:broadMatch gov:Ontology .
+eo:Framework skos:broadMatch gov:Ontology .
+nist:Framework skos:relatedMatch gov:Ontology .
+oecd:Framework skos:relatedMatch gov:Ontology .
+unesco:Framework skos:relatedMatch gov:Ontology .

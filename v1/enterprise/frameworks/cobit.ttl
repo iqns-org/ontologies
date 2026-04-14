@@ -1,0 +1,109 @@
+@prefix cobit: <https://iqns.org/v0/cobit#> .
+@prefix enterprise:   <https://iqns.org/v0/enterprise#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+cobit:Ontology a owl:Ontology ;
+    dct:title "COBIT 2019 — Governance and Management of Enterprise IT"@en ;
+    prov:wasDerivedFrom <https://www.isaca.org/resources/cobit> ;
+    owl:versionInfo "COBIT 2019" ;
+.
+
+cobit:Scheme a skos:ConceptScheme ;
+    skos:prefLabel "COBIT 2019"@en ;
+    skos:definition "Framework for governance and management of enterprise IT across domains; bridges risk, control, compliance, and strategy."@en .
+
+cobit:COBIT
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel "COBIT 2019"@en ;
+    skos:definition "Comprehensive framework by ISACA for IT governance and management; aligns business goals with IT objectives and integrates with ISO, NIST, and AI governance standards."@en ;
+    skos:inScheme cobit:Scheme ;
+    dct:publisher "ISACA"@en ;
+    dct:issued "2019"^^xsd:gYear ;
+.
+
+cobit:GovernanceFramework
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel "Governance Framework"@en ;
+    skos:definition "Establish governance structures, objectives,  and performance metrics for IT and AI systems."@en ;
+    skos:inScheme cobit:Scheme ;
+    prov:wasDerivedFrom "COBIT 2019, Governance System and Components" ;
+    ai:mappedToDimension enterprise:CorporateGovernance ;
+.
+
+cobit:ManageSecurity
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel "Manage Security"@en ;
+    skos:definition "Define and perform policies and procedures to protect information assets and cybersecurity posture."@en ;
+    skos:inScheme cobit:Scheme ;
+    prov:wasDerivedFrom "COBIT 2019, Manage Security" ;
+    ai:mappedToDimension ai:Security ;
+    ai:appliesToLifecycle enterprise:ControlImplementation ;
+.
+
+cobit:AlignPlanOrganize
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel "Align, Plan, and Organize"@en ;
+    skos:definition "Establish governance and management processes that ensure IT strategy supports business strategy, including enterprise AI strategy, risk appetite, and compliance obligations."@en ;
+    skos:inScheme cobit:Scheme ;
+    prov:wasDerivedFrom "COBIT 2019, APO domain" ;
+    ai:mappedToDimension enterprise:CorporateGovernance ;
+    ai:appliesToLifecycle enterprise:StrategyAndPlanning ;
+.
+
+cobit:BuildAcquireImplement
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel "Build, Acquire, and Implement"@en ;
+    skos:definition "Manage requirements, solutions, and implementation activities to deliver IT capabilities safely and effectively, including secure AI development, model procurement, and deployment controls."@en ;
+    skos:inScheme cobit:Scheme ;
+    prov:wasDerivedFrom "COBIT 2019, BAI domain" ;
+    ai:mappedToDimension ai:RiskManagement ;
+    ai:appliesToLifecycle enterprise:ControlImplementation ;
+.
+
+cobit:DeliverSupportService
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel "Deliver, Service, and Support"@en ;
+    skos:definition "Ensure operational delivery and support that maintains availability, performance, and incident management for enterprise services and AI systems."@en ;
+    skos:inScheme cobit:Scheme ;
+    prov:wasDerivedFrom "COBIT 2019, DSS domain" ;
+    ai:mappedToDimension ai:Robustness ;
+    ai:appliesToLifecycle enterprise:MonitoringAndReview ;
+.
+
+cobit:MonitorEvaluateAssess
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel "Monitor, Evaluate, and Assess"@en ;
+    skos:definition "Implement monitoring and assessment cycles to evaluate governance effectiveness, risk and control performance, and to enable continuous improvement in IT and AI operations."@en ;
+    skos:inScheme cobit:Scheme ;
+    prov:wasDerivedFrom "COBIT 2019, MEA domain" ;
+    ai:mappedToDimension enterprise:RiskManagement ;
+    ai:appliesToLifecycle enterprise:MonitoringAndReview ;
+.
+
+cobit:ManageRisk
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel "Manage Risk"@en ;
+    skos:definition "Identify, assess, and treat enterprise IT/AI risks; maintain risk registers, key risk indicators (KRIs), and decision criteria with board-level oversight."@en ;
+    skos:inScheme cobit:Scheme ;
+    prov:wasDerivedFrom "COBIT 2019, APO12" ;
+    ai:mappedToDimension enterprise:RiskManagement ;
+    ai:appliesToLifecycle enterprise:RiskAssessment ;
+.
+
+cobit:ManageCompliance
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel "Manage Compliance"@en ;
+    skos:definition "Maintain compliance with legal, regulatory, and contractual requirements; embed CIAM controls and privacy compliance in AI lifecycle processes."@en ;
+    skos:inScheme cobit:Scheme ;
+    prov:wasDerivedFrom "COBIT 2019, APO13" ;
+    ai:mappedToDimension ai:Privacy ;
+    ai:mappedToDimension enterprise:CorporateGovernance ;
+    ai:appliesToLifecycle enterprise:StrategyAndPlanning ;
+.

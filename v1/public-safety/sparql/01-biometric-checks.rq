@@ -1,0 +1,18 @@
+# 01-ps-biometric-legality.rq
+# Goal: Cross-check law enforcement use of biometrics for EU AI Act compliance.
+
+PREFIX gg: <https://iqns.org/v0/ai#>
+PREFIX psg: <https://iqns.org/v0/psgraph#>
+PREFIX euai: <https://iqns.org/v0/eu-ai-act#>
+
+SELECT ?this ?label ?dimension ?requirement
+WHERE {
+    ?this a gg:System ;
+                  skos:prefLabel ?label ;
+                  gg:mappedToDimension psg:BiometricSurveillance .
+    
+    # Requirement: must have high-risk obligations implemented
+    FILTER NOT EXISTS {
+        ?this gg:implementsControl euai:HighRiskObligations .
+    }
+}

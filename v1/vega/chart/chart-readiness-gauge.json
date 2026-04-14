@@ -1,0 +1,16 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Audit readiness radial gauge",
+  "title": "{{chart.title}}",
+  "data": { "values": {{data}} },
+  "mark": "arc",
+  "encoding": {
+    "theta": { "field": "{{chart.value}}", "type": "quantitative", "stack": "normalize" },
+    "color": { "field": "{{chart.segment}}", "type": "nominal", "scale": { "domain": ["ready", "in-progress", "not-ready"], "range": ["#2ca02c", "#ff7f0e", "#d62728"] } },
+    "tooltip": [
+      { "field": "{{chart.segment}}", "type": "nominal" },
+      { "field": "{{chart.value}}", "type": "quantitative" }
+    ]
+  },
+  "view": {"stroke": null}
+}

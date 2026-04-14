@@ -1,0 +1,148 @@
+@prefix dsa: <https://iqns.org/v0/dsa#> .
+@prefix mg:   <https://iqns.org/v0/medgraph#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+dsa:Ontology a owl:Ontology ;
+    dct:title       "EU Digital Services Act (DSA) — Regulation (EU) 2022/2065"@en ;
+    prov:wasDerivedFrom <https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32022R2065> ;
+    owl:versionInfo "Regulation (EU) 2022/2065 — effective 17 Feb 2024; VLOPs/VLOSEs from 25 Aug 2023" ;
+.
+
+dsa:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "EU Digital Services Act 2022/2065"@en ;
+    skos:definition "EU regulation on digital platform liability and algorithmic accountability — a risk-based framework that is directly applicable to AI-powered content recommendation, moderation, and advertising systems."@en .
+
+dsa:DSA
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "EU Digital Services Act — Regulation (EU) 2022/2065"@en ;
+    skos:definition "Regulation governing online intermediaries and platforms in the EU — establishes obligations proportionate to platform size and risk. Key AI provisions: transparency of recommendation algorithms (Art. 27), systemic risk assessment (Art. 34), risk mitigation (Art. 35), independent audits (Art. 37), advertising archives (Art. 39), and researcher data access (Art. 40)."@en ;
+    skos:inScheme   dsa:Scheme ;
+    dct:publisher   "European Parliament and Council of the EU"@en ;
+    dct:issued      "2022"^^xsd:gYear ;
+.
+
+# ── All Hosting Services ──────────────────────────────────────────────────────
+
+dsa:NoticeAndActionObligation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Notice-and-Action Mechanism (Art. 16)"@en ;
+    skos:definition "All hosting services must implement an accessible, user-friendly notice mechanism allowing any user to notify illegal content — AI-automated intake of notices must route to human reviewers for final decisions on disputed removals. Decisions must include statements of reasons."@en ;
+    skos:inScheme   dsa:Scheme ;
+    prov:wasDerivedFrom "DSA Art. 16–17" ;
+    ai:mappedToDimension mg:ContentModeration ;
+    ai:mappedToDimension ai:Accountability ;
+    mg:hasPlatformCategory mg:HostingService ;
+.
+dsa:StatementOfReasonsObligation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Statement of Reasons for Content Removal (Art. 17)"@en ;
+    skos:definition "Hosting services must provide a statement of reasons for each content removal, account suspension, or service restriction — AI moderation decisions that remove content must generate human-readable explanations."@en ;
+    skos:inScheme   dsa:Scheme ;
+    prov:wasDerivedFrom "DSA Art. 17" ;
+    ai:mappedToDimension mg:ContentModeration ;
+    ai:mappedToDimension ai:Transparency ;
+    ai:mappedToDimension ai:Explainability ;
+.
+
+# ── Online Platforms ──────────────────────────────────────────────────────────
+
+dsa:InternalComplaintSystem
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Internal Complaint-Handling System (Art. 20)"@en ;
+    skos:definition "Online platforms must provide an effective internal complaint-handling system for moderation decisions — decisions must be appealed by humans within the platform; AI-only complaint resolution without meaningful human review is non-compliant."@en ;
+    skos:inScheme   dsa:Scheme ;
+    prov:wasDerivedFrom "DSA Art. 20" ;
+    ai:mappedToDimension mg:ContentModeration ;
+    ai:mappedToDimension ai:HumanOversight ;
+    mg:hasPlatformCategory mg:OnlinePlatform ;
+.
+dsa:OutOfCourtSettlement
+    a ai:Right ; a skos:Concept ;
+    skos:prefLabel  "Right to Out-of-Court Dispute Settlement (Art. 21)"@en ;
+    skos:definition "Users have the right to refer any platform moderation dispute to a certified out-of-court dispute settlement body — platforms must cooperate in good faith with such bodies."@en ;
+    skos:inScheme   dsa:Scheme ;
+    prov:wasDerivedFrom "DSA Art. 21" ;
+    ai:mappedToDimension mg:ContentModeration ;
+.
+dsa:RecommendationSystemTransparency
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Recommendation System Transparency (Art. 27)"@en ;
+    skos:definition "Online platforms using recommendation systems must explain in their terms of service the main parameters used for determining what content is shown, including sequencing, labelling, and filtering — AI ranking systems must be disclosed. Users must have at least one option not based on profiling. VLOPs must offer at least one non-profiling option."@en ;
+    skos:inScheme   dsa:Scheme ;
+    prov:wasDerivedFrom "DSA Art. 27" ;
+    ai:mappedToDimension mg:RecommendationSystemTransparency ;
+    ai:mappedToDimension ai:Transparency ;
+    mg:usesRecommendationSystem "true"^^xsd:boolean ;
+.
+dsa:AdvertisingTransparencyObligation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Advertising Transparency — Ad Repositories (Art. 26 & 39)"@en ;
+    skos:definition "Online platforms displaying ads must clearly label all advertising and identify the advertiser and targeting criteria used — VLOPs must maintain a searchable public advertising repository. AI-targeted advertising must be disclosed. Targeting minors and sensitive categories prohibited."@en ;
+    skos:inScheme   dsa:Scheme ;
+    prov:wasDerivedFrom "DSA Art. 26; Art. 39" ;
+    ai:mappedToDimension mg:AdvertisingTransparency ;
+    ai:mappedToDimension ai:Transparency ;
+.
+
+# ── VLOP / VLOSE Specific Obligations ────────────────────────────────────────
+
+dsa:SystemicRiskAssessment
+    a ai:Obligation ; a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "Systemic Risk Assessment (Art. 34)"@en ;
+    skos:definition "VLOPs and VLOSEs must identify and analyse systemic risks at least annually — covering: (a) illegal content; (b) adverse fundamental rights effects; (c) effects on civic discourse, electoral processes, public security; (d) effects on gender-based violence and public health. AI recommendation systems are the primary risk vector for this assessment."@en ;
+    skos:inScheme   dsa:Scheme ;
+    prov:wasDerivedFrom "DSA Art. 34" ;
+    ai:mappedToDimension mg:DisinformationRisk ;
+    ai:mappedToDimension mg:RecommendationSystemTransparency ;
+    ai:mappedToDimension ai:Accountability ;
+    mg:hasPlatformCategory mg:VLOPorVLOSE ;
+.
+dsa:RiskMitigationMeasures
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Risk Mitigation Measures (Art. 35)"@en ;
+    skos:definition "VLOPs must put in place reasonable, proportionate mitigation measures for identified systemic risks — including adapting recommendation systems, content moderation, AI systems design, and user interface design. Measures must be targeted, effective, and respect fundamental rights."@en ;
+    skos:inScheme   dsa:Scheme ;
+    prov:wasDerivedFrom "DSA Art. 35" ;
+    ai:mappedToDimension mg:DisinformationRisk ;
+    ai:mappedToDimension mg:ContentModeration ;
+    mg:hasPlatformCategory mg:VLOPorVLOSE ;
+.
+dsa:IndependentAuditObligation
+    a ai:Obligation ; a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "Independent Annual Audit (Art. 37)"@en ;
+    skos:definition "VLOPs and VLOSEs must submit to annual independent audits of their compliance with DSA obligations — including the systemic risk assessment and mitigation measures for recommendation systems. EU Commission may designate auditing organisations; auditors must be given full access to AI system documentation."@en ;
+    skos:inScheme   dsa:Scheme ;
+    prov:wasDerivedFrom "DSA Art. 37" ;
+    ai:mappedToDimension ai:Accountability ;
+    ai:mappedToDimension mg:DisinformationRisk ;
+    mg:hasPlatformCategory mg:VLOPorVLOSE ;
+.
+dsa:ResearcherDataAccess
+    a ai:Right ; a skos:Concept ;
+    skos:prefLabel  "Vetted Researcher Data Access (Art. 40)"@en ;
+    skos:definition "VLOPs and VLOSEs must grant vetted researchers access to data necessary to study systemic risks — including data on recommendation system parameters, content amplification, and algorithmic curation patterns. DSC can compel data access. Underpins external AI auditing and algorithmic accountability research."@en ;
+    skos:inScheme   dsa:Scheme ;
+    prov:wasDerivedFrom "DSA Art. 40" ;
+    ai:mappedToDimension mg:DisinformationRisk ;
+    ai:mappedToDimension ai:Transparency ;
+    mg:hasPlatformCategory mg:VLOPorVLOSE ;
+.
+
+# ── Synthetic Media ───────────────────────────────────────────────────────────
+
+dsa:SyntheticMediaLabellingObligation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "AI-Generated Content Labelling (DSA + EU AI Act Art. 50)"@en ;
+    skos:definition "Platforms must label AI-generated content that may deceive users — DSA systemic risk obligations extend to deepfakes and synthetic audiovisual content amplified through recommendation systems. EU AI Act Art. 50 requires labelling of GPAI-generated content using machine-readable standards (C2PA). VLOPs must adopt technical standards."@en ;
+    skos:inScheme   dsa:Scheme ;
+    prov:wasDerivedFrom "DSA Art. 34–35; EU AI Act Art. 50; EU AI Act Recital 133" ;
+    ai:mappedToDimension mg:SyntheticMediaIntegrity ;
+    ai:mappedToDimension ai:Transparency ;
+.

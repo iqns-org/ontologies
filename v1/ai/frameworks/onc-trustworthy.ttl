@@ -1,0 +1,123 @@
+@prefix onc-trustworthy: <https://iqns.org/v0/onc-trustworthy#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+onc-trustworthy:Ontology a owl:Ontology ;
+    dct:title  "ONC Trustworthy AI in Health IT (2023) + 21st Century Cures Act AI Provisions"@en ;
+    prov:wasDerivedFrom <https://www.healthit.gov/topic/scientific-initiatives/artificial-intelligence> .
+
+onc-trustworthy:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "ONC Trustworthy AI in Health IT"@en ;
+    skos:definition "ONC framework for trustworthy AI in health IT, including algorithm transparency, bias evaluation, and interoperability requirements under the 21st Century Cures Act."@en .
+
+onc-trustworthy:ONC_TrustworthyAI
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "ONC Trustworthy AI in Health IT Framework"@en ;
+    skos:definition "ONC guidance and regulatory framework ensuring clinical AI/ML tools are safe, effective, equitable, and transparent across the healthcare system."@en ;
+    skos:inScheme   onc-trustworthy:Scheme ;
+    dct:publisher   "Office of the National Coordinator for Health Information Technology"@en ;
+    dct:issued      "2023"^^xsd:gYear ;
+.
+
+# ── Core Trustworthiness Dimensions ──────────────────────────────────────────
+
+onc-trustworthy:ClinicalSafetyONC
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Clinical Safety"@en ;
+    skos:definition "AI tools must not introduce patient harm through erroneous, biased, or unclear outputs; safety testing must reflect real clinical workflows."@en ;
+    skos:inScheme   onc-trustworthy:Scheme ; prov:wasDerivedFrom "ONC Trustworthy AI §2" ;
+    skos:exactMatch ai:Safety ;
+    ai:appliesToDomain ai:HealthAI ;
+.
+onc-trustworthy:EquityONC
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Health AI Equity"@en ;
+    skos:definition "AI must perform equitably across race, ethnicity, sex, age, disability status, and socioeconomic background; disparate performance constitutes a safety concern."@en ;
+    skos:inScheme   onc-trustworthy:Scheme ; prov:wasDerivedFrom "ONC Trustworthy AI §3" ;
+    skos:exactMatch ai:Fairness ;
+    ai:appliesToDomain ai:HealthAI ;
+.
+onc-trustworthy:TransparencyONC
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "AI Transparency in Health IT"@en ;
+    skos:definition "Clinicians and patients must receive meaningful information about AI tool purpose, performance, training data, and limitations before and during use."@en ;
+    skos:inScheme   onc-trustworthy:Scheme ; prov:wasDerivedFrom "ONC Trustworthy AI §4" ;
+    skos:exactMatch ai:Transparency ;
+.
+onc-trustworthy:ReliabilityONC
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Reliability and Validity"@en ;
+    skos:definition "AI outputs must be clinically valid and reproducible; tools must maintain performance across patient subpopulations and clinical settings."@en ;
+    skos:inScheme   onc-trustworthy:Scheme ; prov:wasDerivedFrom "ONC Trustworthy AI §5" ;
+    skos:exactMatch ai:Reliability ;
+.
+
+# ── Decision Support Interventions (DSI) ──────────────────────────────────────
+
+onc-trustworthy:DecisionSupportIntervention
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Decision Support Intervention (DSI)"@en ;
+    skos:definition "21st Century Cures Act category for computerised clinical decision support; AI-based DSIs may be subject to FDA oversight depending on software function criteria."@en ;
+    skos:inScheme   onc-trustworthy:Scheme ; prov:wasDerivedFrom "21st Century Cures Act §3060" ;
+    ai:appliesToDomain ai:HealthAI ;
+.
+onc-trustworthy:AlgorithmTransparencyRequirement
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Algorithm Transparency Requirement (21CC)"@en ;
+    skos:definition "Developers of algorithms that generate patient-specific recommendations must provide source code, evidence, and logic to clinicians and researchers on request."@en ;
+    skos:inScheme   onc-trustworthy:Scheme ; prov:wasDerivedFrom "21st Century Cures Act §3060(c)" ;
+    skos:exactMatch ai:Transparency ;
+    ai:appliesToLifecycle ai:Deployment ;
+.
+onc-trustworthy:InformationBlockingProhibition
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Information Blocking Prohibition"@en ;
+    skos:definition "Actors must not block access to electronic health information, including AI-generated outputs; supports interoperability for AI model auditing."@en ;
+    skos:inScheme   onc-trustworthy:Scheme ; prov:wasDerivedFrom "21st Century Cures Act §4004" ;
+    skos:broadMatch ai:Accountability ;
+.
+
+# ── Bias Evaluation ───────────────────────────────────────────────────────────
+
+onc-trustworthy:AlgorithmBiasEvaluationONC
+    a ai:Control ; a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "Algorithm Bias Evaluation"@en ;
+    skos:definition "Systematic evaluation of clinical AI model performance across demographic subgroups before and after deployment; document disparate performance and mitigation plans."@en ;
+    skos:inScheme   onc-trustworthy:Scheme ; prov:wasDerivedFrom "ONC Trustworthy AI §3" ;
+    skos:exactMatch ai:Fairness ;
+    ai:appliesToLifecycle ai:Validation ;
+    ai:appliesToLifecycle ai:Monitoring ;
+.
+onc-trustworthy:RacialEquityInAlgorithms
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "Racial Bias in Clinical Algorithms"@en ;
+    skos:definition "Historical misuse of race as a clinical variable (e.g. eGFR, spirometry correction factors) has encoded systemic bias; AI must not perpetuate or amplify these biases."@en ;
+    skos:inScheme   onc-trustworthy:Scheme ; prov:wasDerivedFrom "ONC Trustworthy AI §3" ;
+    skos:exactMatch ai:DiscriminationHarm ;
+    ai:appliesToDomain ai:HealthAI ;
+.
+
+# ── Post-Market Surveillance ──────────────────────────────────────────────────
+
+onc-trustworthy:ContinuousPerformanceMonitoring
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Continuous Clinical AI Performance Monitoring"@en ;
+    skos:definition "Ongoing monitoring of deployed clinical AI for performance drift, emergent bias, and adverse outcomes; linked to patient safety reporting."@en ;
+    skos:inScheme   onc-trustworthy:Scheme ; prov:wasDerivedFrom "ONC Trustworthy AI §6" ;
+    skos:exactMatch ai:Robustness ;
+    ai:appliesToLifecycle ai:Monitoring ;
+.
+onc-trustworthy:PatientSafetyReporting
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "AI-Related Patient Safety Reporting"@en ;
+    skos:definition "Adverse events attributable to AI/ML tools must be reported through appropriate safety reporting channels (FDA MedWatch, PSOs); enable systemic learning."@en ;
+    skos:inScheme   onc-trustworthy:Scheme ; prov:wasDerivedFrom "ONC Trustworthy AI §6" ;
+    skos:broadMatch ai:Accountability ;
+    ai:appliesToRole ai:Operator ;
+.

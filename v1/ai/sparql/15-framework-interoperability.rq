@@ -1,0 +1,20 @@
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX ai: <https://iqns.org/v0/ai#>
+PREFIX nrmf: <https://iqns.org/v0/nist-ai-rmf#>
+PREFIX iso42001: <https://iqns.org/v0/iso-42001#>
+PREFIX iso45001: <https://iqns.org/v0/iso-45001#>
+PREFIX soc2: <https://iqns.org/v0/soc-2#>
+PREFIX cobit: <https://iqns.org/v0/cobit#>
+PREFIX enterprise: <https://iqns.org/v0/enterprise#>
+
+# Cross-framework interoperability and risk dimension mapping.
+# Shows core frameworks and key aligned dimensions for enterprise AI governance.
+
+SELECT ?framework ?prefLabel ?dimension WHERE {
+  VALUES ?framework { nrmf:NISTRMF iso42001:ISO42001 iso45001:ISO45001 soc2:SOC2 cobit:COBIT enterprise:RiskManagement }
+  ?framework skos:prefLabel ?prefLabel .
+  OPTIONAL {
+    ?framework ai:mappedToDimension ?dimension .
+  }
+}
+ORDER BY ?framework

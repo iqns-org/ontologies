@@ -1,0 +1,45 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# C-02  CONSTRUCT Alignment Graph
+# Purpose : Build an RDF graph of all skos:exactMatch, skos:broadMatch, and
+#           skos:relatedMatch edges across frameworks, anchored by canonical
+#           ai: concepts.  
+# ─────────────────────────────────────────────────────────────────────────────
+
+PREFIX ai:   <https://iqns.org/v0/ai#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+CONSTRUCT {
+    ?a skos:exactMatch   ?b .
+    ?a skos:broadMatch   ?b .
+    ?a skos:relatedMatch ?b .
+    ?a skos:narrowMatch  ?b .
+    ?a a                 ?atype .
+    ?b a                 ?btype .
+    ?a skos:prefLabel    ?aLabel .
+    ?b skos:prefLabel    ?bLabel .
+}
+WHERE {
+    {
+        ?a skos:exactMatch ?b .
+    }
+    UNION
+    {
+        ?a skos:broadMatch ?b .
+    }
+    UNION
+    {
+        ?a skos:relatedMatch ?b .
+    }
+    UNION
+    {
+        ?a skos:narrowMatch ?b .
+    }
+
+    OPTIONAL { ?a a ?atype . FILTER ( ?atype != skos:Concept ) }
+    OPTIONAL { ?b a ?btype . FILTER ( ?btype != skos:Concept ) }
+    OPTIONAL { ?a skos:prefLabel ?aLabel . FILTER ( lang(?aLabel) = "en" ) }
+    OPTIONAL { ?b skos:prefLabel ?bLabel . FILTER ( lang(?bLabel) = "en" ) }
+
+    # Exclude trivially same-namespace edges (ai: ↔ ai:)
+    FILTER ( STRBEFORE(STR(?a), "#") != STRBEFORE(STR(?b), "#") )
+}

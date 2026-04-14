@@ -1,0 +1,17 @@
+# 01-sta-scaling-readiness.rq
+# Goal: Identify Startup AI growth stages and regulatory milestones.
+
+PREFIX gg: <https://iqns.org/v0/ai#>
+PREFIX stg: <https://iqns.org/v0/stargraph#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+SELECT ?this ?label ?stage ?stageLabel
+WHERE {
+    ?this a gg:System ;
+                skos:prefLabel ?label ;
+                gg:appliesToLifecycle ?stage .
+                
+    ?stage rdfs:subClassOf* stg:GrowthStage ;
+           skos:prefLabel ?stageLabel .
+}
+ORDER BY ?stage

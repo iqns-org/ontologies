@@ -1,0 +1,18 @@
+@prefix video-feed: <https://iqns.org/v0/media/examples/video-feed#> .
+@prefix ex:     <https://iqns.org/v0/example#> .
+@prefix mg:     <https://iqns.org/v0/medgraph#> .
+@prefix ai:     <https://iqns.org/v0/ai#> .
+@prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:   <http://www.w3.org/ns/prov#> .
+@prefix dsa:    <https://iqns.org/v0/dsa#> .
+
+video-feed:ViewStreamRecommendation a ai:System ;
+    a mg:VLOPorVLOSE ;
+    skos:prefLabel "ViewStream Home Feed Recommender"@en ;
+    ai:mappedToDimension mg:RecommendationSystemTransparency ;
+    ai:appliesToLifecycle mg:ContentDistribution ;
+    prov:wasDerivedFrom "ViewStream Compliance Audit 2026-Q1" ;
+    # Platform obligations
+    ai:implementsControl dsa:RecommendationSystemTransparency ;
+    ai:implementsControl dsa:SystemicRiskAssessment ;
+.

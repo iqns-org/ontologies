@@ -1,0 +1,20 @@
+# 01-emp-fairness-crosswalk.rq
+# Goal: Find EEOC and EU Equal Treatment alignment for HR systems.
+
+PREFIX gg: <https://iqns.org/v0/ai#>
+PREFIX emg: <https://iqns.org/v0/emgraph#>
+PREFIX eeoc: <https://iqns.org/v0/eeoc#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+SELECT ?this ?label ?fairnessDimension ?fairnessLabel ?fairnessSource
+WHERE {
+    ?this a gg:System ;
+           skos:prefLabel ?label ;
+           gg:mappedToDimension ?fairnessDimension .
+    
+    ?fairnessDimension rdfs:subClassOf* emg:EqualTreatment ;
+                       skos:prefLabel ?fairnessLabel .
+    
+    # Trace back through prov for authority
+    ?fairnessDimension prov:wasDerivedFrom ?fairnessSource .
+}

@@ -1,0 +1,177 @@
+@prefix iso-31000: <https://iqns.org/v0/iso-31000#> .
+@prefix enterprise:   <https://iqns.org/v0/enterprise#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+iso-31000:Ontology a owl:Ontology ;
+    dct:title       "ISO 31000:2018 — Risk Management Guidelines"@en ;
+    prov:wasDerivedFrom <https://www.iso.org/standard/65694.html> ;
+    owl:versionInfo "ISO 31000:2018 (second edition)" ;
+.
+
+iso-31000:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "ISO 31000:2018 — Risk Management"@en ;
+    skos:definition "International guidelines providing principles, framework, and process for managing risk across all organisational contexts — the generic enterprise risk management standard applicable to AI risk programmes."@en .
+
+iso-31000:ISO31000
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "ISO 31000:2018"@en ;
+    skos:definition "Provides generic principles and guidelines for risk management — used as the foundational risk framework across all sectors. Defines a risk management framework (leadership, integration, design, implementation, evaluation, improvement) and process (communication, context, risk identification/analysis/evaluation, treatment, monitoring)."@en ;
+    skos:inScheme   iso-31000:Scheme ;
+    dct:publisher   "ISO/TC 262"@en ;
+    dct:issued      "2018"^^xsd:gYear ;
+.
+
+# ── Principles ────────────────────────────────────────────────────────────────
+
+iso-31000:IntegratedPrinciple
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Principle: Integrated"@en ;
+    skos:definition "Risk management is an integral part of all organisational activities — not a separate programme. AI risk management must be embedded in AI system design, procurement, deployment, and operations — not bolted on post-hoc."@en ;
+    skos:inScheme   iso-31000:Scheme ;
+    prov:wasDerivedFrom "ISO 31000:2018, Clause 4 — Principles" ;
+    ai:mappedToDimension enterprise:RiskManagement ;
+.
+iso-31000:StructuredPrinciple
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Principle: Structured and Comprehensive"@en ;
+    skos:definition "A structured and comprehensive approach to risk management contributes to consistent and comparable results — including systematic documentation, standardised risk criteria, and repeatable processes."@en ;
+    skos:inScheme   iso-31000:Scheme ;
+    prov:wasDerivedFrom "ISO 31000:2018, Clause 4 — Principles" ;
+    ai:mappedToDimension enterprise:RiskManagement ;
+.
+iso-31000:CustomisedPrinciple
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Principle: Customised"@en ;
+    skos:definition "Risk management framework and process are customised and proportionate to the organisation's external and internal context — including the nature of AI risks (rapidly evolving, uncertain, cross-cutting)."@en ;
+    skos:inScheme   iso-31000:Scheme ;
+    prov:wasDerivedFrom "ISO 31000:2018, Clause 4 — Principles" ;
+    ai:mappedToDimension enterprise:RiskManagement ;
+.
+iso-31000:DynamicPrinciple
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Principle: Dynamic"@en ;
+    skos:definition "Risk management anticipates, detects, acknowledges, and responds to changes in a timely fashion — particularly relevant for AI given rapid capability changes, model drift, and evolving adversarial threats."@en ;
+    skos:inScheme   iso-31000:Scheme ;
+    prov:wasDerivedFrom "ISO 31000:2018, Clause 4 — Principles" ;
+    ai:mappedToDimension enterprise:RiskManagement ;
+.
+iso-31000:BestAvailableInformationPrinciple
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Principle: Best Available Information"@en ;
+    skos:definition "Risk management is based on the best available information — acknowledging uncertainty and model limitations. For AI systems: documented uncertainty quantification and epistemic humility in risk assessments."@en ;
+    skos:inScheme   iso-31000:Scheme ;
+    prov:wasDerivedFrom "ISO 31000:2018, Clause 4 — Principles" ;
+    ai:mappedToDimension enterprise:RiskManagement ;
+.
+iso-31000:HumanAndCulturalFactors
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Principle: Human and Cultural Factors"@en ;
+    skos:definition "Human behaviour and culture significantly influence all aspects of risk management — AI system risk is substantially determined by organisational culture, psychological safety, and leadership behaviour."@en ;
+    skos:inScheme   iso-31000:Scheme ;
+    prov:wasDerivedFrom "ISO 31000:2018, Clause 4 — Principles" ;
+    ai:mappedToDimension enterprise:RiskManagement ;
+    ai:mappedToDimension ai:HumanOversight ;
+.
+iso-31000:ContinualImprovementPrinciple
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Principle: Continual Improvement"@en ;
+    skos:definition "Risk management is continually improved through learning and experience — maturity model against which AI risk programmes are staged."@en ;
+    skos:inScheme   iso-31000:Scheme ;
+    prov:wasDerivedFrom "ISO 31000:2018, Clause 4 — Principles" ;
+    ai:mappedToDimension enterprise:RiskManagement ;
+    ai:appliesToLifecycle enterprise:ContinualImprovement ;
+.
+
+# ── Framework ─────────────────────────────────────────────────────────────────
+
+iso-31000:LeadershipAndCommitment
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Leadership and Commitment (Framework Cl. 5.2)"@en ;
+    skos:definition "Top management must demonstrate leadership and commitment to risk management — issuing a policy, integrating risk objectives into strategic planning, allocating resources, and holding accountable parties responsible. Board-level AI risk ownership required."@en ;
+    skos:inScheme   iso-31000:Scheme ;
+    prov:wasDerivedFrom "ISO 31000:2018, Clause 5.2" ;
+    ai:mappedToDimension enterprise:CorporateGovernance ;
+    ai:mappedToDimension enterprise:RiskManagement ;
+.
+iso-31000:RiskManagementPolicyObligation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Risk Management Policy"@en ;
+    skos:definition "The organisation must articulate a risk management policy — stating objectives, commitment, integration into decision-making, accountability, and review cycle. AI risk appetite statement is a required component."@en ;
+    skos:inScheme   iso-31000:Scheme ;
+    prov:wasDerivedFrom "ISO 31000:2018, Clause 5.3.2" ;
+    ai:mappedToDimension enterprise:RiskManagement ;
+    ai:appliesToLifecycle enterprise:StrategyAndPlanning ;
+.
+
+# ── Process ───────────────────────────────────────────────────────────────────
+
+iso-31000:CommunicationAndConsultation
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Communication and Consultation (Process Cl. 6.2)"@en ;
+    skos:definition "Communication and consultation are continual and iterative processes throughout the risk management process — stakeholder engagement in AI risk identification and treatment decisions."@en ;
+    skos:inScheme   iso-31000:Scheme ;
+    prov:wasDerivedFrom "ISO 31000:2018, Clause 6.2" ;
+    ai:mappedToDimension enterprise:RiskManagement ;
+    ai:mappedToDimension ai:Transparency ;
+.
+iso-31000:ContextEstablishment
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Context Establishment (Cl. 6.3)"@en ;
+    skos:definition "Understanding external context (regulatory environment, market, technology), internal context (organisational structure, culture, capabilities), and risk management context (scope, criteria) — for AI: includes AI regulation landscape, deployment environment, and risk tolerance for automated decisions."@en ;
+    skos:inScheme   iso-31000:Scheme ;
+    prov:wasDerivedFrom "ISO 31000:2018, Clause 6.3" ;
+    ai:mappedToDimension enterprise:RiskManagement ;
+    ai:appliesToLifecycle enterprise:StrategyAndPlanning ;
+.
+iso-31000:RiskIdentificationProcess
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Risk Identification (Cl. 6.4.2)"@en ;
+    skos:definition "Systematic identification of risk sources, events, causes, and potential consequences — for AI: including data quality risks, model bias, adversarial attacks, third-party AI failures, and regulatory non-compliance scenarios."@en ;
+    skos:inScheme   iso-31000:Scheme ;
+    prov:wasDerivedFrom "ISO 31000:2018, Clause 6.4.2" ;
+    ai:mappedToDimension enterprise:RiskManagement ;
+    ai:appliesToLifecycle enterprise:RiskAssessment ;
+.
+iso-31000:RiskAnalysisProcess
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Risk Analysis (Cl. 6.4.3)"@en ;
+    skos:definition "Analysis of risks considering the nature, sources, likelihood, and consequences — qualitative, semi-quantitative, or quantitative. For AI: probabilistic consequence modelling, worst-case scenario analysis, and uncertainty characterisation."@en ;
+    skos:inScheme   iso-31000:Scheme ;
+    prov:wasDerivedFrom "ISO 31000:2018, Clause 6.4.3" ;
+    ai:mappedToDimension enterprise:RiskManagement ;
+    ai:appliesToLifecycle enterprise:RiskAssessment ;
+.
+iso-31000:RiskEvaluationProcess
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Risk Evaluation (Cl. 6.4.4)"@en ;
+    skos:definition "Comparison of analysis results against risk criteria to determine whether a risk is acceptable or requires treatment — risk tolerance thresholds for AI decisions must be defined and documented."@en ;
+    skos:inScheme   iso-31000:Scheme ;
+    prov:wasDerivedFrom "ISO 31000:2018, Clause 6.4.4" ;
+    ai:mappedToDimension enterprise:RiskManagement ;
+    ai:appliesToLifecycle enterprise:RiskAssessment ;
+.
+iso-31000:RiskTreatmentProcess
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Risk Treatment (Cl. 6.5)"@en ;
+    skos:definition "Options for treating risk: avoid, take/increase, remove source, change likelihood/consequences, share, retain by informed decision. AI risk treatment options include model redesign, human-in-the-loop, usage restriction, or sunset."@en ;
+    skos:inScheme   iso-31000:Scheme ;
+    prov:wasDerivedFrom "ISO 31000:2018, Clause 6.5" ;
+    ai:mappedToDimension enterprise:RiskManagement ;
+    ai:appliesToLifecycle enterprise:ControlImplementation ;
+.
+iso-31000:MonitoringAndReviewISO31000
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Monitoring and Review (Cl. 6.6)"@en ;
+    skos:definition "Both the risk and the controls applied must be continually monitored and reviewed — reporting frequency, KRI thresholds, and escalation criteria defined. AI model performance metrics function as KRIs that trigger risk re-evaluation."@en ;
+    skos:inScheme   iso-31000:Scheme ;
+    prov:wasDerivedFrom "ISO 31000:2018, Clause 6.6" ;
+    ai:mappedToDimension enterprise:RiskManagement ;
+    ai:appliesToLifecycle enterprise:MonitoringAndReview ;
+.

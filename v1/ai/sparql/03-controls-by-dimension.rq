@@ -1,0 +1,41 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# 03  Controls Mapped to Each Governance Dimension
+# Purpose : For each canonical ai:Dimension (Safety, Security, Privacy, …)
+#           list all Controls across all frameworks that are tagged to it.
+# Use case: Helps CISO team build a control catalogue aligned to dimensions.
+# ─────────────────────────────────────────────────────────────────────────────
+
+PREFIX ai:   <https://iqns.org/v0/ai#>
+PREFIX dct:  <http://purl.org/dc/terms/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+SELECT DISTINCT
+    ?dimensionLabel
+    ?controlLabel
+    ?controlDef
+    ?frameworkLabel
+    ?citation
+WHERE {
+    # Dimension: canonical ai: instances
+    ?dimension  a ai:Dimension ;
+                skos:prefLabel ?dimensionLabel .
+
+    # Control mapped to this dimension
+    ?control    a ai:Control ;
+                ai:mappedToDimension ?dimension ;
+                skos:prefLabel       ?controlLabel .
+
+    OPTIONAL { ?control skos:definition  ?controlDef  . }
+    OPTIONAL { ?control dct:source       ?citation    . }
+
+    # Trace back to the framework
+    OPTIONAL {
+        ?req  ai:hasControl  ?control .
+        ?fw   ai:hasRequirement ?req .
+        ?fw   skos:prefLabel    ?frameworkLabel .
+    }
+
+    FILTER ( lang(?dimensionLabel) = "en" )
+    FILTER ( lang(?controlLabel)   = "en" )
+}
+ORDER BY ?dimensionLabel ?frameworkLabel ?controlLabel

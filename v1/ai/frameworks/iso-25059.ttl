@@ -1,0 +1,117 @@
+@prefix iso-25059: <https://iqns.org/v0/iso-25059#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+iso-25059:Ontology a owl:Ontology ;
+    dct:title  "ISO/IEC 25059:2023 — Quality Model for AI Systems"@en ;
+    prov:wasDerivedFrom <https://www.iso.org/standard/80655.html> .
+
+iso-25059:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "ISO/IEC 25059:2023"@en ;
+    skos:definition "Extension of the SQuaRE quality model to AI-specific quality characteristics."@en .
+
+iso-25059:ISO25059
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "ISO/IEC 25059:2023"@en ;
+    skos:definition "Defines quality characteristics and sub-characteristics for AI-based systems, extending ISO 25010."@en ;
+    skos:inScheme   iso-25059:Scheme ;
+    dct:publisher   "ISO/IEC JTC 1/SC 42"@en ;
+    dct:issued      "2023"^^xsd:gYear ;
+.
+
+# ── AI Quality Characteristics ────────────────────────────────────────────────
+
+iso-25059:Correctness
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Correctness"@en ;
+    skos:definition "AI system outputs are factually accurate with respect to the ground truth."@en ;
+    skos:inScheme   iso-25059:Scheme ; prov:wasDerivedFrom "ISO/IEC 25059:2023 §5" ;
+    skos:broadMatch ai:Reliability ;
+.
+iso-25059:Completeness
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Completeness"@en ;
+    skos:definition "AI system captures all necessary information without material omissions."@en ;
+    skos:inScheme   iso-25059:Scheme ; prov:wasDerivedFrom "ISO/IEC 25059:2023 §5" ;
+    skos:broadMatch ai:Reliability ;
+.
+iso-25059:Consistency
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Consistency"@en ;
+    skos:definition "AI system produces equivalent outputs for equivalent inputs across contexts."@en ;
+    skos:inScheme   iso-25059:Scheme ; prov:wasDerivedFrom "ISO/IEC 25059:2023 §5" ;
+    skos:broadMatch ai:Robustness ;
+.
+iso-25059:Adaptability
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Adaptability"@en ;
+    skos:definition "AI system can be updated or retrained to maintain performance as conditions change."@en ;
+    skos:inScheme   iso-25059:Scheme ; prov:wasDerivedFrom "ISO/IEC 25059:2023 §5" ;
+    skos:broadMatch ai:Robustness ;
+.
+iso-25059:Interpretability
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Interpretability"@en ;
+    skos:definition "Degree to which outputs of the AI system can be understood by a human."@en ;
+    skos:inScheme   iso-25059:Scheme ; prov:wasDerivedFrom "ISO/IEC 25059:2023 §5" ;
+    skos:exactMatch ai:Explainability ;
+.
+iso-25059:Controllability
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Controllability"@en ;
+    skos:definition "Degree to which AI behaviour can be directed, corrected, or halted by operators."@en ;
+    skos:inScheme   iso-25059:Scheme ; prov:wasDerivedFrom "ISO/IEC 25059:2023 §5" ;
+    skos:exactMatch ai:HumanOversight ;
+.
+iso-25059:Operability
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Operability"@en ;
+    skos:definition "Users can effectively operate and interact with the AI system."@en ;
+    skos:inScheme   iso-25059:Scheme ; prov:wasDerivedFrom "ISO/IEC 25059:2023 §5" ;
+    skos:broadMatch ai:Safety ;
+.
+iso-25059:DataQuality
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Data Quality"@en ;
+    skos:definition "Training and operational data meets accuracy, completeness, timeliness, and fitness-for-purpose standards."@en ;
+    skos:inScheme   iso-25059:Scheme ; prov:wasDerivedFrom "ISO/IEC 25059:2023 §6" ;
+    skos:broadMatch ai:Reliability ;
+.
+iso-25059:ModelQuality
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Model Quality"@en ;
+    skos:definition "The AI model meets defined performance metrics and generalisation requirements."@en ;
+    skos:inScheme   iso-25059:Scheme ; prov:wasDerivedFrom "ISO/IEC 25059:2023 §6" ;
+    skos:broadMatch ai:Reliability ;
+.
+
+# ── Quality Assessment Controls ───────────────────────────────────────────────
+
+iso-25059:BenchmarkTesting
+    a ai:Control ; a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "Benchmark Testing"@en ;
+    skos:definition "Evaluate AI quality against standardised datasets or evaluation suites."@en ;
+    skos:inScheme   iso-25059:Scheme ; prov:wasDerivedFrom "ISO/IEC 25059:2023 §7" ;
+    skos:broadMatch ai:ConformityAssessment ;
+.
+iso-25059:HoldoutValidation
+    a ai:Control ; a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "Hold-out Validation"@en ;
+    skos:definition "Assess model generalisation using data withheld from training."@en ;
+    skos:inScheme   iso-25059:Scheme ; prov:wasDerivedFrom "ISO/IEC 25059:2023 §7" ;
+    skos:broadMatch ai:RiskAssessment ;
+.
+iso-25059:ContinualEvaluation
+    a ai:Control ; a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "Continual Evaluation"@en ;
+    skos:definition "Monitor AI quality metrics in production and compare against baseline thresholds."@en ;
+    skos:inScheme   iso-25059:Scheme ; prov:wasDerivedFrom "ISO/IEC 25059:2023 §8" ;
+    ai:appliesToLifecycle ai:Monitoring ;
+    skos:broadMatch ai:Reliability ;
+.

@@ -1,0 +1,41 @@
+# ──────────────────────────────────────────────────────────────────────────────
+# 02 — High-Risk & Unacceptable-Risk Obligations Across All Frameworks
+# Surfaces every Requirement or Obligation whose associated risk maps to
+# HighRisk or UnacceptableRisk at the canonical (ai:) level.
+#
+# CISO USE: Prioritised obligation shortlist — these are the "must-do" items.
+# ──────────────────────────────────────────────────────────────────────────────
+
+PREFIX ai:   <https://iqns.org/v0/ai#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX dct:  <http://purl.org/dc/terms/>
+
+SELECT DISTINCT ?framework ?frameworkLabel ?item ?itemLabel ?itemType ?riskLevel ?source
+WHERE {
+    ?framework a ai:Framework ;
+               skos:prefLabel ?frameworkLabel .
+
+    ?item skos:inScheme ?scheme ;
+          skos:prefLabel ?itemLabel .
+
+    # Accept Requirements and Obligations
+    { ?item a ai:Requirement . BIND("Requirement" AS ?itemType) }
+    UNION
+    { ?item a ai:Obligation  . BIND("Obligation"  AS ?itemType) }
+    UNION
+    { ?item a ai:Risk        . BIND("Risk"         AS ?itemType) }
+
+    # Risk must map to High or Unacceptable at the canonical level
+    ?item ai:hasRiskLevel ?rl .
+    { ?rl skos:exactMatch ai:HighRisk         . BIND("High Risk"         AS ?riskLevel) }
+    UNION
+    { ?rl skos:exactMatch ai:UnacceptableRisk . BIND("Unacceptable Risk" AS ?riskLevel) }
+    UNION
+    { FILTER(?rl IN (ai:HighRisk, ai:UnacceptableRisk))
+      BIND(STRAFTER(STR(?rl), "#") AS ?riskLevel) }
+
+    OPTIONAL { ?item dct:source ?source . }
+    FILTER(LANG(?frameworkLabel) = "en" || LANG(?frameworkLabel) = "")
+    FILTER(LANG(?itemLabel)      = "en" || LANG(?itemLabel)      = "")
+}
+ORDER BY ?frameworkLabel ?riskLevel ?itemLabel

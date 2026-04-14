@@ -1,0 +1,58 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "Network graph for crosswalk relationships",
+  "title": "{{chart.title}}",
+  "data": [
+    {
+      "name": "nodes",
+      "values": {{nodes}}
+    },
+    {
+      "name": "links",
+      "values": {{links}}
+    }
+  ],
+  "scales": [
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": ["ai", "enterprise", "hse", "governance"],
+      "range": ["#1f77b4", "#2ca02c", "#ff7f0e", "#9467bd"]
+    }
+  ],
+  "marks": [
+    {
+      "type": "path",
+      "from": { "data": "links" },
+      "encode": {
+        "enter": {
+          "stroke": { "value": "#999" },
+          "strokeWidth": { "value": 1.5 }
+        }
+      },
+      "transform": [
+        {
+          "type": "linkpath",
+          "shape": "line",
+          "sourceX": "datum.source.x",
+          "sourceY": "datum.source.y",
+          "targetX": "datum.target.x",
+          "targetY": "datum.target.y"
+        }
+      ]
+    },
+    {
+      "type": "symbol",
+      "from": { "data": "nodes" },
+      "encode": {
+        "enter": {
+          "size": { "value": 200 },
+          "fill": { "scale": "color", "field": "group" },
+          "x": { "field": "x" },
+          "y": { "field": "y" },
+          "tooltip": { "signal": "datum.name" }
+        }
+      }
+    }
+  ]
+}

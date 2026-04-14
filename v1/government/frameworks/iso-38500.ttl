@@ -1,0 +1,119 @@
+@prefix iso-38500: <https://iqns.org/v0/iso-38500#> .
+@prefix gov:  <https://iqns.org/v0/government#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+iso-38500:Ontology a owl:Ontology ;
+    dct:title       "ISO/IEC 38500: IT Governance"@en ;
+    prov:wasDerivedFrom <https://www.iso.org/standard/62816.html> ;
+    owl:imports     <https://iqns.org/v0/ai#> ;
+    owl:versionInfo "2015" .
+
+iso-38500:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "ISO/IEC 38500:2015 --- Information Technology -- Governance of IT for the Organisation"@en ;
+    skos:definition "International standard providing a framework for effective, efficient, and acceptable use of IT within organisations. Applicable to public and private sector entities. Government bodies increasingly apply ISO 38500 to AI governance as AI becomes core IT infrastructure."@en .
+
+iso-38500:ISO38500
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "ISO/IEC 38500:2015 --- Governance of IT for the Organisation"@en ;
+    skos:definition "Provides principles, definitions, and a model for governing IT usage. Adopted in 30+ countries as the basis for national IT governance standards. The Evaluate-Direct-Monitor (EDM) model and six principles are directly applicable to AI governance structure within government departments."@en ;
+    skos:inScheme   iso-38500:Scheme ;
+    dct:publisher   "ISO/IEC Joint Technical Committee 1 (JTC 1/SC 40)"@en ;
+    dct:issued      "2015"^^xsd:gYear ;
+    prov:wasDerivedFrom <https://www.iso.org/standard/62816.html> ;
+    ai:mappedToDimension ai:Accountability ;
+    ai:mappedToDimension ai:Transparency ;
+    ai:mappedToDimension ai:HumanOversight ;
+.
+
+iso-38500:Responsibility
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Principle 1: Responsibility"@en ;
+    skos:definition "Individuals and groups within the organisation understand and accept their responsibilities in respect to both supply and demand for IT. For AI governance: clear ownership chains for AI systems, training data, and model outputs must be established and documented."@en ;
+    skos:inScheme   iso-38500:Scheme ;
+    prov:wasDerivedFrom "ISO/IEC 38500:2015 Section 6.2" ;
+    ai:mappedToDimension ai:Accountability ;
+.
+
+iso-38500:Strategy
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Principle 2: Strategy"@en ;
+    skos:definition "The governing body ensures that IT plans satisfy current and future business needs. For AI: approve AI strategy and roadmap at board or equivalent level; ensure AI capabilities are aligned to mission and do not create unacceptable risk."@en ;
+    skos:inScheme   iso-38500:Scheme ;
+    prov:wasDerivedFrom "ISO/IEC 38500:2015 Section 6.3" ;
+    ai:mappedToDimension ai:Accountability ;
+.
+
+iso-38500:Acquisition
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Principle 3: Acquisition"@en ;
+    skos:definition "IT acquisitions are made for valid reasons, on the basis of appropriate analysis, with clear decision-making. For AI procurement: evidence-based vendor due diligence including model cards, bias assessments, and third-party audit reports."@en ;
+    skos:inScheme   iso-38500:Scheme ;
+    prov:wasDerivedFrom "ISO/IEC 38500:2015 Section 6.4" ;
+    ai:mappedToDimension ai:Accountability ;
+.
+
+iso-38500:Performance
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Principle 4: Performance"@en ;
+    skos:definition "IT is fit for purpose in supporting the organisation and providing services with the quality required. For AI: runtime performance metrics, model drift monitoring, and periodic revalidation are governance artifacts tracked at executive level."@en ;
+    skos:inScheme   iso-38500:Scheme ;
+    prov:wasDerivedFrom "ISO/IEC 38500:2015 Section 6.5" ;
+    ai:mappedToDimension ai:Reliability ;
+.
+
+iso-38500:Conformance
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Principle 5: Conformance"@en ;
+    skos:definition "IT complies with all mandatory legislation and regulations, and internal policies. For AI in government: requires mapping of applicable AI regulations (EU AI Act, national AI laws, sector rules) to deployed AI systems and evidence of conformity."@en ;
+    skos:inScheme   iso-38500:Scheme ;
+    prov:wasDerivedFrom "ISO/IEC 38500:2015 Section 6.6" ;
+    ai:mappedToDimension ai:Transparency ;
+.
+
+iso-38500:HumanBehaviour
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Principle 6: Human Behaviour"@en ;
+    skos:definition "IT policies, practices, and decisions respect human behaviour including current and evolving needs of all people involved. For AI: explainability of automated decisions, redress mechanisms, and human-in-the-loop requirements for decisions affecting citizens."@en ;
+    skos:inScheme   iso-38500:Scheme ;
+    prov:wasDerivedFrom "ISO/IEC 38500:2015 Section 6.7" ;
+    ai:mappedToDimension ai:HumanOversight ;
+    ai:mappedToDimension ai:Fairness ;
+.
+
+iso-38500:Evaluate
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Evaluate (EDM Task 1)"@en ;
+    skos:definition "Governing bodies shall examine and judge current and future use of IT including strategies, proposals, and arrangements. For AI: periodically evaluate AI portfolio for alignment with mission, risk appetite, and emerging regulatory requirements."@en ;
+    skos:inScheme   iso-38500:Scheme ;
+    prov:wasDerivedFrom "ISO/IEC 38500:2015 Section 5.2" ;
+    ai:appliesToLifecycle ai:Design ;
+    ai:mappedToDimension ai:Accountability ;
+.
+
+iso-38500:Direct
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Direct (EDM Task 2)"@en ;
+    skos:definition "Governing bodies shall prepare and issue directives through plans, policies, and such, to ensure that IT investment, operation, and adoption are appropriate to meet business objectives. For AI: board-level AI policy statements, acceptable use policies, and procurement requirements."@en ;
+    skos:inScheme   iso-38500:Scheme ;
+    prov:wasDerivedFrom "ISO/IEC 38500:2015 Section 5.3" ;
+    ai:appliesToLifecycle ai:Design ;
+    ai:mappedToDimension ai:Accountability ;
+.
+
+iso-38500:Monitor
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Monitor (EDM Task 3)"@en ;
+    skos:definition "Governing bodies shall monitor performance of IT and conformance to policy through measurement and reporting. For AI: KPIs for model accuracy, fairness metrics, incident logs, and audit reports feed into the governing body at defined intervals."@en ;
+    skos:inScheme   iso-38500:Scheme ;
+    prov:wasDerivedFrom "ISO/IEC 38500:2015 Section 5.4" ;
+    ai:appliesToLifecycle ai:Deploy ;
+    ai:mappedToDimension ai:Accountability ;
+    ai:mappedToDimension ai:Transparency ;
+.

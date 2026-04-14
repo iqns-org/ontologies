@@ -1,0 +1,139 @@
+@prefix solvency-ii: <https://iqns.org/v0/solvency-ii#> .
+@prefix ing:  <https://iqns.org/v0/insgraph#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+solvency-ii:Ontology a owl:Ontology ;
+    dct:title       "Solvency II — EU Insurance Capital and Governance Framework"@en ;
+    prov:wasDerivedFrom <https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32009L0138> ;
+    owl:versionInfo "Directive 2009/138/EC (Solvency II); Omnibus II Directive 2014/51/EU; Solvency II Review (EIOPA 2020); delegated acts Regulation (EU) 2015/35" ;
+.
+
+solvency-ii:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "Solvency II"@en ;
+    skos:definition "EU framework for insurance regulation covering quantitative requirements (Pillar I: SCR/MCR), governance (Pillar II: ORSA, key functions, internal model approval), and disclosure (Pillar III: SFCR/RSR). AI models used in pricing, reserving, underwriting, and investment are embedded in Pillar I and II obligations."@en .
+
+solvency-ii:SolvencyII
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "Solvency II — Directive 2009/138/EC"@en ;
+    skos:definition "EU prudential regulatory framework for insurance undertakings — a three-pillar structure: (I) Quantitative requirements (SCR, MCR, technical provisions); (II) Governance and risk management (ORSA, internal model approval, actuarial function); (III) Public and supervisory reporting (SFCR, RSR)."@en ;
+    skos:inScheme   solvency-ii:Scheme ;
+    dct:publisher   "European Parliament and Council; EIOPA"@en ;
+    dct:issued      "2009"^^xsd:gYear ;
+.
+
+# ── Pillar I: Quantitative Requirements ──────────────────────────────────────
+
+solvency-ii:SolvencyCapitalRequirement
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Solvency Capital Requirement (SCR)"@en ;
+    skos:definition "Insurers must hold eligible own funds ≥ SCR — computed using the Standard Formula or an approved Internal Model. AI models used for actuarial reserving or risk aggregation feed directly into SCR calculation; Internal Model AI components require supervisor pre-approval."@en ;
+    skos:inScheme   solvency-ii:Scheme ;
+    prov:wasDerivedFrom "Solvency II Directive Art. 100–126" ;
+    ing:hasSolvencyCapitalImpact "true"^^xsd:boolean ;
+    ai:mappedToDimension ing:SolvencyRisk ;
+    ai:appliesToLifecycle ing:Underwriting ;
+.
+solvency-ii:MinimumCapitalRequirement
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Minimum Capital Requirement (MCR)"@en ;
+    skos:definition "Hard lower bound on capital — breach triggers withdrawal of authorisation. MCR is calculated as a linear function of technical provisions and written premiums; AI pricing models that mis-estimate premiums affect MCR accuracy."@en ;
+    skos:inScheme   solvency-ii:Scheme ;
+    prov:wasDerivedFrom "Solvency II Directive Art. 128–131" ;
+    ing:hasSolvencyCapitalImpact "true"^^xsd:boolean ;
+    ai:mappedToDimension ing:SolvencyRisk ;
+.
+solvency-ii:TechnicalProvisionsObligation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Technical Provisions — Best Estimate + Risk Margin"@en ;
+    skos:definition "Insurers must hold technical provisions equal to the current amount they would need to transfer their obligations to a third party — best estimate (probability-weighted liability cash flows) plus risk margin. AI/ML reserving models must be certified by the Actuarial Function and subject to the use test."@en ;
+    skos:inScheme   solvency-ii:Scheme ;
+    prov:wasDerivedFrom "Solvency II Directive Art. 76–86; Regulation (EU) 2015/35 Art. 8" ;
+    ing:requiresActuarialCertification "true"^^xsd:boolean ;
+    ai:mappedToDimension ing:ActuarialRisk ;
+    ai:mappedToDimension ing:SolvencyRisk ;
+.
+solvency-ii:InternalModelApproval
+    a ai:Obligation ; a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "Internal Model Supervisory Pre-Approval"@en ;
+    skos:definition "Insurers wishing to use a full or partial internal model for SCR must obtain prior supervisory approval demonstrating: use test (model genuinely used in risk management), statistical quality, calibration, validation, documentation, and profit-and-loss attribution. ML models embedded in internal models inherit all these obligations."@en ;
+    skos:inScheme   solvency-ii:Scheme ;
+    prov:wasDerivedFrom "Solvency II Directive Art. 112–126; EIOPA Internal Model Guidelines" ;
+    ing:hasSolvencyCapitalImpact "true"^^xsd:boolean ;
+    ai:mappedToDimension ing:ActuarialRisk ;
+    ai:mappedToDimension ing:SolvencyRisk ;
+    ai:mappedToDimension ai:Accountability ;
+.
+
+# ── Pillar II: Governance and Risk Management ─────────────────────────────────
+
+solvency-ii:SystemOfGovernanceObligation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "System of Governance (Art. 41)"@en ;
+    skos:definition "Insurers must have an effective system of governance ensuring sound and prudent management — including four key functions (Risk Management, Compliance, Internal Audit, Actuarial), clear organisational structure, written policies reviewed annually, and fit-and-proper assessment. AI governance must be embedded in the system of governance."@en ;
+    skos:inScheme   solvency-ii:Scheme ;
+    prov:wasDerivedFrom "Solvency II Directive Art. 41–49" ;
+    ai:mappedToDimension ing:SolvencyRisk ;
+    ai:mappedToDimension ai:Accountability ;
+.
+solvency-ii:ORSAObligation
+    a ai:Obligation ; a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "Own Risk and Solvency Assessment (ORSA)"@en ;
+    skos:definition "Insurers must conduct an ORSA at least annually — assessing: overall solvency needs given risk profile, compliance with SCR/MCR, forward-looking SCR projections, and any significant deviations from standard formula assumptions. AI-specific risks (model risk, algorithmic underwriting concentration) must be addressed in ORSA narrative."@en ;
+    skos:inScheme   solvency-ii:Scheme ;
+    prov:wasDerivedFrom "Solvency II Directive Art. 45; EIOPA ORSA Guidelines" ;
+    ai:mappedToDimension ing:SolvencyRisk ;
+    ai:mappedToDimension ing:ActuarialRisk ;
+    ai:appliesToLifecycle ing:Underwriting ;
+.
+solvency-ii:ActuarialFunctionObligation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Actuarial Function — Technical Provisions Certification"@en ;
+    skos:definition "Actuarial Function must coordinate calculation of technical provisions, express opinion on underwriting policy and reinsurance arrangements, and certify appropriateness of AI models used in reserving. Must opine on adequacy and appropriateness of AI pricing and reserve models."@en ;
+    skos:inScheme   solvency-ii:Scheme ;
+    prov:wasDerivedFrom "Solvency II Directive Art. 48" ;
+    ing:requiresActuarialCertification "true"^^xsd:boolean ;
+    ai:mappedToDimension ing:ActuarialRisk ;
+    ai:mappedToDimension ai:Accountability ;
+.
+
+# ── Pillar III: Reporting and Disclosure ──────────────────────────────────────
+
+solvency-ii:SFCRObligation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Solvency and Financial Condition Report (SFCR)"@en ;
+    skos:definition "Annual public report covering: business and performance, system of governance, risk profile, valuation, and capital management. Where AI/ML models are material to SCR or technical provisions, SFCR must describe model use and governance oversight."@en ;
+    skos:inScheme   solvency-ii:Scheme ;
+    prov:wasDerivedFrom "Solvency II Directive Art. 51; Regulation (EU) 2015/35 Annex XX" ;
+    ai:mappedToDimension ai:Transparency ;
+    ai:mappedToDimension ing:SolvencyRisk ;
+.
+solvency-ii:RSRObligation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Regular Supervisory Report (RSR)"@en ;
+    skos:definition "Confidential report to the NCA containing full detail on system of governance and risk profile — detailed AI model governance information provided to supervisor through the RSR channel."@en ;
+    skos:inScheme   solvency-ii:Scheme ;
+    prov:wasDerivedFrom "Solvency II Directive Art. 35; Regulation (EU) 2015/35 Annex XLIV" ;
+    ai:mappedToDimension ai:Accountability ;
+    ai:mappedToDimension ing:SolvencyRisk ;
+.
+
+# ── Customer Conduct ──────────────────────────────────────────────────────────
+
+solvency-ii:FairTreatmentObligation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Fair Treatment of Policyholders (IDD / EIOPA)"@en ;
+    skos:definition "Insurers must ensure eligible claimants receive fair and timely compensation — AI claims triage and automated settlement must not systematically under-settle to improve profitability. EIOPA Digital Ethics Guidelines extend this to algorithmic underwriting fairness. Cross-reference to Insurance Distribution Directive (IDD) Art. 17 best interest of customer."@en ;
+    skos:inScheme   solvency-ii:Scheme ;
+    prov:wasDerivedFrom "EIOPA Digital Ethics Principles 2021; IDD Directive 2016/97/EU Art. 17" ;
+    ai:mappedToDimension ing:CustomerFairness ;
+    ai:mappedToDimension ing:ClaimsIntegrity ;
+    ai:mappedToDimension ai:Fairness ;
+    ai:appliesToLifecycle ing:ClaimsHandling ;
+.

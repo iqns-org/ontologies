@@ -1,0 +1,331 @@
+@prefix playbooks: <https://iqns.org/v0/ai/playbooks#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix euai: <https://iqns.org/v0/eu-ai-act#> .
+@prefix nrmf: <https://iqns.org/v0/nist-ai-rmf#> .
+@prefix iso42001: <https://iqns.org/v0/iso-42001#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# ── Ontology ────────────────────────────────────────────────────────────────
+
+playbooks:Ontology a owl:Ontology ;
+    dct:title "AI Governance Playbooks"@en ;
+    dct:description "Curated concept collections addressing specific compliance scenarios." ;
+    dct:issued "2026-03-30"^^xsd:date ;
+    owl:versionInfo "0.1" ;
+.
+
+playbooks:PlaybookScheme a skos:ConceptScheme ;
+    skos:prefLabel "Governance Playbooks"@en ;
+.
+
+# ════════════════════════════════════════════════════════════════════════════
+# PLAYBOOK 1: High-Risk AI System Compliance
+# ════════════════════════════════════════════════════════════════════════════
+
+playbooks:HighRiskSystemPlaybook
+    a skos:Collection ;
+    dct:title "High-Risk AI System Compliance"@en ;
+    dct:description "Obligations and controls for AI systems rated as high-risk under EU AI Act and NIST frameworks." ;
+    dct:issued "2026-03-30"^^xsd:date ;
+    skos:member
+        playbooks:HighRiskAssessment,
+        playbooks:HighRiskHumanOversight,
+        playbooks:HighRiskTransparency,
+        playbooks:HighRiskConformity,
+        playbooks:HighRiskMonitoring ;
+    skos:inScheme playbooks:PlaybookScheme ;
+.
+
+playbooks:HighRiskAssessment
+    a skos:Concept ;
+    skos:prefLabel "Risk Assessment & Classification"@en ;
+    skos:definition "Determine high-risk status; document impact on affected persons." ;
+    skos:related euai:HighRiskAISystem ;
+    skos:inScheme playbooks:PlaybookScheme ;
+.
+
+playbooks:HighRiskHumanOversight
+    a skos:Concept ;
+    skos:prefLabel "Human Oversight Implementation"@en ;
+    skos:definition "Design and deploy human review and override capabilities." ;
+    skos:related euai:HumanOversightRequirement ;
+    skos:inScheme playbooks:PlaybookScheme ;
+.
+
+playbooks:HighRiskTransparency
+    a skos:Concept ;
+    skos:prefLabel "Transparency & Documentation"@en ;
+    skos:definition "Create technical documentation, model cards, and user instructions." ;
+    skos:related euai:TransparencyObligation ;
+    skos:inScheme playbooks:PlaybookScheme ;
+.
+
+playbooks:HighRiskConformity
+    a skos:Concept ;
+    skos:prefLabel "Conformity Assessment"@en ;
+    skos:definition "Commission third-party assessment; prepare conformity dossier." ;
+    skos:related euai:ConformityAssessment ;
+    skos:inScheme playbooks:PlaybookScheme ;
+.
+
+playbooks:HighRiskMonitoring
+    a skos:Concept ;
+    skos:prefLabel "Post-Deployment Monitoring"@en ;
+    skos:definition "Establish incident reporting, performance monitoring, and update procedures." ;
+    skos:related euai:PostMarketMonitoring ;
+    skos:inScheme playbooks:PlaybookScheme ;
+    skos:inScheme playbooks:PlaybookScheme ;
+.
+
+# ════════════════════════════════════════════════════════════════════════════
+# PLAYBOOK 2: Prohibited Practices Screening
+# ════════════════════════════════════════════════════════════════════════════
+
+playbooks:ProhibitedPracticesPlaybook
+    a skos:Collection ;
+    dct:title "Prohibited Practices Screening"@en ;
+    dct:description "Intake checklist to identify AI use cases that are categorically prohibited." ;
+    dct:audience "ai:Deployer ai:LegalCounsel"@en ;
+    dct:issued "2026-03-30"^^xsd:date ;
+    skos:member
+        playbooks:ProhibitedEmotionRecognition,
+        playbooks:ProhibitedBiometricCategorization,
+        playbooks:ProhibitedSubversiveManipulation,
+        playbooks:ProhibitedChildProtection ;
+    skos:inScheme playbooks:PlaybookScheme ;
+.
+
+playbooks:ProhibitedEmotionRecognition
+    a skos:Concept ;
+    skos:prefLabel "Prohibited: Emotion Recognition in Workplace"@en ;
+    skos:definition "Cannot deploy AI to infer emotions/behaviour in workplace for rating/sanctions." ;
+    skos:related euai:WorkplaceEmotionRecognition ;
+    skos:inScheme playbooks:PlaybookScheme ;
+.
+
+playbooks:ProhibitedBiometricCategorization
+    a skos:Concept ;
+    skos:prefLabel "Prohibited: Real-Time Biometric Surveillance"@en ;
+    skos:definition "Real-time identification by facial recognition in public spaces prohibited (limited exceptions)." ;
+    skos:related euai:RealTimeBiometricSurveillance ;
+    skos:inScheme playbooks:PlaybookScheme ;
+.
+
+playbooks:ProhibitedSubversiveManipulation
+    a skos:Concept ;
+    skos:prefLabel "Prohibited: Subversive Manipulation"@en ;
+    skos:definition "AI designed to exploit vulnerabilities to distort behaviour is prohibited." ;
+    skos:related euai:SubversiveManipulation ;
+    skos:inScheme playbooks:PlaybookScheme ;
+.
+
+playbooks:ProhibitedChildProtection
+    a skos:Concept ;
+    skos:prefLabel "Prohibited: Unsafe Child Targeting"@en ;
+    skos:definition "Cannot target AI systems at children in ways that harm their physical/psychological safety." ;
+    skos:related euai:ChildSafetyRisk ;
+    skos:inScheme playbooks:PlaybookScheme ;
+.
+
+# ════════════════════════════════════════════════════════════════════════════
+# PLAYBOOK 3: AI Security & Adversarial Robustness
+# ════════════════════════════════════════════════════════════════════════════
+
+playbooks:SecurityPlaybook
+    a skos:Collection ;
+    dct:title "AI Security & Robustness"@en ;
+    dct:description "Controls for adversarial attack, data poisoning, prompt injection, and model extraction." ;
+    dct:issued "2026-03-30"^^xsd:date ;
+    skos:member
+        playbooks:SecurityThreatModeling,
+        playbooks:SecurityInputValidation,
+        playbooks:SecuritySupplyChain,
+        playbooks:SecurityIncidentResponse ;
+    skos:inScheme playbooks:PlaybookScheme ;
+.
+
+playbooks:SecurityThreatModeling
+    a skos:Concept ;
+    skos:prefLabel "Threat Model & Adversarial Testing"@en ;
+    skos:definition "Identify attack surfaces; conduct red-team exercises and adversarial testing." ;
+    ai:appliesToDimension ai:Security ;
+    skos:inScheme playbooks:PlaybookScheme ;
+.
+
+playbooks:SecurityInputValidation
+    a skos:Concept ;
+    skos:prefLabel "Input/Output Validation"@en ;
+    skos:definition "Sanitize inputs (prevent injection); validate outputs (prevent leakage)." ;
+    ai:appliesToDimension ai:Security ;
+    skos:inScheme playbooks:PlaybookScheme ;
+.
+
+playbooks:SecuritySupplyChain
+    a skos:Concept ;
+    skos:prefLabel "Supply Chain Risk"@en ;
+    skos:definition "Vet third-party models, frameworks, data sources for poisoning/tampering." ;
+    ai:appliesToDimension ai:Security ;
+    skos:inScheme playbooks:PlaybookScheme;
+.
+
+playbooks:SecurityIncidentResponse
+    a skos:Concept ;
+    skos:prefLabel "Incident Response Plan"@en ;
+    skos:definition "Define procedures for detecting, responding to, and reporting AI security incidents." ;
+    ai:appliesToDimension ai:Security ;
+    skos:inScheme playbooks:PlaybookScheme ;
+.
+
+# ════════════════════════════════════════════════════════════════════════════
+# PLAYBOOK 4: Fairness, Bias Audit & Non-Discrimination
+# ════════════════════════════════════════════════════════════════════════════
+
+playbooks:FairnessPlaybook
+    a skos:Collection ;
+    dct:title "Fairness & Non-Discrimination"@en ;
+    dct:description "Bias testing, fairness metrics, differential impact analysis, mitigation strategies." ;
+    dct:issued "2026-03-30"^^xsd:date ;
+    skos:member
+        playbooks:FairnessAudit,
+        playbooks:FairnessMetrics,
+        playbooks:FairnessTrainingData,
+        playbooks:FairnessTransparency ;
+    skos:inScheme playbooks:PlaybookScheme ;
+.
+
+playbooks:FairnessAudit
+    a skos:Concept ;
+    skos:prefLabel "Bias Audit & Testing"@en ;
+    skos:definition "Structured testing for disparate impact across protected characteristics." ;
+    ai:appliesToDimension ai:Fairness ;
+    ai:assessedBy ai:BiasAudit ;
+    skos:inScheme playbooks:PlaybookScheme ;
+.
+
+playbooks:FairnessMetrics
+    a skos:Concept ;
+    skos:prefLabel "Fairness Metrics & Monitoring"@en ;
+    skos:definition "Define fairness metrics; monitor performance drift across demographic groups." ;
+    ai:appliesToDimension ai:Fairness ;
+    skos:inScheme playbooks:PlaybookScheme ;
+.
+
+playbooks:FairnessTrainingData
+    a skos:Concept ;
+    skos:prefLabel "Training Data Equity"@en ;
+    skos:definition "Audit data for representation gaps; balance or reweight underrepresented groups." ;
+    ai:appliesToDimension ai:Fairness ;
+    skos:inScheme playbooks:PlaybookScheme ;
+.
+
+playbooks:FairnessTransparency
+    a skos:Concept ;
+    skos:prefLabel "Fairness Transparency to Users"@en ;
+    skos:definition "Communicate fairness limitations & known biases to end users/affected persons." ;
+    ai:appliesToDimension ai:Transparency ;
+    skos:inScheme playbooks:PlaybookScheme ;
+.
+
+# ════════════════════════════════════════════════════════════════════════════
+# PLAYBOOK 5: Data Governance & Privacy
+# ════════════════════════════════════════════════════════════════════════════
+
+playbooks:PrivacyPlaybook
+    a skos:Collection ;
+    dct:title "Data Governance & Privacy"@en ;
+    dct:description "Data minimization, consent, retention, subject rights, GDPR/privacy law compliance." ;
+    dct:issued "2026-03-30"^^xsd:date ;
+    skos:member
+        playbooks:PrivacyMinimization,
+        playbooks:PrivacyConsent,
+        playbooks:PrivacyRetention,
+        playbooks:PrivacyRights ;
+    skos:inScheme playbooks:PlaybookScheme ;
+.
+
+playbooks:PrivacyMinimization
+    a skos:Concept ;
+    skos:prefLabel "Data Minimization"@en ;
+    skos:definition "Collect only data necessary for system purpose; implement differential privacy where feasible." ;
+    ai:appliesToDimension ai:Privacy ;
+    skos:inScheme playbooks:PlaybookScheme ;
+.
+
+playbooks:PrivacyConsent
+    a skos:Concept ;
+    skos:prefLabel "Consent & Legal Basis"@en ;
+    skos:definition "Document legal basis for processing; obtain explicit consent for special categories." ;
+    ai:appliesToDimension ai:Privacy ;
+    skos:inScheme playbooks:PlaybookScheme ;
+.
+
+playbooks:PrivacyRetention
+    a skos:Concept ;
+    skos:prefLabel "Data Retention & Deletion"@en ;
+    skos:definition "Define retention periods; implement secure deletion; audit for orphaned data." ;
+    ai:appliesToDimension ai:Privacy ;
+    skos:inScheme playbooks:PlaybookScheme ;
+.
+
+playbooks:PrivacyRights
+    a skos:Concept ;
+    skos:prefLabel "Data Subject Rights"@en ;
+    skos:definition "Implement mechanisms for access, portability, erasure, objection rights." ;
+    ai:appliesToDimension ai:Privacy ;
+    skos:inScheme playbooks:PlaybookScheme ;
+.
+
+# ════════════════════════════════════════════════════════════════════════════
+# PLAYBOOK 6: GenAI / LLM Specific Risks
+# ════════════════════════════════════════════════════════════════════════════
+
+playbooks:GenAIPlaybook
+    a skos:Collection ;
+    dct:title "Generative AI / LLM Risks"@en ;
+    dct:description "Prompt injection, jailbreaking, hallucination, model training data liability, license respect." ;
+    dct:issued "2026-03-30"^^xsd:date ;
+    skos:member
+        playbooks:GenAIPromptSecurityAndInjection,
+        playbooks:GenAIHallucination,
+        playbooks:GenAITrainingDataLiability,
+        playbooks:GenAILicenseAndIPRespect ;
+    skos:inScheme playbooks:PlaybookScheme ;
+.
+
+playbooks:GenAIPromptSecurityAndInjection
+    a skos:Concept ;
+    skos:prefLabel "Prompt Injection & Adversarial Inputs"@en ;
+    skos:definition "Validate/sanitize user inputs; design system prompts to minimize manipulation." ;
+    ai:appliesToDimension ai:Security ;
+    skos:inScheme playbooks:PlaybookScheme ;
+.
+
+playbooks:GenAIHallucination
+    a skos:Concept ;
+    skos:prefLabel "Hallucination Detection & Mitigation"@en ;
+    skos:definition "Implement confidence thresholds; require citations; return 'I don't know' when uncertain." ;
+    ai:appliesToDimension ai:Reliability ;
+    skos:inScheme playbooks:PlaybookScheme ;
+.
+
+playbooks:GenAITrainingDataLiability
+    a skos:Concept ;
+    skos:prefLabel "Training Data Liability & Copyright"@en ;
+    skos:definition "Document training data sources; respect copyright; indemnify for third-party claims." ;
+    ai:appliesToDimension ai:Accountability ;
+    skos:inScheme playbooks:PlaybookScheme ;
+.
+
+playbooks:GenAILicenseAndIPRespect
+    a skos:Concept ;
+    skos:prefLabel "License & IP Respect"@en ;
+    skos:definition "Verify commercial usage rights for base models; comply with license terms." ;
+    ai:appliesToDimension ai:Accountability ;
+    skos:inScheme playbooks:PlaybookScheme ;
+.
+

@@ -1,0 +1,40 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# 06  Prohibited / Unacceptable-Risk AI Practices
+# Purpose : Enumerate every ai:Risk or ai:Requirement tagged as
+#           UnacceptableRisk across all frameworks.
+# Use case: CISO / Legal "banned list" — absolute red lines for any AI system.
+# ─────────────────────────────────────────────────────────────────────────────
+
+PREFIX ai:   <https://iqns.org/v0/ai#>
+PREFIX dct:  <http://purl.org/dc/terms/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+SELECT DISTINCT
+    ?item              ?itemLabel         ?itemType
+    ?frameworkLabel
+    ?riskCategoryLabel
+    ?citation
+WHERE {
+    { ?item a ai:Risk        . }
+    UNION
+    { ?item a ai:Requirement . }
+    UNION
+    { ?item a ai:Obligation  . }
+
+    ?item ai:hasRiskLevel  ?riskLevel ;
+          skos:prefLabel   ?itemLabel .
+
+    ?riskLevel skos:exactMatch ai:UnacceptableRisk .
+
+    OPTIONAL { ?item a ?itemType . FILTER ( ?itemType NOT IN (skos:Concept) ) }
+    OPTIONAL { ?item ai:hasRiskCategory ?cat . ?cat skos:prefLabel ?riskCategoryLabel . }
+    OPTIONAL { ?item dct:source         ?citation . }
+
+    OPTIONAL {
+        ?fw (ai:hasRequirement | ai:imposesObligation | ai:hasRisk) ?item ;
+            skos:prefLabel ?frameworkLabel .
+    }
+
+    FILTER ( lang(?itemLabel) = "en" )
+}
+ORDER BY ?frameworkLabel ?itemLabel

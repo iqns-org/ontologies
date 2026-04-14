@@ -1,0 +1,103 @@
+@prefix iso-22320: <https://iqns.org/v0/iso-22320#> .
+@prefix psg:  <https://iqns.org/v0/psgraph#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+iso-22320:Ontology a owl:Ontology ;
+    dct:title       "ISO 22320: Emergency Management -- Incident Management"@en ;
+    prov:wasDerivedFrom <https://www.iso.org/standard/67851.html> ;
+    owl:imports     <https://iqns.org/v0/ai#> ;
+    owl:versionInfo "2018" .
+
+iso-22320:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "ISO 22320:2018 --- Security and Resilience -- Emergency Management -- Requirements for Incident Management"@en ;
+    skos:definition "International standard specifying minimum requirements for incident management including command structures, information management, and coordination across organisations and jurisdictions. Used globally by emergency services, international humanitarian organisations, and civil protection agencies."@en .
+
+iso-22320:ISO22320
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "ISO 22320:2018 --- Emergency Management: Incident Management"@en ;
+    skos:definition "Specifies requirements and guidance for incident management applicable to any organisation with emergency management responsibilities. Provides the international reference architecture adopted by UN OCHA, EU Civil Protection Mechanism, and multiple national emergency agencies."@en ;
+    skos:inScheme   iso-22320:Scheme ;
+    dct:publisher   "International Organization for Standardization (ISO)"@en ;
+    dct:issued      "2018"^^xsd:gYear ;
+    prov:wasDerivedFrom <https://www.iso.org/standard/67851.html> ;
+    ai:mappedToDimension ai:Safety ;
+    ai:mappedToDimension ai:Reliability ;
+    ai:mappedToDimension ai:HumanOversight ;
+.
+
+iso-22320:IncidentCommandStructure
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Incident Command Structure (Section 4)"@en ;
+    skos:definition "Organisations shall establish an incident command structure with designated roles and clear authority. For AI-augmented emergency management: algorithmic decision-support must operate under named human commanders with override authority at every command level."@en ;
+    skos:inScheme   iso-22320:Scheme ;
+    prov:wasDerivedFrom "ISO 22320:2018 Section 4" ;
+    ai:mappedToDimension ai:HumanOversight ;
+.
+
+iso-22320:CommonOperationalPicture
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Common Operational Picture (Section 5.3)"@en ;
+    skos:definition "A shared and agreed situational awareness maintained across all responding organisations. AI sensor fusion and automated reporting tools must conform to COP data quality, provenance, and timeliness standards defined in the incident management plan."@en ;
+    skos:inScheme   iso-22320:Scheme ;
+    prov:wasDerivedFrom "ISO 22320:2018 Section 5.3" ;
+    ai:mappedToDimension ai:Transparency ;
+    ai:mappedToDimension ai:Reliability ;
+.
+
+iso-22320:InformationManagement
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Information Management Requirements (Section 5)"@en ;
+    skos:definition "Incident information must be collected, processed, and shared to all stakeholders who need it in a timely, accurate, and accessible manner. Automated triage and NLP-based incident summarisation tools are subject to accuracy and traceability controls."@en ;
+    skos:inScheme   iso-22320:Scheme ;
+    prov:wasDerivedFrom "ISO 22320:2018 Section 5" ;
+    ai:mappedToDimension ai:Reliability ;
+    ai:mappedToDimension ai:Transparency ;
+.
+
+iso-22320:ResourceManagement
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Resource Management (Section 6)"@en ;
+    skos:definition "Organisations must account for, request, mobilise, track, demobilise, and release resources. AI-driven resource optimisation algorithms must be auditable and interoperable with the standard resource-tracking data model."@en ;
+    skos:inScheme   iso-22320:Scheme ;
+    prov:wasDerivedFrom "ISO 22320:2018 Section 6" ;
+    ai:mappedToDimension ai:Reliability ;
+.
+
+iso-22320:AIHallucination_EmergencyRisk
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "AI Hallucination in Emergency Contexts Risk"@en ;
+    skos:definition "Generative AI tools used for incident summarisation, resource allocation, or public communication may produce plausible but false information during high-tempo incidents, undermining the Common Operational Picture and causing resource misallocation or public harm."@en ;
+    skos:inScheme   iso-22320:Scheme ;
+    prov:wasDerivedFrom "ISO 22320:2018" ;
+    ai:hasRiskLevel ai:HighRisk ;
+    ai:mappedToDimension ai:Safety ;
+    ai:mappedToDimension ai:Reliability ;
+.
+
+iso-22320:BiometricInEmergency
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "Biometric Surveillance in Emergency Operations Risk"@en ;
+    skos:definition "Deployment of facial recognition and crowd analytics in emergency settings raises human rights concerns documented by ICRC and UN Special Rapporteurs. Use must comply with ICCPR Article 17 and applicable national law; ISO 22320 data governance clauses apply as minimum standard."@en ;
+    skos:inScheme   iso-22320:Scheme ;
+    prov:wasDerivedFrom "ISO 22320:2018 Section 5" ;
+    ai:hasRiskLevel ai:HighRisk ;
+    ai:mappedToDimension ai:Safety ;
+    ai:mappedToDimension ai:Fairness ;
+.
+
+iso-22320:FailSafeDesign
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Fail-Safe Design for AI Emergency Tools"@en ;
+    skos:definition "AI systems used in incident management must degrade gracefully: human-executable manual fallback procedures must be documented, tested, and maintained. No AI system shall be a single point of failure in life-safety command chains."@en ;
+    skos:inScheme   iso-22320:Scheme ;
+    prov:wasDerivedFrom "ISO 22320:2018 Section 4" ;
+    ai:mappedToDimension ai:Safety ;
+    ai:mappedToDimension ai:HumanOversight ;
+.

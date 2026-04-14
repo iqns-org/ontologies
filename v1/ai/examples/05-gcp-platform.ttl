@@ -1,0 +1,688 @@
+@prefix ex:      <https://iqns.org/v0/enterprise-example#> .
+@prefix ai:      <https://iqns.org/v0/ai#> .
+@prefix euai:    <https://iqns.org/v0/eu-ai-act#> .
+@prefix nrmf:    <https://iqns.org/v0/nist-ai-rmf#> .
+@prefix iso42001:<https://iqns.org/v0/iso-42001#> .
+@prefix owasp:   <https://iqns.org/v0/owasp-llm#> .
+@prefix saif:    <https://iqns.org/v0/google-saif#> .
+@prefix atlas:   <https://iqns.org/v0/mitre-atlas#> .
+@prefix fda:     <https://iqns.org/v0/fda-aiml-samd#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+ex:GCPOntology a owl:Ontology ;
+    dct:title       "Enterprise GCP AI Platform Assets"@en ;
+    skos:definition "Google Cloud Platform managed AI/ML service assets used by the enterprise, mapped to IQ:NS controls."@en ;
+    owl:versionInfo "0.1" ;
+    owl:imports     <https://iqns.org/v0/enterprise-example> ;
+.
+
+# ══════════════════════════════════════════════════════════════════════════════
+# GCP Vertex AI Platform
+# ══════════════════════════════════════════════════════════════════════════════
+
+ex:GCPVertexAIPlatform
+    a ex:CloudAIPlatform ;
+    skos:prefLabel       "GCP Vertex AI Platform (us-central1)"@en ;
+    skos:definition  "Vertex AI managed ML platform in us-central1 (Iowa). Primary platform for MedicalImagingAI — handles training on NVIDIA A100 clusters, custom model registry, and prediction endpoints with GPU autoscaling. Vertex Explainable AI provides SHAP-based feature attribution for regulatory evidence. FDA-required PCCP (Predetermined Change Control Plan) artefacts stored in Vertex Experiments."@en ;
+    ex:vendor        "Google Cloud" ;
+    ex:dataRegion    "us-central1" ;
+
+    # ── Native controls ───────────────────────────────────────────────────────
+    ex:implementsNatively iso42001:A8AILifecycle ;       # fully managed ML lifecycle
+    ex:implementsNatively iso42001:A10Documentation ;    # Vertex Model Registry + Experiment lineage
+    ex:implementsNatively nrmf:GV5 ;                    # Model Registry doubles as system inventory
+    ex:implementsNatively nrmf:MS1 ;                    # Vertex Explainable AI: SHAP + IG attributions
+    ex:implementsNatively nrmf:MS4 ;                    # Vertex Model Monitoring: skew + drift alerts
+    ex:implementsNatively fda:RealWorldPerformanceMonitoring ; # Model Monitoring data feeds RWPM dashboard
+    ex:implementsNatively fda:GoodMachineLearningPractice ;    # Vertex Experiments captures training provenance
+    ex:implementsNatively saif:HarmonisePlatformControls ;     # VPC-SC, Shared VPC, IAM conditions
+    ex:implementsNatively saif:ContextualisedRiskAssessmentSAIF ; # Vertex AI safety evaluations in model pipeline
+    ex:implementsNatively nrmf:GV6 ;                    # Google supply chain: base container attestations
+
+    # ── Risks mitigated ───────────────────────────────────────────────────────
+    ex:mitigates owasp:LLM10_ModelTheft ;     # model artifacts in GCS with VPC-SC perimeter
+    ex:mitigates atlas:Reconnaissance ;        # Private Service Connect — no public Vertex endpoint
+    ex:mitigates atlas:PrivilegeEscalation ;   # Workload Identity instead of service account keys
+
+    # ── Residual risks ────────────────────────────────────────────────────────
+    ex:bearsFace owasp:LLM05_SupplyChainVulnerabilities ; # custom training containers
+    ex:bearsFace atlas:MLAttackStaging ;       # adversarial medical images against prediction endpoint
+    ex:bearsFace atlas:InitialAccess ;         # compromised GCP credentials via phishing
+.
+
+# ══════════════════════════════════════════════════════════════════════════════
+# BigQuery ML
+# ══════════════════════════════════════════════════════════════════════════════
+
+ex:GCPBigQueryML
+    a ex:CloudAIPlatform ;
+    skos:prefLabel       "Google BigQuery ML"@en ;
+    skos:definition  "BigQuery ML used for in-warehouse exploratory ML: logistic regression, ARIMA forecasting, and k-means clustering on sales and operational data. Models trained on BigQuery datasets without data exfiltration. Output to Looker dashboards. Low-risk analytics use case — no automated decisions."@en ;
+    ex:vendor        "Google Cloud" ;
+    ex:dataRegion    "eu" ;
+
+    # ── Native controls ───────────────────────────────────────────────────────
+    ex:implementsNatively nrmf:GV5 ;          # INFORMATION_SCHEMA.MODELS = lightweight model inventory
+    ex:implementsNatively iso42001:A10Documentation ; # ML.EVALUATE output logged per model
+    ex:implementsNatively saif:HarmonisePlatformControls ; # column-level security, row-level access
+
+    # ── Risks ────────────────────────────────────────────────────────────────
+    # Low risk: no real-time inference, no consequential decisions
+    ex:bearsFace ai:PrivacyHarm ;       # personal data in BigQuery datasets used for ML
+    ex:bearsFace ai:FinancialHarm ;     # incorrect forecast influencing procurement decisions
+.
+
+# ══════════════════════════════════════════════════════════════════════════════
+# GCP Document AI
+# ══════════════════════════════════════════════════════════════════════════════
+
+ex:GCPDocumentAI
+    a ex:CloudAIPlatform ;
+    skos:prefLabel       "GCP Document AI"@en ;
+    skos:definition  "Google Document AI used for automated extraction from medical referral letters, claims forms, and patient intake documents to feed MedicalImagingAI's metadata pipeline. Processes HIPAA-covered PHI — BAA in place with Google. Processes special-category health data."@en ;
+    ex:vendor        "Google Cloud" ;
+    ex:dataRegion    "us-central1" ;
+
+    # ── Native controls ───────────────────────────────────────────────────────
+    ex:implementsNatively nrmf:GV6 ;          # Google HIPAA BAA + healthcare data addendum
+    ex:implementsNatively saif:HarmonisePlatformControls ; # CMEK, VPC-SC, DLP integration
+    ex:implementsNatively nrmf:MS4 ;          # processor version monitoring
+
+    # ── Risks ────────────────────────────────────────────────────────────────
+    ex:bearsFace ai:PrivacyHarm ;             # PHI extraction errors / mis-extraction
+    ex:bearsFace owasp:LLM06_SensitiveInfoDisclosure ; # PHI in extracted fields sent downstream
+
+    # Upstream of Medical Imaging AI metadata pipeline
+    ex:upstreamOf ex:MedicalImagingAI ;
+.
+
+# ══════════════════════════════════════════════════════════════════════════════
+# GCP Contact Centre AI
+# ══════════════════════════════════════════════════════════════════════════════
+
+ex:GCPContactCenterAI
+    a ex:CloudAIPlatform ;
+    skos:prefLabel       "GCP Contact Centre AI (CCAI)"@en ;
+    skos:definition  "Dialogflow CX + Agent Assist + Insights for the enterprise's customer support contact centre. CCAI provides real-time agent coaching, intent detection, and post-call sentiment analysis. Interacts with customers — EU AI Act Art. 50 chatbot disclosure required. Voice and text channels."@en ;
+    ex:vendor        "Google Cloud" ;
+    ex:dataRegion    "eu" ;
+
+    # ── Regulatory scope ──────────────────────────────────────────────────────
+    # Deployed as chatbot/virtual agent interacting with customers → EU AI Act Art. 50
+    ex:implementsNatively euai:TransparencyObligation ;   # Dialogflow: built-in bot disclosure prompts
+    ex:implementsNatively nrmf:GV5 ;                     # CCAI as an inventoried AI system component
+    ex:implementsNatively saif:ContextualisedRiskAssessmentSAIF ; # CCAI risk review in Vertex AI Safety
+
+    # ── Risks ────────────────────────────────────────────────────────────────
+    ex:bearsFace ai:PrivacyHarm ;              # call recordings and transcripts contain PII
+    ex:bearsFace owasp:LLM01_PromptInjection ; # adversarial customer utterances bypassing intent detection
+    ex:bearsFace owasp:LLM09_Overreliance ;    # agents over-trusting CCAI coaching suggestions
+    ex:bearsFace ai:ReputationalHarm ;         # incorrect sentiment analysis influencing NPS reporting
+.
+
+        iso42001:A9SupplyChain,
+        iso42001:A10Documentation,
+        owasp:PromptValidation,
+        owasp:OutputValidation,
+        owasp:LeastPrivilegeLLM ;
+
+    # Controls natively provided by hosting platforms
+    ex:nativeControl
+        # Bedrock Guardrails
+        owasp:PromptValidation,    # override: Bedrock does it, but owner must configure
+        owasp:OutputValidation,
+        # Azure AI Content Safety (if routed through it)
+        # K8s Istio
+        saif:HarmonisePlatformControls,
+        saif:ExpandSecureFoundation,
+        nrmf:MS4 ;                 # KServe + Prometheus provides production monitoring
+
+    # Assessments
+    ex:scheduledAssessment
+        ai:RedTeamExercise,
+        ai:RiskAssessment ;
+
+    # Residual risks after controls applied
+    ex:residualRisk
+        owasp:LLM08_ExcessiveAgency,
+        owasp:LLM09_Overreliance,
+        saif:MemoryPoisoningRAG ;
+.
+
+# ══════════════════════════════════════════════════════════════════════════════
+# M-02  Fraud Detection System
+# ══════════════════════════════════════════════════════════════════════════════
+
+ex:Mapping_FraudDetection
+    a ex:ControlMapping ;
+    skos:prefLabel            "Control Mapping — Fraud Detection System"@en ;
+    ex:asset              ex:FraudDetectionSystem ;
+    ex:responsibleTeam    "Financial Crime / Payments Risk; Model Office (validation)" ;
+    ex:assessmentFrequency "Annual conformity assessment; quarterly SR 11-7 model performance review; monthly bias report" ;
+
+    # Regulatory requirements
+    ex:applicableRequirement
+        euai:HighRiskEmployment,
+        euai:RiskManagementSystem,
+        euai:DataGovernance,
+        euai:TechnicalDocumentation,
+        euai:RecordKeeping,
+        euai:AccuracyRobustnessRequirement,
+        euai:ConformityAssessmentRequirement ;
+
+    # Controls — owner responsibility
+    ex:appliableControl
+        sr117:ModelDevelopment,
+        sr117:ModelDocumentation,
+        sr117:ModelTesting,
+        sr117:ModelValidation,
+        sr117:ConceptualSoundness,
+        sr117:OngoingMonitoringSR,
+        sr117:OutcomesAnalysis,
+        sr117:ModelInventory,
+        sr117:ThreeLinesOfDefence,
+        eba:AIModelExplainabilityEBA,
+        eba:AIBiasTestingEBA,
+        eba:DataQualityEBA,
+        eba:ModelValidationEBA,
+        nrmf:MS1, nrmf:MS3, nrmf:MG1, nrmf:MG2,
+        iso42001:A7ResourcesForAI,
+        iso42001:A8AILifecycle,
+        iso42001:A10Documentation ;
+
+    # SageMaker natively provides
+    ex:nativeControl
+        iso42001:A8AILifecycle,
+        iso42001:A10Documentation,
+        nrmf:GV5,
+        nrmf:MS1,
+        nrmf:MS3,
+        nrmf:MS4,
+        sr117:ModelDocumentation,
+        sr117:ModelInventory,
+        saif:HarmonisePlatformControls ;
+
+    ex:scheduledAssessment
+        ai:BiasAudit,
+        ai:RiskAssessment,
+        ai:ConformityAssessment ;
+
+    ex:residualRisk
+        ai:DiscriminationHarm,     # ongoing — monitored via fairness dashboard
+        atlas:MLAttackStaging ;    # adversary probing; mitigated by rate limiting
+.
+
+# ══════════════════════════════════════════════════════════════════════════════
+# M-03  HR Candidate Screening System
+# ══════════════════════════════════════════════════════════════════════════════
+
+ex:Mapping_HRScreening
+    a ex:ControlMapping ;
+    skos:prefLabel            "Control Mapping — HR Candidate Screening System"@en ;
+    ex:asset              ex:HRCandidateScreeningSystem ;
+    ex:responsibleTeam    "Human Resources / People Analytics; Legal (employment law)" ;
+    ex:assessmentFrequency "Annual conformity assessment (EU AI Act Art. 43); annual bias audit; fundamental rights impact assessment before deployment" ;
+
+    ex:applicableRequirement
+        euai:HighRiskEmployment,
+        euai:RiskManagementSystem,
+        euai:DataGovernance,
+        euai:TechnicalDocumentation,
+        euai:RecordKeeping,
+        euai:TransparencyObligation,
+        euai:HumanOversightRequirement,
+        euai:AccuracyRobustnessRequirement,
+        euai:EUDatabaseRegistration,
+        euai:RightToExplanation,
+        euai:ConformityAssessmentRequirement ;
+
+    ex:appliableControl
+        nrmf:GV1, nrmf:GV4, nrmf:GV5, nrmf:GV6,
+        nrmf:MP5,
+        nrmf:MS2, nrmf:MS3, nrmf:MS4,
+        nrmf:MG1, nrmf:MG2,
+        iso42001:A5AIPolicy,
+        iso42001:A6InternalOrganisation,
+        iso42001:A8AILifecycle,
+        iso42001:A9SupplyChain,
+        iso42001:A10Documentation ;
+
+    ex:nativeControl
+        # Azure ML Workspace
+        iso42001:A8AILifecycle,
+        iso42001:A10Documentation,
+        nrmf:GV5,
+        nrmf:MS1,
+        nrmf:MS3,
+        nrmf:MS4,
+        saif:HarmonisePlatformControls,
+        # Workday SaaS
+        iso42001:A9SupplyChain ;
+
+    ex:scheduledAssessment
+        ai:BiasAudit,
+        ai:ImpactAssessment,
+        ai:ConformityAssessment,
+        ai:RiskAssessment ;
+
+    ex:residualRisk
+        ai:DiscriminationHarm,   # structural — ongoing monitoring required
+        ai:SocietalHarm ;        # systemic bias at scale if monitoring fails
+.
+
+# ══════════════════════════════════════════════════════════════════════════════
+# M-04  Medical Imaging AI
+# ══════════════════════════════════════════════════════════════════════════════
+
+ex:Mapping_MedicalImaging
+    a ex:ControlMapping ;
+    skos:prefLabel            "Control Mapping — Medical Imaging AI (Radiology)"@en ;
+    ex:asset              ex:MedicalImagingAI ;
+    ex:responsibleTeam    "Clinical AI / Health Technology; Regulatory Affairs; Biostatistics" ;
+    ex:assessmentFrequency "FDA 510(k) prior to deployment; EU AI Act conformity assessment; annual clinical performance review; ongoing RWPM per FDA PCCP" ;
+
+    ex:applicableRequirement
+        euai:HighRiskEssentialServices,
+        euai:RiskManagementSystem,
+        euai:DataGovernance,
+        euai:TechnicalDocumentation,
+        euai:RecordKeeping,
+        euai:HumanOversightRequirement,
+        euai:AccuracyRobustnessRequirement,
+        euai:PostMarketMonitoring,
+        euai:ConformityAssessmentRequirement,
+        fda:SoftwareAsMedicalDevice,
+        fda:AdaptiveAlgorithm,
+        fda:PredeterminedChangeControlPlan,
+        fda:AlgorithmChangeProtocol,
+        fda:GoodMachineLearningPractice,
+        fda:DataRepresentativeness,
+        fda:HumanAITeamPerformance,
+        fda:RealWorldPerformanceMonitoring,
+        fda:TransparencyToUsersPatients ;
+
+    ex:appliableControl
+        nrmf:MS1, nrmf:MS2, nrmf:MS4,
+        nrmf:MG2, nrmf:MG3,
+        iso42001:A7ResourcesForAI,
+        iso42001:A8AILifecycle,
+        iso42001:A10Documentation ;
+
+    ex:nativeControl
+        # Vertex AI
+        iso42001:A8AILifecycle,
+        iso42001:A10Documentation,
+        nrmf:GV5,
+        nrmf:MS1,
+        nrmf:MS4,
+        fda:RealWorldPerformanceMonitoring,
+        fda:GoodMachineLearningPractice,
+        saif:HarmonisePlatformControls,
+        saif:ContextualisedRiskAssessmentSAIF,
+        # GCP Document AI (upstream)
+        nrmf:GV6 ;
+
+    ex:scheduledAssessment
+        ai:RiskAssessment,
+        ai:ConformityAssessment,
+        ai:BiasAudit,
+        ai:RedTeamExercise ;
+
+    ex:residualRisk
+        ai:PhysicalHarm,         # missed diagnosis — radiologist safety net required
+        ai:DiscriminationHarm,   # per-demographic performance gap monitoring required
+        atlas:MLAttackStaging ;  # adversarial X-ray attacks — ongoing red-team needed
+.
+
+# ══════════════════════════════════════════════════════════════════════════════
+# M-05  Credit Risk Scoring System
+# ══════════════════════════════════════════════════════════════════════════════
+
+ex:Mapping_CreditRisk
+    a ex:ControlMapping ;
+    skos:prefLabel            "Control Mapping — Credit Risk Scoring System"@en ;
+    ex:asset              ex:CreditRiskScoringSystem ;
+    ex:responsibleTeam    "Credit Risk / Model Office; Compliance (ECOA, CRR); Internal Audit" ;
+    ex:assessmentFrequency "Annual model validation (SR 11-7); quarterly EBA supervisory report; annual EU AI Act conformity assessment; semi-annual bias audit" ;
+
+    ex:applicableRequirement
+        euai:HighRiskEssentialServices,
+        euai:RiskManagementSystem,
+        euai:DataGovernance,
+        euai:TechnicalDocumentation,
+        euai:RecordKeeping,
+        euai:HumanOversightRequirement,
+        euai:AccuracyRobustnessRequirement,
+        euai:RightToExplanation,
+        euai:ConformityAssessmentRequirement ;
+
+    ex:appliableControl
+        sr117:ModelDevelopment,
+        sr117:ModelDocumentation,
+        sr117:ModelTesting,
+        sr117:ModelValidation,
+        sr117:ConceptualSoundness,
+        sr117:OngoingMonitoringSR,
+        sr117:OutcomesAnalysis,
+        sr117:ModelInventory,
+        sr117:ThreeLinesOfDefence,
+        sr117:ModelRiskAppetite,
+        eba:ICTRiskFramework,
+        eba:AIModelExplainabilityEBA,
+        eba:AIBiasTestingEBA,
+        eba:DataQualityEBA,
+        eba:ModelValidationEBA,
+        eba:AIGovernanceCommitteeEBA,
+        eba:SupervisoryReportingEBA,
+        nrmf:MS1, nrmf:MS3, nrmf:MS4,
+        nrmf:MG1, nrmf:MG2,
+        iso42001:A8AILifecycle,
+        iso42001:A10Documentation ;
+
+    ex:nativeControl
+        iso42001:A8AILifecycle,
+        iso42001:A10Documentation,
+        nrmf:GV5,
+        nrmf:MS1,
+        nrmf:MS3,
+        nrmf:MS4,
+        sr117:ModelDocumentation,
+        sr117:ModelInventory,
+        saif:HarmonisePlatformControls ;
+
+    ex:scheduledAssessment
+        ai:ConformityAssessment,
+        ai:BiasAudit,
+        ai:RiskAssessment ;
+
+    ex:residualRisk
+        ai:DiscriminationHarm,   # ECOA compliance monitoring required
+        sr117:ModelUncertainty ; # inherent in XGBoost on tabular credit data
+.
+
+# ══════════════════════════════════════════════════════════════════════════════
+# M-06  RAG Document Search
+# ══════════════════════════════════════════════════════════════════════════════
+
+ex:Mapping_RAGDocSearch
+    a ex:ControlMapping ;
+    skos:prefLabel            "Control Mapping — Internal RAG Document Q&A"@en ;
+    ex:asset              ex:RAGDocumentSearch ;
+    ex:responsibleTeam    "Knowledge Management / Enterprise IT" ;
+    ex:assessmentFrequency "Red-team every 6 months; annual risk assessment" ;
+
+    ex:applicableRequirement
+        euai:TransparencyObligation,
+        euai:HumanOversightRequirement ;
+
+    ex:appliableControl
+        nrmf:GV5, nrmf:GV6,
+        nrmf:MP1,
+        nrmf:MS4, nrmf:MG2,
+        iso42001:A9SupplyChain,
+        iso42001:A10Documentation,
+        owasp:PromptValidation,
+        owasp:OutputValidation ;
+
+    ex:nativeControl
+        # Azure OpenAI Service
+        owasp:PromptValidation,
+        owasp:OutputValidation,
+        saif:HarmonisePlatformControls,
+        nrmf:GV6,
+        euai:TransparencyObligation,
+        # Azure AI Content Safety
+        owasp:LeastPrivilegeLLM,
+        # K8s Istio
+        saif:ExpandSecureFoundation,
+        nrmf:MS4 ;
+
+    ex:scheduledAssessment
+        ai:RedTeamExercise,
+        ai:RiskAssessment ;
+
+    ex:residualRisk
+        saif:MemoryPoisoningRAG,   # adversarial document upload to retrieval store
+        atlas:DefenceEvasion ;      # sophisticated prompt crafting bypassing Content Safety
+.
+
+# ══════════════════════════════════════════════════════════════════════════════
+# M-07  Customer Churn Predictor
+# ══════════════════════════════════════════════════════════════════════════════
+
+ex:Mapping_ChurnPredictor
+    a ex:ControlMapping ;
+    skos:prefLabel            "Control Mapping — Customer Churn Propensity Model"@en ;
+    ex:asset              ex:CustomerChurnPredictor ;
+    ex:responsibleTeam    "Customer Success / Revenue Operations" ;
+    ex:assessmentFrequency "Annual risk assessment; quarterly model drift review" ;
+
+    ex:applicableRequirement
+        euai:TransparencyObligation ;   # voluntary best-practice only
+
+    ex:appliableControl
+        nrmf:GV5, nrmf:GV6,
+        nrmf:MP1,
+        nrmf:MS4,
+        iso42001:A9SupplyChain,
+        iso42001:A10Documentation ;
+
+    ex:nativeControl
+        iso42001:A9SupplyChain,   # Salesforce DPA in place
+        nrmf:GV6 ;                # Salesforce certifications
+
+    ex:scheduledAssessment
+        ai:RiskAssessment ;
+
+    ex:residualRisk
+        ai:PrivacyHarm ;          # customer profiling — GDPR legitimate interest assessment required
+.
+
+# ══════════════════════════════════════════════════════════════════════════════
+# M-08  Code Security Scanner AI
+# ══════════════════════════════════════════════════════════════════════════════
+
+ex:Mapping_CodeScanner
+    a ex:ControlMapping ;
+    skos:prefLabel            "Control Mapping — AI Code Security Scanner"@en ;
+    ex:asset              ex:CodeSecurityScannerAI ;
+    ex:responsibleTeam    "Application Security / Platform Engineering" ;
+    ex:assessmentFrequency "Annual risk assessment; quarterly false-negative rate review" ;
+
+    ex:appliableControl
+        nrmf:GV5, nrmf:GV6,
+        nrmf:MS4,
+        iso42001:A9SupplyChain,
+        saif:ExpandSecureFoundation ;
+
+    ex:nativeControl
+        nrmf:GV6,                 # GitHub SOC2 / ISO 27001
+        saif:ExpandSecureFoundation ; # K8s hardening
+
+    ex:scheduledAssessment
+        ai:RiskAssessment ;
+
+    ex:residualRisk
+        owasp:LLM09_Overreliance,           # developer behaviour risk — training required
+        owasp:LLM05_SupplyChainVulnerabilities ; # Copilot model updates
+.
+
+# ══════════════════════════════════════════════════════════════════════════════
+# Platform control inheritance — explicit triples for SPARQL traversal
+# ══════════════════════════════════════════════════════════════════════════════
+#
+# These triples explicitly link each platform to the AI systems it hosts,
+# making it straightforward to SPARQL-query:
+#   "For system X, which controls are native (from its platform) vs owner-owned?"
+#
+# Pattern: ex:Platform ex:hostsSystem ex:AISystem .
+
+ex:hostsSystem
+    a owl:ObjectProperty ;
+    skos:prefLabel   "hosts system"@en ;
+    rdfs:comment "This platform hosts (runs inference or training for) the named AI system."@en ;
+    rdfs:domain  ex:Platform ;
+    rdfs:range   ex:AISystem ;
+.
+
+ex:K8sProdCluster      ex:hostsSystem ex:EnterpriseLLMAssistant, ex:RAGDocumentSearch, ex:CodeSecurityScannerAI .
+ex:AWSBedrockAPI       ex:hostsSystem ex:EnterpriseLLMAssistant .
+ex:AWSSageMakerDomain  ex:hostsSystem ex:FraudDetectionSystem, ex:CreditRiskScoringSystem .
+ex:AzureMLWorkspace    ex:hostsSystem ex:HRCandidateScreeningSystem .
+ex:AzureOpenAIService  ex:hostsSystem ex:RAGDocumentSearch .
+ex:AzureAIContentSafety ex:hostsSystem ex:RAGDocumentSearch, ex:EnterpriseLLMAssistant .
+ex:GCPVertexAIPlatform ex:hostsSystem ex:MedicalImagingAI .
+ex:SaaSSalesforceEinstein ex:hostsSystem ex:CustomerChurnPredictor .
+ex:SaaSWorkdayAI       ex:hostsSystem ex:HRCandidateScreeningSystem .
+ex:SaaSGitHubCopilot   ex:hostsSystem ex:CodeSecurityScannerAI .
+
+# ══════════════════════════════════════════════════════════════════════════════
+# Governance dimension roll-up
+# Explicit mappings of each AI system to the canonical ai: governance
+# dimensions it primarily affects — enables dimension-filtered SPARQL queries.
+# ══════════════════════════════════════════════════════════════════════════════
+
+ex:EnterpriseLLMAssistant
+    ai:mappedToDimension ai:Transparency, ai:HumanOversight, ai:Privacy, ai:Security .
+
+ex:FraudDetectionSystem
+    ai:mappedToDimension ai:Fairness, ai:Accountability, ai:Reliability, ai:Explainability .
+
+ex:HRCandidateScreeningSystem
+    ai:mappedToDimension ai:Fairness, ai:Transparency, ai:HumanOversight, ai:Accountability, ai:Privacy .
+
+ex:MedicalImagingAI
+    ai:mappedToDimension ai:Safety, ai:Reliability, ai:Robustness, ai:Fairness, ai:HumanOversight .
+
+ex:CreditRiskScoringSystem
+    ai:mappedToDimension ai:Fairness, ai:Explainability, ai:Accountability, ai:Transparency .
+
+ex:RAGDocumentSearch
+    ai:mappedToDimension ai:Transparency, ai:Security, ai:Privacy .
+
+ex:CustomerChurnPredictor
+    ai:mappedToDimension ai:Privacy, ai:Fairness .
+
+ex:CodeSecurityScannerAI
+    ai:mappedToDimension ai:Security, ai:Reliability .
+
+# ══════════════════════════════════════════════════════════════════════════════
+# Lifecycle stage roll-up
+# Maps each AI system to the ai:Lifecycle stages where governance obligations
+# are most significant for that system type.
+# ══════════════════════════════════════════════════════════════════════════════
+
+ex:EnterpriseLLMAssistant
+    ai:appliesToLifecycle ai:Deployment, ai:Operation, ai:Monitoring .
+
+ex:FraudDetectionSystem
+    ai:appliesToLifecycle ai:Design, ai:Development, ai:Testing, ai:Deployment, ai:Operation, ai:Monitoring, ai:Retirement .
+
+ex:HRCandidateScreeningSystem
+    ai:appliesToLifecycle ai:Design, ai:Development, ai:Testing, ai:Deployment, ai:Operation, ai:Monitoring .
+
+ex:MedicalImagingAI
+    ai:appliesToLifecycle ai:Design, ai:Development, ai:Testing, ai:Deployment, ai:Operation, ai:Monitoring, ai:Retirement .
+
+ex:CreditRiskScoringSystem
+    ai:appliesToLifecycle ai:Design, ai:Development, ai:Testing, ai:Deployment, ai:Operation, ai:Monitoring, ai:Retirement .
+
+ex:RAGDocumentSearch
+    ai:appliesToLifecycle ai:Deployment, ai:Operation, ai:Monitoring .
+
+ex:CustomerChurnPredictor
+    ai:appliesToLifecycle ai:Development, ai:Deployment, ai:Operation, ai:Monitoring .
+
+ex:CodeSecurityScannerAI
+    ai:appliesToLifecycle ai:Deployment, ai:Operation .
+
+# ══════════════════════════════════════════════════════════════════════════════
+# Risk treatment decisions
+# For each high-risk AI system, state the controls chosen to TREAT (reduce)
+# each identified risk, providing an auditable risk treatment record.
+# ══════════════════════════════════════════════════════════════════════════════
+
+ex:RiskTreatment_LLMAssistant_PromptInjection
+    a ex:RiskTreatment ;
+    skos:prefLabel       "Risk Treatment: Prompt Injection — LLM Assistant"@en ;
+    ex:treatsRisk    owasp:LLM01_PromptInjection ;
+    ex:forSystem     ex:EnterpriseLLMAssistant ;
+    ex:treatedBy
+        owasp:PromptValidation,
+        ex:AWSBedrockAPI,        # Bedrock Guardrails: Prompt Shield
+        ex:AzureAIContentSafety ;# secondary content safety layer
+.
+
+ex:RiskTreatment_Fraud_Bias
+    a ex:RiskTreatment ;
+    skos:prefLabel       "Risk Treatment: Discrimination / Bias — Fraud Detection"@en ;
+    ex:treatsRisk    ai:DiscriminationHarm ;
+    ex:forSystem     ex:FraudDetectionSystem ;
+    ex:treatedBy
+        eba:AIBiasTestingEBA,
+        nrmf:MS3,
+        sr117:OutcomesAnalysis ;
+.
+
+ex:RiskTreatment_HRScreening_Bias
+    a ex:RiskTreatment ;
+    skos:prefLabel       "Risk Treatment: Discrimination — HR Screening"@en ;
+    ex:treatsRisk    ai:DiscriminationHarm ;
+    ex:forSystem     ex:HRCandidateScreeningSystem ;
+    ex:treatedBy
+        nrmf:MS3,
+        nrmf:MG1,
+        euai:HumanOversightRequirement ;
+.
+
+ex:RiskTreatment_MedAI_PhysicalHarm
+    a ex:RiskTreatment ;
+    skos:prefLabel       "Risk Treatment: Physical Harm — Medical Imaging AI"@en ;
+    ex:treatsRisk    ai:PhysicalHarm ;
+    ex:forSystem     ex:MedicalImagingAI ;
+    ex:treatedBy
+        fda:HumanAITeamPerformance,
+        euai:HumanOversightRequirement,
+        nrmf:MS4 ;             # real-world performance monitoring triggers alert before harm
+.
+
+ex:RiskTreatment_Credit_Disparate
+    a ex:RiskTreatment ;
+    skos:prefLabel       "Risk Treatment: Disparate Impact — Credit Risk Scoring"@en ;
+    ex:treatsRisk    ai:DiscriminationHarm ;
+    ex:forSystem     ex:CreditRiskScoringSystem ;
+    ex:treatedBy
+        eba:AIBiasTestingEBA,
+        eba:AIModelExplainabilityEBA,
+        nrmf:MS3,
+        euai:RightToExplanation ; # affected persons entitled to explanation + recourse
+.
+
+# ── Helper class (no blank nodes) ────────────────────────────────────────────
+
+ex:RiskTreatment
+    a owl:Class ;
+    skos:prefLabel   "Risk Treatment"@en ;
+    rdfs:comment "A named risk treatment decision: links a specific risk, the AI system it applies to, and the controls chosen to treat it."@en ;
+.
+ex:treatsRisk
+    a owl:ObjectProperty ;
+    skos:prefLabel   "treats risk"@en ;
+    rdfs:domain  ex:RiskTreatment ;
+    rdfs:range   ai:Risk ;
+.
+ex:forSystem
+    a owl:ObjectProperty ;
+    skos:prefLabel   "for system"@en ;
+    rdfs:domain  ex:RiskTreatment ;
+    rdfs:range   ex:AISystem ;
+.
+ex:treatedBy
+    a owl:ObjectProperty ;
+    skos:prefLabel   "treated by"@en ;
+    rdfs:domain  ex:RiskTreatment ;
+    rdfs:comment "The control, requirement, or platform feature chosen to treat the risk."@en ;
+.

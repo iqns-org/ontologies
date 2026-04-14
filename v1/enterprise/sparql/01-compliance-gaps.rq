@@ -1,0 +1,19 @@
+# 01-ent-iso-control-gap.rq
+# Goal: Find systems missing mandatory ISO 27001 controls.
+
+PREFIX gg: <https://iqns.org/v0/ai#>
+PREFIX eg: <https://iqns.org/v0/entgraph#>
+PREFIX iso27: <https://iqns.org/v0/iso-27001#>
+
+SELECT ?this ?label ?dimension ?control
+WHERE {
+    ?this a gg:System ;
+            skos:prefLabel ?label .
+    
+    ?this gg:mappedToDimension ?dimension .
+    
+    # Identify gaps: not implementing core AccessControl
+    FILTER NOT EXISTS {
+        ?this gg:implementsControl ?control .
+    }
+}

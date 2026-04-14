@@ -1,0 +1,110 @@
+@prefix nato-ai: <https://iqns.org/v0/nato-ai#> .
+@prefix dg:   <https://iqns.org/v0/defence#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+nato-ai:Ontology a owl:Ontology ;
+    dct:title       "NATO Principles of Responsible Use of AI in Defence"@en ;
+    prov:wasDerivedFrom <https://www.nato.int/cps/en/natohq/official_texts_187617.htm> ;
+    owl:imports     <https://iqns.org/v0/ai#> ;
+    owl:versionInfo "2021" .
+
+nato-ai:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "NATO Principles of Responsible Use of Artificial Intelligence in Defence (2021)"@en ;
+    skos:definition "Adopted by NATO Defence Ministers in October 2021, these six principles guide responsible and lawful use of AI across all 32 NATO Allies. The first multilateral defence AI principles framework, establishing the baseline for interoperability of AI-enabled systems in allied joint operations."@en .
+
+nato-ai:NATOAIPrinciples
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "NATO Principles of Responsible Use of AI in Defence (2021)"@en ;
+    skos:definition "Six-principle framework adopted by all 32 NATO Allies to govern development, procurement, and operational use of AI technologies in defence. Complements US DoD RAI Principles, EU AI Act defence provisions, and IHL obligations of member states."@en ;
+    skos:inScheme   nato-ai:Scheme ;
+    dct:publisher   "North Atlantic Treaty Organisation (NATO)"@en ;
+    dct:issued      "2021"^^xsd:gYear ;
+    prov:wasDerivedFrom <https://www.nato.int/cps/en/natohq/official_texts_187617.htm> ;
+    ai:mappedToDimension ai:Safety ;
+    ai:mappedToDimension ai:Accountability ;
+    ai:mappedToDimension ai:HumanOversight ;
+    ai:mappedToDimension ai:Reliability ;
+.
+
+nato-ai:Lawful
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Principle 1: Lawfulness"@en ;
+    skos:definition "AI applications in defence must comply with all applicable domestic and international law including International Humanitarian Law (IHL) and International Human Rights Law (IHRL). AI must not facilitate violations of the laws of armed conflict."@en ;
+    skos:inScheme   nato-ai:Scheme ;
+    prov:wasDerivedFrom "NATO AI Principles 2021, Principle 1" ;
+    ai:mappedToDimension ai:HumanOversight ;
+.
+
+nato-ai:Responsible
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Principle 2: Responsibility and Accountability"@en ;
+    skos:definition "Human responsibility for the development, deployment, and use of AI must be clear at all times. This includes ensuring that AI used in security contexts does not lead to 'accountability gaps' where no human bears responsibility for AI-driven harm."@en ;
+    skos:inScheme   nato-ai:Scheme ;
+    prov:wasDerivedFrom "NATO AI Principles 2021, Principle 2" ;
+    ai:mappedToDimension ai:Accountability ;
+.
+
+nato-ai:ExplainablePrinciple
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Principle 3: Explainability and Traceability"@en ;
+    skos:definition "AI systems in defence must be appropriately understandable and traceable. This includes data, processes, and design decisions, and the actions of AI systems over time. Full algorithmic audit trails are required for lethal autonomous weapons reviews."@en ;
+    skos:inScheme   nato-ai:Scheme ;
+    prov:wasDerivedFrom "NATO AI Principles 2021, Principle 3" ;
+    ai:mappedToDimension ai:Explainability ;
+    ai:mappedToDimension ai:Transparency ;
+.
+
+nato-ai:Reliable
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Principle 4: Reliability"@en ;
+    skos:definition "AI systems must have explicit, well-defined use cases. The safety, security, and robustness of such systems must be ensured across their entire lifecycle including through rigorous testing and meaningful human review."@en ;
+    skos:inScheme   nato-ai:Scheme ;
+    prov:wasDerivedFrom "NATO AI Principles 2021, Principle 4" ;
+    ai:mappedToDimension ai:Reliability ;
+    ai:mappedToDimension ai:Safety ;
+.
+
+nato-ai:Governable
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Principle 5: Governability"@en ;
+    skos:definition "AI systems must be designed and developed to allow for sufficient human judgement and control, especially in high-stakes security contexts. Allies must ensure they can disengage or deactivate AI systems if needed."@en ;
+    skos:inScheme   nato-ai:Scheme ;
+    prov:wasDerivedFrom "NATO AI Principles 2021, Principle 5" ;
+    ai:mappedToDimension ai:HumanOversight ;
+.
+
+nato-ai:NonBiasPrinciple
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Principle 6: Bias Mitigation"@en ;
+    skos:definition "Steps must be taken to minimise unintended bias in the development and use of AI, including in training data. In multi-national alliance contexts, AI must not introduce systemic discrimination against any population or generate disproportionate harm to civilians."@en ;
+    skos:inScheme   nato-ai:Scheme ;
+    prov:wasDerivedFrom "NATO AI Principles 2021, Principle 6" ;
+    ai:mappedToDimension ai:Fairness ;
+.
+
+nato-ai:NATOAIReview
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "NATO AI Strategy Review Obligation"@en ;
+    skos:definition "Allies committed to reviewing and updating the AI principles periodically to reflect technological developments and operational experience. The 2023 NATO AI Strategy expanded implementation guidance for AI-enabled Command and Control systems."@en ;
+    skos:inScheme   nato-ai:Scheme ;
+    prov:wasDerivedFrom <https://www.nato.int/cps/en/natohq/official_texts_187617.htm> ;
+    ai:mappedToDimension ai:Accountability ;
+.
+
+nato-ai:IHLCompliance
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "International Humanitarian Law Compliance Requirement"@en ;
+    skos:definition "All NATO AI systems used in or near armed conflict must comply with IHL principles of distinction, proportionality, precaution, and military necessity. Autonomous weapons systems must include meaningful human control safeguards reviewed pre-deployment. Aligns with DoD Directive 3000.09."@en ;
+    skos:inScheme   nato-ai:Scheme ;
+    prov:wasDerivedFrom "NATO AI Principles 2021, Principle 1" ;
+    ai:hasRiskLevel ai:HighRisk ;
+    ai:mappedToDimension ai:Safety ;
+    ai:mappedToDimension ai:HumanOversight ;
+.

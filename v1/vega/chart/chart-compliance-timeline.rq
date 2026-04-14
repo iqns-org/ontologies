@@ -1,0 +1,10 @@
+PREFIX ai: <https://iqns.org/v0/ai#>
+PREFIX dct: <http://purl.org/dc/terms/>
+
+SELECT ?date ?framework ?score WHERE {
+  ?entry a ai:ComplianceMeasurement ;
+         ai:framework ?framework ;
+         ai:measurementDate ?date ;
+         ai:score ?score .
+}
+ORDER BY ?date ?framework

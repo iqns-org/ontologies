@@ -1,0 +1,17 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Incident trend area chart",
+  "title": "{{chart.title}}",
+  "data": { "values": {{data}} },
+  "mark": "area",
+  "encoding": {
+    "x": { "field": "{{chart.x}}", "type": "temporal", "title": "{{chart.xTitle}}" },
+    "y": { "field": "{{chart.y}}", "type": "quantitative", "title": "{{chart.yTitle}}" },
+    "color": { "field": "{{chart.series}}", "type": "nominal", "title": "{{chart.seriesTitle}}" },
+    "tooltip": [
+      { "field": "{{chart.x}}", "type": "temporal" },
+      { "field": "{{chart.y}}", "type": "quantitative" },
+      { "field": "{{chart.series}}", "type": "nominal" }
+    ]
+  }
+}

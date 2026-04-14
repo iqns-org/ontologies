@@ -1,0 +1,119 @@
+@prefix un-r157: <https://iqns.org/v0/un-r157#> .
+@prefix tg:   <https://iqns.org/v0/trangraph#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+un-r157:Ontology a owl:Ontology ;
+    dct:title       "UNECE UN Regulation No. 157 — Automated Lane Keeping Systems (ALKS)"@en ;
+    prov:wasDerivedFrom <https://unece.org/transport/documents/2021/03/standards/un-regulation-no-157-automated-lane-keeping-systems> ;
+    owl:versionInfo "UN Regulation No. 157 — adopted March 2021; Revision 1 (2022)" ;
+.
+
+un-r157:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "UN R157 — ALKS (Level 3 Automated Driving)"@en ;
+    skos:definition "First UNECE type approval regulation for Level 3 automated driving on motorways — the regulatory template for subsequent automated driving system regulations. ALKS must manage the driving task within ODD and execute a minimal risk condition when ODD is exceeded or system fails."@en .
+
+un-r157:UNR157
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "UN Regulation No. 157 — ALKS"@en ;
+    skos:definition "UNECE regulation governing type approval of Automated Lane Keeping Systems — covering performance requirements, safety monitoring, object detection, emergency manoeuvres, data recording, cybersecurity, and software update obligations. Applicable in all UNECE Contracting Parties (43 countries including EU, Japan, South Korea). Establishes the legal framework for SAE Level 3 motorway automation."@en ;
+    skos:inScheme   un-r157:Scheme ;
+    dct:publisher   "UNECE Working Party on Automated/Autonomous and Connected Vehicles (GRVA)"@en ;
+    dct:issued      "2021"^^xsd:gYear ;
+.
+
+# ── System Performance Requirements ──────────────────────────────────────────
+
+un-r157:ODDDefinition
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Operational Design Domain (ODD) Specification"@en ;
+    skos:definition "ALKS must define and enforce its ODD — UN R157 ODD limited to motorways with physical separation, speed ≤130 km/h (or national limit), no vulnerable road users present. AI perception must continuously monitor ODD conditions and initiate transition demand if ODD is exceeded."@en ;
+    skos:inScheme   un-r157:Scheme ;
+    prov:wasDerivedFrom "UN R157, Annex 4 §5.1" ;
+    tg:hasAutomationLevel tg:Level3 ;
+    ai:mappedToDimension tg:RoadUserSafety ;
+    ai:mappedToDimension tg:OperationalDesignDomain ;
+.
+un-r157:ObjectAndEventDetection
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Object and Event Detection and Response (OEDR)"@en ;
+    skos:definition "ALKS must detect and appropriately respond to objects and events relevant to the driving task within the ODD — including stationary vehicles, vulnerable road users, debris, and lane boundaries. AI perception systems (cameras, LiDAR, radar fusion) must meet minimum performance targets tested in standardised scenarios."@en ;
+    skos:inScheme   un-r157:Scheme ;
+    prov:wasDerivedFrom "UN R157, Annex 4 §5.5; Annex 5 (test scenarios)" ;
+    tg:hasAutomationLevel tg:Level3 ;
+    ai:mappedToDimension tg:RoadUserSafety ;
+    ai:mappedToDimension tg:FunctionalSafety ;
+.
+un-r157:MinimalRiskCondition
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Minimal Risk Condition (MRC)"@en ;
+    skos:definition "If the ALKS cannot maintain safe operation (ODD exceeded, system failure, driver unresponsive) it must autonomously execute a minimal risk condition manoeuvre — typically a controlled stop within the current lane within defined time/distance limits. MRC execution capability is testable and type-approved."@en ;
+    skos:inScheme   un-r157:Scheme ;
+    prov:wasDerivedFrom "UN R157, Annex 4 §5.6" ;
+    tg:hasAutomationLevel tg:Level3 ;
+    ai:mappedToDimension tg:FunctionalSafety ;
+    ai:mappedToDimension tg:RoadUserSafety ;
+.
+un-r157:TransitionDemand
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Transition Demand to Driver"@en ;
+    skos:definition "ALKS must issue a transition demand to the driver when it cannot maintain control — providing sufficient time for a medically-fit driver to resume (minimum 10 seconds) before initiating MRC if driver does not respond. AI system must monitor driver availability and readiness."@en ;
+    skos:inScheme   un-r157:Scheme ;
+    prov:wasDerivedFrom "UN R157, Annex 4 §5.4" ;
+    tg:hasAutomationLevel tg:Level3 ;
+    ai:mappedToDimension tg:RoadUserSafety ;
+    ai:mappedToDimension ai:HumanOversight ;
+.
+
+# ── Data Recording ────────────────────────────────────────────────────────────
+
+un-r157:DataStorageSystemobligation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Data Storage System for Automated Driving (DSSAD)"@en ;
+    skos:definition "ALKS must incorporate a DSSAD — recording activation/deactivation, transition demands initiated and driver responses, MRC executions, system failures, and collision events immediately before impact. DSSAD data must be available for 6 months minimum and accessible to authorities. Supports accident investigation and liability attribution."@en ;
+    skos:inScheme   un-r157:Scheme ;
+    prov:wasDerivedFrom "UN R157, Annex 4 §5.8; Annex 7" ;
+    ai:mappedToDimension ai:Accountability ;
+    ai:mappedToDimension tg:RoadUserSafety ;
+    ai:appliesToLifecycle tg:PostMarketMonitoring ;
+.
+
+# ── Cybersecurity and Software Updates ───────────────────────────────────────
+
+un-r157:CybersecurityCompliance
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "ALKS Cybersecurity — UN R155 Compliance"@en ;
+    skos:definition "ALKS must comply with UN Regulation No. 155 (CSMS) — a Cybersecurity Management System must be in place covering AI component security, over-the-air update integrity, and attack surface management. AI perception system updates must be validated before fleet deployment."@en ;
+    skos:inScheme   un-r157:Scheme ;
+    prov:wasDerivedFrom "UN R157, Annex 4 §5.9; UN Regulation No. 155" ;
+    ai:mappedToDimension tg:CybersecurityVehicle ;
+    ai:mappedToDimension ai:Security ;
+.
+un-r157:SoftwareUpdateCompliance
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Software Update Management — UN R156 Compliance"@en ;
+    skos:definition "AI software updates to ALKS must comply with UN Regulation No. 156 (SUMS) — OTA updates require Software Update Management System type approval, rollback capability, and integrity verification. Significant AI model changes may require re-type-approval."@en ;
+    skos:inScheme   un-r157:Scheme ;
+    prov:wasDerivedFrom "UN R157, Annex 4 §5.9; UN Regulation No. 156" ;
+    ai:mappedToDimension tg:CybersecurityVehicle ;
+    ai:appliesToLifecycle tg:PostMarketMonitoring ;
+.
+
+# ── Post-Market Safety Monitoring ─────────────────────────────────────────────
+
+un-r157:IncidentReportingObligation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Incident Reporting and Fleet Monitoring"@en ;
+    skos:definition "Manufacturers must monitor ALKS fleet performance post-deployment — serious incidents involving ALKS must be reported to type approval authorities. Systematic AI performance degradation (model drift) must trigger investigation and software update. DSSAD data underpins post-incident investigation."@en ;
+    skos:inScheme   un-r157:Scheme ;
+    prov:wasDerivedFrom "UN R157, Annex 4 §5.10; Revision 1 (2022)" ;
+    ai:mappedToDimension tg:RoadUserSafety ;
+    ai:mappedToDimension ai:Accountability ;
+    ai:appliesToLifecycle tg:PostMarketMonitoring ;
+.

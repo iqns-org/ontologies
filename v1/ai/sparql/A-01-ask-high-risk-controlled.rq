@@ -1,0 +1,29 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# A-01 — Is this system covered by high-risk controls?
+# Purpose : For AI systems, check whether high-risk governance obligations are
+#           represented in the system profile (EU AI Act Annex III / high-risk
+#           requirements mapped into ai:HighRisk).
+# Use case: Quick gating question for high-risk AI pipelines.
+# ─────────────────────────────────────────────────────────────────────────────
+
+PREFIX ai:   <https://iqns.org/v0/ai#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+ASK WHERE {
+    ?system a ai:System .
+
+    {
+        # Any implemented requirement/control mapped to high-risk level
+        ?system (ai:implementsControl|ai:implementsRequirement) ?item .
+        ?item ai:hasRiskLevel ?rl .
+        {
+            ?rl skos:exactMatch ai:HighRisk .
+        }
+        UNION {
+            ?rl skos:exactMatch ai:UnacceptableRisk .
+        }
+        UNION {
+            FILTER(?rl IN (ai:HighRisk, ai:UnacceptableRisk))
+        }
+    }
+}

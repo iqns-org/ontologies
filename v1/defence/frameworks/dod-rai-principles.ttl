@@ -1,0 +1,135 @@
+@prefix dod-rai: <https://iqns.org/v0/dod-rai#> .
+@prefix dg:   <https://iqns.org/v0/defgraph#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+dod-rai:Ontology a owl:Ontology ;
+    dct:title       "DoD Responsible AI Principles and Directive 3000.09"@en ;
+    prov:wasDerivedFrom <https://www.defense.gov/News/Releases/Release/Article/2091996/dod-adopts-ethical-principles-for-artificial-intelligence/> ;
+    owl:versionInfo "DoD AI Ethical Principles (2020); DoD Directive 3000.09 (updated 2023); DoD AI Strategy (2018/2023); DoD RAI Strategy (2022)" ;
+.
+
+dod-rai:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "DoD Responsible AI — Ethical Principles and Autonomous Weapons Policy"@en ;
+    skos:definition "US Department of Defense framework for responsible AI — five ethical principles (Responsible, Equitable, Traceable, Reliable, Governable) and Directive 3000.09 autonomous weapons policy requiring meaningful human control. The baseline framework for AI governance across all US military AI programmes."@en .
+
+dod-rai:DoDRAI
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "DoD Responsible AI Principles"@en ;
+    skos:definition "DoD AI Ethical Principles (2020) — five principles applied to AI capabilities: Responsible, Equitable, Traceable, Reliable, and Governable. Supported by DoD Directive 3000.09 (Autonomous Weapon Systems) requiring explicit weapons review before deployment of autonomous or semi-autonomous functions. Operationalised through the DoD Responsible AI Strategy and Implementation Pathway (2022)."@en ;
+    skos:inScheme   dod-rai:Scheme ;
+    dct:publisher   "US Department of Defense"@en ;
+    dct:issued      "2020"^^xsd:gYear ;
+.
+
+# ── Five Ethical Principles ───────────────────────────────────────────────────
+
+dod-rai:ResponsiblePrinciple
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Responsible"@en ;
+    skos:definition "DoD personnel exercise appropriate levels of judgement and care when developing, deploying, and using AI — humans remain responsible for the development, deployment, use, and outcomes of DoD AI systems. No fully autonomous use of force without human judgement."@en ;
+    skos:inScheme   dod-rai:Scheme ;
+    prov:wasDerivedFrom "DoD AI Ethical Principles, Principle 1; Directive 3000.09" ;
+    ai:mappedToDimension dg:MeaningfulHumanControl ;
+    ai:mappedToDimension ai:HumanOversight ;
+    ai:mappedToDimension ai:Accountability ;
+.
+dod-rai:EquitablePrinciple
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Equitable"@en ;
+    skos:definition "DoD takes deliberate steps to minimise unintended bias in AI capabilities — ensures AI capabilities do not contribute to unlawful discrimination and addresses equity gaps in training data and algorithm design."@en ;
+    skos:inScheme   dod-rai:Scheme ;
+    prov:wasDerivedFrom "DoD AI Ethical Principles, Principle 2" ;
+    ai:mappedToDimension ai:Fairness ;
+.
+dod-rai:TraceablePrinciple
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Traceable"@en ;
+    skos:definition "DoD AI capabilities are developed and deployed with transparent and auditable methodologies, data sources, and training approaches — humans can monitor, assess, and understand AI operation sufficient to exercise meaningful accountability."@en ;
+    skos:inScheme   dod-rai:Scheme ;
+    prov:wasDerivedFrom "DoD AI Ethical Principles, Principle 3" ;
+    ai:mappedToDimension ai:Transparency ;
+    ai:mappedToDimension ai:Explainability ;
+.
+dod-rai:ReliablePrinciple
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Reliable"@en ;
+    skos:definition "DoD AI capabilities are explicit test and assurance processes that show they will behave as intended within safety bounds — including adversarial red-teaming, specification of operational design domains, and fallback behaviour under out-of-distribution inputs."@en ;
+    skos:inScheme   dod-rai:Scheme ;
+    prov:wasDerivedFrom "DoD AI Ethical Principles, Principle 4" ;
+    ai:mappedToDimension dg:MissionReliability ;
+    ai:mappedToDimension ai:Robustness ;
+    ai:mappedToDimension ai:Safety ;
+.
+dod-rai:GovernablePrinciple
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Governable"@en ;
+    skos:definition "DoD AI capabilities are designed with the ability to detect and avoid unintended consequences — including the ability to disengage or deactivate deployed systems that demonstrate unintended escalatory, harmful, or unpredictable behaviour."@en ;
+    skos:inScheme   dod-rai:Scheme ;
+    prov:wasDerivedFrom "DoD AI Ethical Principles, Principle 5" ;
+    ai:mappedToDimension dg:MeaningfulHumanControl ;
+    ai:mappedToDimension ai:HumanOversight ;
+.
+
+# ── Directive 3000.09 — Autonomous Weapons Policy ────────────────────────────
+
+dod-rai:JointRequirementsReview
+    a ai:Obligation ; a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "Senior Official Review — Autonomous Weapon Systems"@en ;
+    skos:definition "Directive 3000.09 requires senior-level review and approval prior to developing or using autonomous and semi-autonomous weapon systems that apply lethal force — any AI weapon system with autonomous lethal targeting capability requires explicit approval under this review process. Applies regardless of whether the system is characterised as weapon or non-weapon."@en ;
+    skos:inScheme   dod-rai:Scheme ;
+    prov:wasDerivedFrom "DoD Directive 3000.09, §4 (updated 2023)" ;
+    ai:mappedToDimension dg:MeaningfulHumanControl ;
+    ai:mappedToDimension dg:LegalCompliance ;
+    dg:requiresHumanInLoop "true"^^xsd:boolean ;
+    ai:appliesToLifecycle dg:AcquisitionAndDevelopment ;
+.
+dod-rai:IHLComplianceObligation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "IHL Compliance — Distinction, Proportionality, Precaution"@en ;
+    skos:definition "Autonomous weapon systems must be capable of discriminating between lawful targets and protected persons (distinction), ensure anticipated incidental civilian harm does not exceed concrete military advantage (proportionality), and take feasible precautions (precaution) — commander is legally responsible for battlefield AI decisions."@en ;
+    skos:inScheme   dod-rai:Scheme ;
+    prov:wasDerivedFrom "DoD Directive 3000.09 §3a; Geneva Conventions AP I Art. 36, 51–57" ;
+    ai:mappedToDimension dg:LegalCompliance ;
+    ai:mappedToDimension dg:MeaningfulHumanControl ;
+    dg:requiresHumanInLoop "true"^^xsd:boolean ;
+    ai:appliesToLifecycle dg:OperationalDeployment ;
+.
+dod-rai:AdversarialTestingObligation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Red-Teaming and Adversarial Testing"@en ;
+    skos:definition "DoD AI systems must undergo adversarial testing — red-teaming, electronic warfare simulation, adversarial ML attacks — before operational deployment and after significant updates. Test reports are a mandatory acquisition artefact."@en ;
+    skos:inScheme   dod-rai:Scheme ;
+    prov:wasDerivedFrom "DoD AI Strategy 2023; DoD RAI Implementation Pathway §4; DoD Test and Evaluation Community" ;
+    ai:mappedToDimension dg:MissionReliability ;
+    ai:mappedToDimension dg:CounterAIReadiness ;
+    ai:appliesToLifecycle dg:TestEvaluationValidation ;
+.
+
+# ── Responsible AI Implementation ─────────────────────────────────────────────
+
+dod-rai:AIGovernanceStructure
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "DoD AI Governance Structure — CDAO"@en ;
+    skos:definition "The Chief Digital and AI Office (CDAO) is the principal authority for AI governance, policy, and strategy across DoD — departmental components must coordinate AI acquisitions and report AI programmes through CDAO. AI inventory and risk classification programme mandated."@en ;
+    skos:inScheme   dod-rai:Scheme ;
+    prov:wasDerivedFrom "DoD RAI Strategy 2022; NDAA FY2022 §1515 (CDAO establishment)" ;
+    ai:mappedToDimension ai:Accountability ;
+    ai:appliesToLifecycle dg:AcquisitionAndDevelopment ;
+.
+dod-rai:WorkforceAndTraining
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "AI Workforce Development and Training"@en ;
+    skos:definition "DoD personnel using AI systems must have sufficient training to understand capabilities, limitations, and appropriate levels of trust — operator training is a prerequisite to deployment. AI system documentation must include warning labels on out-of-distribution scenarios."@en ;
+    skos:inScheme   dod-rai:Scheme ;
+    prov:wasDerivedFrom "DoD RAI Strategy 2022 §3.3; Directive 3000.09 operator training requirements" ;
+    ai:mappedToDimension dg:MeaningfulHumanControl ;
+    ai:mappedToDimension ai:HumanOversight ;
+    ai:appliesToLifecycle dg:OperationalDeployment ;
+.

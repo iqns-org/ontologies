@@ -1,0 +1,18 @@
+@prefix auto-pilot: <https://iqns.org/v0/transport/examples/auto-pilot#> .
+@prefix ex:     <https://iqns.org/v0/example#> .
+@prefix tg:     <https://iqns.org/v0/trangraph#> .
+@prefix ai:     <https://iqns.org/v0/ai#> .
+@prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:   <http://www.w3.org/ns/prov#> .
+@prefix r157:   <https://iqns.org/v0/un-r157#> .
+
+auto-pilot:CruiserADX a ai:System ;
+    a tg:VehicleManufacturer ;
+    skos:prefLabel "Cruiser ADX Level 3 Highway Pilot"@en ;
+    ai:mappedToDimension tg:FunctionalSafety ;
+    ai:appliesToLifecycle tg:VehicleTypeApproval ;
+    prov:wasDerivedFrom "Cruiser OEM Type Approval Documentation" ;
+    # Technical compliance
+    ai:implementsControl r157:ObjectAndEventDetection ;
+    ai:implementsControl r157:DSSAD_DataRecording ;
+.

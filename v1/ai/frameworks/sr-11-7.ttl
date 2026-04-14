@@ -1,0 +1,136 @@
+@prefix sr-11-7: <https://iqns.org/v0/sr-11-7#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+sr-11-7:Ontology a owl:Ontology ;
+    dct:title  "SR 11-7 — Supervisory Guidance on Model Risk Management (Federal Reserve / OCC, 2011)"@en ;
+    prov:wasDerivedFrom <https://www.federalreserve.gov/supervisionreg/srletters/sr1107.htm> .
+
+sr-11-7:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "SR 11-7 Model Risk Management"@en ;
+    skos:definition "Federal Reserve / OCC guidance establishing comprehensive model risk management for U.S. banking institutions; foundation for AI/ML model governance in financial services."@en .
+
+sr-11-7:SR117
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "SR 11-7 Model Risk Management Guidance"@en ;
+    skos:definition "Federal Reserve supervisory guidance requiring banks to identify, measure, and manage model risk through rigorous development, independent validation, and governance processes."@en ;
+    skos:inScheme   sr-11-7:Scheme ;
+    dct:publisher   "Board of Governors of the Federal Reserve System; OCC"@en ;
+    dct:issued      "2011"^^xsd:gYear ;
+.
+
+# ── Model Definition and Risk ─────────────────────────────────────────────────
+
+sr-11-7:Model
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Model (SR 11-7 Definition)"@en ;
+    skos:definition "Quantitative method, system, or approach applying statistical, economic, financial, or mathematical theory to transform inputs into quantitative estimates used in decision-making."@en ;
+    skos:inScheme   sr-11-7:Scheme ; prov:wasDerivedFrom "SR 11-7 §I" ;
+    ai:mappedToDimension ai:Reliability ;
+.
+sr-11-7:ModelRisk
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "Model Risk"@en ;
+    skos:definition "Risk of adverse outcomes (financial loss, regulatory breach, reputational damage) from model errors, misuse, or inappropriate reliance on model outputs."@en ;
+    skos:inScheme   sr-11-7:Scheme ; prov:wasDerivedFrom "SR 11-7 §I" ;
+    skos:broadMatch ai:ReputationalHarm ;
+    skos:broadMatch ai:FinancialHarm ;
+.
+sr-11-7:ModelUncertainty
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "Model Uncertainty"@en ;
+    skos:definition "Inherent limitation of models as simplifications of reality; includes estimation error, incorrect specification, and data inadequacy."@en ;
+    skos:inScheme   sr-11-7:Scheme ; prov:wasDerivedFrom "SR 11-7 §I" ;
+    skos:broadMatch ai:Robustness ;
+.
+
+# ── Model Development ─────────────────────────────────────────────────────────
+
+sr-11-7:ModelDevelopment
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Model Development"@en ;
+    skos:definition "Structured process of design, data selection, implementation, and testing; requires clear documentation of purpose, assumptions, limitations, and intended use."@en ;
+    skos:inScheme   sr-11-7:Scheme ; prov:wasDerivedFrom "SR 11-7 §II" ;
+    ai:appliesToLifecycle ai:Development ;
+    skos:relatedMatch ai:Transparency ;
+.
+sr-11-7:ModelDocumentation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Model Documentation"@en ;
+    skos:definition "Comprehensive documentation of model purpose, methodology, data, assumptions, limitations, outputs, and uses; required before deployment."@en ;
+    skos:inScheme   sr-11-7:Scheme ; prov:wasDerivedFrom "SR 11-7 §II.C" ;
+    skos:exactMatch ai:Transparency ;
+    ai:appliesToLifecycle ai:Development ;
+.
+sr-11-7:ModelTesting
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Model Testing and Benchmarking"@en ;
+    skos:definition "Rigorous in-sample and out-of-sample testing; sensitivity analysis; benchmarking against alternative approaches; stress testing."@en ;
+    skos:inScheme   sr-11-7:Scheme ; prov:wasDerivedFrom "SR 11-7 §II.D" ;
+    skos:broadMatch ai:Robustness ;
+    ai:appliesToLifecycle ai:Validation ;
+.
+
+# ── Model Validation ──────────────────────────────────────────────────────────
+
+sr-11-7:ModelValidation
+    a ai:Control ; a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "Independent Model Validation"@en ;
+    skos:definition "Effective challenge by staff independent from model developers; evaluates conceptual soundness, data quality, ongoing performance, and outcomes analysis."@en ;
+    skos:inScheme   sr-11-7:Scheme ; prov:wasDerivedFrom "SR 11-7 §III" ;
+    skos:exactMatch ai:ConformityAssessment ;
+    ai:appliesToLifecycle ai:Validation ;
+.
+sr-11-7:ConceptualSoundness
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Conceptual Soundness Evaluation"@en ;
+    skos:definition "Validate that model theory, mathematical structure, and assumptions are appropriate for the intended use case."@en ;
+    skos:inScheme   sr-11-7:Scheme ; prov:wasDerivedFrom "SR 11-7 §III.A" ;
+    skos:relatedMatch ai:Reliability ;
+.
+sr-11-7:OngoingMonitoringSR
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Ongoing Model Performance Monitoring"@en ;
+    skos:definition "Continuous tracking of model accuracy, stability, and output distributions; trigger-based re-validation when performance degrades."@en ;
+    skos:inScheme   sr-11-7:Scheme ; prov:wasDerivedFrom "SR 11-7 §III.B" ;
+    skos:exactMatch ai:Robustness ;
+    ai:appliesToLifecycle ai:Monitoring ;
+.
+sr-11-7:OutcomesAnalysis
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Outcomes Analysis (Backtesting)"@en ;
+    skos:definition "Systematic comparison of model predictions against actual outcomes to detect bias, drift, or structural breaks."@en ;
+    skos:inScheme   sr-11-7:Scheme ; prov:wasDerivedFrom "SR 11-7 §III.C" ;
+    skos:relatedMatch ai:Reliability ;
+    ai:appliesToLifecycle ai:Monitoring ;
+.
+
+# ── Governance ────────────────────────────────────────────────────────────────
+
+sr-11-7:ModelInventory
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Model Inventory"@en ;
+    skos:definition "Comprehensive catalogue of all models in use; includes model ID, owner, purpose, validation status, and deployment scope."@en ;
+    skos:inScheme   sr-11-7:Scheme ; prov:wasDerivedFrom "SR 11-7 §IV" ;
+    skos:broadMatch ai:Accountability ;
+.
+sr-11-7:ThreeLinesOfDefence
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Three Lines of Defence"@en ;
+    skos:definition "Model risk governance via: (1) model owners/developers; (2) independent model validation function; (3) internal audit assurance."@en ;
+    skos:inScheme   sr-11-7:Scheme ; prov:wasDerivedFrom "SR 11-7 §IV" ;
+    skos:exactMatch ai:Accountability ;
+.
+sr-11-7:ModelRiskAppetite
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Model Risk Appetite and Limits"@en ;
+    skos:definition "Board-approved thresholds for aggregate model risk; limits on use of high-risk models pending validation."@en ;
+    skos:inScheme   sr-11-7:Scheme ; prov:wasDerivedFrom "SR 11-7 §IV" ;
+    skos:broadMatch ai:RiskAssessment ;
+.

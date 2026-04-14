@@ -1,0 +1,9 @@
+PREFIX ai: <https://iqns.org/v0/ai#>
+
+SELECT ?framework1 ?framework2 ?gapStatus WHERE {
+  ?gap a ai:GapAnalysis ;
+       ai:frameworkA ?framework1 ;
+       ai:frameworkB ?framework2 ;
+       ai:gapStatus ?gapStatus .
+}
+ORDER BY ?framework1 ?framework2

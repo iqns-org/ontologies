@@ -1,0 +1,149 @@
+@prefix unesco-ai: <https://iqns.org/v0/unesco-ai#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+unesco-ai:Ontology a owl:Ontology ;
+    dct:title  "UNESCO Recommendation on the Ethics of AI (2021)"@en ;
+    prov:wasDerivedFrom <https://unesdoc.unesco.org/ark:/48223/pf0000381137> .
+
+unesco-ai:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "UNESCO AI Ethics Recommendation"@en ;
+    skos:definition "First global normative instrument on AI ethics — adopted by 193 UNESCO Member States in 2021."@en .
+
+unesco-ai:UNESCOAI
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "UNESCO AI Ethics Recommendation 2021"@en ;
+    skos:definition "UNESCO Recommendation on AI ethics — first global normative standard; 193 signatories; covers values, principles, governance, and policy actions."@en ;
+    skos:inScheme   unesco-ai:Scheme ;
+    dct:publisher   "UNESCO"@en ;
+    dct:issued      "2021"^^xsd:gYear ;
+.
+
+# ── Core Values ───────────────────────────────────────────────────────────────
+
+unesco-ai:HumanRightsDignity
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Human Rights and Dignity"@en ;
+    skos:definition "AI must respect, protect, and promote human rights and fundamental freedoms."@en ;
+    skos:inScheme   unesco-ai:Scheme ; prov:wasDerivedFrom "UNESCO Rec §11" ;
+    ai:mappedToDimension ai:Fairness ;
+    ai:mappedToDimension ai:Accountability ;
+.
+unesco-ai:EnvironmentSustainability
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Environment and Ecosystems"@en ;
+    skos:definition "AI should protect the environment and biodiversity; environmental costs of AI must be assessed and reduced."@en ;
+    skos:inScheme   unesco-ai:Scheme ; prov:wasDerivedFrom "UNESCO Rec §12" ;
+    ai:mappedToDimension ai:Sustainability ;
+.
+unesco-ai:DiversityInclusion
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Diversity and Inclusiveness"@en ;
+    skos:definition "AI should not homogenise cultures or suppress diversity; protect linguistic and cultural heritage."@en ;
+    skos:inScheme   unesco-ai:Scheme ; prov:wasDerivedFrom "UNESCO Rec §13" ;
+    ai:mappedToDimension ai:Fairness ;
+.
+unesco-ai:LivingTogether
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Living Together in Peace"@en ;
+    skos:definition "AI should not be used to incite hate, violence, or discrimination; support peaceful coexistence."@en ;
+    skos:inScheme   unesco-ai:Scheme ; prov:wasDerivedFrom "UNESCO Rec §14" ;
+    ai:mappedToDimension ai:Safety ;
+.
+
+# ── Core Principles ───────────────────────────────────────────────────────────
+
+unesco-ai:Proportionality
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Proportionality and Do No Harm"@en ;
+    skos:definition "AI applications should be proportionate to legitimate aims; harms must not outweigh benefits."@en ;
+    skos:inScheme   unesco-ai:Scheme ; prov:wasDerivedFrom "UNESCO Rec §15" ;
+    skos:broadMatch ai:Safety ;
+.
+unesco-ai:SafetySecurityUNESCO
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Safety and Security"@en ;
+    skos:definition "Unwanted harms and security vulnerabilities must be prevented throughout AI lifecycle."@en ;
+    skos:inScheme   unesco-ai:Scheme ; prov:wasDerivedFrom "UNESCO Rec §15" ;
+    skos:exactMatch ai:Safety ;
+    skos:exactMatch ai:Security ;
+.
+unesco-ai:FairnessNonDiscrimination
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Fairness and Non-Discrimination"@en ;
+    skos:definition "AI should not discriminate; promote fair and just outcomes for all, especially marginalised groups."@en ;
+    skos:inScheme   unesco-ai:Scheme ; prov:wasDerivedFrom "UNESCO Rec §15" ;
+    skos:exactMatch ai:Fairness ;
+.
+unesco-ai:SustainabilityUNESCO
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Sustainability"@en ;
+    skos:definition "AI development and deployment should be environmentally and socially sustainable."@en ;
+    skos:inScheme   unesco-ai:Scheme ; prov:wasDerivedFrom "UNESCO Rec §15" ;
+    skos:exactMatch ai:Sustainability ;
+.
+unesco-ai:RightToPrivacyUNESCO
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Right to Privacy and Data Protection"@en ;
+    skos:definition "AI must protect personal data; individuals have the right to privacy in all AI-affected contexts."@en ;
+    skos:inScheme   unesco-ai:Scheme ; prov:wasDerivedFrom "UNESCO Rec §15" ;
+    skos:exactMatch ai:Privacy ;
+.
+unesco-ai:HumanOversightUNESCO
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Human Oversight and Determination"@en ;
+    skos:definition "Meaningful human oversight must be maintained; final decisions with legal or significant effect rest with humans."@en ;
+    skos:inScheme   unesco-ai:Scheme ; prov:wasDerivedFrom "UNESCO Rec §15" ;
+    skos:exactMatch ai:HumanOversight ;
+.
+unesco-ai:TransparencyUNESCO
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Transparency and Explainability"@en ;
+    skos:definition "AI decision-making must be explicable; actors must be identifiable; AI systems must not impersonate humans."@en ;
+    skos:inScheme   unesco-ai:Scheme ; prov:wasDerivedFrom "UNESCO Rec §15" ;
+    skos:exactMatch ai:Transparency ;
+.
+unesco-ai:ResponsibilityAccountability
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Responsibility and Accountability"@en ;
+    skos:definition "Clear legal and ethical accountability for AI outcomes; no gap in responsibility between human and machine."@en ;
+    skos:inScheme   unesco-ai:Scheme ; prov:wasDerivedFrom "UNESCO Rec §15" ;
+    skos:exactMatch ai:Accountability ;
+.
+unesco-ai:AwarenessMulitiStakeholder
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Multi-Stakeholder Governance"@en ;
+    skos:definition "AI governance should be inclusive of civil society, academia, indigenous communities, and SMEs — not just governments and corporations."@en ;
+    skos:inScheme   unesco-ai:Scheme ; prov:wasDerivedFrom "UNESCO Rec §15" ;
+    ai:mappedToDimension ai:Accountability ;
+.
+
+# ── Policy Areas (UNESCO Chapter IV) ─────────────────────────────────────────
+
+unesco-ai:ReadinessAssessmentMethodology
+    a ai:Control ; a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "Readiness Assessment Methodology (RAM)"@en ;
+    skos:definition "UNESCO diagnostic tool for nations to assess AI governance readiness across legal, technical, and social dimensions."@en ;
+    skos:inScheme   unesco-ai:Scheme ; prov:wasDerivedFrom "UNESCO AI Ethics Rec — RAM" ;
+    skos:broadMatch ai:ImpactAssessment ;
+.
+unesco-ai:EthicsImpactAssessment
+    a ai:Control ; a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "AI Ethics Impact Assessment"@en ;
+    skos:definition "Assess AI impacts on human rights, dignity, and the environment before development and deployment."@en ;
+    skos:inScheme   unesco-ai:Scheme ; prov:wasDerivedFrom "UNESCO AI Ethics Rec §16" ;
+    skos:exactMatch ai:ImpactAssessment ;
+.
+unesco-ai:OpenDataScienceAccess
+    a ai:Recommendation ; a skos:Concept ;
+    skos:prefLabel  "Open Data and AI Access"@en ;
+    skos:definition "Promote equitable access to AI technologies and data, particularly for low- and middle-income countries."@en ;
+    skos:inScheme   unesco-ai:Scheme ; prov:wasDerivedFrom "UNESCO AI Ethics Rec §24" ;
+    ai:mappedToDimension ai:Fairness ;
+.

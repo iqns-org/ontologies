@@ -1,0 +1,144 @@
+@prefix microsoft-rai: <https://iqns.org/v0/microsoft-rai#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+microsoft-rai:Ontology a owl:Ontology ;
+    dct:title  "Microsoft Responsible AI Standard v2 (2022)"@en ;
+    prov:wasDerivedFrom <https://blogs.microsoft.com/wp-content/uploads/prod/sites/5/2022/06/Microsoft-Responsible-AI-Standard-v2-General-Requirements-3.pdf> .
+
+microsoft-rai:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "Microsoft Responsible AI Standard"@en ;
+    skos:definition "Microsoft's internal and externally published standard requiring responsible AI practices across six principles; includes specific goals, requirements, and tools for Microsoft teams."@en .
+
+microsoft-rai:Microsoft_RAI
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "Microsoft Responsible AI Standard v2"@en ;
+    skos:definition "Microsoft's enterprise responsible AI standard operationalising six principles into measurable goals and requirements; anchors RAI governance through human review, impact assessment, and documentation requirements."@en ;
+    skos:inScheme   microsoft-rai:Scheme ;
+    dct:publisher   "Microsoft Corporation"@en ;
+    dct:issued      "2022"^^xsd:gYear ;
+.
+
+# ── Six Principles ─────────────────────────────────────────────────────────────
+
+microsoft-rai:FairnessMSFT
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Fairness (Microsoft RAI)"@en ;
+    skos:definition "AI systems must treat all groups equitably; allocative and representational harms must be identified and mitigated across the product lifecycle."@en ;
+    skos:inScheme   microsoft-rai:Scheme ; prov:wasDerivedFrom "MSFT RAI Standard §Fairness" ;
+    skos:exactMatch ai:Fairness ;
+.
+microsoft-rai:ReliabilitySafetyMSFT
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Reliability and Safety (Microsoft RAI)"@en ;
+    skos:definition "AI systems must perform reliably and safely across all intended and reasonably foreseeable conditions; failure modes must be understood and risk managed."@en ;
+    skos:inScheme   microsoft-rai:Scheme ; prov:wasDerivedFrom "MSFT RAI Standard §Reliability" ;
+    skos:exactMatch ai:Reliability ;
+    skos:exactMatch ai:Safety ;
+.
+microsoft-rai:PrivacySecurityMSFT
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Privacy and Security (Microsoft RAI)"@en ;
+    skos:definition "AI systems must protect user privacy and data; security threats specific to AI (adversarial attack, data extraction) must be mitigated."@en ;
+    skos:inScheme   microsoft-rai:Scheme ; prov:wasDerivedFrom "MSFT RAI Standard §Privacy" ;
+    skos:exactMatch ai:Privacy ;
+    skos:exactMatch ai:Security ;
+.
+microsoft-rai:InclusivenessMSFT
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Inclusiveness (Microsoft RAI)"@en ;
+    skos:definition "AI systems must be designed to be accessible and useful to people of all abilities, backgrounds, and cultural contexts."@en ;
+    skos:inScheme   microsoft-rai:Scheme ; prov:wasDerivedFrom "MSFT RAI Standard §Inclusiveness" ;
+    skos:exactMatch ai:Fairness ;
+.
+microsoft-rai:TransparencyMSFT
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Transparency (Microsoft RAI)"@en ;
+    skos:definition "AI systems must be transparent; people must understand how AI works, what data it uses, and how it affects them."@en ;
+    skos:inScheme   microsoft-rai:Scheme ; prov:wasDerivedFrom "MSFT RAI Standard §Transparency" ;
+    skos:exactMatch ai:Transparency ;
+    skos:exactMatch ai:Explainability ;
+.
+microsoft-rai:AccountabilityMSFT
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Accountability (Microsoft RAI)"@en ;
+    skos:definition "People must be accountable for AI systems they build and deploy; governance structures and meaningful human oversight must be in place."@en ;
+    skos:inScheme   microsoft-rai:Scheme ; prov:wasDerivedFrom "MSFT RAI Standard §Accountability" ;
+    skos:exactMatch ai:Accountability ;
+    skos:exactMatch ai:HumanOversight ;
+.
+
+# ── Specific Goals and Requirements ───────────────────────────────────────────
+
+microsoft-rai:ImpactAssessmentMSFT
+    a ai:Control ; a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "Responsible AI Impact Assessment"@en ;
+    skos:definition "Structured assessment identifying potential harms (allocative, quality-of-service, representational, stereotyping, denigration, over- and under-representation) before deployment."@en ;
+    skos:inScheme   microsoft-rai:Scheme ; prov:wasDerivedFrom "MSFT RAI Standard — Impact Assessment" ;
+    skos:exactMatch ai:ImpactAssessment ;
+    ai:appliesToLifecycle ai:Design ;
+.
+microsoft-rai:HumanNotificationOfAI
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Human Notification of AI Interaction"@en ;
+    skos:definition "Users must be informed when they are interacting with an AI system; AI must not impersonate a human without disclosure."@en ;
+    skos:inScheme   microsoft-rai:Scheme ; prov:wasDerivedFrom "MSFT RAI Standard — Transparency Requirements" ;
+    skos:exactMatch ai:Transparency ;
+    ai:appliesToRole ai:User ;
+.
+microsoft-rai:SensitiveUseReview
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Sensitive Use Human Review"@en ;
+    skos:definition "AI applications in sensitive domains (criminal justice, health, employment, housing, credit, education) require senior human review and approval before deployment."@en ;
+    skos:inScheme   microsoft-rai:Scheme ; prov:wasDerivedFrom "MSFT RAI Standard — Accountability Requirements" ;
+    skos:exactMatch ai:HumanOversight ;
+    ai:appliesToLifecycle ai:Validation ;
+.
+microsoft-rai:DataSheetsForDatasets
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Datasheets for Datasets"@en ;
+    skos:definition "Training datasets must be documented with purpose, composition, collection process, preprocessing, distribution, uses, and known limitations."@en ;
+    skos:inScheme   microsoft-rai:Scheme ; prov:wasDerivedFrom "MSFT RAI Standard — Documentation" ;
+    skos:broadMatch ai:Transparency ;
+    ai:appliesToLifecycle ai:Development ;
+.
+microsoft-rai:ModelCardsMSFT
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Model Cards"@en ;
+    skos:definition "Deployed AI models must have model cards documenting intended use, performance metrics across subgroups, limitations, and evaluation approach."@en ;
+    skos:inScheme   microsoft-rai:Scheme ; prov:wasDerivedFrom "MSFT RAI Standard — Documentation" ;
+    skos:exactMatch ai:Transparency ;
+    ai:appliesToLifecycle ai:Deployment ;
+.
+microsoft-rai:FairnessMetricsRequirement
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Fairness Metrics Measurement"@en ;
+    skos:definition "Teams must define and measure fairness metrics relevant to their use case; disparate performance across demographic groups must be reported and addressed."@en ;
+    skos:inScheme   microsoft-rai:Scheme ; prov:wasDerivedFrom "MSFT RAI Standard — Fairness Requirements" ;
+    skos:exactMatch ai:Fairness ;
+    ai:appliesToLifecycle ai:Validation ;
+    ai:appliesToLifecycle ai:Monitoring ;
+.
+microsoft-rai:IncidentResponseRAI
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Responsible AI Incident Response"@en ;
+    skos:definition "Processes to detect, report, and respond to responsible AI incidents (harms, unexpected outputs, misuse) with defined escalation paths and remediation."@en ;
+    skos:inScheme   microsoft-rai:Scheme ; prov:wasDerivedFrom "MSFT RAI Standard — Accountability Requirements" ;
+    skos:broadMatch ai:Accountability ;
+    ai:appliesToLifecycle ai:Monitoring ;
+.
+microsoft-rai:MitigationLayeringMSFT
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Harm Mitigation Layering"@en ;
+    skos:definition "Apply mitigations at multiple layers: model level (fine-tuning, RLHF), system level (metaprompts, classifiers), UX level (UI interventions), and operational level (monitoring, rate-limiting)."@en ;
+    skos:inScheme   microsoft-rai:Scheme ; prov:wasDerivedFrom "MSFT RAI Standard — Safety Requirements" ;
+    skos:broadMatch ai:Safety ;
+    skos:broadMatch ai:Security ;
+    ai:appliesToLifecycle ai:Deployment ;
+.

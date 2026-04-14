@@ -1,0 +1,134 @@
+@prefix ex:      <https://iqns.org/v0/enterprise-example#> .
+@prefix ai:      <https://iqns.org/v0/ai#> .
+@prefix euai:    <https://iqns.org/v0/eu-ai-act#> .
+@prefix nrmf:    <https://iqns.org/v0/nist-ai-rmf#> .
+@prefix iso42001:<https://iqns.org/v0/iso-42001#> .
+@prefix owasp:   <https://iqns.org/v0/owasp-llm#> .
+@prefix saif:    <https://iqns.org/v0/google-saif#> .
+@prefix atlas:   <https://iqns.org/v0/mitre-atlas#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+ex:AzureOntology a owl:Ontology ;
+    dct:title       "Enterprise Azure AI Platform Assets"@en ;
+    skos:definition "Microsoft Azure managed AI/ML service assets used by the enterprise, mapped to IQ:NS controls."@en ;
+    owl:versionInfo "0.1" ;
+    owl:imports     <https://iqns.org/v0/enterprise-example> ;
+.
+
+# ══════════════════════════════════════════════════════════════════════════════
+# Azure Machine Learning Workspace
+# ══════════════════════════════════════════════════════════════════════════════
+
+ex:AzureMLWorkspace
+    a ex:CloudAIPlatform ;
+    skos:prefLabel       "Azure Machine Learning Workspace (North Europe)"@en ;
+    skos:definition  "Azure ML Workspace in northeurope (Dublin). Hosts compute clusters, managed endpoints, model registry, and dataset store. Used primarily for HR Candidate Screening model training and EU-region batch inference. Azure ML Model Cards and Responsible AI dashboard enabled."@en ;
+    ex:vendor        "Microsoft Azure" ;
+    ex:dataRegion    "northeurope" ;
+
+    # ── Native controls ───────────────────────────────────────────────────────
+    ex:implementsNatively iso42001:A8AILifecycle ;       # end-to-end ML lifecycle (notebooks → pipeline → registry)
+    ex:implementsNatively iso42001:A10Documentation ;    # Azure ML Model Cards + experiment lineage
+    ex:implementsNatively nrmf:GV5 ;                    # Model Registry = AI system inventory
+    ex:implementsNatively nrmf:MS1 ;                    # Responsible AI dashboard: fairness, error analysis
+    ex:implementsNatively nrmf:MS3 ;                    # Responsible AI: fairness parity metrics
+    ex:implementsNatively nrmf:MS4 ;                    # Azure ML Data Drift detector on managed endpoints
+    ex:implementsNatively saif:HarmonisePlatformControls ; # Private Link, Managed Identity, VNet injection
+    ex:implementsNatively nrmf:GV6 ;                    # curated environments → base image provenance
+
+    # ── Risks mitigated ───────────────────────────────────────────────────────
+    ex:mitigates owasp:LLM10_ModelTheft ;     # model artifacts in ADLS with RBAC + private endpoint
+    ex:mitigates atlas:Reconnaissance ;        # no public workspace endpoint when VNet-injected
+    ex:mitigates ai:DiscriminationHarm ;       # Responsible AI dashboard enforces fairness review gate
+
+    # ── Residual risks ────────────────────────────────────────────────────────
+    ex:bearsFace owasp:LLM05_SupplyChainVulnerabilities ; # custom conda environments
+    ex:bearsFace atlas:MLAttackStaging ;       # adversarial data submitted via ML pipelines
+    ex:bearsFace atlas:PrivilegeEscalation ;   # over-provisioned managed identity
+.
+
+# ══════════════════════════════════════════════════════════════════════════════
+# Azure OpenAI Service
+# ══════════════════════════════════════════════════════════════════════════════
+
+ex:AzureOpenAIService
+    a ex:FoundationModelAPI ;
+    skos:prefLabel       "Azure OpenAI Service (GPT-4o + Embeddings)"@en ;
+    skos:definition  "Azure OpenAI Service deployment in northeurope: GPT-4o (128k context) for RAG Q&A and Azure text-embedding-3-large for vector search. Data residency guaranteed in EU. Content Safety filters enabled. Zero-data-retention (no Microsoft training on prompts). Private endpoint via VNet."@en ;
+    ex:vendor        "Microsoft Azure (models: OpenAI)" ;
+    ex:dataRegion    "northeurope" ;
+
+    # ── Native controls ───────────────────────────────────────────────────────
+    ex:implementsNatively owasp:PromptValidation ;        # Azure Content Safety: jailbreak detection
+    ex:implementsNatively owasp:OutputValidation ;        # Content Safety: hate, violence, sexual, self-harm filters
+    ex:implementsNatively saif:HarmonisePlatformControls ; # Private endpoint, VNet, Managed Identity
+    ex:implementsNatively nrmf:GV6 ;                     # OpenAI responsible AI commitments documented
+    ex:implementsNatively euai:TransparencyObligation ;   # AI Notice in API terms; Content Safety usage logs
+
+    # ── Risks mitigated ───────────────────────────────────────────────────────
+    ex:mitigates owasp:LLM01_PromptInjection ;         # built-in jailbreak classifier (Prompt Shield)
+    ex:mitigates owasp:LLM06_SensitiveInfoDisclosure ; # zero-data-retention policy
+    ex:mitigates owasp:LLM10_ModelTheft ;              # opaque API; model weights not extractable
+
+    # ── Residual risks ────────────────────────────────────────────────────────
+    ex:bearsFace owasp:LLM08_ExcessiveAgency ;   # Assistants API with tool use can take actions
+    ex:bearsFace saif:MemoryPoisoningRAG ;        # retrieval store documents influence outputs
+    ex:bearsFace owasp:LLM09_Overreliance ;       # users over-trusting factual accuracy of GPT-4o
+    ex:bearsFace euai:GPAIModel ;                 # GPT-4 is GPAI model; Art. 53 disclosure obligations apply
+.
+
+# ══════════════════════════════════════════════════════════════════════════════
+# Azure AI Content Safety
+# ══════════════════════════════════════════════════════════════════════════════
+
+ex:AzureAIContentSafety
+    a ex:CloudAIPlatform ;
+    skos:prefLabel       "Azure AI Content Safety Service"@en ;
+    skos:definition  "Standalone Content Safety API providing real-time content moderation (hate, violence, sexual, self-harm), ground-truth checking, and Prompt Shield (jailbreak + indirect injection detection). Deployed as shared middleware for all LLM workloads (RAG Q&A, Enterprise LLM Assistant)."@en ;
+    ex:vendor        "Microsoft Azure" ;
+    ex:dataRegion    "northeurope" ;
+
+    # ── Native controls ───────────────────────────────────────────────────────
+    ex:implementsNatively owasp:PromptValidation ;        # Prompt Shield: direct + indirect injection
+    ex:implementsNatively owasp:OutputValidation ;        # multi-category harm classification on output
+    ex:implementsNatively owasp:LeastPrivilegeLLM ;       # content policy enforcement reduces agency scope
+    ex:implementsNatively saif:AutomateAIDefences ;       # automated blocking without human-in-the-loop
+
+    # ── Risks mitigated ───────────────────────────────────────────────────────
+    ex:mitigates owasp:LLM01_PromptInjection ;
+    ex:mitigates owasp:LLM02_InsecureOutputHandling ;
+    ex:mitigates owasp:LLM06_SensitiveInfoDisclosure ;
+
+    # ── Upstream for LLM systems ──────────────────────────────────────────────
+    ex:upstreamOf ex:RAGDocumentSearch ;
+    ex:upstreamOf ex:EnterpriseLLMAssistant ;
+.
+
+# ══════════════════════════════════════════════════════════════════════════════
+# Microsoft 365 Copilot
+# ══════════════════════════════════════════════════════════════════════════════
+
+ex:MSCopilot365
+    a ex:SaaSAIService ;
+    skos:prefLabel       "Microsoft 365 Copilot"@en ;
+    skos:definition  "Microsoft 365 Copilot deployed for 5,000 enterprise users. Integrates with Teams, Outlook, Word, Excel, PowerPoint, and SharePoint. Uses GPT-4 grounded on Microsoft Graph data. EU data boundary opted in. EU AI Act: limited-risk chatbot (Art. 50 disclosure required)."@en ;
+    ex:vendor        "Microsoft" ;
+    ex:dataRegion    "northeurope, westeurope" ;
+
+    # ── Regulatory scope ──────────────────────────────────────────────────────
+    # Chatbot interacting with employees → EU AI Act Art. 50 transparency
+    ex:implementsNatively euai:TransparencyObligation ;   # Users informed via Microsoft ToS + onboarding notice
+    ex:implementsNatively nrmf:GV6 ;                     # Microsoft supply chain governance (SOC2, ISO 27001)
+    ex:implementsNatively owasp:OutputValidation ;        # built-in content filters
+    ex:implementsNatively saif:HarmonisePlatformControls ; # EU Data Boundary, Entra ID RBAC
+
+    # ── Residual risks ────────────────────────────────────────────────────────
+    ex:bearsFace owasp:LLM06_SensitiveInfoDisclosure ;    # M365 Graph access may surface confidential docs
+    ex:bearsFace owasp:LLM08_ExcessiveAgency ;            # Copilot actions in Teams/Outlook (email drafting)
+    ex:bearsFace owasp:LLM09_Overreliance ;               # executive decisions influenced by Copilot summaries
+    ex:bearsFace saif:MemoryPoisoningRAG ;                # SharePoint documents may contain adversarial content
+    ex:bearsFace euai:GPAIModel ;                         # uses GPT-4 → GPAI disclosure obligations (Art. 53)
+.

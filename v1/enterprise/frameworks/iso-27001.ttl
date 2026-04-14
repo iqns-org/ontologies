@@ -1,0 +1,157 @@
+@prefix iso-27001: <https://iqns.org/v0/iso-27001#> .
+@prefix enterprise:   <https://iqns.org/v0/enterprise#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+iso-27001:Ontology a owl:Ontology ;
+    dct:title       "ISO/IEC 27001:2022 — Information Security Management Systems"@en ;
+    prov:wasDerivedFrom <https://www.iso.org/standard/27001> ;
+    owl:versionInfo "ISO/IEC 27001:2022 (third edition); ISO/IEC 27002:2022 (Annex A controls)" ;
+.
+
+iso-27001:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "ISO/IEC 27001:2022 — ISMS"@en ;
+    skos:definition "International standard for information security management systems — the universal enterprise baseline for managing information security risk, applicable to all organisations operating AI systems."@en .
+
+iso-27001:ISO27001
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "ISO/IEC 27001:2022"@en ;
+    skos:definition "Specifies requirements for establishing, implementing, maintaining, and continually improving an ISMS. Certification requires independent audit. Covers organisational context, risk assessment, controls (Annex A), and continual improvement — increasingly paired with ISO 42001 for AI systems."@en ;
+    skos:inScheme   iso-27001:Scheme ;
+    dct:publisher   "ISO / IEC JTC 1/SC 27"@en ;
+    dct:issued      "2022"^^xsd:gYear ;
+.
+
+# ── Clause 4-10: ISMS Requirements ───────────────────────────────────────────
+
+iso-27001:ISMSScope
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "ISMS — Scope Definition (Cl. 4.3)"@en ;
+    skos:definition "The organisation must determine the boundaries and applicability of the ISMS — including all AI systems, data stores, and third-party services that process information assets. Scope must be documented."@en ;
+    skos:inScheme   iso-27001:Scheme ;
+    prov:wasDerivedFrom "ISO/IEC 27001:2022, Clause 4.3" ;
+    ai:mappedToDimension ai:InformationSecurity ;
+    ai:appliesToLifecycle enterprise:StrategyAndPlanning ;
+.
+iso-27001:InformationSecurityRiskAssessment
+    a ai:Obligation ; a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "Information Security Risk Assessment (Cl. 6.1.2)"@en ;
+    skos:definition "The organisation must define and apply a risk assessment process to identify, analyse, and evaluate information security risks — including AI model training pipelines, inference infrastructure, and data supply chains. Must be documented and repeated at planned intervals or when significant changes occur."@en ;
+    skos:inScheme   iso-27001:Scheme ;
+    prov:wasDerivedFrom "ISO/IEC 27001:2022, Clause 6.1.2" ;
+    ai:mappedToDimension ai:InformationSecurity ;
+    ai:appliesToLifecycle enterprise:RiskAssessment ;
+.
+iso-27001:StatementOfApplicability
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Statement of Applicability (SoA)"@en ;
+    skos:definition "The organisation must produce a Statement of Applicability listing all Annex A controls with justification for inclusion or exclusion. The SoA is a key audit artefact — for AI systems, controls in Clause 8.25 (security in development) and 8.30 (outsourced development) are typically included."@en ;
+    skos:inScheme   iso-27001:Scheme ;
+    prov:wasDerivedFrom "ISO/IEC 27001:2022, Clause 6.1.3(d)" ;
+    ai:mappedToDimension ai:InformationSecurity ;
+.
+iso-27001:InternalAuditObligation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Internal Audit Programme (Cl. 9.2)"@en ;
+    skos:definition "The organisation must conduct internal ISMS audits at planned intervals to determine whether the ISMS conforms to requirements and is effectively implemented. AI-specific controls (data access, model integrity) must be within audit scope."@en ;
+    skos:inScheme   iso-27001:Scheme ;
+    prov:wasDerivedFrom "ISO/IEC 27001:2022, Clause 9.2" ;
+    ai:mappedToDimension ai:InformationSecurity ;
+    ai:mappedToDimension ai:Accountability ;
+    ai:appliesToLifecycle enterprise:MonitoringAndReview ;
+.
+iso-27001:ManagementReview
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Management Review (Cl. 9.3)"@en ;
+    skos:definition "Top management must review the ISMS at planned intervals to ensure suitability, adequacy, and effectiveness. Outputs include decisions on continual improvement opportunities and resource changes — AI governance outcomes reported to senior management."@en ;
+    skos:inScheme   iso-27001:Scheme ;
+    prov:wasDerivedFrom "ISO/IEC 27001:2022, Clause 9.3" ;
+    ai:mappedToDimension enterprise:CorporateGovernance ;
+    ai:appliesToLifecycle enterprise:MonitoringAndReview ;
+.
+
+# ── Annex A Controls (ISO 27002:2022 — selected) ────────────────────────────
+
+iso-27001:AccessControl
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Access Control (Annex A 5.15-5.18)"@en ;
+    skos:definition "Controls over user and system access to information assets — identity and access management, privileged access, need-to-know enforcement. AI systems must implement role-based access, model artefact access logging, and API key management."@en ;
+    skos:inScheme   iso-27001:Scheme ;
+    prov:wasDerivedFrom "ISO/IEC 27001:2022, Annex A 5.15; ISO/IEC 27002:2022 §5.15–5.18" ;
+    enterprise:hasControlType enterprise:PreventiveControl ;
+    ai:mappedToDimension ai:InformationSecurity ;
+.
+enterprise:AccessControl skos:relatedMatch iso-27001:AccessControl .
+
+iso-27001:CryptographyPolicy
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Cryptography — Policy and Key Management (Annex A 8.24)"@en ;
+    skos:definition "The organisation must define and implement rules on use of cryptography including encryption at rest and in transit — AI model weights, training data, and inference inputs/outputs must be encrypted where they contain sensitive information."@en ;
+    skos:inScheme   iso-27001:Scheme ;
+    prov:wasDerivedFrom "ISO/IEC 27001:2022, Annex A 8.24" ;
+    enterprise:hasControlType enterprise:PreventiveControl ;
+    ai:mappedToDimension ai:InformationSecurity ;
+.
+iso-27001:SecurityInDevelopment
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Secure Development Lifecycle (Annex A 8.25-8.32)"@en ;
+    skos:definition "Security must be integrated into the software development lifecycle — design review, threat modelling, secure coding, dependency management, testing, and change management. AI development pipelines must apply secure-by-design practices and supply-chain integrity checks."@en ;
+    skos:inScheme   iso-27001:Scheme ;
+    prov:wasDerivedFrom "ISO/IEC 27001:2022, Annex A 8.25–8.32" ;
+    enterprise:hasControlType enterprise:PreventiveControl ;
+    ai:mappedToDimension ai:InformationSecurity ;
+    ai:mappedToDimension enterprise:SupplyChainRisk ;
+.
+iso-27001:ThreatIntelligence
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Threat Intelligence (Annex A 5.7)"@en ;
+    skos:definition "New in ISO 27001:2022 — the organisation must collect and analyse information on security threats to enable informed risk-based decisions. For AI systems: monitoring adversarial ML threat reports and AI security bulletins."@en ;
+    skos:inScheme   iso-27001:Scheme ;
+    prov:wasDerivedFrom "ISO/IEC 27001:2022, Annex A 5.7" ;
+    enterprise:hasControlType enterprise:DetectiveControl ;
+    ai:mappedToDimension ai:InformationSecurity ;
+.
+iso-27001:DataLeakagePrevention
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Data Leakage Prevention (Annex A 8.12)"@en ;
+    skos:definition "New in ISO 27001:2022 — DLP measures applied to systems handling sensitive data. For AI: monitoring model outputs for training data memorisation, implementing output filters, and rate-limiting inference APIs."@en ;
+    skos:inScheme   iso-27001:Scheme ;
+    prov:wasDerivedFrom "ISO/IEC 27001:2022, Annex A 8.12" ;
+    enterprise:hasControlType enterprise:DetectiveControl ;
+    ai:mappedToDimension ai:InformationSecurity ;
+    ai:mappedToDimension ai:Privacy ;
+.
+iso-27001:ConfigurationManagement
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Configuration Management (Annex A 8.9)"@en ;
+    skos:definition "New in ISO 27001:2022 — configurations of hardware, software, and services must be established, documented, monitored, and reviewed. AI model version management, hyperparameter tracking, and inference infrastructure configuration are within scope."@en ;
+    skos:inScheme   iso-27001:Scheme ;
+    prov:wasDerivedFrom "ISO/IEC 27001:2022, Annex A 8.9" ;
+    enterprise:hasControlType enterprise:PreventiveControl ;
+    ai:mappedToDimension ai:InformationSecurity ;
+.
+iso-27001:IncidentManagement
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Information Security Incident Management (Annex A 5.24-5.28)"@en ;
+    skos:definition "The organisation must plan and implement processes for managing information security incidents — including detection, classification, escalation, response, disclosure, and post-incident review. AI-related incidents (model poisoning, privacy breach via model inversion) must be covered."@en ;
+    skos:inScheme   iso-27001:Scheme ;
+    prov:wasDerivedFrom "ISO/IEC 27001:2022, Annex A 5.24–5.28" ;
+    enterprise:hasControlType enterprise:CorrectiveControl ;
+    ai:mappedToDimension ai:InformationSecurity ;
+    ai:mappedToDimension ai:Accountability ;
+.
+iso-27001:BusinessContinuityISO
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "ICT Continuity (Annex A 5.29-5.30)"@en ;
+    skos:definition "Plans for ensuring information security continuity during adverse situations — including backup policies, disaster recovery, RTO/RPO definitions. Production AI systems require documented fallback procedures defining when and how to switch to non-AI decision modes."@en ;
+    skos:inScheme   iso-27001:Scheme ;
+    prov:wasDerivedFrom "ISO/IEC 27001:2022, Annex A 5.29–5.30" ;
+    enterprise:hasControlType enterprise:CorrectiveControl ;
+    ai:mappedToDimension enterprise:BusinessContinuity ;
+.

@@ -1,0 +1,40 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# 12  Required Assessments by Framework
+# Purpose : List all gg:Assessment instances referenced by requirements,
+#           obligations or controls — and under which frameworks they appear.
+# Use case: CISO audit programme planning — which assessments are mandated
+#           and by which regulations / standards.
+# ─────────────────────────────────────────────────────────────────────────────
+
+PREFIX gg:   <https://iqns.org/v0/ai#>
+PREFIX dct:  <http://purl.org/dc/terms/>
+PREFIX prov:  <http://www.w3.org/ns/prov#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+SELECT DISTINCT
+    ?assessmentLabel
+    ?assessmentDef
+    ?assessedItemLabel
+    ?assessedItemType
+    ?frameworkLabel
+    ?citation
+WHERE {
+    ?item  gg:assessedBy  ?assessment .
+    ?assessment  a gg:Assessment ;
+                 skos:prefLabel  ?assessmentLabel .
+
+    OPTIONAL { ?assessment skos:definition ?assessmentDef . }
+
+    ?item  skos:prefLabel  ?assessedItemLabel .
+    OPTIONAL { ?item  a ?assessedItemType . FILTER ( ?assessedItemType NOT IN (skos:Concept) ) }
+    OPTIONAL { ?item  prov:wasDerivedFrom         ?citation . }
+
+    OPTIONAL {
+        ?fw (gg:hasRequirement | gg:imposesObligation) ?item ;
+            skos:prefLabel ?frameworkLabel .
+    }
+
+    FILTER ( lang(?assessmentLabel)    = "en" )
+    FILTER ( lang(?assessedItemLabel)  = "en" )
+}
+ORDER BY ?frameworkLabel ?assessmentLabel

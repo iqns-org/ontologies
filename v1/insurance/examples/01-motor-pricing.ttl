@@ -1,0 +1,18 @@
+@prefix safe-underwrite: <https://iqns.org/v0/insurance/examples/safe-underwrite#> .
+@prefix ex:     <https://iqns.org/v0/example#> .
+@prefix ing:    <https://iqns.org/v0/insgraph#> .
+@prefix ai:     <https://iqns.org/v0/ai#> .
+@prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:   <http://www.w3.org/ns/prov#> .
+@prefix sol2:   <https://iqns.org/v0/solvency-ii#> .
+
+safe-underwrite:AutoPremiumModel a ai:System ;
+    a ing:Insurer ;
+    skos:prefLabel "SafeUnderwrite Motor Pricing Model"@en ;
+    ai:mappedToDimension ing:ActuarialRisk ;
+    ai:appliesToLifecycle ing:Underwriting ;
+    prov:wasDerivedFrom "SafeUnderwrite Actuarial Inventory #104" ;
+    # Regulatory alignment
+    ai:implementsControl sol2:SystemOfGovernance ;
+    ai:implementsControl sol2:ActuarialFunctionCertification ;
+.

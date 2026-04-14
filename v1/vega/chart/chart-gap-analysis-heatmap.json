@@ -1,0 +1,17 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Gap analysis matrix for framework obligations",
+  "title": "{{chart.title}}",
+  "data": { "values": {{data}} },
+  "mark": "rect",
+  "encoding": {
+    "x": { "field": "{{chart.x}}", "type": "nominal", "title": "{{chart.xTitle}}" },
+    "y": { "field": "{{chart.y}}", "type": "nominal", "title": "{{chart.yTitle}}" },
+    "color": { "field": "{{chart.status}}", "type": "nominal", "title": "{{chart.statusTitle}}", "scale": { "domain": ["covered","partial","gap"], "range": ["#2ca02c", "#ff7f0e", "#d62728"] } },
+    "tooltip": [
+      { "field": "{{chart.x}}", "type": "nominal" },
+      { "field": "{{chart.y}}", "type": "nominal" },
+      { "field": "{{chart.status}}", "type": "nominal" }
+    ]
+  }
+}

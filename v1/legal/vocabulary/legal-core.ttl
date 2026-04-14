@@ -1,0 +1,100 @@
+@prefix lg:  <https://iqns.org/v0/leggraph#> .
+@prefix ai:  <https://iqns.org/v0/ai#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:<http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:<http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# ── Ontology ─────────────────────────────────────────────────────────────────
+
+lg:Ontology
+    a owl:Ontology ;
+    dct:title       "LegGraph: Legal Profession Core Vocabulary"@en ;
+    skos:definition "Abstract vocabulary for legal profession AI governance — AI in legal practice, court use of AI, professional responsibility for legal AI tools, and AI-assisted judgment. Extends ai: with legal-sector dimensions, lifecycle stages, and stakeholders."@en ;
+    owl:imports     <https://iqns.org/v0/ai#> ;
+    owl:versionInfo "0.1" ;
+.
+
+# ── Legal-Specific Properties ─────────────────────────────────────────────────
+
+lg:subjectToLegalProfessionalPrivilege
+    a owl:DatatypeProperty ;
+    skos:prefLabel  "subject to legal professional privilege"@en ;
+    rdfs:range  xsd:boolean ;
+.
+lg:usedInJudicialContext
+    a owl:DatatypeProperty ;
+    skos:prefLabel  "used in judicial context"@en ;
+    rdfs:range  xsd:boolean ;
+.
+
+# ── Legal Dimensions ──────────────────────────────────────────────────────────
+
+lg:ProfessionalResponsibility
+    a ai:Dimension ; a skos:Concept ;
+    skos:prefLabel  "Professional Responsibility and Competence"@en ;
+    skos:definition "Lawyer duty of competence extends to understanding AI tools used in legal practice — duty to supervise AI outputs, disclose AI use where required, and ensure accuracy of AI-assisted filings."@en ;
+    skos:relatedMatch ai:Accountability ;
+.
+lg:LegalPrivilege
+    a ai:Dimension ; a skos:Concept ;
+    skos:prefLabel  "Legal Professional Privilege / Attorney-Client Privilege"@en ;
+    skos:definition "Confidential communications between lawyers and clients — AI tools used to process privileged information must maintain confidentiality; cloud-based AI tools must be vetted for data sovereignty and confidentiality."@en ;
+    skos:broadMatch ai:Privacy ;
+.
+lg:DueProcess
+    a ai:Dimension ; a skos:Concept ;
+    skos:prefLabel  "Procedural Justice and Due Process"@en ;
+    skos:definition "Right to a fair hearing, challenge of evidence, and reasoned decision — AI-generated evidence and algorithmic sentencing tools must be disclosed and contestable."@en ;
+    skos:relatedMatch ai:Transparency ;
+    skos:relatedMatch ai:HumanOversight ;
+.
+lg:JudicialIndependence
+    a ai:Dimension ; a skos:Concept ;
+    skos:prefLabel  "Judicial Independence and Impartiality"@en ;
+    skos:definition "AI systems must not impair judicial independence — recidivism prediction tools, AI sentencing recommendations, and legal research AI must be subject to judicial scrutiny and must not be determinative of outcomes."@en ;
+    skos:relatedMatch ai:HumanOversight ;
+.
+
+# ── Legal Lifecycle ───────────────────────────────────────────────────────────
+
+lg:LegalResearch
+    a ai:Lifecycle ; a skos:Concept ;
+    skos:prefLabel  "Legal Research"@en ;
+    skos:definition "Use of AI for case law research, statutory interpretation, and legal analysis — accuracy, hallucination risk, and citation verification are key AI governance concerns."@en ;
+.
+lg:DocumentDrafting
+    a ai:Lifecycle ; a skos:Concept ;
+    skos:prefLabel  "Document Drafting and Review"@en ;
+    skos:definition "AI-assisted contract drafting, due diligence, and document review — lawyer remains responsible for accuracy; AI errors in legal documents can result in professional liability."@en ;
+.
+lg:DisputeResolution
+    a ai:Lifecycle ; a skos:Concept ;
+    skos:prefLabel  "Dispute Resolution and Litigation"@en ;
+    skos:definition "AI use in court proceedings — predictive analytics, e-discovery, AI-assisted judicial decision support; disclosure requirements and contestability."@en ;
+.
+
+# ── Stakeholders ──────────────────────────────────────────────────────────────
+
+lg:Lawyer
+    a ai:Stakeholder ; a skos:Concept ;
+    skos:prefLabel  "Lawyer / Legal Practitioner"@en ;
+    skos:definition "Licensed legal professional using AI tools — responsible under professional conduct rules for competent and ethical use of AI in practice."@en ;
+.
+lg:Judge
+    a ai:Stakeholder ; a skos:Concept ;
+    skos:prefLabel  "Judge / Judicial Officer"@en ;
+    skos:definition "Judicial officer who may receive AI-generated analysis or who uses AI tools in case management — responsible for ensuring fair proceedings and not abdicating decision-making to AI."@en ;
+.
+lg:Client
+    a ai:Stakeholder ; a skos:Concept ;
+    skos:prefLabel  "Client"@en ;
+    skos:definition "Individual or entity receiving legal services — has rights to confidentiality, competent representation, and disclosure of AI use affecting their matter."@en ;
+.
+lg:BarAssociation
+    a ai:Stakeholder ; a skos:Concept ;
+    skos:prefLabel  "Bar Association / Law Society"@en ;
+    skos:definition "Professional regulatory body issuing guidance on AI use by lawyers — ABA, Law Society of England and Wales, CCBE (European bars); issuing guidance on competence, privilege, and conduct obligations."@en ;
+.

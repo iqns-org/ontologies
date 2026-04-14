@@ -1,0 +1,129 @@
+@prefix google-saif: <https://iqns.org/v0/google-saif#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+google-saif:Ontology a owl:Ontology ;
+    dct:title  "Google Secure AI Framework (SAIF, 2023)"@en ;
+    prov:wasDerivedFrom <https://safety.google/cybersecurity-advancements/saif/> .
+
+google-saif:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "Google Secure AI Framework (SAIF)"@en ;
+    skos:definition "Google's framework for securing AI systems across six core elements covering supply chain, threat landscape, and defence-in-depth for ML deployments."@en .
+
+google-saif:Google_SAIF
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "Google Secure AI Framework (SAIF)"@en ;
+    skos:definition "Google's conceptual framework for building secure-by-default AI systems; six core elements address supply chain, controls, detection, and AI-augmented defence."@en ;
+    skos:inScheme   google-saif:Scheme ;
+    dct:publisher   "Google LLC"@en ;
+    dct:issued      "2023"^^xsd:gYear ;
+.
+
+# ── Six Core SAIF Elements ────────────────────────────────────────────────────
+
+google-saif:ExpandSecureFoundation
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Expand Strong Security Foundations to AI"@en ;
+    skos:definition "Apply existing security best practices — secure-by-default, least privilege, supply-chain integrity — to AI infrastructure and ML pipelines."@en ;
+    skos:inScheme   google-saif:Scheme ; prov:wasDerivedFrom "SAIF Element 1" ;
+    skos:exactMatch ai:Security ;
+    ai:appliesToLifecycle ai:Development ;
+.
+google-saif:ExtendDetectionToAI
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Extend Detection and Response to Include AI"@en ;
+    skos:definition "Integrate AI-specific signals (prompt logs, model outputs, training pipeline telemetry) into security monitoring and incident response."@en ;
+    skos:inScheme   google-saif:Scheme ; prov:wasDerivedFrom "SAIF Element 2" ;
+    skos:broadMatch ai:Security ;
+    ai:appliesToLifecycle ai:Monitoring ;
+.
+google-saif:AutomateAIDefences
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Automate AI Defences"@en ;
+    skos:definition "Use AI itself to accelerate threat detection, vulnerability remediation, and adaptive response — defending AI with AI."@en ;
+    skos:inScheme   google-saif:Scheme ; prov:wasDerivedFrom "SAIF Element 3" ;
+    skos:broadMatch ai:Security ;
+    skos:relatedMatch ai:Robustness ;
+.
+google-saif:HarmonisePlatformControls
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Harmonise Platform-Level Controls"@en ;
+    skos:definition "Apply consistent security controls across AI platforms to protect data in transit and at rest, isolate model execution, and enforce access policies."@en ;
+    skos:inScheme   google-saif:Scheme ; prov:wasDerivedFrom "SAIF Element 4" ;
+    skos:exactMatch ai:Security ;
+    skos:relatedMatch ai:Privacy ;
+.
+google-saif:AdaptControls
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Adapt Controls to Reflect Changing Threat Landscape"@en ;
+    skos:definition "Continuously update threat models and defences as AI attack techniques evolve; engage with threat intelligence communities."@en ;
+    skos:inScheme   google-saif:Scheme ; prov:wasDerivedFrom "SAIF Element 5" ;
+    skos:broadMatch ai:Robustness ;
+    ai:appliesToLifecycle ai:Monitoring ;
+.
+google-saif:ContextualisedRiskAssessmentSAIF
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Contextualise AI Risk Assessment"@en ;
+    skos:definition "Assess AI risk in context of specific deployment: data sensitivity, model type, use case criticality, and potential for misuse or adversarial attack."@en ;
+    skos:inScheme   google-saif:Scheme ; prov:wasDerivedFrom "SAIF Element 6" ;
+    skos:exactMatch ai:RiskAssessment ;
+.
+
+# ── Key Threat Areas ──────────────────────────────────────────────────────────
+
+google-saif:TrainingDataIntegrityRisk
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "Training Data Integrity Risk"@en ;
+    skos:definition "Corruption or poisoning of training data compromises model behaviour at any subsequent use; supply-chain integrity is critical."@en ;
+    skos:inScheme   google-saif:Scheme ; prov:wasDerivedFrom "SAIF Threat Analysis" ;
+    skos:exactMatch ai:SecurityHarm ;
+    ai:appliesToLifecycle ai:Development ;
+.
+google-saif:ModelWeightTheft
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "Model Weight Theft"@en ;
+    skos:definition "Exfiltration of proprietary model weights enables IP theft and removal of safety fine-tuning; requires strong access control and encryption at rest."@en ;
+    skos:inScheme   google-saif:Scheme ; prov:wasDerivedFrom "SAIF Threat Analysis" ;
+    skos:exactMatch ai:SecurityHarm ;
+.
+google-saif:MemoryPoisoningRAG
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "Memory/RAG Poisoning"@en ;
+    skos:definition "Adversary injects malicious content into retrieval-augmented generation (RAG) stores or long-term agent memory, corrupting future LLM outputs."@en ;
+    skos:inScheme   google-saif:Scheme ; prov:wasDerivedFrom "SAIF Threat Analysis" ;
+    skos:exactMatch ai:SecurityHarm ;
+    ai:appliesToDomain ai:GenerativeAI ;
+.
+
+# ── Controls ──────────────────────────────────────────────────────────────────
+
+google-saif:SupplyChainIntegrity
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "AI Supply Chain Integrity"@en ;
+    skos:definition "Verify provenance of pre-trained models, datasets, and dependencies; use signed artefacts and reproducible model training environments."@en ;
+    skos:inScheme   google-saif:Scheme ; prov:wasDerivedFrom "SAIF Controls" ;
+    skos:exactMatch ai:Security ;
+    ai:appliesToLifecycle ai:Development ;
+.
+google-saif:ModelAccessControlSAIF
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Model Access and Authentication Controls"@en ;
+    skos:definition "Enforce authentication, authorisation, and rate-limiting on all model inference endpoints; log all access for auditability."@en ;
+    skos:inScheme   google-saif:Scheme ; prov:wasDerivedFrom "SAIF Controls" ;
+    skos:exactMatch ai:Security ;
+    ai:appliesToLifecycle ai:Deployment ;
+.
+google-saif:RedTeamSAIF
+    a ai:Control ; a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "AI Red Teaming"@en ;
+    skos:definition "Structured adversarial testing of AI systems before deployment to discover prompt injection, jailbreaks, and other vulnerabilities."@en ;
+    skos:inScheme   google-saif:Scheme ; prov:wasDerivedFrom "SAIF Controls" ;
+    skos:broadMatch ai:ConformityAssessment ;
+    ai:appliesToLifecycle ai:Validation ;
+.

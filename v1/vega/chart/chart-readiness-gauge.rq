@@ -1,0 +1,7 @@
+PREFIX ai: <https://iqns.org/v0/ai#>
+
+SELECT ?level ?value WHERE {
+  ?r a ai:ReadinessIndicator ;
+     ai:readinessLevel ?level ;
+     ai:readinessValue ?value .
+}

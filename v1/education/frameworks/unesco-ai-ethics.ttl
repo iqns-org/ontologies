@@ -1,0 +1,126 @@
+@prefix unesco-ai-ethics: <https://iqns.org/v0/unesco-ai-ethics#> .
+@prefix edg:  <https://iqns.org/v0/edugraph#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+unesco-ai-ethics:Ontology a owl:Ontology ;
+    dct:title       "UNESCO Recommendation on the Ethics of Artificial Intelligence"@en ;
+    prov:wasDerivedFrom <https://unesdoc.unesco.org/ark:/48223/pf0000380455> ;
+    owl:imports     <https://iqns.org/v0/ai#> ;
+    owl:versionInfo "2021" .
+
+unesco-ai-ethics:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "UNESCO Recommendation on the Ethics of AI — Education Lens"@en ;
+    skos:definition "Global UNESCO recommendation (adopted by 193 member states, November 2021) setting principled guidance for ethical AI including specific provisions for AI in education and research."@en .
+
+# ── Framework Root ────────────────────────────────────────────────────────────
+
+unesco-ai-ethics:UNESCOAIRecommendation
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "UNESCO Recommendation on the Ethics of Artificial Intelligence"@en ;
+    skos:definition "First-ever global normative instrument on AI ethics, adopted by all 193 UNESCO Member States. Establishes 11 core values and principles and 11 policy action areas — including dedicated provisions on education and research (§§ 55–62) and data governance."@en ;
+    skos:inScheme   unesco-ai-ethics:Scheme ;
+    dct:publisher   "UNESCO"@en ;
+    dct:issued      "2021"^^xsd:gYear ;
+    prov:wasDerivedFrom <https://unesdoc.unesco.org/ark:/48223/pf0000380455> ;
+    ai:mappedToDimension ai:HumanOversight ;
+    ai:mappedToDimension ai:Fairness ;
+    ai:mappedToDimension ai:Transparency ;
+    ai:mappedToDimension ai:Accountability ;
+.
+
+# ── Core Values ───────────────────────────────────────────────────────────────
+
+unesco-ai-ethics:HumanRightsAndDignity
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Respect for Human Rights and Dignity"@en ;
+    skos:definition "AI systems must respect, protect, and promote human rights and fundamental freedoms — including rights to education, non-discrimination, and privacy. No AI system should undermine the dignity or autonomy of any person."@en ;
+    skos:inScheme   unesco-ai-ethics:Scheme ;
+    prov:wasDerivedFrom <https://unesdoc.unesco.org/ark:/48223/pf0000380455#nameddest=§4.1> ;
+    ai:mappedToDimension ai:Fairness ;
+    ai:mappedToDimension ai:Privacy ;
+.
+unesco-ai-ethics:Transparency
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Transparency and Explainability"@en ;
+    skos:definition "Member States should require appropriate transparency and explainability in AI systems, adapted to context. In education: students and educators should understand how AI grading, tutoring, and admissions tools make decisions."@en ;
+    skos:inScheme   unesco-ai-ethics:Scheme ;
+    prov:wasDerivedFrom <https://unesdoc.unesco.org/ark:/48223/pf0000380455#nameddest=§4.3> ;
+    skos:exactMatch ai:Transparency ;
+.
+unesco-ai-ethics:Fairness
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Fairness and Non-Discrimination"@en ;
+    skos:definition "AI must not discriminate against learners based on race, gender, disability, socio-economic status, geography, or language. Particular attention to disadvantaged groups in AI-assisted admissions, grading, and content personalisation."@en ;
+    skos:inScheme   unesco-ai-ethics:Scheme ;
+    prov:wasDerivedFrom <https://unesdoc.unesco.org/ark:/48223/pf0000380455#nameddest=§4.5> ;
+    skos:exactMatch ai:Fairness ;
+.
+unesco-ai-ethics:PrivacyAndDataProtection
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Privacy and Data Protection"@en ;
+    skos:definition "Data collected by AI education systems must be used only for stated educational purposes. Children's data receives heightened protection — strong retention limits, no commercial profiling of students."@en ;
+    skos:inScheme   unesco-ai-ethics:Scheme ;
+    prov:wasDerivedFrom <https://unesdoc.unesco.org/ark:/48223/pf0000380455#nameddest=§4.7> ;
+    skos:exactMatch ai:Privacy ;
+    ai:appliesToDomain edg:StudentDataPrivacy ;
+.
+unesco-ai-ethics:HumanOversight
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Human Oversight and Determination"@en ;
+    skos:definition "AI systems must not replace human teachers or decision-makers in ways that remove accountability. Final decisions on assessment, progression, and exclusion must remain with humans."@en ;
+    skos:inScheme   unesco-ai-ethics:Scheme ;
+    prov:wasDerivedFrom <https://unesdoc.unesco.org/ark:/48223/pf0000380455#nameddest=§4.2> ;
+    skos:exactMatch ai:HumanOversight ;
+.
+unesco-ai-ethics:Sustainability
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Environmental Sustainability"@en ;
+    skos:definition "AI lifecycle environmental impacts must be considered. UNESCO calls for AI systems — including those used in education — to have minimal carbon and resource footprints."@en ;
+    skos:inScheme   unesco-ai-ethics:Scheme ;
+    prov:wasDerivedFrom <https://unesdoc.unesco.org/ark:/48223/pf0000380455#nameddest=§4.9> ;
+    skos:exactMatch ai:Sustainability ;
+.
+
+# ── Education and Research Policy Area (§§ 55–62) ────────────────────────────
+
+unesco-ai-ethics:AILiteracyObligation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "AI Literacy for All"@en ;
+    skos:definition "Member States should ensure that all learners, educators, and citizens can develop capabilities to understand, use, and critically evaluate AI tools — including knowledge of AI bias, privacy risks, and societal impacts."@en ;
+    skos:inScheme   unesco-ai-ethics:Scheme ;
+    prov:wasDerivedFrom <https://unesdoc.unesco.org/ark:/48223/pf0000380455#nameddest=§56> ;
+    ai:appliesToLifecycle edg:CurriculumDesign ;
+.
+unesco-ai-ethics:TeacherSupportObligation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Support for Teachers using AI"@en ;
+    skos:definition "AI must be used to support, not replace, teachers. Member States should provide training and capacity-building for educators on ethical AI use, and ensure teachers remain the primary custodians of pedagogical decisions."@en ;
+    skos:inScheme   unesco-ai-ethics:Scheme ;
+    prov:wasDerivedFrom <https://unesdoc.unesco.org/ark:/48223/pf0000380455#nameddest=§57> ;
+    ai:appliesToLifecycle edg:AdaptiveLearning ;
+    ai:appliesToDomain edg:AcademicIntegrity ;
+.
+unesco-ai-ethics:BiasInEducationalAssessment
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "Bias in AI-Assisted Assessment"@en ;
+    skos:definition "Risk that automated grading or assessment AI systematically disadvantages students from minority or lower socio-economic groups through biased training data or proxy discrimination in assessment features."@en ;
+    skos:inScheme   unesco-ai-ethics:Scheme ;
+    prov:wasDerivedFrom <https://unesdoc.unesco.org/ark:/48223/pf0000380455#nameddest=§59> ;
+    ai:hasRiskLevel ai:HighRisk ;
+    ai:appliesToLifecycle edg:Assessment ;
+.
+unesco-ai-ethics:OpenResearchObligation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Open Science and AI Research Integrity"@en ;
+    skos:definition "AI research must adhere to scientific rigour, reproducibility, and transparency — AI-generated research outputs must be disclosed; Member States should invest in open AI research infrastructure accessible to all countries."@en ;
+    skos:inScheme   unesco-ai-ethics:Scheme ;
+    prov:wasDerivedFrom <https://unesdoc.unesco.org/ark:/48223/pf0000380455#nameddest=§61> ;
+    ai:mappedToDimension ai:Transparency ;
+.

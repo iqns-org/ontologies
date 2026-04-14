@@ -1,0 +1,147 @@
+@prefix iso-24028: <https://iqns.org/v0/iso-24028#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+iso-24028:Ontology
+    a owl:Ontology ;
+    dct:title  "ISO/IEC TR 24028:2020 — AI Trustworthiness"@en ;
+    prov:wasDerivedFrom <https://www.iso.org/standard/77608.html> ;
+.
+iso-24028:Scheme
+    a skos:ConceptScheme ;
+    skos:prefLabel  "ISO/IEC TR 24028:2020"@en ;
+    skos:definition "Overview of trustworthiness properties, threats, and techniques for AI systems."@en ;
+.
+iso-24028:ISO24028
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "ISO/IEC TR 24028:2020"@en ;
+    skos:definition "Technical report cataloguing AI trustworthiness properties and threats."@en ;
+    skos:inScheme   iso-24028:Scheme ;
+    dct:publisher   "ISO/IEC JTC 1/SC 42"@en ;
+    dct:issued      "2020"^^xsd:gYear ;
+.
+
+# ── Trustworthiness Properties ────────────────────────────────────────────────
+
+iso-24028:Availability
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Availability"@en ;
+    skos:definition "AI system is accessible and operational when needed."@en ;
+    skos:inScheme   iso-24028:Scheme ; prov:wasDerivedFrom "ISO/IEC TR 24028:2020 §5.1" ;
+    skos:broadMatch ai:Robustness ;
+.
+iso-24028:Resilience
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Resilience"@en ;
+    skos:definition "AI system withstands and recovers from disruptions or attacks."@en ;
+    skos:inScheme   iso-24028:Scheme ; prov:wasDerivedFrom "ISO/IEC TR 24028:2020 §5.2" ;
+    skos:broadMatch ai:Security ;
+.
+iso-24028:Reliability24028
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Reliability"@en ;
+    skos:definition "AI system performs its intended function under stated conditions."@en ;
+    skos:inScheme   iso-24028:Scheme ; prov:wasDerivedFrom "ISO/IEC TR 24028:2020 §5.3" ;
+    skos:exactMatch ai:Reliability ;
+.
+iso-24028:Accuracy
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Accuracy"@en ;
+    skos:definition "AI outputs correctly represent the facts or intended targets."@en ;
+    skos:inScheme   iso-24028:Scheme ; prov:wasDerivedFrom "ISO/IEC TR 24028:2020 §5.4" ;
+    skos:broadMatch ai:Reliability ;
+.
+iso-24028:Safety24028
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Safety"@en ;
+    skos:definition "AI system does not cause unacceptable harm under normal or foreseeable misuse."@en ;
+    skos:inScheme   iso-24028:Scheme ; prov:wasDerivedFrom "ISO/IEC TR 24028:2020 §5.5" ;
+    skos:exactMatch ai:Safety ;
+.
+iso-24028:Security24028
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Security"@en ;
+    skos:definition "AI system is protected against adversarial interference and cyber threats."@en ;
+    skos:inScheme   iso-24028:Scheme ; prov:wasDerivedFrom "ISO/IEC TR 24028:2020 §5.6" ;
+    skos:exactMatch ai:Security ;
+.
+iso-24028:Privacy24028
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Privacy"@en ;
+    skos:definition "AI system handles personal data in conformance with privacy regulations."@en ;
+    skos:inScheme   iso-24028:Scheme ; prov:wasDerivedFrom "ISO/IEC TR 24028:2020 §5.7" ;
+    skos:exactMatch ai:Privacy ;
+.
+iso-24028:Fairness24028
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Fairness"@en ;
+    skos:definition "AI system treats individuals and groups equitably; discrimination is prevented."@en ;
+    skos:inScheme   iso-24028:Scheme ; prov:wasDerivedFrom "ISO/IEC TR 24028:2020 §5.8" ;
+    skos:exactMatch ai:Fairness ;
+.
+iso-24028:Explainability24028
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Explainability"@en ;
+    skos:definition "AI outcomes can be described in terms understandable to relevant stakeholders."@en ;
+    skos:inScheme   iso-24028:Scheme ; prov:wasDerivedFrom "ISO/IEC TR 24028:2020 §5.9" ;
+    skos:exactMatch ai:Explainability ;
+.
+iso-24028:Transparency24028
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Transparency"@en ;
+    skos:definition "Information about AI system design, data, and behaviour is available to stakeholders."@en ;
+    skos:inScheme   iso-24028:Scheme ; prov:wasDerivedFrom "ISO/IEC TR 24028:2020 §5.10" ;
+    skos:exactMatch ai:Transparency ;
+.
+iso-24028:Accountability24028
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Accountability"@en ;
+    skos:definition "Actors bear defined responsibility for AI system outcomes."@en ;
+    skos:inScheme   iso-24028:Scheme ; prov:wasDerivedFrom "ISO/IEC TR 24028:2020 §5.11" ;
+    skos:exactMatch ai:Accountability ;
+.
+
+# ── Key Threats (from report) ─────────────────────────────────────────────────
+
+iso-24028:AdversarialExample
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel    "Adversarial Example"@en ;
+    skos:definition   "Crafted input designed to cause AI misclassification or error."@en ;
+    skos:inScheme     iso-24028:Scheme ; prov:wasDerivedFrom "ISO/IEC TR 24028:2020 §7" ;
+    ai:hasRiskCategory ai:SecurityHarm ;
+.
+iso-24028:DataPoisoning
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel    "Data Poisoning"@en ;
+    skos:definition   "Malicious corruption of training data to subvert AI behaviour."@en ;
+    skos:inScheme     iso-24028:Scheme ; prov:wasDerivedFrom "ISO/IEC TR 24028:2020 §7" ;
+    ai:hasRiskCategory ai:SecurityHarm ;
+.
+iso-24028:ModelInversion
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel    "Model Inversion"@en ;
+    skos:definition   "Inferring private training data from model outputs or parameters."@en ;
+    skos:inScheme     iso-24028:Scheme ; prov:wasDerivedFrom "ISO/IEC TR 24028:2020 §7" ;
+    ai:hasRiskCategory ai:PrivacyHarm ;
+.
+iso-24028:MembershipInference
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel    "Membership Inference"@en ;
+    skos:definition   "Determining whether a specific record was used in model training."@en ;
+    skos:inScheme     iso-24028:Scheme ; prov:wasDerivedFrom "ISO/IEC TR 24028:2020 §7" ;
+    ai:hasRiskCategory ai:PrivacyHarm ;
+.
+iso-24028:DistributionShift
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel    "Distribution Shift"@en ;
+    skos:definition   "Performance degradation when operational data diverges from training distribution."@en ;
+    skos:inScheme     iso-24028:Scheme ; prov:wasDerivedFrom "ISO/IEC TR 24028:2020 §7" ;
+    ai:hasRiskCategory ai:PhysicalHarm ;
+    skos:broadMatch   ai:Robustness ;
+.

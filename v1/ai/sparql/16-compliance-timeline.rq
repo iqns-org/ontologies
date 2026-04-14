@@ -1,0 +1,21 @@
+# ──────────────────────────────────────────────────────────────────────────────
+# 16 — Compliance Score Timeline
+# Produces time series of compliance score by framework.
+#
+# CUJ: Track compliance progress over time (line chart).
+# ──────────────────────────────────────────────────────────────────────────────
+
+PREFIX ai:   <https://iqns.org/v0/ai#>
+PREFIX dct:  <http://purl.org/dc/terms/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+SELECT ?date ?frameworkLabel ?score
+WHERE {
+    ?record a ai:ComplianceMeasurement ;
+            ai:ofFramework ?framework ;
+            ai:measurementDate ?date ;
+            ai:complianceScore ?score .
+    ?framework skos:prefLabel ?frameworkLabel .
+    FILTER(LANG(?frameworkLabel) = "en" || LANG(?frameworkLabel) = "")
+}
+ORDER BY ?date ?frameworkLabel

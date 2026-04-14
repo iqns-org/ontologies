@@ -1,0 +1,168 @@
+@prefix eu-gdpr-ai: <https://iqns.org/v0/eu-gdpr-ai#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+eu-gdpr-ai:Ontology a owl:Ontology ;
+    dct:title  "GDPR × AI — Automated Decision-Making and Profiling"@en ;
+    prov:wasDerivedFrom <https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32016R0679> .
+
+eu-gdpr-ai:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "GDPR × AI Intersections"@en ;
+    skos:definition "GDPR obligations and rights relevant to AI systems: automated decisions, profiling, DPIA, and data minimisation."@en .
+
+eu-gdpr-ai:GDPRAI
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "GDPR × AI"@en ;
+    skos:definition "Intersection of Regulation (EU) 2016/679 with AI systems that process personal data, including profiling and automated decision-making."@en ;
+    skos:inScheme   eu-gdpr-ai:Scheme ;
+    dct:publisher   "European Parliament and Council of the EU"@en ;
+    dct:issued      "2016"^^xsd:gYear ;
+.
+
+# ── Automated Decision-Making (Article 22) ─────────────────────────────────────
+
+eu-gdpr-ai:AutomatedDecisionMaking
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Prohibition on Solely Automated Decisions with Legal Effect"@en ;
+    skos:definition "Data subjects shall not be subject to solely automated decisions (including profiling) producing legal or significant effects, except under Art. 22(2) exceptions."@en ;
+    skos:inScheme   eu-gdpr-ai:Scheme ; prov:wasDerivedFrom "GDPR Art. 22" ;
+    ai:mappedToDimension ai:HumanOversight ;
+    ai:mappedToDimension ai:Accountability ;
+.
+eu-gdpr-ai:ProfilingDefinition
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Profiling"@en ;
+    skos:definition "Any automated processing of personal data to evaluate personal aspects — performance, preferences, reliability, behaviour, location, movements."@en ;
+    skos:inScheme   eu-gdpr-ai:Scheme ; prov:wasDerivedFrom "GDPR Art. 4(4)" ;
+    ai:hasRiskCategory ai:PrivacyHarm ;
+.
+eu-gdpr-ai:Art22Exceptions
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Art. 22 Exceptions"@en ;
+    skos:definition "Automated decisions permissible when: (a) necessary for contract, (b) authorised by EU/Member State law, or (c) based on explicit consent — each requiring suitable safeguards."@en ;
+    skos:inScheme   eu-gdpr-ai:Scheme ; prov:wasDerivedFrom "GDPR Art. 22(2)" ;
+    ai:mappedToDimension ai:HumanOversight ;
+.
+
+# ── Transparency Obligations for AI ───────────────────────────────────────────
+
+eu-gdpr-ai:TransparencyOnLogic
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Transparency on Logic of Automated Processing"@en ;
+    skos:definition "Data subjects must be informed of: existence of automated decision-making, meaningful information about logic involved, and significance and consequences."@en ;
+    skos:inScheme   eu-gdpr-ai:Scheme ; prov:wasDerivedFrom "GDPR Art. 13(2)(f), 14(2)(g), 15(1)(h)" ;
+    ai:mappedToDimension ai:Transparency ;
+    ai:mappedToDimension ai:Explainability ;
+.
+
+# ── DPIA for AI ────────────────────────────────────────────────────────────────
+
+eu-gdpr-ai:DPIA
+    a ai:Requirement ; a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "Data Protection Impact Assessment (DPIA)"@en ;
+    skos:definition "Mandatory DPIA for systematic, large-scale profiling or systematic monitoring — must assess necessity, proportionality, and risks to rights."@en ;
+    skos:inScheme   eu-gdpr-ai:Scheme ; prov:wasDerivedFrom "GDPR Art. 35" ;
+    skos:relatedMatch ai:ImpactAssessment ;
+    ai:mappedToDimension ai:Privacy ;
+    ai:appliesToLifecycle ai:Design ;
+.
+eu-gdpr-ai:DPO
+    a ai:Stakeholder ; a skos:Concept ;
+    skos:prefLabel  "Data Protection Officer (DPO)"@en ;
+    skos:definition "Mandatory DPO for controllers whose core activities require large-scale monitoring; must advise on AI-related DPIA."@en ;
+    skos:inScheme   eu-gdpr-ai:Scheme ; prov:wasDerivedFrom "GDPR Art. 37–39" ;
+.
+
+# ── Data Quality Principles for AI ────────────────────────────────────────────
+
+eu-gdpr-ai:DataMinimisation
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Data Minimisation"@en ;
+    skos:definition "Training and operational data must be adequate, relevant, and limited to what is necessary."@en ;
+    skos:inScheme   eu-gdpr-ai:Scheme ; prov:wasDerivedFrom "GDPR Art. 5(1)(c)" ;
+    ai:mappedToDimension ai:Privacy ;
+.
+eu-gdpr-ai:PurposeLimitation
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Purpose Limitation"@en ;
+    skos:definition "Personal data collected for one purpose cannot be reused to train AI for incompatible purposes."@en ;
+    skos:inScheme   eu-gdpr-ai:Scheme ; prov:wasDerivedFrom "GDPR Art. 5(1)(b)" ;
+    ai:mappedToDimension ai:Privacy ;
+.
+eu-gdpr-ai:Accuracy
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Accuracy"@en ;
+    skos:definition "Personal data used in AI must be accurate; inaccurate data must be corrected or deleted."@en ;
+    skos:inScheme   eu-gdpr-ai:Scheme ; prov:wasDerivedFrom "GDPR Art. 5(1)(d)" ;
+    ai:mappedToDimension ai:Reliability ;
+.
+eu-gdpr-ai:SpecialCategoryData
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "Special Category Data in AI"@en ;
+    skos:definition "Using Art. 9 sensitive data (health, race, biometrics, religion, politics, sexual orientation) in AI training or inference requires explicit consent or legal basis."@en ;
+    skos:inScheme   eu-gdpr-ai:Scheme ; prov:wasDerivedFrom "GDPR Art. 9" ;
+    ai:hasRiskCategory ai:PrivacyHarm ;
+    ai:hasRiskCategory ai:DiscriminationHarm ;
+.
+
+# ── Data Subject Rights relevant to AI ────────────────────────────────────────
+
+eu-gdpr-ai:RightToExplanationGDPR
+    a ai:Right ; a skos:Concept ;
+    skos:prefLabel  "Right to Meaningful Explanation"@en ;
+    skos:definition "Data subject right to obtain human review of automated decisions and to contest decisions."@en ;
+    skos:inScheme   eu-gdpr-ai:Scheme ; prov:wasDerivedFrom "GDPR Art. 22(3)" ;
+    ai:mappedToDimension ai:Explainability ;
+.
+eu-gdpr-ai:RightToHumanReview
+    a ai:Right ; a skos:Concept ;
+    skos:prefLabel  "Right to Human Review"@en ;
+    skos:definition "Data subject right to express point of view and have a human review an automated decision."@en ;
+    skos:inScheme   eu-gdpr-ai:Scheme ; prov:wasDerivedFrom "GDPR Art. 22(3)" ;
+    ai:mappedToDimension ai:HumanOversight ;
+.
+eu-gdpr-ai:RightToRectification
+    a ai:Right ; a skos:Concept ;
+    skos:prefLabel  "Right to Rectification"@en ;
+    skos:definition "Data subject may require correction of inaccurate personal data used by an AI system."@en ;
+    skos:inScheme   eu-gdpr-ai:Scheme ; prov:wasDerivedFrom "GDPR Art. 16" ;
+    ai:mappedToDimension ai:Privacy ;
+.
+eu-gdpr-ai:RightToErasure
+    a ai:Right ; a skos:Concept ;
+    skos:prefLabel  "Right to Erasure"@en ;
+    skos:definition "Data subject may request deletion of personal data from AI training corpora under Art. 17 conditions."@en ;
+    skos:inScheme   eu-gdpr-ai:Scheme ; prov:wasDerivedFrom "GDPR Art. 17" ;
+    ai:mappedToDimension ai:Privacy ;
+.
+
+# ── Controls ───────────────────────────────────────────────────────────────────
+
+eu-gdpr-ai:PrivacyByDesignGDPR
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Privacy by Design and Default"@en ;
+    skos:definition "Implement appropriate technical and organisational measures at design stage and by default."@en ;
+    skos:inScheme   eu-gdpr-ai:Scheme ; prov:wasDerivedFrom "GDPR Art. 25" ;
+    ai:mappedToDimension ai:Privacy ;
+    ai:appliesToLifecycle ai:Design ;
+.
+eu-gdpr-ai:LegalBasisMapping
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Legal Basis Mapping"@en ;
+    skos:definition "Document the lawful basis for each personal data processing activity in AI pipelines."@en ;
+    skos:inScheme   eu-gdpr-ai:Scheme ; prov:wasDerivedFrom "GDPR Art. 6" ;
+    ai:mappedToDimension ai:Accountability ;
+.
+eu-gdpr-ai:RecordsOfProcessing
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Records of Processing Activities"@en ;
+    skos:definition "Maintain RoPA entries for all AI-related personal data processing."@en ;
+    skos:inScheme   eu-gdpr-ai:Scheme ; prov:wasDerivedFrom "GDPR Art. 30" ;
+    ai:mappedToDimension ai:Transparency ;
+.

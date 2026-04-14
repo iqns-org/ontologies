@@ -1,0 +1,148 @@
+@prefix iso-23894: <https://iqns.org/v0/iso-23894#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# ── Ontology ──────────────────────────────────────────────────────────────────
+
+iso-23894:Ontology
+    a owl:Ontology ;
+    dct:title   "ISO/IEC 23894:2023 — AI Risk Management"@en ;
+    prov:wasDerivedFrom  <https://www.iso.org/standard/77304.html> ;
+    owl:versionInfo "2023" ;
+.
+
+iso-23894:Scheme
+    a skos:ConceptScheme ;
+    skos:prefLabel  "ISO/IEC 23894:2023"@en ;
+    skos:definition "Guidance on AI risk management; integrates with ISO 31000."@en ;
+    prov:wasDerivedFrom      <https://www.iso.org/standard/77304.html> ;
+.
+
+iso-23894:ISO23894
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "ISO/IEC 23894:2023"@en ;
+    skos:definition "Guidance standard for AI risk management, aligned with ISO 31000, covering identification, analysis, evaluation and treatment of AI risks."@en ;
+    skos:inScheme   iso-23894:Scheme ;
+    dct:publisher   "ISO/IEC JTC 1/SC 42"@en ;
+    dct:issued      "2023"^^xsd:gYear ;
+.
+
+# ── Risk Management Process ───────────────────────────────────────────────────
+
+iso-23894:RMProcess
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "AI Risk Management Process"@en ;
+    skos:definition "Iterative cycle of communication, context, identification, analysis, evaluation, and treatment of AI risks."@en ;
+    skos:inScheme   iso-23894:Scheme ;
+    prov:wasDerivedFrom      "ISO/IEC 23894:2023 §6" ;
+    skos:exactMatch ai:RiskAssessment ;
+.
+iso-23894:ScopeContext
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Scope and Context"@en ;
+    skos:definition "Define purposes, stakeholders, system boundaries, and success criteria before risk assessment."@en ;
+    skos:inScheme   iso-23894:Scheme ;
+    prov:wasDerivedFrom      "ISO/IEC 23894:2023 §6.3" ;
+    ai:appliesToLifecycle ai:Design ;
+.
+iso-23894:RiskIdentification
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Risk Identification"@en ;
+    skos:definition "Discover, recognise, and describe AI risks across the full lifecycle."@en ;
+    skos:inScheme   iso-23894:Scheme ;
+    prov:wasDerivedFrom      "ISO/IEC 23894:2023 §6.4.2" ;
+    skos:broadMatch ai:Security ;
+    skos:broadMatch ai:Safety ;
+.
+iso-23894:RiskAnalysis
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Risk Analysis"@en ;
+    skos:definition "Understand risk causes, likelihood, and consequences including cascading effects."@en ;
+    skos:inScheme   iso-23894:Scheme ;
+    prov:wasDerivedFrom      "ISO/IEC 23894:2023 §6.4.3" ;
+.
+iso-23894:RiskEvaluation
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Risk Evaluation"@en ;
+    skos:definition "Compare risk analysis results against criteria to prioritise treatment."@en ;
+    skos:inScheme   iso-23894:Scheme ;
+    prov:wasDerivedFrom      "ISO/IEC 23894:2023 §6.4.4" ;
+.
+iso-23894:RiskTreatment
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Risk Treatment"@en ;
+    skos:definition "Select and implement options to modify AI risk: avoid, reduce, share, or accept."@en ;
+    skos:inScheme   iso-23894:Scheme ;
+    prov:wasDerivedFrom      "ISO/IEC 23894:2023 §6.5" ;
+.
+iso-23894:Monitoring
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Monitoring and Review"@en ;
+    skos:definition "Continuously monitor risk controls and environmental changes to detect new risks."@en ;
+    skos:inScheme   iso-23894:Scheme ;
+    prov:wasDerivedFrom      "ISO/IEC 23894:2023 §6.7" ;
+    ai:appliesToLifecycle ai:Monitoring ;
+    skos:broadMatch ai:Robustness ;
+.
+iso-23894:Recording
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Recording and Reporting"@en ;
+    skos:definition "Document risk management decisions and outcomes for accountability and audit."@en ;
+    skos:inScheme   iso-23894:Scheme ;
+    prov:wasDerivedFrom      "ISO/IEC 23894:2023 §6.8" ;
+    skos:broadMatch ai:Transparency ;
+.
+
+# ── AI-specific Risk Considerations ──────────────────────────────────────────
+
+iso-23894:DataDependency
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel    "Data Dependency Risk"@en ;
+    skos:definition   "Risks from biased, incomplete, or out-of-distribution training and operational data."@en ;
+    skos:inScheme     iso-23894:Scheme ;
+    prov:wasDerivedFrom        "ISO/IEC 23894:2023 §A.2" ;
+    ai:hasRiskCategory ai:DiscriminationHarm ;
+    ai:hasRiskCategory ai:ReputationalHarm ;
+.
+iso-23894:ModelOpacity
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel    "Model Opacity Risk"@en ;
+    skos:definition   "Inability to explain decisions due to black-box model behaviour."@en ;
+    skos:inScheme     iso-23894:Scheme ;
+    prov:wasDerivedFrom        "ISO/IEC 23894:2023 §A.3" ;
+    ai:hasRiskCategory ai:SocietalHarm ;
+    skos:broadMatch   ai:Explainability ;
+.
+iso-23894:PerformanceDegradation
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel    "Performance Degradation Risk"@en ;
+    skos:definition   "Model accuracy or reliability degrades over time due to data drift."@en ;
+    skos:inScheme     iso-23894:Scheme ;
+    prov:wasDerivedFrom        "ISO/IEC 23894:2023 §A.4" ;
+    ai:hasRiskCategory ai:PhysicalHarm ;
+    skos:broadMatch   ai:Robustness ;
+.
+iso-23894:SecurityVulnerability
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel    "AI Security Vulnerability"@en ;
+    skos:definition   "Adversarial attacks, data poisoning, or model inversion exploiting AI weaknesses."@en ;
+    skos:inScheme     iso-23894:Scheme ;
+    prov:wasDerivedFrom        "ISO/IEC 23894:2023 §A.5" ;
+    ai:hasRiskCategory ai:SecurityHarm ;
+    skos:broadMatch   ai:Security ;
+.
+iso-23894:HumanOverreliance
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel    "Human Over-reliance Risk"@en ;
+    skos:definition   "Operators defer to AI without appropriate critical evaluation (automation bias)."@en ;
+    skos:inScheme     iso-23894:Scheme ;
+    prov:wasDerivedFrom        "ISO/IEC 23894:2023 §A.6" ;
+    ai:hasRiskCategory ai:PhysicalHarm ;
+    skos:broadMatch   ai:HumanOversight ;
+.

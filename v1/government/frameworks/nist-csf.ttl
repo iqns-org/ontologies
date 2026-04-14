@@ -1,0 +1,167 @@
+@prefix nist-csf: <https://iqns.org/v0/nist-csf#> .
+@prefix gov:  <https://iqns.org/v0/government#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+nist-csf:Ontology a owl:Ontology ;
+    dct:title       "NIST Cybersecurity Framework 2.0 (CSF 2.0)"@en ;
+    prov:wasDerivedFrom <https://doi.org/10.6028/NIST.CSWP.29> ;
+    owl:versionInfo "NIST CSF 2.0 — February 2024" ;
+.
+
+nist-csf:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "NIST CSF 2.0"@en ;
+    skos:definition "NIST Cybersecurity Framework 2.0 — voluntary, risk-based framework for managing cybersecurity risk. Applicable to any organisation. CSF 2.0 adds the GOVERN function and explicitly addresses supply chain risk and AI system security."@en .
+
+nist-csf:NISTCSF
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "NIST Cybersecurity Framework 2.0"@en ;
+    skos:definition "National Institute of Standards and Technology Cybersecurity Framework version 2.0 (2024) — organises cybersecurity outcomes into 6 functions (Govern, Identify, Protect, Detect, Respond, Recover), 22 categories, and 106 subcategories. Widely adopted globally as the baseline cybersecurity management approach."@en ;
+    skos:inScheme   nist-csf:Scheme ;
+    dct:publisher   "NIST — National Institute of Standards and Technology"@en ;
+    dct:issued      "2024"^^xsd:gYear ;
+.
+
+# ── GOVERN Function (new in CSF 2.0) ─────────────────────────────────────────
+
+nist-csf:GV_RM
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "GV.RM — Risk Management Strategy"@en ;
+    skos:definition "Establish, communicate, and monitor organisational cybersecurity risk management strategy, expectations, and risk tolerance. For AI: board-approved AI risk appetite integrated into overall enterprise risk management process."@en ;
+    skos:inScheme   nist-csf:Scheme ;
+    prov:wasDerivedFrom "NIST CSF 2.0, GV.RM" ;
+    ai:mappedToDimension gov:CyberResilience ;
+    ai:appliesToLifecycle gov:Govern ;
+.
+nist-csf:GV_RR
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "GV.RR — Roles, Responsibilities, and Authorities"@en ;
+    skos:definition "Roles, responsibilities, and authorities for cybersecurity are established, communicated, understood, and enforced — including AI system ownership, model risk accountability, and incident response chain of command."@en ;
+    skos:inScheme   nist-csf:Scheme ;
+    prov:wasDerivedFrom "NIST CSF 2.0, GV.RR" ;
+    ai:mappedToDimension gov:CyberResilience ;
+    ai:mappedToDimension ai:Accountability ;
+    ai:appliesToLifecycle gov:Govern ;
+.
+nist-csf:GV_SC
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "GV.SC — Cybersecurity Supply Chain Risk Management"@en ;
+    skos:definition "Cyber supply chain risk is identified, established, managed, monitored, and improved — explicitly includes AI software supply chain, open-source model dependencies, third-party ML platform providers, and pre-trained foundation model risks."@en ;
+    skos:inScheme   nist-csf:Scheme ;
+    prov:wasDerivedFrom "NIST CSF 2.0, GV.SC" ;
+    ai:mappedToDimension gov:CyberResilience ;
+    ai:appliesToLifecycle gov:Govern ;
+.
+
+# ── IDENTIFY Function ─────────────────────────────────────────────────────────
+
+nist-csf:ID_AM
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "ID.AM — Asset Management"@en ;
+    skos:definition "Maintain a comprehensive inventory of assets — hardware, software, data, and services. For AI: AI model inventory including version, training data lineage, deployment status, and inferred risk classification."@en ;
+    skos:inScheme   nist-csf:Scheme ;
+    prov:wasDerivedFrom "NIST CSF 2.0, ID.AM" ;
+    ai:mappedToDimension gov:CyberResilience ;
+    ai:appliesToLifecycle gov:Identify ;
+.
+nist-csf:ID_RA
+    a ai:Assessment ; a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "ID.RA — Risk Assessment"@en ;
+    skos:definition "Cybersecurity risks are identified, analysed, prioritised, and integrated with overall risk management — including AI-specific threats: prompt injection, model inversion, data poisoning, adversarial examples, and model supply chain attacks."@en ;
+    skos:inScheme   nist-csf:Scheme ;
+    prov:wasDerivedFrom "NIST CSF 2.0, ID.RA" ;
+    ai:mappedToDimension gov:CyberResilience ;
+    ai:appliesToLifecycle gov:Identify ;
+.
+
+# ── PROTECT Function ──────────────────────────────────────────────────────────
+
+nist-csf:PR_AA
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "PR.AA — Identity Management, Authentication, and Access Control"@en ;
+    skos:definition "Access to physical and logical assets is limited to authorised users, services, and hardware — AI inference APIs, model registries, and training data stores must implement strong authentication and least-privilege access."@en ;
+    skos:inScheme   nist-csf:Scheme ;
+    prov:wasDerivedFrom "NIST CSF 2.0, PR.AA" ;
+    ai:mappedToDimension gov:CyberResilience ;
+    ai:appliesToLifecycle gov:Protect ;
+.
+nist-csf:PR_DS
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "PR.DS — Data Security"@en ;
+    skos:definition "Data at rest and in transit are protected consistently with risk strategy — training data encryption, model artefact signing, and inference data confidentiality controls."@en ;
+    skos:inScheme   nist-csf:Scheme ;
+    prov:wasDerivedFrom "NIST CSF 2.0, PR.DS" ;
+    ai:mappedToDimension gov:CyberResilience ;
+    ai:mappedToDimension ai:Privacy ;
+    ai:appliesToLifecycle gov:Protect ;
+.
+nist-csf:PR_PS
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "PR.PS — Platform Security"@en ;
+    skos:definition "Hardware and software managed to reduce exploitability — patching, configuration hardening, and vulnerability management for AI compute infrastructure and model serving platforms."@en ;
+    skos:inScheme   nist-csf:Scheme ;
+    prov:wasDerivedFrom "NIST CSF 2.0, PR.PS" ;
+    ai:mappedToDimension gov:CyberResilience ;
+    ai:appliesToLifecycle gov:Protect ;
+.
+
+# ── DETECT Function ───────────────────────────────────────────────────────────
+
+nist-csf:DE_CM
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "DE.CM — Continuous Monitoring"@en ;
+    skos:definition "Assets are monitored to find anomalies, indicators of compromise, and events — AI systems require continuous monitoring of inference inputs/outputs for adversarial patterns, model drift, and data quality anomalies."@en ;
+    skos:inScheme   nist-csf:Scheme ;
+    prov:wasDerivedFrom "NIST CSF 2.0, DE.CM" ;
+    ai:mappedToDimension gov:CyberResilience ;
+    ai:appliesToLifecycle gov:Detect ;
+.
+nist-csf:DE_AE
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "DE.AE — Adverse Event Analysis"@en ;
+    skos:definition "Anomalies and events are analysed to characterise attacks and their targets — AI-specific adverse events include data poisoning detection, prompt injection attempts, and model behaviour anomalies."@en ;
+    skos:inScheme   nist-csf:Scheme ;
+    prov:wasDerivedFrom "NIST CSF 2.0, DE.AE" ;
+    ai:mappedToDimension gov:CyberResilience ;
+    ai:appliesToLifecycle gov:Detect ;
+.
+
+# ── RESPOND Function ──────────────────────────────────────────────────────────
+
+nist-csf:RS_MA
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "RS.MA — Incident Management"@en ;
+    skos:definition "Incidents are managed consistently with the response plan — AI incidents (model compromise, adversarial attack, data breach via AI) must be within scope of incident response plans with AI-specific runbooks."@en ;
+    skos:inScheme   nist-csf:Scheme ;
+    prov:wasDerivedFrom "NIST CSF 2.0, RS.MA" ;
+    ai:mappedToDimension gov:CyberResilience ;
+    ai:appliesToLifecycle gov:Respond ;
+.
+nist-csf:RS_CO
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "RS.CO — Incident Response Reporting and Communication"@en ;
+    skos:definition "Response activities are coordinated with internal and external stakeholders — including regulatory notification obligations triggered by AI-related incidents."@en ;
+    skos:inScheme   nist-csf:Scheme ;
+    prov:wasDerivedFrom "NIST CSF 2.0, RS.CO" ;
+    ai:mappedToDimension gov:CyberResilience ;
+    ai:mappedToDimension ai:Transparency ;
+    ai:appliesToLifecycle gov:Respond ;
+.
+
+# ── RECOVER Function ──────────────────────────────────────────────────────────
+
+nist-csf:RC_RP
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "RC.RP — Incident Recovery Plan Execution"@en ;
+    skos:definition "Recovery activities are performed and documented per the recovery plan — AI recovery includes verified clean model re-deployment, training data integrity restoration, and non-AI fallback operation."@en ;
+    skos:inScheme   nist-csf:Scheme ;
+    prov:wasDerivedFrom "NIST CSF 2.0, RC.RP" ;
+    ai:mappedToDimension gov:CyberResilience ;
+    ai:appliesToLifecycle gov:Recover ;
+.

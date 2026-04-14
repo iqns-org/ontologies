@@ -1,0 +1,546 @@
+@prefix aws:  <https://iqns.org/v0/itil/aws#> .
+@prefix itil: <https://iqns.org/itil#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# ── Ontology ─────────────────────────────────────────────────────────────────
+
+aws:Ontology
+    a owl:Ontology ;
+    dct:title       "Amazon Web Services (AWS) Cloud Service Offerings mapped to ITIL"@en ;
+    skos:definition "SKOS concept scheme mapping AWS cloud services to ITIL Service Knowledge Management System practices, configuration items, and service records."@en ;
+    prov:wasDerivedFrom <https://aws.amazon.com/> ;
+    dct:issued      "2026"^^xsd:gYear ;
+    owl:versionInfo "0.1" ;
+    owl:imports     <https://iqns.org/itil#> ;
+.
+
+aws:AWSScheme
+    a skos:ConceptScheme ;
+    skos:prefLabel  "AWS Cloud Services"@en ;
+    skos:definition "A SKOS scheme mapping AWS cloud offerings to ITIL practices, service components, and configuration item types."@en ;
+    dct:publisher   "Amazon Web Services"@en ;
+    dct:issued      "2006"^^xsd:gYear ;
+.
+
+# ═══════════════════════════════════════════════════════════════
+#  COMPUTE & INFRASTRUCTURE
+# ═══════════════════════════════════════════════════════════════
+
+aws:EC2
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "EC2 (Elastic Compute Cloud)"@en ;
+    skos:definition     "On-demand virtual servers (instances) offering compute capacity with configurable CPU, memory, and networking."@en ;
+    skos:inScheme       aws:AWSScheme ;
+    prov:wasDerivedFrom <https://aws.amazon.com/ec2/> ;
+    skos:exactMatch     itil:HardwareCI ;
+    skos:relatedMatch   itil:InfrastructureAndPlatformManagement ;
+    skos:relatedMatch   itil:ServiceConfigurationManagement ;
+.
+
+aws:Lambda
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Lambda"@en ;
+    skos:definition     "Serverless compute service for running code without managing servers, triggered by events or on HTTP requests."@en ;
+    skos:inScheme       aws:AWSScheme ;
+    prov:wasDerivedFrom <https://aws.amazon.com/lambda/> ;
+    skos:exactMatch     itil:SoftwareCI ;
+    skos:relatedMatch   itil:SoftwareDevelopmentAndManagement ;
+    skos:relatedMatch   itil:DeploymentManagement ;
+.
+
+aws:ECS
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "ECS (Elastic Container Service)"@en ;
+    skos:definition     "Container orchestration service for running Docker containers at scale."@en ;
+    skos:inScheme       aws:AWSScheme ;
+    prov:wasDerivedFrom <https://aws.amazon.com/ecs/> ;
+    skos:exactMatch     itil:SoftwareCI ;
+    skos:relatedMatch   itil:DeploymentManagement ;
+    skos:relatedMatch   itil:AvailabilityManagement ;
+.
+
+aws:EKS
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "EKS (Elastic Kubernetes Service)"@en ;
+    skos:definition     "Managed Kubernetes service for container orchestration and workload management."@en ;
+    skos:inScheme       aws:AWSScheme ;
+    prov:wasDerivedFrom <https://aws.amazon.com/eks/> ;
+    skos:exactMatch     itil:SoftwareCI ;
+    skos:relatedMatch   itil:DeploymentManagement ;
+    skos:relatedMatch   itil:CapacityAndPerformanceManagement ;
+.
+
+aws:AppRunner
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "App Runner"@en ;
+    skos:definition     "Fully managed container application service with automatic scaling and deployment."@en ;
+    skos:inScheme       aws:AWSScheme ;
+    prov:wasDerivedFrom <https://aws.amazon.com/apprunner/> ;
+    skos:broadMatch     itil:SoftwareCI ;
+    skos:relatedMatch   itil:DeploymentManagement ;
+.
+
+aws:Lightsail
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Lightsail"@en ;
+    skos:definition     "Simplified virtual private server offering with pre-configured OS and applications."@en ;
+    skos:inScheme       aws:AWSScheme ;
+    prov:wasDerivedFrom <https://aws.amazon.com/lightsail/> ;
+    skos:exactMatch     itil:HardwareCI ;
+    skos:relatedMatch   itil:InfrastructureAndPlatformManagement ;
+.
+
+# ═══════════════════════════════════════════════════════════════
+#  STORAGE
+# ═══════════════════════════════════════════════════════════════
+
+aws:S3
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "S3 (Simple Storage Service)"@en ;
+    skos:definition     "Object storage service for storing and retrieving any amount of data with high durability and availability."@en ;
+    skos:inScheme       aws:AWSScheme ;
+    prov:wasDerivedFrom <https://aws.amazon.com/s3/> ;
+    skos:exactMatch     itil:ConfigurationItem ;
+    skos:relatedMatch   itil:ServiceConfigurationManagement ;
+    skos:relatedMatch   itil:ITAssetManagement ;
+.
+
+aws:EBS
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "EBS (Elastic Block Store)"@en ;
+    skos:definition     "Block storage volumes for use with EC2 instances, offering high-performance persistent storage."@en ;
+    skos:inScheme       aws:AWSScheme ;
+    prov:wasDerivedFrom <https://aws.amazon.com/ebs/> ;
+    skos:exactMatch     itil:HardwareCI ;
+    skos:relatedMatch   itil:CapacityAndPerformanceManagement ;
+.
+
+aws:EFS
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "EFS (Elastic File System)"@en ;
+    skos:definition     "Managed file system supporting NFS protocol for shared access across EC2 instances."@en ;
+    skos:inScheme       aws:AWSScheme ;
+    prov:wasDerivedFrom <https://aws.amazon.com/efs/> ;
+    skos:exactMatch     itil:ConfigurationItem ;
+    skos:relatedMatch   itil:ServiceConfigurationManagement ;
+.
+
+aws:FSx
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "FSx"@en ;
+    skos:definition     "Managed file storage service supporting Windows File Server, Lustre, OpenZFS, and NetApp ONTAP."@en ;
+    skos:inScheme       aws:AWSScheme ;
+    prov:wasDerivedFrom <https://aws.amazon.com/fsx/> ;
+    skos:exactMatch     itil:ConfigurationItem ;
+    skos:relatedMatch   itil:ServiceConfigurationManagement ;
+.
+
+aws:Glacier
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Glacier"@en ;
+    skos:definition     "Low-cost archival storage service for long-term data preservation and disaster recovery."@en ;
+    skos:inScheme       aws:AWSScheme ;
+    prov:wasDerivedFrom <https://aws.amazon.com/glacier/> ;
+    skos:broadMatch     itil:ConfigurationItem ;
+    skos:relatedMatch   itil:ServiceContinuityManagement ;
+.
+
+# ═══════════════════════════════════════════════════════════════
+#  DATABASES
+# ═══════════════════════════════════════════════════════════════
+
+aws:RDS
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "RDS (Relational Database Service)"@en ;
+    skos:definition     "Managed relational database service supporting SQL engines: PostgreSQL, MySQL, MariaDB, Oracle, SQL Server."@en ;
+    skos:inScheme       aws:AWSScheme ;
+    prov:wasDerivedFrom <https://aws.amazon.com/rds/> ;
+    skos:exactMatch     itil:ConfigurationItem ;
+    skos:relatedMatch   itil:ServiceConfigurationManagement ;
+    skos:relatedMatch   itil:CapacityAndPerformanceManagement ;
+    skos:relatedMatch   itil:ServiceLevelManagement ;
+.
+
+aws:DynamoDB
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "DynamoDB"@en ;
+    skos:definition     "Fully managed NoSQL key-value database service with automatic scaling and high performance."@en ;
+    skos:inScheme       aws:AWSScheme ;
+    prov:wasDerivedFrom <https://aws.amazon.com/dynamodb/> ;
+    skos:exactMatch     itil:ConfigurationItem ;
+    skos:relatedMatch   itil:CapacityAndPerformanceManagement ;
+    skos:relatedMatch   itil:ServiceLevelManagement ;
+.
+
+aws:ElastiCache
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "ElastiCache"@en ;
+    skos:definition     "In-memory data cache service supporting Redis and Memcached for improved application latency."@en ;
+    skos:inScheme       aws:AWSScheme ;
+    prov:wasDerivedFrom <https://aws.amazon.com/elasticache/> ;
+    skos:exactMatch     itil:ConfigurationItem ;
+    skos:relatedMatch   itil:CapacityAndPerformanceManagement ;
+    skos:relatedMatch   itil:MonitoringAndEventManagement ;
+.
+
+aws:DocumentDB
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "DocumentDB"@en ;
+    skos:definition     "Managed MongoDB-compatible database service for document storage and queries."@en ;
+    skos:inScheme       aws:AWSScheme ;
+    prov:wasDerivedFrom <https://aws.amazon.com/documentdb/> ;
+    skos:exactMatch     itil:ConfigurationItem ;
+    skos:relatedMatch   itil:ServiceConfigurationManagement ;
+.
+
+aws:Redshift
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Redshift"@en ;
+    skos:definition     "Data warehouse service for analytics on large datasets using columnar storage and parallel query processing."@en ;
+    skos:inScheme       aws:AWSScheme ;
+    prov:wasDerivedFrom <https://aws.amazon.com/redshift/> ;
+    skos:exactMatch     itil:ConfigurationItem ;
+    skos:relatedMatch   itil:CapacityAndPerformanceManagement ;
+    skos:relatedMatch   itil:MeasurementAndReporting ;
+.
+
+aws:Timestream
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Timestream"@en ;
+    skos:definition     "Time-series database service optimised for storing and querying time-stamped data at scale."@en ;
+    skos:inScheme       aws:AWSScheme ;
+    prov:wasDerivedFrom <https://aws.amazon.com/timestream/> ;
+    skos:exactMatch     itil:ConfigurationItem ;
+    skos:relatedMatch   itil:MonitoringAndEventManagement ;
+.
+
+aws:Neptune
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Neptune"@en ;
+    skos:definition     "Managed graph database service supporting RDF and property graphs for relationship queries."@en ;
+    skos:inScheme       aws:AWSScheme ;
+    prov:wasDerivedFrom <https://aws.amazon.com/neptune/> ;
+    skos:exactMatch     itil:ConfigurationItem ;
+    skos:relatedMatch   itil:KnowledgeManagement ;
+.
+
+# ═══════════════════════════════════════════════════════════════
+#  NETWORKING & CONTENT DELIVERY
+# ═══════════════════════════════════════════════════════════════
+
+aws:VPC
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "VPC (Virtual Private Cloud)"@en ;
+    skos:definition     "Isolated network environment within AWS with configurable IP address space, subnets, route tables, and gateways."@en ;
+    skos:inScheme       aws:AWSScheme ;
+    prov:wasDerivedFrom <https://aws.amazon.com/vpc/> ;
+    skos:exactMatch     itil:ConfigurationItem ;
+    skos:relatedMatch   itil:ServiceConfigurationManagement ;
+    skos:relatedMatch   itil:InformationSecurityManagement ;
+.
+
+aws:ElasticIP
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Elastic IP"@en ;
+    skos:definition     "Static public IPv4 address for use with EC2 instances and elastic load balancers."@en ;
+    skos:inScheme       aws:AWSScheme ;
+    prov:wasDerivedFrom <https://aws.amazon.com/ec2/elastic-ip/> ;
+    skos:exactMatch     itil:ConfigurationItem ;
+    skos:relatedMatch   itil:ServiceConfigurationManagement ;
+.
+
+aws:ELB
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Elastic Load Balancing (ELB)"@en ;
+    skos:definition     "Load balancing service distributing traffic across multiple targets: ALB, NLB, CLB for high availability."@en ;
+    skos:inScheme       aws:AWSScheme ;
+    prov:wasDerivedFrom <https://aws.amazon.com/elasticloadbalancing/> ;
+    skos:exactMatch     itil:ConfigurationItem ;
+    skos:relatedMatch   itil:AvailabilityManagement ;
+    skos:relatedMatch   itil:CapacityAndPerformanceManagement ;
+.
+
+aws:CloudFront
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "CloudFront"@en ;
+    skos:definition     "Content Delivery Network (CDN) service caching and serving content from edge locations globally."@en ;
+    skos:inScheme       aws:AWSScheme ;
+    prov:wasDerivedFrom <https://aws.amazon.com/cloudfront/> ;
+    skos:exactMatch     itil:ConfigurationItem ;
+    skos:relatedMatch   itil:CapacityAndPerformanceManagement ;
+    skos:relatedMatch   itil:MonitoringAndEventManagement ;
+.
+
+aws:Route53
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Route 53"@en ;
+    skos:definition     "Domain Name System (DNS) and traffic routing service with health checking and failover capabilities."@en ;
+    skos:inScheme       aws:AWSScheme ;
+    prov:wasDerivedFrom <https://aws.amazon.com/route53/> ;
+    skos:exactMatch     itil:ConfigurationItem ;
+    skos:relatedMatch   itil:AvailabilityManagement ;
+    skos:relatedMatch   itil:ServiceLevelManagement ;
+.
+
+aws:AppSync
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "AppSync"@en ;
+    skos:definition     "Managed GraphQL service for building data-driven applications with offline support."@en ;
+    skos:inScheme       aws:AWSScheme ;
+    prov:wasDerivedFrom <https://aws.amazon.com/appsync/> ;
+    skos:exactMatch     itil:SoftwareCI ;
+    skos:relatedMatch   itil:SoftwareDevelopmentAndManagement ;
+.
+
+# ═══════════════════════════════════════════════════════════════
+#  SECURITY & IDENTITY
+# ═══════════════════════════════════════════════════════════════
+
+aws:IAM
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "IAM (Identity and Access Management)"@en ;
+    skos:definition     "Service for managing access to AWS resources through users, groups, roles, and policies."@en ;
+    skos:inScheme       aws:AWSScheme ;
+    prov:wasDerivedFrom <https://aws.amazon.com/iam/> ;
+    skos:exactMatch     itil:InformationSecurityManagement ;
+    skos:relatedMatch   itil:AccessControl ;
+    skos:relatedMatch   itil:WorkforceAndTalentManagement ;
+.
+
+aws:KMS
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "KMS (Key Management Service)"@en ;
+    skos:definition     "Managed encryption key service for creating and controlling encryption keys used across AWS services."@en ;
+    skos:inScheme       aws:AWSScheme ;
+    prov:wasDerivedFrom <https://aws.amazon.com/kms/> ;
+    skos:exactMatch     itil:InformationSecurityManagement ;
+    skos:relatedMatch   itil:ConfigurationItem ;
+.
+
+aws:SecretsManager
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Secrets Manager"@en ;
+    skos:definition     "Service for storing, rotating, and managing secrets including database credentials and API keys."@en ;
+    skos:inScheme       aws:AWSScheme ;
+    prov:wasDerivedFrom <https://aws.amazon.com/secrets-manager/> ;
+    skos:exactMatch     itil:InformationSecurityManagement ;
+    skos:relatedMatch   itil:KnowledgeManagement ;
+.
+
+aws:WAF
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "WAF (Web Application Firewall)"@en ;
+    skos:definition     "Web application firewall protecting applications from common web exploits and DDoS attacks."@en ;
+    skos:inScheme       aws:AWSScheme ;
+    prov:wasDerivedFrom <https://aws.amazon.com/waf/> ;
+    skos:exactMatch     itil:InformationSecurityManagement ;
+    skos:relatedMatch   itil:RiskManagement ;
+.
+
+aws:SecurityHub
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Security Hub"@en ;
+    skos:definition     "Centralised security and compliance service providing aggregated security findings and standards checks."@en ;
+    skos:inScheme       aws:AWSScheme ;
+    prov:wasDerivedFrom <https://aws.amazon.com/securityhub/> ;
+    skos:relatedMatch   itil:InformationSecurityManagement ;
+    skos:relatedMatch   itil:MeasurementAndReporting ;
+    skos:relatedMatch   itil:RiskManagement ;
+.
+
+# ═══════════════════════════════════════════════════════════════
+#  MONITORING, LOGGING & MANAGEMENT
+# ═══════════════════════════════════════════════════════════════
+
+aws:CloudWatch
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "CloudWatch"@en ;
+    skos:definition     "Monitoring and observability service collecting metrics, logs, and traces from AWS resources and applications."@en ;
+    skos:inScheme       aws:AWSScheme ;
+    prov:wasDerivedFrom <https://aws.amazon.com/cloudwatch/> ;
+    skos:exactMatch     itil:MonitoringAndEventManagement ;
+    skos:relatedMatch   itil:MeasurementAndReporting ;
+    skos:relatedMatch   itil:CapacityAndPerformanceManagement ;
+.
+
+aws:CloudTrail
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "CloudTrail"@en ;
+    skos:definition     "API auditing and logging service recording all AWS API calls for compliance and security analysis."@en ;
+    skos:inScheme       aws:AWSScheme ;
+    prov:wasDerivedFrom <https://aws.amazon.com/cloudtrail/> ;
+    skos:relatedMatch   itil:InformationSecurityManagement ;
+    skos:relatedMatch   itil:MeasurementAndReporting ;
+.
+
+aws:Systems Manager
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Systems Manager"@en ;
+    skos:definition     "Operations service providing visibility and control over AWS infrastructure with automation and patching capabilities."@en ;
+    skos:inScheme       aws:AWSScheme ;
+    prov:wasDerivedFrom <https://aws.amazon.com/systems-manager/> ;
+    skos:relatedMatch   itil:InfrastructureAndPlatformManagement ;
+    skos:relatedMatch   itil:ChangeEnablement ;
+    skos:relatedMatch   itil:ServiceConfigurationManagement ;
+.
+
+aws:OpsWorks
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "OpsWorks"@en ;
+    skos:definition     "Configuration management service using Chef or Puppet for infrastructure automation and orchestration."@en ;
+    skos:inScheme       aws:AWSScheme ;
+    prov:wasDerivedFrom <https://aws.amazon.com/opsworks/> ;
+    skos:relatedMatch   itil:InfrastructureAndPlatformManagement ;
+    skos:relatedMatch   itil:DeploymentManagement ;
+.
+
+aws:CloudFormation
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "CloudFormation"@en ;
+    skos:definition     "Infrastructure-as-Code service for modelling and provisioning AWS resources using templates."@en ;
+    skos:inScheme       aws:AWSScheme ;
+    prov:wasDerivedFrom <https://aws.amazon.com/cloudformation/> ;
+    skos:relatedMatch   itil:ServiceConfigurationManagement ;
+    skos:relatedMatch   itil:DeploymentManagement ;
+    skos:relatedMatch   itil:ChangeEnablement ;
+.
+
+aws:Config
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Config"@en ;
+    skos:definition     "Compliance and configuration tracking service monitoring AWS resource configurations and changes."@en ;
+    skos:inScheme       aws:AWSScheme ;
+    prov:wasDerivedFrom <https://aws.amazon.com/config/> ;
+    skos:relatedMatch   itil:ServiceConfigurationManagement ;
+    skos:relatedMatch   itil:ChangeEnablement ;
+    skos:relatedMatch   itil:MeasurementAndReporting ;
+.
+
+# ═══════════════════════════════════════════════════════════════
+#  AI/ML & ANALYTICS
+# ═══════════════════════════════════════════════════════════════
+
+aws:SageMaker
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "SageMaker"@en ;
+    skos:definition     "Managed machine learning service for building, training, and deploying ML models at scale."@en ;
+    skos:inScheme       aws:AWSScheme ;
+    prov:wasDerivedFrom <https://aws.amazon.com/sagemaker/> ;
+    skos:exactMatch     itil:SoftwareCI ;
+    skos:relatedMatch   itil:SoftwareDevelopmentAndManagement ;
+    skos:relatedMatch   itil:KnowledgeManagement ;
+.
+
+aws:EMR
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "EMR (Elastic MapReduce)"@en ;
+    skos:definition     "Big data processing framework running Apache Spark, Hadoop, and other tools on EC2 clusters."@en ;
+    skos:inScheme       aws:AWSScheme ;
+    prov:wasDerivedFrom <https://aws.amazon.com/emr/> ;
+    skos:exactMatch     itil:SoftwareCI ;
+    skos:relatedMatch   itil:CapacityAndPerformanceManagement ;
+.
+
+aws:Athena
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Athena"@en ;
+    skos:definition     "Serverless SQL query service for analysing data directly in S3 using standard SQL."@en ;
+    skos:inScheme       aws:AWSScheme ;
+    prov:wasDerivedFrom <https://aws.amazon.com/athena/> ;
+    skos:exactMatch     itil:SoftwareCI ;
+    skos:relatedMatch   itil:MeasurementAndReporting ;
+.
+
+aws:Glue
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Glue"@en ;
+    skos:definition     "Extract, Transform, Load (ETL) service for preparing data for analytics and ML."@en ;
+    skos:inScheme       aws:AWSScheme ;
+    prov:wasDerivedFrom <https://aws.amazon.com/glue/> ;
+    skos:exactMatch     itil:SoftwareCI ;
+    skos:relatedMatch   itil:SoftwareDevelopmentAndManagement ;
+.
+
+# ═══════════════════════════════════════════════════════════════
+#  COLLECTIONS
+# ═══════════════════════════════════════════════════════════════
+
+aws:ComputeServices
+    a skos:Collection ;
+    skos:prefLabel "AWS Compute Services"@en ;
+    skos:member aws:EC2 ;
+    skos:member aws:Lambda ;
+    skos:member aws:ECS ;
+    skos:member aws:EKS ;
+    skos:member aws:AppRunner ;
+    skos:member aws:Lightsail ;
+.
+
+aws:StorageServices
+    a skos:Collection ;
+    skos:prefLabel "AWS Storage Services"@en ;
+    skos:member aws:S3 ;
+    skos:member aws:EBS ;
+    skos:member aws:EFS ;
+    skos:member aws:FSx ;
+    skos:member aws:Glacier ;
+.
+
+aws:DatabaseServices
+    a skos:Collection ;
+    skos:prefLabel "AWS Database Services"@en ;
+    skos:member aws:RDS ;
+    skos:member aws:DynamoDB ;
+    skos:member aws:ElastiCache ;
+    skos:member aws:DocumentDB ;
+    skos:member aws:Redshift ;
+    skos:member aws:Timestream ;
+    skos:member aws:Neptune ;
+.
+
+aws:NetworkingServices
+    a skos:Collection ;
+    skos:prefLabel "AWS Networking & CDN Services"@en ;
+    skos:member aws:VPC ;
+    skos:member aws:ElasticIP ;
+    skos:member aws:ELB ;
+    skos:member aws:CloudFront ;
+    skos:member aws:Route53 ;
+    skos:member aws:AppSync ;
+.
+
+aws:SecurityServices
+    a skos:Collection ;
+    skos:prefLabel "AWS Security & Identity Services"@en ;
+    skos:member aws:IAM ;
+    skos:member aws:KMS ;
+    skos:member aws:SecretsManager ;
+    skos:member aws:WAF ;
+    skos:member aws:SecurityHub ;
+.
+
+aws:ManagementServices
+    a skos:Collection ;
+    skos:prefLabel "AWS Management & Monitoring Services"@en ;
+    skos:member aws:CloudWatch ;
+    skos:member aws:CloudTrail ;
+    skos:member aws:Systems Manager ;
+    skos:member aws:OpsWorks ;
+    skos:member aws:CloudFormation ;
+    skos:member aws:Config ;
+.
+
+aws:AnalyticsServices
+    a skos:Collection ;
+    skos:prefLabel "AWS AI/ML & Analytics Services"@en ;
+    skos:member aws:SageMaker ;
+    skos:member aws:EMR ;
+    skos:member aws:Athena ;
+    skos:member aws:Glue ;
+.

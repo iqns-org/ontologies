@@ -1,0 +1,202 @@
+@prefix basel-iii: <https://iqns.org/v0/basel-iii#> .
+@prefix finance:   <https://iqns.org/v0/finance#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+basel-iii:Ontology a owl:Ontology ;
+    dct:title       "Basel III / IV Capital and Liquidity Framework"@en ;
+    prov:wasDerivedFrom <https://www.bis.org/bcbs/basel3.htm> ;
+    owl:versionInfo "Basel III 2010 / Basel IV (CRR3) 2025 application" ;
+.
+
+basel-iii:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "Basel III / IV — BIS Capital Framework"@en ;
+    skos:definition "BIS Basel Committee prudential standards for bank capital adequacy, liquidity, and leverage — implemented in EU via CRR/CRD and in the US via Federal Reserve / OCC rules."@en .
+
+basel-iii:BaselIII
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "Basel III / IV Capital Framework"@en ;
+    skos:definition "Prudential framework published by the Basel Committee on Banking Supervision (BCBS) — the global baseline for bank capital adequacy, leverage, liquidity, and model risk management."@en ;
+    skos:inScheme   basel-iii:Scheme ;
+    dct:publisher   "Basel Committee on Banking Supervision (BIS)"@en ;
+    dct:issued      "2010"^^xsd:gYear ;
+.
+
+# ── Capital Requirements ───────────────────────────────────────────────────────
+
+basel-iii:CET1MinimumRequirement
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "CET1 Minimum Capital Requirement (4.5%)"@en ;
+    skos:definition "Credit institutions must maintain CET1 capital of at least 4.5% of risk-weighted assets at all times."@en ;
+    skos:inScheme   basel-iii:Scheme ;
+    prov:wasDerivedFrom "Basel III, Pillar 1, §53 (CRR Art. 92(1)(a))" ;
+    ai:mappedToDimension finance:CreditRisk ;
+    finance:requiresRegulatoryApproval false ;
+    finance:hasCapitalImplication true ;
+.
+basel-iii:Tier1CapitalRequirement
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Tier 1 Capital Minimum (6%)"@en ;
+    skos:definition "Credit institutions must maintain Tier 1 capital (CET1 + AT1) of at least 6% of RWA."@en ;
+    skos:inScheme   basel-iii:Scheme ;
+    prov:wasDerivedFrom "Basel III, Pillar 1, §53 (CRR Art. 92(1)(b))" ;
+    ai:mappedToDimension finance:CreditRisk ;
+    finance:hasCapitalImplication true ;
+.
+basel-iii:TotalCapitalRequirement
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Total Capital Minimum (8%)"@en ;
+    skos:definition "Credit institutions must maintain total capital (Tier 1 + Tier 2) of at least 8% of RWA."@en ;
+    skos:inScheme   basel-iii:Scheme ;
+    prov:wasDerivedFrom "Basel III, Pillar 1, §53 (CRR Art. 92(1)(c))" ;
+    finance:hasCapitalImplication true ;
+.
+basel-iii:CapitalConservationBuffer
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Capital Conservation Buffer (2.5% CET1)"@en ;
+    skos:definition "2.5% CET1 buffer above minimum — breaching it triggers automatic dividend and bonus distribution restrictions."@en ;
+    skos:inScheme   basel-iii:Scheme ;
+    prov:wasDerivedFrom "Basel III, §129–142 (CRR Art. 129)" ;
+    finance:hasCapitalImplication true ;
+.
+basel-iii:CountercyclicalCapitalBuffer
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Countercyclical Capital Buffer (CCyB)"@en ;
+    skos:definition "Jurisdiction-specific CET1 buffer (0–2.5%+) activated by national designated authorities during credit booms; released in downturns to maintain lending capacity."@en ;
+    skos:inScheme   basel-iii:Scheme ;
+    prov:wasDerivedFrom "Basel III, §143–187 (CRR Art. 130)" ;
+    finance:hasCapitalImplication true ;
+.
+basel-iii:OutputFloor
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Capital Output Floor (72.5%)"@en ;
+    skos:definition "Basel IV: RWA from internal models (IRB, IMA) cannot fall below 72.5% of standardised approach RWA — limits model-driven capital optimisation."@en ;
+    skos:inScheme   basel-iii:Scheme ;
+    prov:wasDerivedFrom "Basel IV, §21.1 (CRR3 Art. 465)" ;
+    finance:requiresRegulatoryApproval false ;
+    finance:hasCapitalImplication true ;
+.
+basel-iii:LeverageRatioRequirement
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Leverage Ratio Minimum (3%)"@en ;
+    skos:definition "Tier 1 capital must be at least 3% of total exposure measure — a non-risk-weighted backstop to prevent excessive balance sheet expansion."@en ;
+    skos:inScheme   basel-iii:Scheme ;
+    prov:wasDerivedFrom "Basel III, §153 (CRR Art. 92(1)(d))" ;
+    finance:hasCapitalImplication true ;
+.
+
+# ── Liquidity Requirements ────────────────────────────────────────────────────
+
+basel-iii:LiquidityCoverageRatio
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Liquidity Coverage Ratio (LCR ≥ 100%)"@en ;
+    skos:definition "Stock of High Quality Liquid Assets must cover net cash outflows over a 30-day stress period at ≥100% — the short-term liquidity standard."@en ;
+    skos:inScheme   basel-iii:Scheme ;
+    prov:wasDerivedFrom "Basel III LCR, Jan 2013 (CRR Art. 412; LCR DR)" ;
+    ai:mappedToDimension finance:LiquidityRisk ;
+.
+basel-iii:NetStableFundingRatio
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Net Stable Funding Ratio (NSFR ≥ 100%)"@en ;
+    skos:definition "Available Stable Funding must exceed Required Stable Funding over a one-year horizon — the structural liquidity standard."@en ;
+    skos:inScheme   basel-iii:Scheme ;
+    prov:wasDerivedFrom "Basel III NSFR, Oct 2014 (CRR Art. 428a)" ;
+    ai:mappedToDimension finance:LiquidityRisk ;
+.
+
+# ── Internal Model Obligations (Pillar 1 IRB / IMA) ──────────────────────────
+
+basel-iii:IRBModelApproval
+    a ai:Obligation ; a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "IRB Model Regulatory Approval"@en ;
+    skos:definition "Credit institutions using internal ratings-based (IRB) credit risk models must obtain written supervisory approval before using them for capital calculation. Ongoing: material model changes also require pre-notification."@en ;
+    skos:inScheme   basel-iii:Scheme ;
+    prov:wasDerivedFrom "Basel III §387–401 (CRR Art. 143)" ;
+    ai:mappedToDimension finance:ModelRisk ;
+    finance:requiresRegulatoryApproval true ;
+    finance:requiresIndependentValidation true ;
+    ai:appliesToLifecycle finance:ModelApproval ;
+.
+basel-iii:ModelRiskManagementRequirement
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Model Risk Management Framework"@en ;
+    skos:definition "Institutions using internal models must establish a model risk management framework covering model inventory, development standards, independent validation, governance, and ongoing monitoring — anchored to SR 11-7 principles."@en ;
+    skos:inScheme   basel-iii:Scheme ;
+    prov:wasDerivedFrom "Basel III §718(ix) (EBA GL on IRM; ECB Guide to Internal Models)" ;
+    ai:mappedToDimension finance:ModelRisk ;
+    finance:requiresIndependentValidation true ;
+    skos:broadMatch <https://iqns.org/v0/sr-11-7#ModelRiskManagement> ;
+.
+basel-iii:IndependentModelValidation
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Independent Model Validation"@en ;
+    skos:definition "All internal models used for Pillar 1 capital must be validated by a unit independent of the development team, covering conceptual soundness, data quality, and outcome testing."@en ;
+    skos:inScheme   basel-iii:Scheme ;
+    prov:wasDerivedFrom "Basel III §500 (CRR Art. 185)" ;
+    ai:mappedToDimension finance:ModelRisk ;
+    finance:requiresIndependentValidation true ;
+    ai:appliesToLifecycle finance:ModelValidation ;
+.
+basel-iii:OngoingModelMonitoring
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Ongoing Model Monitoring and Back-testing"@en ;
+    skos:definition "Institutions must continuously monitor model performance, conduct back-testing of IRB parameters, and report material deviations to the supervisor."@en ;
+    skos:inScheme   basel-iii:Scheme ;
+    prov:wasDerivedFrom "Basel III §§501–505 (CRR Art. 185(2)(b))" ;
+    ai:mappedToDimension finance:ModelRisk ;
+    ai:appliesToLifecycle finance:ModelMonitoring ;
+.
+
+# ── Pillar 2 — SREP / ICAAP / ILAAP ─────────────────────────────────────────
+
+basel-iii:ICAAP
+    a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "ICAAP — Internal Capital Adequacy Assessment Process"@en ;
+    skos:definition "Annual self-assessment by credit institutions of all material risks and the internal capital required to cover them — reviewed by the supervisor in SREP."@en ;
+    skos:inScheme   basel-iii:Scheme ;
+    prov:wasDerivedFrom "Basel III, Pillar 2 §726 (CRR Art. 73)" ;
+    ai:mappedToDimension finance:CreditRisk ;
+    ai:mappedToDimension finance:OperationalRisk ;
+.
+basel-iii:ILAAP
+    a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "ILAAP — Internal Liquidity Adequacy Assessment Process"@en ;
+    skos:definition "Annual self-assessment of liquidity risk governance, stress testing, and funding adequacy — reviewed by the supervisor in SREP."@en ;
+    skos:inScheme   basel-iii:Scheme ;
+    prov:wasDerivedFrom "Basel III, Pillar 2 §738 (ILAAP EBA GL 2016)" ;
+    ai:mappedToDimension finance:LiquidityRisk ;
+.
+basel-iii:SREP
+    a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "SREP — Supervisory Review and Evaluation Process"@en ;
+    skos:definition "Annual supervisory review of ICAAP, ILAAP, business model, governance, and risks — may result in institution-specific Pillar 2 capital requirements (P2R, P2G) above the Pillar 1 minimum."@en ;
+    skos:inScheme   basel-iii:Scheme ;
+    prov:wasDerivedFrom "Basel III, Pillar 2 §750 (CRD Art. 97; EBA GL on SREP)" ;
+.
+
+# ── Pillar 3 — Disclosure ─────────────────────────────────────────────────────
+
+basel-iii:Pillar3DisclosureRequirement
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Pillar 3 Public Disclosure"@en ;
+    skos:definition "Institutions must publicly disclose qualitative and quantitative information about capital, risk exposure, and risk management (full template set under CRR2 Pillar 3 package)."@en ;
+    skos:inScheme   basel-iii:Scheme ;
+    prov:wasDerivedFrom "Basel III, Pillar 3 §809 (CRR Art. 431–455)" ;
+    ai:mappedToDimension ai:Transparency ;
+.
+
+# ── Rights ────────────────────────────────────────────────────────────────────
+
+basel-iii:SupervisoryChallenge
+    a ai:Right ; a skos:Concept ;
+    skos:prefLabel  "Supervisor's Right to Challenge Internal Models"@en ;
+    skos:definition "Prudential supervisors have the right to require floor adjustments, add-ons, or model withdrawal if internal model outputs are deemed inadequate."@en ;
+    skos:inScheme   basel-iii:Scheme ;
+    prov:wasDerivedFrom "Basel III §400 (CRR Art. 101)" ;
+.

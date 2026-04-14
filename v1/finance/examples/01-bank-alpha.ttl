@@ -1,0 +1,19 @@
+@prefix bank-alpha: <https://iqns.org/v0/finance/examples/bank-alpha#> .
+@prefix ex:     <https://iqns.org/v0/example#> .
+@prefix finance:     <https://iqns.org/v0/finance#> .
+@prefix ai:     <https://iqns.org/v0/ai#> .
+@prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:   <http://www.w3.org/ns/prov#> .
+@prefix dora:   <https://iqns.org/v0/dora#> .
+@prefix basel:  <https://iqns.org/v0/basel-iii#> .
+
+bank-alpha:AlphaCreditEngine a ai:System ;
+    a finance:CreditInstitution ;
+    skos:prefLabel "Alpha Bank Credit Decisioning Engine"@en ;
+    ai:mappedToDimension finance:CreditRisk ;
+    ai:appliesToLifecycle finance:ModelInProduction ;
+    prov:wasDerivedFrom "Alpha Bank Internal Model Inventory ID: 882" ;
+    # Uses Finance Frameworks
+    ai:implementsControl dora:ICTRiskManagementFramework ;
+    ai:implementsControl basel:InternalRatingsBasedApproach ;
+.

@@ -1,0 +1,103 @@
+@prefix fedramp: <https://iqns.org/v0/fedramp#> .
+@prefix gov:  <https://iqns.org/v0/govtgraph#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+fedramp:Ontology a owl:Ontology ;
+    dct:title       "FedRAMP — Federal Risk and Authorization Management Program"@en ;
+    prov:wasDerivedFrom <https://www.fedramp.gov/program-basics/> ;
+    owl:versionInfo "FedRAMP Rev 5 (NIST SP 800-53 Rev. 5 aligned) — 2023; FedRAMP Authorization Act (2022)" ;
+.
+
+fedramp:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "FedRAMP"@en ;
+    skos:definition "US government program providing standardised security assessment, authorisation, and continuous monitoring for cloud products and services used by federal agencies. All AI SaaS products serving US federal agencies require FedRAMP authorization."@en .
+
+fedramp:FedRAMP
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "FedRAMP"@en ;
+    skos:definition "Federal Risk and Authorization Management Program — standardised cloud security authorisation based on NIST SP 800-53 Rev. 5 control baselines (Low/Moderate/High). FedRAMP Authorization Act (2022) made it mandatory for cloud services used by US federal agencies."@en ;
+    skos:inScheme   fedramp:Scheme ;
+    dct:publisher   "General Services Administration (GSA)"@en ;
+    dct:issued      "2011"^^xsd:gYear ;
+.
+
+# ── Authorization Process ─────────────────────────────────────────────────────
+
+fedramp:SystemSecurityPlan
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "System Security Plan (SSP)"@en ;
+    skos:definition "The primary document describing the security posture of a cloud system — must describe all security controls implemented, control inheritance from underlying platforms, and system boundaries. AI-specific SSP sections must address: training data protection, model artefact security, inference API hardening, and AI incident response."@en ;
+    skos:inScheme   fedramp:Scheme ;
+    prov:wasDerivedFrom "FedRAMP Rev 5, SSP Template; NIST SP 800-18" ;
+    gov:requiresFedRAMPAuth "true"^^xsd:boolean ;
+    ai:mappedToDimension gov:CyberResilience ;
+    ai:appliesToLifecycle gov:Govern ;
+.
+fedramp:AgencyAuthorization
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Agency Authorization to Operate (ATO)"@en ;
+    skos:definition "A federal agency Authorizing Official (AO) must issue an Authority to Operate — accepting residual risk for their use of the cloud service. AI products must obtain ATO from at least one agency before expansion. JAB (Joint Authorization Board) P-ATO is accepted government-wide."@en ;
+    skos:inScheme   fedramp:Scheme ;
+    prov:wasDerivedFrom "FedRAMP Authorization Act, Pub.L. 117-263 §3610" ;
+    gov:requiresFedRAMPAuth "true"^^xsd:boolean ;
+    ai:mappedToDimension gov:CyberResilience ;
+    ai:mappedToDimension ai:Accountability ;
+.
+fedramp:ThirdPartyAssessment
+    a ai:Obligation ; a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "3PAO Security Assessment"@en ;
+    skos:definition "Cloud service providers must engage an accredited 3PAO to conduct an independent security assessment producing a Security Assessment Report (SAR) — for AI products, 3PAO must assess AI-specific controls including model supply chain, data pipeline security, and AI incident detection."@en ;
+    skos:inScheme   fedramp:Scheme ;
+    prov:wasDerivedFrom "FedRAMP Rev 5, SAR Template; FedRAMP 3PAO Requirements" ;
+    ai:mappedToDimension gov:CyberResilience ;
+.
+
+# ── Continuous Monitoring ─────────────────────────────────────────────────────
+
+fedramp:ContinuousMonitoringObligation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "FedRAMP Continuous Monitoring"@en ;
+    skos:definition "Authorised CSPs must conduct ongoing security monitoring — including: monthly vulnerability scans, annual penetration tests, significant change reporting, and Plan of Action & Milestones (POA&M) management. AI model updates are significant changes requiring notification."@en ;
+    skos:inScheme   fedramp:Scheme ;
+    prov:wasDerivedFrom "FedRAMP Continuous Monitoring Strategy Guide" ;
+    ai:mappedToDimension gov:CyberResilience ;
+    ai:appliesToLifecycle gov:Detect ;
+    ai:appliesToLifecycle gov:Govern ;
+.
+
+# ── Control Baselines (selected AI-relevant controls) ─────────────────────────
+
+fedramp:SI_ML
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "SI-ML — Supply Chain Risk Management for AI/ML"@en ;
+    skos:definition "NIST SP 800-53 Rev. 5 SI-20 and enhanced controls — protecting AI/ML components in the software supply chain: model provenance verification, dependency integrity checks, and pre-trained model vetting. Required for Moderate and High impact systems using AI."@en ;
+    skos:inScheme   fedramp:Scheme ;
+    prov:wasDerivedFrom "NIST SP 800-53 Rev. 5, SI-20; FedRAMP Moderate/High baseline" ;
+    ai:mappedToDimension gov:CyberResilience ;
+    ai:appliesToLifecycle gov:Protect ;
+.
+fedramp:IR_Reporting
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "US-CERT Incident Reporting (IR-6)"@en ;
+    skos:definition "FedRAMP systems must report security incidents to US-CERT within 1 hour of identification — AI-related security incidents (model compromise, data leakage via inference) are reportable. Monthly status reports and significant change notifications also required."@en ;
+    skos:inScheme   fedramp:Scheme ;
+    prov:wasDerivedFrom "NIST SP 800-53 Rev. 5, IR-6; FedRAMP IR Policy" ;
+    ai:mappedToDimension gov:CyberResilience ;
+    ai:mappedToDimension ai:Transparency ;
+    ai:appliesToLifecycle gov:Respond ;
+.
+fedramp:DataResidency
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Data Residency — US Soil Requirement"@en ;
+    skos:definition "Federal data processed by FedRAMP-authorised services and AI systems must be stored and processed within the United States and its territories — training data, model weights, and inference logs containing federal data may not reside in foreign jurisdictions."@en ;
+    skos:inScheme   fedramp:Scheme ;
+    prov:wasDerivedFrom "FedRAMP High Baseline; OMB M-19-17" ;
+    ai:mappedToDimension gov:SovereigntyAndData ;
+.

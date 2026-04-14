@@ -1,0 +1,601 @@
+@prefix itil: <https://iqns.org/itil#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# ── Ontology ─────────────────────────────────────────────────────────────────
+
+itil:Ontology
+    a owl:Ontology ;
+    dct:title       "ITIL Service Knowledge Management System (SKMS) Core Vocabulary"@en ;
+    skos:definition "Cross-cutting vocabulary modelling the ITIL Service Value System, SKMS, Configuration Management, and the 34 ITIL Management Practices. Importable by any domain ontology."@en ;
+    owl:versionInfo "0.1" ;
+.
+
+# ═══════════════════════════════════════════════════════════════
+#  CLASSES
+# ═══════════════════════════════════════════════════════════════
+
+# ── SKMS / Knowledge infrastructure ──────────────────────────
+
+itil:SKMS
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel  "Service Knowledge Management System"@en ;
+    skos:definition "The set of tools and databases used to manage knowledge and information. Encompasses the CMDB, DML, Incident/Problem/Change knowledge bases, and the Service Catalogue."@en ;
+.
+itil:CMDB
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel  "Configuration Management Database"@en ;
+    skos:definition "A database containing the attributes and relationships of all configuration items (CIs) in the managed environment."@en ;
+    rdfs:subClassOf itil:SKMS ;
+.
+itil:DML
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel  "Definitive Media Library"@en ;
+    skos:definition "A secure logical library of authorised versions of all software media items, including source code, installation packages, and licences."@en ;
+    rdfs:subClassOf itil:SKMS ;
+.
+itil:KnownErrorDatabase
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel  "Known Error Database (KEDB)"@en ;
+    skos:definition "Stores known errors and their associated workarounds or permanent fixes, enabling faster resolution of future incidents."@en ;
+    rdfs:subClassOf itil:SKMS ;
+.
+
+# ── Service Model ─────────────────────────────────────────────
+
+itil:Service
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel  "Service"@en ;
+    skos:definition "A means of enabling value co-creation by facilitating outcomes that customers want to achieve, without the customer having to manage specific costs and risks."@en ;
+.
+itil:ServiceCatalogue
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel  "Service Catalogue"@en ;
+    skos:definition "A structured information source about all live services and those available for deployment, used by customers and service desk staff."@en ;
+    rdfs:subClassOf itil:SKMS ;
+.
+itil:ServiceLevel
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel  "Service Level"@en ;
+    skos:definition "A measured and reported achievement at a specific point in time, against one or more service level targets."@en ;
+.
+itil:ServiceComponent
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel  "Service Component"@en ;
+    skos:definition "Any component that is part of a service: CI, people, processes, partners, information."@en ;
+.
+
+# ── Configuration Items ───────────────────────────────────────
+
+itil:ConfigurationItem
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel  "Configuration Item (CI)"@en ;
+    skos:definition "Any component that needs to be managed in order to deliver an IT service. Includes hardware, software, facilities, documentation, and people."@en ;
+.
+itil:HardwareCI
+    a owl:Class ;
+    rdfs:subClassOf itil:ConfigurationItem ;
+    skos:prefLabel  "Hardware CI"@en ;
+    skos:definition "Physical asset managed as a configuration item: servers, networking equipment, endpoints."@en ;
+.
+itil:SoftwareCI
+    a owl:Class ;
+    rdfs:subClassOf itil:ConfigurationItem ;
+    skos:prefLabel  "Software CI"@en ;
+    skos:definition "Software asset managed as a configuration item: applications, OS images, packages."@en ;
+.
+itil:DocumentCI
+    a owl:Class ;
+    rdfs:subClassOf itil:ConfigurationItem ;
+    skos:prefLabel  "Document CI"@en ;
+    skos:definition "Documentation managed as a configuration item: charters, SLAs, process runbooks."@en ;
+.
+
+# ── Service Records ───────────────────────────────────────────
+
+itil:ServiceRecord
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel  "Service Record"@en ;
+    skos:definition "Abstract superclass for structured ITSM records created during service operations: incidents, problems, changes, requests."@en ;
+.
+itil:Incident
+    a owl:Class ; a skos:Concept ;
+    rdfs:subClassOf itil:ServiceRecord ;
+    skos:prefLabel  "Incident"@en ;
+    skos:definition "An unplanned interruption to a service or reduction in service quality."@en ;
+.
+itil:MajorIncident
+    a owl:Class ;
+    rdfs:subClassOf itil:Incident ;
+    skos:prefLabel  "Major Incident"@en ;
+    skos:definition "An incident having a significant business impact requiring a coordinated response with a shortened resolution time target."@en ;
+.
+itil:Problem
+    a owl:Class ; a skos:Concept ;
+    rdfs:subClassOf itil:ServiceRecord ;
+    skos:prefLabel  "Problem"@en ;
+    skos:definition "A cause, or potential cause, of one or more incidents."@en ;
+.
+itil:KnownError
+    a owl:Class ; a skos:Concept ;
+    rdfs:subClassOf itil:Problem ;
+    skos:prefLabel  "Known Error"@en ;
+    skos:definition "A problem that has been analysed and has not been resolved — a workaround or permanent fix is documented."@en ;
+.
+itil:Change
+    a owl:Class ; a skos:Concept ;
+    rdfs:subClassOf itil:ServiceRecord ;
+    skos:prefLabel  "Change"@en ;
+    skos:definition "The addition, modification, or removal of anything that could have an effect on IT services."@en ;
+.
+itil:StandardChange
+    a owl:Class ;
+    rdfs:subClassOf itil:Change ;
+    skos:prefLabel  "Standard Change"@en ;
+    skos:definition "A pre-authorised change that is low risk, relatively common, and follows a procedure."@en ;
+.
+itil:EmergencyChange
+    a owl:Class ;
+    rdfs:subClassOf itil:Change ;
+    skos:prefLabel  "Emergency Change"@en ;
+    skos:definition "A change that must be introduced as soon as possible to resolve a major incident or security vulnerability."@en ;
+.
+itil:ServiceRequest
+    a owl:Class ; a skos:Concept ;
+    rdfs:subClassOf itil:ServiceRecord ;
+    skos:prefLabel  "Service Request"@en ;
+    skos:definition "A request from a user or user's authorised representative that initiates a pre-approved service action."@en ;
+.
+itil:Event
+    a owl:Class ; a skos:Concept ;
+    rdfs:subClassOf itil:ServiceRecord ;
+    skos:prefLabel  "Event"@en ;
+    skos:definition "Any change of state that has significance for the management of a service or other configuration item."@en ;
+.
+itil:Release
+    a owl:Class ; a skos:Concept ;
+    rdfs:subClassOf itil:ServiceRecord ;
+    skos:prefLabel  "Release"@en ;
+    skos:definition "A version of one or more services and other configuration items that is made available for use."@en ;
+.
+
+# ── Service Value System ──────────────────────────────────────
+
+itil:ServiceValueSystem
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel  "Service Value System (SVS)"@en ;
+    skos:definition "The overall model of how ITIL's components work together to create value: Governance, Service Value Chain, Practices, Guiding Principles, and Continual Improvement."@en ;
+.
+itil:ValueChainActivity
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel  "Value Chain Activity"@en ;
+    skos:definition "One of six ITIL Service Value Chain activities that transform inputs into outputs contributing to value creation."@en ;
+.
+itil:GuidingPrinciple
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel  "Guiding Principle"@en ;
+    skos:definition "A recommendation that guides an organisation in all circumstances, regardless of changes in goals, strategies, types of work, or management structure."@en ;
+.
+itil:Practice
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel  "ITIL Practice"@en ;
+    skos:definition "A set of organisational resources designed for performing work or accomplishing an objective. ITIL defines 34 practices across three groups."@en ;
+.
+itil:PracticeGroup
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel  "Practice Group"@en ;
+    skos:definition "A grouping of related ITIL practices: General Management, Service Management, or Technical Management."@en ;
+.
+itil:ContinualImprovement
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel  "Continual Improvement"@en ;
+    skos:definition "A recurring organisational activity performed at all levels to ensure service performance continually meets stakeholder expectations."@en ;
+.
+
+# ═══════════════════════════════════════════════════════════════
+#  PROPERTIES
+# ═══════════════════════════════════════════════════════════════
+
+itil:hasPractice
+    a owl:ObjectProperty ;
+    skos:prefLabel  "has practice"@en ;
+    rdfs:domain     itil:ServiceValueSystem ;
+    rdfs:range      itil:Practice ;
+.
+itil:hasCI
+    a owl:ObjectProperty ;
+    skos:prefLabel  "has configuration item"@en ;
+    rdfs:range      itil:ConfigurationItem ;
+.
+itil:registeredIn
+    a owl:ObjectProperty ;
+    skos:prefLabel  "registered in"@en ;
+    rdfs:domain     itil:ConfigurationItem ;
+    rdfs:range      itil:CMDB ;
+.
+itil:affectsCI
+    a owl:ObjectProperty ;
+    skos:prefLabel  "affects CI"@en ;
+    rdfs:domain     itil:ServiceRecord ;
+    rdfs:range      itil:ConfigurationItem ;
+.
+itil:relatesToService
+    a owl:ObjectProperty ;
+    skos:prefLabel  "relates to service"@en ;
+    rdfs:domain     itil:ServiceRecord ;
+    rdfs:range      itil:Service ;
+.
+itil:hasServiceLevel
+    a owl:ObjectProperty ;
+    skos:prefLabel  "has service level"@en ;
+    rdfs:domain     itil:Service ;
+    rdfs:range      itil:ServiceLevel ;
+.
+itil:triggeredBy
+    a owl:ObjectProperty ;
+    skos:prefLabel  "triggered by"@en ;
+    rdfs:domain     itil:Incident ;
+    rdfs:range      itil:Event ;
+.
+itil:resolvedBy
+    a owl:ObjectProperty ;
+    skos:prefLabel  "resolved by"@en ;
+    rdfs:domain     itil:Incident ;
+    rdfs:range      itil:Problem ;
+.
+itil:hasWorkaround
+    a owl:DatatypeProperty ;
+    skos:prefLabel  "has workaround"@en ;
+    rdfs:domain     itil:KnownError ;
+    rdfs:range      xsd:string ;
+.
+itil:inPracticeGroup
+    a owl:ObjectProperty ;
+    skos:prefLabel  "in practice group"@en ;
+    rdfs:domain     itil:Practice ;
+    rdfs:range      itil:PracticeGroup ;
+.
+itil:hasValueChainActivity
+    a owl:ObjectProperty ;
+    skos:prefLabel  "has value chain activity"@en ;
+    rdfs:domain     itil:ServiceValueSystem ;
+    rdfs:range      itil:ValueChainActivity ;
+.
+# Cross-domain linking: any domain entity can declare it is managed via ITIL
+itil:managedAsService
+    a owl:ObjectProperty ;
+    skos:prefLabel  "managed as service"@en ;
+    skos:definition "Links any domain entity (AI system, platform, legal process, infrastructure, etc.) to the ITIL Service record that manages it."@en ;
+    rdfs:range      itil:Service ;
+.
+itil:trackedAsCI
+    a owl:ObjectProperty ;
+    skos:prefLabel  "tracked as CI"@en ;
+    skos:definition "Links any domain entity to the CMDB Configuration Item that represents it."@en ;
+    rdfs:range      itil:ConfigurationItem ;
+.
+
+# ═══════════════════════════════════════════════════════════════
+#  PRACTICE GROUPS
+# ═══════════════════════════════════════════════════════════════
+
+itil:GeneralManagement
+    a itil:PracticeGroup ; a skos:Concept ;
+    skos:prefLabel  "General Management Practices"@en ;
+    skos:definition "Practices adopted and adapted from general business management for use in ITSM contexts (14 practices)."@en ;
+.
+itil:ServiceManagement
+    a itil:PracticeGroup ; a skos:Concept ;
+    skos:prefLabel  "Service Management Practices"@en ;
+    skos:definition "Practices developed specifically in IT and service management (17 practices)."@en ;
+.
+itil:TechnicalManagement
+    a itil:PracticeGroup ; a skos:Concept ;
+    skos:prefLabel  "Technical Management Practices"@en ;
+    skos:definition "Practices adapted from technology management domains for use in ITSM contexts (3 practices)."@en ;
+.
+
+# ═══════════════════════════════════════════════════════════════
+#  VALUE CHAIN ACTIVITIES
+# ═══════════════════════════════════════════════════════════════
+
+itil:Plan
+    a itil:ValueChainActivity ; a skos:Concept ;
+    skos:prefLabel  "Plan"@en ;
+    skos:definition "Ensures a shared understanding of vision, current status, and improvement direction for all four dimensions and all products and services across the organisation."@en ;
+.
+itil:Improve
+    a itil:ValueChainActivity ; a skos:Concept ;
+    skos:prefLabel  "Improve"@en ;
+    skos:definition "Ensures continual improvement of products, services, and practices across all value chain activities and the four dimensions."@en ;
+.
+itil:Engage
+    a itil:ValueChainActivity ; a skos:Concept ;
+    skos:prefLabel  "Engage"@en ;
+    skos:definition "Provides a good understanding of stakeholder needs, transparency, and continual engagement with all stakeholders."@en ;
+.
+itil:DesignAndTransition
+    a itil:ValueChainActivity ; a skos:Concept ;
+    skos:prefLabel  "Design and Transition"@en ;
+    skos:definition "Ensures that products and services continually meet stakeholder expectations for quality, costs, and time to market."@en ;
+.
+itil:ObtainBuild
+    a itil:ValueChainActivity ; a skos:Concept ;
+    skos:prefLabel  "Obtain/Build"@en ;
+    skos:definition "Ensures that service components are available when and where they are needed, and that they meet agreed specifications."@en ;
+.
+itil:DeliverAndSupport
+    a itil:ValueChainActivity ; a skos:Concept ;
+    skos:prefLabel  "Deliver and Support"@en ;
+    skos:definition "Ensures that services are delivered and supported according to agreed specifications and stakeholders' expectations."@en ;
+.
+
+# ═══════════════════════════════════════════════════════════════
+#  GUIDING PRINCIPLES (ITIL v4 — all 7)
+# ═══════════════════════════════════════════════════════════════
+
+itil:FocusOnValue
+    a itil:GuidingPrinciple ; a skos:Concept ;
+    skos:prefLabel  "Focus on Value"@en ;
+    skos:definition "Everything the organisation does should link back, directly or indirectly, to value for itself, its customers, and other stakeholders."@en ;
+.
+itil:StartWhereYouAre
+    a itil:GuidingPrinciple ; a skos:Concept ;
+    skos:prefLabel  "Start Where You Are"@en ;
+    skos:definition "Do not start from scratch or build something new without considering what is already available. Preserve and reuse capabilities."@en ;
+.
+itil:ProgressIteratively
+    a itil:GuidingPrinciple ; a skos:Concept ;
+    skos:prefLabel  "Progress Iteratively with Feedback"@en ;
+    skos:definition "Do not attempt to do everything at once. Organise work into smaller, manageable sections and use feedback loops to improve."@en ;
+.
+itil:CollaborateAndPromoteVisibility
+    a itil:GuidingPrinciple ; a skos:Concept ;
+    skos:prefLabel  "Collaborate and Promote Visibility"@en ;
+    skos:definition "Include the right people with the right skills and knowledge in the right roles; share information openly to drive alignment."@en ;
+.
+itil:ThinkAndWorkHolistically
+    a itil:GuidingPrinciple ; a skos:Concept ;
+    skos:prefLabel  "Think and Work Holistically"@en ;
+    skos:definition "No service, practice, process, department, or supplier stands alone. Consider the full picture when managing any aspect."@en ;
+.
+itil:KeepItSimpleAndPractical
+    a itil:GuidingPrinciple ; a skos:Concept ;
+    skos:prefLabel  "Keep It Simple and Practical"@en ;
+    skos:definition "Always use the minimum number of steps to accomplish an objective. Eliminate anything that produces no value or hinders delivery."@en ;
+.
+itil:OptimiseAndAutomate
+    a itil:GuidingPrinciple ; a skos:Concept ;
+    skos:prefLabel  "Optimise and Automate"@en ;
+    skos:definition "Maximise the value of work carried out by human and technical resources. Automate where appropriate, after optimising."@en ;
+.
+
+# ═══════════════════════════════════════════════════════════════
+#  THE 34 ITIL MANAGEMENT PRACTICES
+# ═══════════════════════════════════════════════════════════════
+
+# ─ General Management (14) ───────────────────────────────────
+
+itil:ArchitectureManagement
+    a itil:Practice ; a skos:Concept ;
+    skos:prefLabel  "Architecture Management"@en ;
+    skos:definition "Provides an understanding of all different elements that make up an organisation and how those elements interrelate."@en ;
+    itil:inPracticeGroup itil:GeneralManagement ;
+.
+itil:ContinualImprovementPractice
+    a itil:Practice ; a skos:Concept ;
+    skos:prefLabel  "Continual Improvement"@en ;
+    skos:definition "Aligns the organisation's practices and services with changing business needs through the ongoing identification and improvement of services."@en ;
+    itil:inPracticeGroup itil:GeneralManagement ;
+.
+itil:InformationSecurityManagement
+    a itil:Practice ; a skos:Concept ;
+    skos:prefLabel  "Information Security Management"@en ;
+    skos:definition "Protects the information needed by the organisation to conduct its business — CIA, authenticity, and non-repudiation."@en ;
+    itil:inPracticeGroup itil:GeneralManagement ;
+    skos:relatedMatch ai:Security ;
+.
+itil:KnowledgeManagement
+    a itil:Practice ; a skos:Concept ;
+    skos:prefLabel  "Knowledge Management"@en ;
+    skos:definition "Maintains and improves the effective, efficient, and convenient use of information and knowledge across the organisation and SKMS."@en ;
+    itil:inPracticeGroup itil:GeneralManagement ;
+.
+itil:MeasurementAndReporting
+    a itil:Practice ; a skos:Concept ;
+    skos:prefLabel  "Measurement and Reporting"@en ;
+    skos:definition "Supports informed decision-making and performance improvement by collecting and reporting reliable data."@en ;
+    itil:inPracticeGroup itil:GeneralManagement ;
+.
+itil:OrganisationalChangeManagement
+    a itil:Practice ; a skos:Concept ;
+    skos:prefLabel  "Organisational Change Management"@en ;
+    skos:definition "Ensures that changes in an organisation are smoothly and successfully implemented by focusing on transition of people."@en ;
+    itil:inPracticeGroup itil:GeneralManagement ;
+.
+itil:PortfolioManagement
+    a itil:Practice ; a skos:Concept ;
+    skos:prefLabel  "Portfolio Management"@en ;
+    skos:definition "Ensures the organisation has the right mix of programmes, projects, products, and services to deliver value in alignment with strategic objectives."@en ;
+    itil:inPracticeGroup itil:GeneralManagement ;
+.
+itil:ProjectManagement
+    a itil:Practice ; a skos:Concept ;
+    skos:prefLabel  "Project Management"@en ;
+    skos:definition "Ensures projects achieve their goals within agreed time, cost, and quality constraints."@en ;
+    itil:inPracticeGroup itil:GeneralManagement ;
+.
+itil:RelationshipManagement
+    a itil:Practice ; a skos:Concept ;
+    skos:prefLabel  "Relationship Management"@en ;
+    skos:definition "Establishes and nurtures links between the organisation and its stakeholders at strategic and tactical levels."@en ;
+    itil:inPracticeGroup itil:GeneralManagement ;
+.
+itil:RiskManagement
+    a itil:Practice ; a skos:Concept ;
+    skos:prefLabel  "Risk Management"@en ;
+    skos:definition "Ensures that the organisation understands and effectively handles risks, enabling informed risk-based decision-making."@en ;
+    itil:inPracticeGroup itil:GeneralManagement ;
+    skos:relatedMatch ai:Accountability ;
+.
+itil:ServiceFinancialManagement
+    a itil:Practice ; a skos:Concept ;
+    skos:prefLabel  "Service Financial Management"@en ;
+    skos:definition "Supports the organisation's strategies and plans through service-related financial management, including budgeting and accounting."@en ;
+    itil:inPracticeGroup itil:GeneralManagement ;
+.
+itil:StrategyManagement
+    a itil:Practice ; a skos:Concept ;
+    skos:prefLabel  "Strategy Management"@en ;
+    skos:definition "Formulates the goals of an organisation and adopts the courses of action and allocation of resources necessary for achieving those goals."@en ;
+    itil:inPracticeGroup itil:GeneralManagement ;
+.
+itil:SupplierManagement
+    a itil:Practice ; a skos:Concept ;
+    skos:prefLabel  "Supplier Management"@en ;
+    skos:definition "Ensures that suppliers and their performances are managed appropriately to support seamless delivery of quality products and services."@en ;
+    itil:inPracticeGroup itil:GeneralManagement ;
+.
+itil:WorkforceAndTalentManagement
+    a itil:Practice ; a skos:Concept ;
+    skos:prefLabel  "Workforce and Talent Management"@en ;
+    skos:definition "Ensures that the organisation has the right people with the appropriate skills and knowledge in the correct roles."@en ;
+    itil:inPracticeGroup itil:GeneralManagement ;
+.
+
+# ─ Service Management (17) ───────────────────────────────────
+
+itil:AvailabilityManagement
+    a itil:Practice ; a skos:Concept ;
+    skos:prefLabel  "Availability Management"@en ;
+    skos:definition "Ensures services deliver agreed levels of availability to meet the needs of customers and users."@en ;
+    itil:inPracticeGroup itil:ServiceManagement ;
+.
+itil:BusinessAnalysis
+    a itil:Practice ; a skos:Concept ;
+    skos:prefLabel  "Business Analysis"@en ;
+    skos:definition "Analyses a business or some element of it, defines its associated needs, and recommends solutions to address them."@en ;
+    itil:inPracticeGroup itil:ServiceManagement ;
+.
+itil:CapacityAndPerformanceManagement
+    a itil:Practice ; a skos:Concept ;
+    skos:prefLabel  "Capacity and Performance Management"@en ;
+    skos:definition "Ensures that services achieve agreed and expected performance, satisfying current and future demand in a cost-effective way."@en ;
+    itil:inPracticeGroup itil:ServiceManagement ;
+.
+itil:ChangeEnablement
+    a itil:Practice ; a skos:Concept ;
+    skos:prefLabel  "Change Enablement"@en ;
+    skos:definition "Maximises the number of successful changes by ensuring risks are assessed, authorising changes to proceed, and managing the change schedule."@en ;
+    itil:inPracticeGroup itil:ServiceManagement ;
+.
+itil:EventManagement
+    a itil:Practice ; a skos:Concept ;
+    skos:prefLabel  "Event Management"@en ;
+    skos:definition "Systematically observes services and their components, and records and reports selected changes of state identified as events."@en ;
+    itil:inPracticeGroup itil:ServiceManagement ;
+.
+itil:IncidentManagementPractice
+    a itil:Practice ; a skos:Concept ;
+    skos:prefLabel  "Incident Management"@en ;
+    skos:definition "Minimises the negative impact of incidents by restoring normal service operation as quickly as possible."@en ;
+    itil:inPracticeGroup itil:ServiceManagement ;
+.
+itil:ITAssetManagement
+    a itil:Practice ; a skos:Concept ;
+    skos:prefLabel  "IT Asset Management"@en ;
+    skos:definition "Plans and manages the full lifecycle of all IT assets, maximising value, controlling costs, managing risks, and supporting decision-making."@en ;
+    itil:inPracticeGroup itil:ServiceManagement ;
+.
+itil:MonitoringAndEventManagement
+    a itil:Practice ; a skos:Concept ;
+    skos:prefLabel  "Monitoring and Event Management"@en ;
+    skos:definition "Systematically observes services and components, recording events and identifying significant state changes."@en ;
+    itil:inPracticeGroup itil:ServiceManagement ;
+.
+itil:ProblemManagement
+    a itil:Practice ; a skos:Concept ;
+    skos:prefLabel  "Problem Management"@en ;
+    skos:definition "Reduces the likelihood and impact of incidents by identifying actual and potential causes of incidents and managing workarounds and known errors."@en ;
+    itil:inPracticeGroup itil:ServiceManagement ;
+.
+itil:ReleaseManagement
+    a itil:Practice ; a skos:Concept ;
+    skos:prefLabel  "Release Management"@en ;
+    skos:definition "Makes new and changed services and features available for use."@en ;
+    itil:inPracticeGroup itil:ServiceManagement ;
+.
+itil:ServiceCatalogueManagement
+    a itil:Practice ; a skos:Concept ;
+    skos:prefLabel  "Service Catalogue Management"@en ;
+    skos:definition "Provides a single source of consistent information on all services and service offerings and ensures it is available to relevant audiences."@en ;
+    itil:inPracticeGroup itil:ServiceManagement ;
+.
+itil:ServiceConfigurationManagement
+    a itil:Practice ; a skos:Concept ;
+    skos:prefLabel  "Service Configuration Management"@en ;
+    skos:definition "Ensures accurate and reliable information about the configuration of services and their supporting CIs is available when and where it is needed."@en ;
+    itil:inPracticeGroup itil:ServiceManagement ;
+.
+itil:ServiceContinuityManagement
+    a itil:Practice ; a skos:Concept ;
+    skos:prefLabel  "Service Continuity Management"@en ;
+    skos:definition "Ensures that service availability and performance are maintained at sufficient levels in case of disaster by providing a framework for building service resilience."@en ;
+    itil:inPracticeGroup itil:ServiceManagement ;
+.
+itil:ServiceDesign
+    a itil:Practice ; a skos:Concept ;
+    skos:prefLabel  "Service Design"@en ;
+    skos:definition "Designs products and services that are fit for purpose, fit for use, and that can be delivered by the organisation and its ecosystem of partners and suppliers."@en ;
+    itil:inPracticeGroup itil:ServiceManagement ;
+.
+itil:ServiceDesk
+    a itil:Practice ; a skos:Concept ;
+    skos:prefLabel  "Service Desk"@en ;
+    skos:definition "Captures demand for incident resolution and service requests, acting as the entry point and single point of contact for the service provider."@en ;
+    itil:inPracticeGroup itil:ServiceManagement ;
+.
+itil:ServiceLevelManagement
+    a itil:Practice ; a skos:Concept ;
+    skos:prefLabel  "Service Level Management"@en ;
+    skos:definition "Sets clear business-based targets for service performance and ensures delivery of services is properly assessed, monitored, and managed."@en ;
+    itil:inPracticeGroup itil:ServiceManagement ;
+.
+itil:ServiceRequestManagement
+    a itil:Practice ; a skos:Concept ;
+    skos:prefLabel  "Service Request Management"@en ;
+    skos:definition "Supports the agreed quality of a service by handling all pre-defined, user-initiated service requests in an effective and user-friendly manner."@en ;
+    itil:inPracticeGroup itil:ServiceManagement ;
+.
+itil:ServiceValidationAndTesting
+    a itil:Practice ; a skos:Concept ;
+    skos:prefLabel  "Service Validation and Testing"@en ;
+    skos:definition "Ensures that new or changed products and services meet requirements and deliver expected outcomes, including SLA targets."@en ;
+    itil:inPracticeGroup itil:ServiceManagement ;
+.
+
+# ─ Technical Management (3) ──────────────────────────────────
+
+itil:DeploymentManagement
+    a itil:Practice ; a skos:Concept ;
+    skos:prefLabel  "Deployment Management"@en ;
+    skos:definition "Moves new or changed hardware, software, documentation, processes, or any other component to live environments (and to other environments for testing or staging)."@en ;
+    itil:inPracticeGroup itil:TechnicalManagement ;
+.
+itil:InfrastructureAndPlatformManagement
+    a itil:Practice ; a skos:Concept ;
+    skos:prefLabel  "Infrastructure and Platform Management"@en ;
+    skos:definition "Oversees the infrastructure and platforms used by an organisation, enabling monitoring of technology solutions available including those offered by third parties."@en ;
+    itil:inPracticeGroup itil:TechnicalManagement ;
+.
+itil:SoftwareDevelopmentAndManagement
+    a itil:Practice ; a skos:Concept ;
+    skos:prefLabel  "Software Development and Management"@en ;
+    skos:definition "Ensures that applications meet internal and external stakeholder needs in terms of functionality, reliability, maintainability, compliance, and auditability."@en ;
+    itil:inPracticeGroup itil:TechnicalManagement ;
+.

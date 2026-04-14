@@ -1,0 +1,17 @@
+@prefix city-watch: <https://iqns.org/v0/public-safety/examples/city-watch#> .
+@prefix ex:     <https://iqns.org/v0/example#> .
+@prefix psg:    <https://iqns.org/v0/psgraph#> .
+@prefix ai:     <https://iqns.org/v0/ai#> .
+@prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:   <http://www.w3.org/ns/prov#> .
+@prefix euai:   <https://iqns.org/v0/eu-ai-act#> .
+
+city-watch:PublicCamRecidivsm a ai:System ;
+    a psg:LawEnforcementAgency ;
+    skos:prefLabel "CityWatch Retrospective Biometric Analysis"@en ;
+    ai:mappedToDimension psg:BiometricSurveillance ;
+    ai:appliesToLifecycle psg:PolicingAndInvestigation ;
+    prov:wasDerivedFrom "City Surveillance Strategy 2025" ;
+    # High-risk governance
+    ai:implementsControl euai:HighRiskObligations ;
+.

@@ -1,0 +1,8 @@
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX ai: <https://iqns.org/v0/ai#>
+
+SELECT ?source ?target WHERE {
+  ?source skos:relatedMatch|skos:exactMatch ?target .
+  FILTER(EXISTS { ?source a ai:Framework })
+  FILTER(EXISTS { ?target a ai:Framework })
+}

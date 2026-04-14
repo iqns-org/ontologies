@@ -1,0 +1,193 @@
+@prefix ex:      <https://iqns.org/v0/enterprise-example#> .
+@prefix ai:      <https://iqns.org/v0/ai#> .
+@prefix euai:    <https://iqns.org/v0/eu-ai-act#> .
+@prefix nrmf:    <https://iqns.org/v0/nist-ai-rmf#> .
+@prefix iso42001:<https://iqns.org/v0/iso-42001#> .
+@prefix owasp:   <https://iqns.org/v0/owasp-llm#> .
+@prefix saif:    <https://iqns.org/v0/google-saif#> .
+@prefix atlas:   <https://iqns.org/v0/mitre-atlas#> .
+@prefix eba:     <https://iqns.org/v0/eba-ai#> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+
+ex:SaaSontology a owl:Ontology ;
+    dct:title       "Enterprise SaaS AI Service Assets"@en ;
+    skos:definition "Third-party SaaS products with embedded AI capabilities used by the enterprise, mapped to IQ:NS third-party risk controls."@en ;
+    owl:versionInfo "0.1" ;
+    owl:imports     <https://iqns.org/v0/enterprise-example> ;
+.
+
+# ══════════════════════════════════════════════════════════════════════════════
+# Salesforce Einstein
+# ══════════════════════════════════════════════════════════════════════════════
+
+ex:SaaSSalesforceEinstein
+    a ex:SaaSAIService ;
+    skos:prefLabel       "Salesforce Einstein (CRM AI)"@en ;
+    skos:definition  "Salesforce Einstein features embedded in Sales Cloud and Service Cloud: Opportunity Scoring, Lead Scoring, Next Best Action, Einstein Conversation Mining, and Customer Churn Prediction. Processes sales interaction data and customer behavioural signals. EU org data stays within Salesforce EU data centre (Frankfurt)."@en ;
+    ex:vendor        "Salesforce" ;
+    ex:dataRegion    "eu-central-1 (Salesforce Frankfurt DC)" ;
+
+    # ── Regulatory scope ──────────────────────────────────────────────────────
+    # Non-consequential commercial ML → Minimal Risk (EU AI Act)
+    # But processes personal data → GDPR / third-party risk obligations
+
+    # ── Third-party risk controls ─────────────────────────────────────────────
+    ex:implementsNatively iso42001:A9SupplyChain ;    # Salesforce is a critical AI vendor — DPA required
+    ex:implementsNatively nrmf:GV6 ;                 # Salesforce ISO 27001, SOC2 Type II, CSA STAR
+
+    # What the ENTERPRISE must implement (not Salesforce)
+    ex:subjectToControl iso42001:A9SupplyChain ;      # vendor risk register entry, annual assessment
+    ex:subjectToControl nrmf:GV6 ;                   # supply-chain governance
+    ex:subjectToControl nrmf:MP1 ;                   # deploy context documentation
+
+    # ── EBA (if enterprise is a bank) ─────────────────────────────────────────
+    # Salesforce = critical ICT third-party provider under DORA (if applicable)
+    ex:subjectToControl eba:ICTAssetManagement ;
+    ex:subjectToControl eba:ThirdPartyRiskEBA ;
+    ex:subjectToControl eba:OperationalResilienceEBA ;
+
+    # ── Risks ────────────────────────────────────────────────────────────────
+    ex:bearsFace owasp:LLM05_SupplyChainVulnerabilities ; # embedded AI model updates outside enterprise control
+    ex:bearsFace ai:PrivacyHarm ;           # customer PII in CRM used for ML training by Salesforce
+    ex:bearsFace ai:VendorLockIn ;          # proprietary scoring models → opacity
+.
+
+# ══════════════════════════════════════════════════════════════════════════════
+# Workday AI
+# ══════════════════════════════════════════════════════════════════════════════
+
+ex:SaaSWorkdayAI
+    a ex:SaaSAIService ;
+    skos:prefLabel       "Workday AI (HCM Embedded Intelligence)"@en ;
+    skos:definition  "Workday Illuminate and embedded ML features in Workday HCM: Skills Cloud (skills inference from job history), Job Architecture recommendations, Talent Optimisation (flight risk scoring), and Workday AI Recruiting (ATS + screening assist). HIGH RISK under EU AI Act if screening recommendations are acted upon."@en ;
+    ex:vendor        "Workday" ;
+    ex:dataRegion    "eu-west-1 (Workday Ireland DC)" ;
+
+    # ── Regulatory scope ──────────────────────────────────────────────────────
+    # Recruitment and HCM AI → HIGH RISK (EU AI Act Annex III §4) if used in decisions
+    # The enterprise (deployer) bears the obligation even for third-party SaaS
+    ex:subjectToRequirement euai:HighRiskEmployment ;
+    ex:subjectToRequirement euai:HumanOversightRequirement ;   # human recruiter must own decision
+    ex:subjectToRequirement euai:TransparencyObligation ;      # candidates must be informed of AI use
+    ex:subjectToRequirement euai:TechnicalDocumentation ;      # enterprise must obtain doc from Workday
+
+    # ── Third-party risk controls ─────────────────────────────────────────────
+    ex:implementsNatively iso42001:A9SupplyChain ;
+    ex:implementsNatively nrmf:GV6 ;
+
+    ex:subjectToControl iso42001:A9SupplyChain ;    # annual AI-specific vendor assessment (Art. 28 EU AI Act)
+    ex:subjectToControl nrmf:GV6 ;
+    ex:subjectToControl nrmf:MP5 ;                 # fundamental rights impact on job candidates
+    ex:subjectToControl nrmf:MG1 ;                 # escalation: AI flag must be overrideable by recruiter
+    ex:subjectToControl iso42001:A6InternalOrganisation ; # HR AI governance ownership defined
+
+    # ── EBA (if enterprise is a bank) ─────────────────────────────────────────
+    ex:subjectToControl eba:ThirdPartyRiskEBA ;
+    ex:subjectToControl eba:OperationalResilienceEBA ;
+
+    # ── Risks ────────────────────────────────────────────────────────────────
+    ex:bearsFace ai:DiscriminationHarm ;           # bias in Skills Cloud or talent flight risk models
+    ex:bearsFace ai:PrivacyHarm ;                  # employee performance and salary data
+    ex:bearsFace owasp:LLM05_SupplyChainVulnerabilities ; # model updates without notice
+    ex:bearsFace ai:ReputationalHarm ;             # legally challenged screening outcomes
+.
+
+# ══════════════════════════════════════════════════════════════════════════════
+# GitHub Copilot
+# ══════════════════════════════════════════════════════════════════════════════
+
+ex:SaaSGitHubCopilot
+    a ex:SaaSAIService ;
+    skos:prefLabel       "GitHub Copilot (Code Assistance)"@en ;
+    skos:definition  "GitHub Copilot Business deployed for the engineering organisation (~800 engineers). Provides IDE inline code completion (VS Code, IntelliJ) and GitHub Copilot Chat. Copilot Workspace enabled for sprint tasks. Enterprise licence: no telemetry training on company code; Entra ID SSO; audit log in GHEC."@en ;
+    ex:vendor        "GitHub (Microsoft)" ;
+    ex:dataRegion    "us-east-1 (GitHub infrastructure)" ;
+
+    # ── Regulatory scope ──────────────────────────────────────────────────────
+    # Developer tooling, no customer-facing decisions → Minimal Risk
+    # But: code quality and security implications
+
+    # ── Third-party risk controls ─────────────────────────────────────────────
+    ex:implementsNatively nrmf:GV6 ;              # GitHub SOC2 Type II, ISO 27001
+    ex:implementsNatively iso42001:A9SupplyChain ; # in AI vendor register
+    ex:subjectToControl nrmf:GV6 ;
+    ex:subjectToControl nrmf:GV5 ;                # included in AI system inventory
+    ex:subjectToControl iso42001:A9SupplyChain ;
+
+    # ── Risks ────────────────────────────────────────────────────────────────
+    ex:bearsFace owasp:LLM09_Overreliance ;           # developers accepting insecure or incorrect code
+    ex:bearsFace owasp:LLM05_SupplyChainVulnerabilities ; # Copilot suggesting known-vulnerable patterns
+    ex:bearsFace owasp:LLM06_SensitiveInfoDisclosure ;    # source code / secrets in prompt context sent to API
+    ex:bearsFace ai:SecurityHarm ;                    # introduction of security defects at scale
+    ex:bearsFace ai:LegalHarm ;                       # copyright / licence questions on suggested code
+.
+
+# ══════════════════════════════════════════════════════════════════════════════
+# ServiceNow AI (ITSM / HRSD)
+# ══════════════════════════════════════════════════════════════════════════════
+
+ex:SaaSServiceNowAI
+    a ex:SaaSAIService ;
+    skos:prefLabel       "ServiceNow AI (Now Intelligence)"@en ;
+    skos:definition  "ServiceNow Now Intelligence features: Virtual Agent (ITSM chatbot), Predictive Intelligence (incident routing, change risk), NLU classifier, and Now Assist (GenAI summarisation with private LLM). Used by IT Operations and HR Service Delivery. Virtual Agent interactions classified as Limited Risk (chatbot)."@en ;
+    ex:vendor        "ServiceNow" ;
+    ex:dataRegion    "eu-west-1 (ServiceNow EU DC)" ;
+
+    # ── Regulatory scope ──────────────────────────────────────────────────────
+    # Virtual Agent chatbot → EU AI Act Art. 50 disclosure
+    ex:implementsNatively euai:TransparencyObligation ;   # Virtual Agent discloses bot identity
+
+    # ── Third-party risk controls ─────────────────────────────────────────────
+    ex:implementsNatively iso42001:A9SupplyChain ;
+    ex:implementsNatively nrmf:GV6 ;
+    ex:subjectToControl iso42001:A9SupplyChain ;
+    ex:subjectToControl nrmf:GV6 ;
+    ex:subjectToControl nrmf:GV5 ;
+
+    # ── EBA (if enterprise is a bank) ─────────────────────────────────────────
+    ex:subjectToControl eba:ICTAssetManagement ;
+    ex:subjectToControl eba:ThirdPartyRiskEBA ;
+
+    # ── Risks ────────────────────────────────────────────────────────────────
+    ex:bearsFace ai:PrivacyHarm ;                     # employee HR tickets contain sensitive PII
+    ex:bearsFace owasp:LLM09_Overreliance ;            # IT staff trusting AI incident routing blindly
+    ex:bearsFace owasp:LLM05_SupplyChainVulnerabilities ; # GenAI feature updates without enterprise testing
+.
+
+# ══════════════════════════════════════════════════════════════════════════════
+# OpenAI Direct API (Shadow / Experimental)
+# ══════════════════════════════════════════════════════════════════════════════
+
+ex:SaaSOpenAIDirectAPI
+    a ex:SaaSAIService ;
+    skos:prefLabel       "OpenAI Direct API (Experimental / Shadow)"@en ;
+    skos:definition  "Direct api.openai.com API access used by several product teams outside the approved Azure OpenAI channel. No enterprise data boundary, no audit log, no DPA in place. Identified as shadow AI risk during AI audit. Remediation plan: migrate all use cases to AzureOpenAIService or terminate."@en ;
+    ex:vendor        "OpenAI" ;
+    ex:dataRegion    "us (openai.com)" ;
+
+    # ── Significant compliance gaps ───────────────────────────────────────────
+    # Mark all the controls that are NOT natively provided — enterprise must remediate
+
+    # No DPA → GDPR Art. 28 breach risk
+    # No zero-retention → prompt data retention policy unclear
+    # No EU data residency → international transfer risk (GDPR Ch. V)
+    # No audit log → record-keeping failure for EU AI Act
+
+    ex:subjectToControl iso42001:A9SupplyChain ;    # URGENT: DPA required or use prohibited
+    ex:subjectToControl nrmf:GV6 ;                 # supply-chain: no enterprise-grade SLA
+    ex:subjectToControl euai:TransparencyObligation ; # employee-facing outputs may not disclose AI
+
+    # ── Risks (elevated — unmanaged shadow AI) ────────────────────────────────
+    ex:bearsFace ai:PrivacyHarm ;                     # PII and confidential data in uncontrolled prompts
+    ex:bearsFace ai:SecurityHarm ;                    # proprietary IP in prompts with no retention control
+    ex:bearsFace owasp:LLM06_SensitiveInfoDisclosure ;
+    ex:bearsFace owasp:LLM09_Overreliance ;
+    ex:bearsFace owasp:LLM05_SupplyChainVulnerabilities ;
+    ex:bearsFace ai:LegalHarm ;                       # no contractual basis for personal data processing
+
+    # Recommended remediation:
+    # ex:replacedBy ex:AzureOpenAIService .           # (uncomment when migration complete)
+.

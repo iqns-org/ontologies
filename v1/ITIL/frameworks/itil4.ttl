@@ -1,0 +1,193 @@
+@prefix itil: <https://iqns.org/itil/frameworks/itil4#> .
+@prefix itil: <https://iqns.org/itil#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+itil:Ontology a owl:Ontology ;
+    dct:title "ITIL® — IT Infrastructure Library"@en ;
+    prov:wasDerivedFrom <https://www.axelos.com/certifications/itil-service-management/what-is-itil> ;
+    owl:versionInfo "4.0" ;
+    owl:imports <https://iqns.org/itil#> .
+
+itil:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "ITIL Framework"@en ;
+    skos:definition "The current best-practice framework for IT service management, published by AXELOS. Describes the Service Value System, 34 management practices, and 7 guiding principles."@en .
+
+# ── Framework Root ────────────────────────────────────────────────────────────
+
+itil:ITIL4
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "ITIL"@en ;
+    skos:definition "IT Infrastructure Library, Fourth Edition. A global ITSM framework providing a practical and flexible basis for supporting organisations on their journey to digital transformation."@en ;
+    skos:inScheme   itil:Scheme ;
+    dct:publisher   "AXELOS Limited"@en ;
+    dct:issued      "2019"^^xsd:gYear ;
+    prov:wasDerivedFrom <https://www.axelos.com/certifications/itil-service-management/what-is-itil> ;
+    ai:hasPrinciple  itil:FocusOnValue ;
+    ai:hasPrinciple  itil:StartWhereYouAre ;
+    ai:hasPrinciple  itil:ProgressIteratively ;
+    ai:hasPrinciple  itil:CollaborateAndPromoteVisibility ;
+    ai:hasPrinciple  itil:ThinkAndWorkHolistically ;
+    ai:hasPrinciple  itil:KeepItSimpleAndPractical ;
+    ai:hasPrinciple  itil:OptimiseAndAutomate ;
+.
+
+# ── Service Value System ──────────────────────────────────────────────────────
+
+itil:ItilSVS
+    a itil:ServiceValueSystem ; a skos:Concept ;
+    skos:prefLabel  "ITIL Service Value System"@en ;
+    skos:definition "The overarching model showing how ITIL components — Governance, Service Value Chain, 34 Practices, 7 Guiding Principles, and Continual Improvement — interrelate to create value."@en ;
+    skos:inScheme   itil:Scheme ;
+    prov:wasDerivedFrom <https://www.axelos.com/certifications/itil-service-management/what-is-itil#svs> ;
+    itil:hasValueChainActivity itil:Plan ;
+    itil:hasValueChainActivity itil:Improve ;
+    itil:hasValueChainActivity itil:Engage ;
+    itil:hasValueChainActivity itil:DesignAndTransition ;
+    itil:hasValueChainActivity itil:ObtainBuild ;
+    itil:hasValueChainActivity itil:DeliverAndSupport ;
+    itil:hasPractice itil:ArchitectureManagement ;
+    itil:hasPractice itil:ContinualImprovementPractice ;
+    itil:hasPractice itil:InformationSecurityManagement ;
+    itil:hasPractice itil:KnowledgeManagement ;
+    itil:hasPractice itil:MeasurementAndReporting ;
+    itil:hasPractice itil:OrganisationalChangeManagement ;
+    itil:hasPractice itil:PortfolioManagement ;
+    itil:hasPractice itil:ProjectManagement ;
+    itil:hasPractice itil:RelationshipManagement ;
+    itil:hasPractice itil:RiskManagement ;
+    itil:hasPractice itil:ServiceFinancialManagement ;
+    itil:hasPractice itil:StrategyManagement ;
+    itil:hasPractice itil:SupplierManagement ;
+    itil:hasPractice itil:WorkforceAndTalentManagement ;
+    itil:hasPractice itil:AvailabilityManagement ;
+    itil:hasPractice itil:BusinessAnalysis ;
+    itil:hasPractice itil:CapacityAndPerformanceManagement ;
+    itil:hasPractice itil:ChangeEnablement ;
+    itil:hasPractice itil:EventManagement ;
+    itil:hasPractice itil:IncidentManagementPractice ;
+    itil:hasPractice itil:ITAssetManagement ;
+    itil:hasPractice itil:MonitoringAndEventManagement ;
+    itil:hasPractice itil:ProblemManagement ;
+    itil:hasPractice itil:ReleaseManagement ;
+    itil:hasPractice itil:ServiceCatalogueManagement ;
+    itil:hasPractice itil:ServiceConfigurationManagement ;
+    itil:hasPractice itil:ServiceContinuityManagement ;
+    itil:hasPractice itil:ServiceDesign ;
+    itil:hasPractice itil:ServiceDesk ;
+    itil:hasPractice itil:ServiceLevelManagement ;
+    itil:hasPractice itil:ServiceRequestManagement ;
+    itil:hasPractice itil:ServiceValidationAndTesting ;
+    itil:hasPractice itil:DeploymentManagement ;
+    itil:hasPractice itil:InfrastructureAndPlatformManagement ;
+    itil:hasPractice itil:SoftwareDevelopmentAndManagement ;
+.
+
+# ── ITIL Roles (Stakeholders) ─────────────────────────────────────────────────
+
+itil:ServiceProvider
+    a ai:Stakeholder ; a skos:Concept ;
+    skos:prefLabel  "Service Provider"@en ;
+    skos:definition "An organisation that provides services to customers. May be internal (shared services) or external (outsourced)."@en ;
+    skos:inScheme   itil:Scheme ;
+    prov:wasDerivedFrom <https://www.axelos.com/certifications/itil-service-management/what-is-itil> ;
+.
+itil:ServiceConsumer
+    a ai:Stakeholder ; a skos:Concept ;
+    skos:prefLabel  "Service Consumer"@en ;
+    skos:definition "A generic term covering customer, user, and sponsor roles that consume services."@en ;
+    skos:inScheme   itil:Scheme ;
+    prov:wasDerivedFrom <https://www.axelos.com/certifications/itil-service-management/what-is-itil> ;
+.
+itil:Customer
+    a ai:Stakeholder ; a skos:Concept ;
+    rdfs:subClassOf itil:ServiceConsumer ;
+    skos:prefLabel  "Customer"@en ;
+    skos:definition "A person who defines the requirements for a service and takes responsibility for the outcomes of service consumption."@en ;
+    skos:inScheme   itil:Scheme ;
+    prov:wasDerivedFrom <https://www.axelos.com/certifications/itil-service-management/what-is-itil> ;
+.
+itil:User
+    a ai:Stakeholder ; a skos:Concept ;
+    rdfs:subClassOf itil:ServiceConsumer ;
+    skos:prefLabel  "User"@en ;
+    skos:definition "A person who uses services."@en ;
+    skos:inScheme   itil:Scheme ;
+    prov:wasDerivedFrom <https://www.axelos.com/certifications/itil-service-management/what-is-itil> ;
+.
+itil:Sponsor
+    a ai:Stakeholder ; a skos:Concept ;
+    rdfs:subClassOf itil:ServiceConsumer ;
+    skos:prefLabel  "Sponsor"@en ;
+    skos:definition "A person who authorises the budget for service consumption."@en ;
+    skos:inScheme   itil:Scheme ;
+    prov:wasDerivedFrom <https://www.axelos.com/certifications/itil-service-management/what-is-itil> ;
+.
+
+# ── The Four Dimensions Model ─────────────────────────────────────────────────
+
+itil:OrganisationsAndPeople
+    a ai:Dimension ; a skos:Concept ;
+    skos:prefLabel  "Organisations and People"@en ;
+    skos:definition "Covers roles, responsibilities, culture, and organisational structures required to facilitate value through services."@en ;
+    skos:inScheme   itil:Scheme ;
+    prov:wasDerivedFrom "ITIL — Four Dimensions" ;
+    ai:mappedToDimension ai:Accountability ;
+.
+itil:InformationAndTechnology
+    a ai:Dimension ; a skos:Concept ;
+    skos:prefLabel  "Information and Technology"@en ;
+    skos:definition "Includes knowledge and information managed, and all the technology required to deliver and manage services — platforms, databases, AI tools."@en ;
+    skos:inScheme   itil:Scheme ;
+    prov:wasDerivedFrom "ITIL — Four Dimensions" ;
+    ai:mappedToDimension ai:Security ;
+.
+itil:PartnersAndSuppliers
+    a ai:Dimension ; a skos:Concept ;
+    skos:prefLabel  "Partners and Suppliers"@en ;
+    skos:definition "Covers relationships with other organisations involved in the design, deployment, delivery, support, and continual improvement of services."@en ;
+    skos:inScheme   itil:Scheme ;
+    prov:wasDerivedFrom "ITIL — Four Dimensions" ;
+    ai:mappedToDimension ai:Accountability ;
+.
+itil:ValueStreamsAndProcesses
+    a ai:Dimension ; a skos:Concept ;
+    skos:prefLabel  "Value Streams and Processes"@en ;
+    skos:definition "Defines activities, workflows, controls, and procedures to achieve organisational objectives — how parts integrate and coordinate to enable value creation."@en ;
+    skos:inScheme   itil:Scheme ;
+    prov:wasDerivedFrom "ITIL — Four Dimensions" ;
+    ai:mappedToDimension ai:Transparency ;
+.
+
+# ── ITIL Certifications / Publications (provenance trail) ────────────────────
+
+itil:ITIL4Foundation
+    a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "ITIL Foundation"@en ;
+    skos:definition "Entry-level ITIL certification covering ITIL key concepts, the four dimensions, the SVS, and the 34 practices at a foundation level."@en ;
+    skos:inScheme   itil:Scheme ;
+    prov:wasDerivedFrom <https://www.axelos.com/certifications/itil-service-management/itil-4-foundation> ;
+.
+
+# ── Lifecycle Alignment ───────────────────────────────────────────────────────
+# Maps ITIL Value Chain activities to ai: lifecycle stages for cross-domain SPARQL
+
+itil:Plan              skos:relatedMatch ai:Design .
+itil:Improve           skos:relatedMatch ai:Monitoring .
+itil:Engage            skos:relatedMatch ai:Deployment .
+itil:DesignAndTransition skos:relatedMatch ai:Design .
+itil:ObtainBuild       skos:relatedMatch ai:Development .
+itil:DeliverAndSupport skos:relatedMatch ai:Deployment .
+
+# ── SKOS Alignments to ai: governance dimensions ──────────────────────────────
+
+itil:ITIL4 ai:mappedToDimension ai:Accountability .
+itil:ITIL4 ai:mappedToDimension ai:Reliability .
+itil:ITIL4 ai:mappedToDimension ai:Security .
+itil:ITIL4 ai:mappedToDimension ai:Transparency .

@@ -1,0 +1,23 @@
+# 01-gov-fedramp-readiness.rq
+# Goal: Check FedRAMP Authorization readiness for Agency systems.
+
+PREFIX gg: <https://iqns.org/v0/ai#>
+PREFIX gov: <https://iqns.org/v0/govtgraph#>
+PREFIX fedramp: <https://iqns.org/v0/fedramp#>
+
+SELECT ?this ?baseline ?conmonStatus
+WHERE {
+    ?this a gg:System ;
+                  a gov:GovernmentAgency ;
+                  gg:implementsControl ?baseline .
+    
+    ?baseline a gg:Control ;
+              skos:prefLabel ?baselineLabel .
+    
+    FILTER(CONTAINS(STR(?baseline), "fedramp"))
+    
+    OPTIONAL {
+        ?this gg:implementsControl fedramp:ContinuousMonitoring .
+        BIND("Active" AS ?conmonStatus)
+    }
+}

@@ -1,0 +1,120 @@
+@prefix iso-24027: <https://iqns.org/v0/iso-24027#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+iso-24027:Ontology a owl:Ontology ;
+    dct:title  "ISO/IEC TR 24027:2021 — Bias in AI Systems"@en ;
+    prov:wasDerivedFrom <https://www.iso.org/standard/77607.html> .
+
+iso-24027:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "ISO/IEC TR 24027:2021"@en ;
+    skos:definition "Technical report on bias sources, types, and mitigation in AI and ML systems."@en .
+
+iso-24027:ISO24027
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "ISO/IEC TR 24027:2021"@en ;
+    skos:definition "Identifies sources of bias in AI systems and provides terminology and guidance for measurement and mitigation."@en ;
+    skos:inScheme   iso-24027:Scheme ;
+    dct:publisher   "ISO/IEC JTC 1/SC 42"@en ;
+    dct:issued      "2021"^^xsd:gYear ;
+.
+
+# ── Bias Sources ──────────────────────────────────────────────────────────────
+
+iso-24027:HumanCognitiveBias
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel    "Human Cognitive Bias"@en ;
+    skos:definition   "Bias introduced through human judgment during problem framing, labelling, or evaluation."@en ;
+    skos:inScheme     iso-24027:Scheme ; prov:wasDerivedFrom "ISO/IEC TR 24027:2021 §5.2" ;
+    ai:hasRiskCategory ai:DiscriminationHarm ;
+    ai:appliesToLifecycle ai:Design ;
+.
+iso-24027:DataCollectionBias
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel    "Data Collection Bias"@en ;
+    skos:definition   "Non-representative sampling or under/over-representation of groups in training data."@en ;
+    skos:inScheme     iso-24027:Scheme ; prov:wasDerivedFrom "ISO/IEC TR 24027:2021 §5.3" ;
+    ai:hasRiskCategory ai:DiscriminationHarm ;
+    ai:appliesToLifecycle ai:Development ;
+.
+iso-24027:AlgorithmicBias
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel    "Algorithmic Bias"@en ;
+    skos:definition   "Bias arising from model architecture, objective function, or regularisation choices."@en ;
+    skos:inScheme     iso-24027:Scheme ; prov:wasDerivedFrom "ISO/IEC TR 24027:2021 §5.4" ;
+    ai:hasRiskCategory ai:DiscriminationHarm ;
+    ai:appliesToLifecycle ai:Development ;
+.
+iso-24027:MeasurementBias
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel    "Measurement Bias"@en ;
+    skos:definition   "Systematic error in features or labels due to flawed measurement instruments or proxies."@en ;
+    skos:inScheme     iso-24027:Scheme ; prov:wasDerivedFrom "ISO/IEC TR 24027:2021 §5.5" ;
+    ai:hasRiskCategory ai:DiscriminationHarm ;
+.
+iso-24027:HistoricalBias
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel    "Historical Bias"@en ;
+    skos:definition   "Past societal inequalities encoded in historical data and perpetuated by the model."@en ;
+    skos:inScheme     iso-24027:Scheme ; prov:wasDerivedFrom "ISO/IEC TR 24027:2021 §5.6" ;
+    ai:hasRiskCategory ai:DiscriminationHarm ;
+.
+iso-24027:AggregationBias
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel    "Aggregation Bias"@en ;
+    skos:definition   "Using a single model for a diverse population when sub-groups require different treatment."@en ;
+    skos:inScheme     iso-24027:Scheme ; prov:wasDerivedFrom "ISO/IEC TR 24027:2021 §5.7" ;
+    ai:hasRiskCategory ai:DiscriminationHarm ;
+.
+iso-24027:DeploymentBias
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel    "Deployment Bias"@en ;
+    skos:definition   "Mismatch between the problem the model was trained on and how it is used in practice."@en ;
+    skos:inScheme     iso-24027:Scheme ; prov:wasDerivedFrom "ISO/IEC TR 24027:2021 §5.8" ;
+    ai:hasRiskCategory ai:DiscriminationHarm ;
+    ai:appliesToLifecycle ai:Deployment ;
+.
+
+# ── Bias Mitigation Controls ──────────────────────────────────────────────────
+
+iso-24027:FairnessMetrics
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel    "Fairness Metrics"@en ;
+    skos:definition   "Statistical measures (demographic parity, equalized odds, etc.) to quantify bias."@en ;
+    skos:inScheme     iso-24027:Scheme ; prov:wasDerivedFrom "ISO/IEC TR 24027:2021 §7" ;
+    skos:broadMatch   ai:Fairness ;
+.
+iso-24027:DataAugmentation
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel    "Data Augmentation"@en ;
+    skos:definition   "Increase representation of under-represented groups in training data."@en ;
+    skos:inScheme     iso-24027:Scheme ; prov:wasDerivedFrom "ISO/IEC TR 24027:2021 §7" ;
+    skos:broadMatch   ai:Fairness ;
+.
+iso-24027:BiasAudit24027
+    a ai:Control ; a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel    "Bias Audit"@en ;
+    skos:definition   "Structured independent evaluation of AI system outputs for discriminatory patterns."@en ;
+    skos:inScheme     iso-24027:Scheme ; prov:wasDerivedFrom "ISO/IEC TR 24027:2021 §8" ;
+    skos:exactMatch   ai:BiasAudit ;
+.
+iso-24027:AdversarialDebiasing
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel    "Adversarial Debiasing"@en ;
+    skos:definition   "Train model to be invariant to protected attributes using adversarial objective."@en ;
+    skos:inScheme     iso-24027:Scheme ; prov:wasDerivedFrom "ISO/IEC TR 24027:2021 §7" ;
+    skos:broadMatch   ai:Fairness ;
+.
+iso-24027:ReweightingSampling
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel    "Reweighting / Resampling"@en ;
+    skos:definition   "Adjust sample weights or resample training data to correct distributional imbalance."@en ;
+    skos:inScheme     iso-24027:Scheme ; prov:wasDerivedFrom "ISO/IEC TR 24027:2021 §7" ;
+    skos:broadMatch   ai:Fairness ;
+.

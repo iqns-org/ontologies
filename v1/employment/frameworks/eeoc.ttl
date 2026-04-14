@@ -1,0 +1,97 @@
+@prefix eeoc: <https://iqns.org/v0/eeoc#> .
+@prefix emg:  <https://iqns.org/v0/emgraph#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+eeoc:Ontology a owl:Ontology ;
+    dct:title       "EEOC — Equal Employment Opportunity in the US / AI and Algorithmic Fairness"@en ;
+    prov:wasDerivedFrom <https://www.eeoc.gov/laws/guidance/questions-and-answers-clarify-and-provide-common-interpretation-uniform-guidelines> ;
+    owl:versionInfo "Title VII Civil Rights Act 1964; ADA 1990; ADEA 1967; EEOC AI Guidance 2023–2024; UGESP 1978" ;
+.
+
+eeoc:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "EEOC — US Employment Non-Discrimination"@en ;
+    skos:definition "US federal equal employment opportunity framework — Title VII, ADA, ADEA, and EEOC guidance on algorithmic hiring tools. The Uniform Guidelines on Employee Selection Procedures (UGESP) establish adverse impact testing requirements for all employment selection tools including AI."@en .
+
+eeoc:EEOCFramework
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "EEOC — Algorithmic Hiring Guidance"@en ;
+    skos:definition "Equal Employment Opportunity Commission framework covering anti-discrimination obligations for AI and algorithm-assisted hiring tools — grounded in Title VII (race, sex, national origin, religion, colour), ADA (disability), and ADEA (age ≥40). EEOC issued AI-specific technical assistance (2023) and strategic enforcement plans emphasising algorithmic bias."@en ;
+    skos:inScheme   eeoc:Scheme ;
+    dct:publisher   "US Equal Employment Opportunity Commission (EEOC)"@en ;
+.
+
+# ── Adverse Impact / Disparate Impact ────────────────────────────────────────
+
+eeoc:AdverseImpactStandard
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Adverse Impact / Disparate Impact Standard"@en ;
+    skos:definition "A selection procedure has adverse impact if the selection rate for any protected group is less than 4/5 (80%) of the rate for the group with the highest selection rate (UGESP 80% rule) — employers using AI hiring tools must compute selection rates by protected group. Adverse impact creates legal liability regardless of intent."@en ;
+    skos:inScheme   eeoc:Scheme ;
+    prov:wasDerivedFrom "UGESP 29 CFR §1607.4(D); Griggs v. Duke Power Co. 401 U.S. 424 (1971)" ;
+    ai:mappedToDimension emg:EqualTreatment ;
+    ai:mappedToDimension ai:Fairness ;
+    emg:appliesToEmploymentStage emg:Recruitment ;
+    emg:appliesToEmploymentStage emg:HiringDecision ;
+.
+eeoc:DisparateImpactLiability
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "Disparate Impact Liability — AI Hiring Tools"@en ;
+    skos:definition "Employers may be liable for disparate impact even where the AI tool was developed and supplied by a third-party vendor — the employer is the test user under UGESP. Employers cannot rely on vendor claims of fairness without independent validation. Scope: race, sex, colour, religion, national origin (Title VII), age ≥40 (ADEA)."@en ;
+    skos:inScheme   eeoc:Scheme ;
+    prov:wasDerivedFrom "UGESP 29 CFR §1607.2(B); EEOC Technical Assistance Document on AI 2023" ;
+    ai:mappedToDimension emg:EqualTreatment ;
+    emg:isAutomatedDecision "true"^^xsd:boolean ;
+.
+
+# ── Validation Requirement ────────────────────────────────────────────────────
+
+eeoc:SelectionProcedureValidation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Job-Related Validation of AI Selection Tools"@en ;
+    skos:definition "Where a selection procedure has adverse impact, the employer must demonstrate that it is job-related and consistent with business necessity through validity evidence (criterion-related, content, or construct validity). AI screening tools must be validated on the specific job(s) for which they are used — vendor validation studies do not satisfy this if the workforce is substantially different."@en ;
+    skos:inScheme   eeoc:Scheme ;
+    prov:wasDerivedFrom "UGESP 29 CFR §1607.5–§1607.14; Albemarle Paper Co. v. Moody 422 U.S. 405 (1975)" ;
+    ai:mappedToDimension emg:EqualTreatment ;
+    ai:mappedToDimension ai:Accountability ;
+.
+
+# ── ADA Considerations ────────────────────────────────────────────────────────
+
+eeoc:ADARelatedDisabilityProhibition
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "ADA — Disability-Related Inquiries and Medical Examinations"@en ;
+    skos:definition "AI tools that elicit or are used to infer information about a disability pre-offer may violate ADA restrictions on disability-related inquiries — video interview AI that analyses tone, affect, or non-verbal cues may constitute a prohibited medical examination. EEOC has warned that AI personality and cognitive assessment tools may screen out applicants with disabilities."@en ;
+    skos:inScheme   eeoc:Scheme ;
+    prov:wasDerivedFrom "ADA §102(d); 42 U.S.C. §12112(d); EEOC Guidance 2023" ;
+    ai:mappedToDimension emg:EqualTreatment ;
+    emg:hasProtectedCharacteristic emg:Disability ;
+.
+eeoc:ReasonableAccommodationObligation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Reasonable Accommodation in AI Assessments"@en ;
+    skos:definition "Employers must provide reasonable accommodation enabling qualified applicants with disabilities to demonstrate their abilities — AI assessment tools must have disability-accessible alternatives and the employer cannot require applicants to use inaccessible AI tools as the only path to hire."@en ;
+    skos:inScheme   eeoc:Scheme ;
+    prov:wasDerivedFrom "ADA §102(b)(5); EEOC Technical Assistance on AI 2023" ;
+    ai:mappedToDimension emg:EqualTreatment ;
+    emg:hasProtectedCharacteristic emg:Disability ;
+.
+
+# ── Record-Keeping ────────────────────────────────────────────────────────────
+
+eeoc:RecordKeepingObligation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "EEOC Record-Keeping — Selection Records"@en ;
+    skos:definition "Employers must maintain records of applicants, selections, and reasons for selection decisions for 1 year (Title VII) or during EEOC investigation — AI systems must log input features, model outputs, and decision outcomes by candidate in a way that supports adverse impact analysis and audit."@en ;
+    skos:inScheme   eeoc:Scheme ;
+    prov:wasDerivedFrom "29 CFR §1602.14; UGESP §1607.4" ;
+    ai:mappedToDimension emg:EqualTreatment ;
+    ai:mappedToDimension ai:Accountability ;
+    emg:isAutomatedDecision "true"^^xsd:boolean ;
+.

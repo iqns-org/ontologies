@@ -1,0 +1,463 @@
+@prefix ai:   <https://iqns.org/v0/ai#> .
+
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# ── Ontology ────────────────────────────────────────────────────────────────
+
+ai:Ontology
+    a owl:Ontology ;
+    dct:title       "GovGraph: AI Governance Core Vocabulary"@en ;
+    skos:definition "Abstract vocabulary shared by all AI governance framework ontologies."@en ;
+    owl:versionInfo "0.1" ;
+    prov:wasDerivedFrom <https://iqns.org/v0/ai-core#> ;
+.
+
+# ── Properties ───────────────────────────────────────────────────────────────
+
+ai:hasPrinciple
+    a owl:ObjectProperty ;
+    skos:prefLabel  "has principle"@en ;
+    rdfs:domain ai:Framework ;
+    rdfs:range  ai:Principle ;
+.
+ai:hasRequirement
+    a owl:ObjectProperty ;
+    skos:prefLabel  "has requirement"@en ;
+    rdfs:domain ai:Framework ;
+    rdfs:range  ai:Requirement ;
+.
+ai:hasControl
+    a owl:ObjectProperty ;
+    skos:prefLabel  "has control"@en ;
+    rdfs:domain ai:Requirement ;
+    rdfs:range  ai:Control ;
+.
+ai:hasRisk
+    a owl:ObjectProperty ;
+    skos:prefLabel  "has risk"@en ;
+    rdfs:range  ai:Risk ;
+.
+ai:hasRiskLevel
+    a owl:ObjectProperty ;
+    skos:prefLabel  "has risk level"@en ;
+    rdfs:domain ai:Risk ;
+    rdfs:range  ai:RiskLevel ;
+.
+ai:hasRiskCategory
+    a owl:ObjectProperty ;
+    skos:prefLabel  "has risk category"@en ;
+    rdfs:domain ai:Risk ;
+    rdfs:range  ai:RiskCategory ;
+.
+ai:appliesToLifecycle
+    a owl:ObjectProperty ;
+    skos:prefLabel  "applies to lifecycle"@en ;
+    rdfs:range  ai:Lifecycle ;
+.
+ai:appliesToDomain
+    a owl:ObjectProperty ;
+    skos:prefLabel  "applies to domain"@en ;
+    rdfs:range  ai:Domain ;
+.
+ai:imposesObligation
+    a owl:ObjectProperty ;
+    skos:prefLabel  "imposes obligation"@en ;
+    rdfs:domain ai:Framework ;
+    rdfs:range  ai:Obligation ;
+.
+ai:grantsRight
+    a owl:ObjectProperty ;
+    skos:prefLabel  "grants right"@en ;
+    rdfs:domain ai:Framework ;
+    rdfs:range  ai:Right ;
+.
+ai:assessedBy
+    a owl:ObjectProperty ;
+    skos:prefLabel  "assessed by"@en ;
+    rdfs:range  ai:Assessment ;
+.
+ai:implementedBy
+    a owl:ObjectProperty ;
+    skos:prefLabel  "implemented by"@en ;
+    rdfs:domain ai:Requirement ;
+    rdfs:range  ai:Control ;
+.
+ai:mappedToDimension
+    a owl:ObjectProperty ;
+    skos:prefLabel  "mapped to dimension"@en ;
+    rdfs:range  ai:Dimension ;
+.
+ai:appliesToJurisdiction
+    a owl:ObjectProperty ;
+    skos:prefLabel  "applies to jurisdiction"@en ;
+    skos:definition "Indicates the geographic or legal jurisdiction where an obligation applies." ;
+    rdfs:range  ai:Jurisdiction ;
+.
+ai:appliesToSector
+    a owl:ObjectProperty ;
+    skos:prefLabel  "applies to sector"@en ;
+    skos:definition "Indicates the industry or domain sector where a requirement applies." ;
+    rdfs:range  ai:Sector ;
+.
+ai:requiresCapability
+    a owl:ObjectProperty ;
+    skos:prefLabel  "requires capability"@en ;
+    skos:definition "Links an obligation to the AI technical capabilities it applies to." ;
+    rdfs:range  ai:Capability ;
+.
+ai:hasThreshold
+    a owl:ObjectProperty ;
+    skos:prefLabel  "has threshold"@en ;
+    skos:definition "Links an obligation to an applicability condition (e.g., revenue, user count)." ;
+    rdfs:range  ai:Threshold ;
+.
+ai:requiredEvidence
+    a owl:ObjectProperty ;
+    skos:prefLabel  "required evidence"@en ;
+    skos:definition "Specifies the type of evidence needed to demonstrate compliance." ;
+    rdfs:range  ai:EvidenceType ;
+.
+ai:supersedes
+    a owl:ObjectProperty ;
+    skos:prefLabel  "supersedes"@en ;
+    skos:definition "Indicates that this concept replaces or updates an earlier version." ;
+    rdfs:range owl:Thing ;
+.
+
+# ── Datatype Properties (for literal values) ────────────────────────────────
+
+ai:articleReference
+    a owl:DatatypeProperty ;
+    skos:prefLabel  "article reference"@en ;
+    skos:definition "The specific article, section, or clause reference in source document." ;
+    rdfs:range xsd:string ;
+.
+ai:effectiveDate
+    a owl:DatatypeProperty ;
+    skos:prefLabel  "effective date"@en ;
+    skos:definition "The date on which an obligation or framework enters into force." ;
+    rdfs:range xsd:date ;
+.
+ai:expiryDate
+    a owl:DatatypeProperty ;
+    skos:prefLabel  "expiry date"@en ;
+    skos:definition "The date on which an obligation or framework ceases to apply." ;
+    rdfs:range xsd:date ;
+.
+ai:estimatedEffort
+    a owl:DatatypeProperty ;
+    skos:prefLabel  "estimated effort"@en ;
+    skos:definition "Rough estimate of effort (hours/days/weeks) to implement a control." ;
+    rdfs:range xsd:string ;
+.
+
+# ── Classes for new concepts ───────────────────────────────────────────────
+
+ai:Jurisdiction
+    a owl:Class ;
+    skos:prefLabel  "Jurisdiction"@en ;
+    skos:definition "A geographic or legal jurisdiction (country, region, union)." ;
+.
+ai:Sector
+    a owl:Class ;
+    skos:prefLabel  "Sector"@en ;
+    skos:definition "An industry or domain sector (e.g., finance, healthcare, public sector)." ;
+.
+ai:Capability
+    a owl:Class ;
+    skos:prefLabel  "AI Capability"@en ;
+    skos:definition "A specific AI technical capability (e.g., LLM, computer vision, biometric ID)." ;
+.
+ai:Threshold
+    a owl:Class ;
+    skos:prefLabel  "Applicability Threshold"@en ;
+    skos:definition "A condition that determines when an obligation applies (e.g., >10M EUR revenue)." ;
+.
+ai:EvidenceType
+    a owl:Class ;
+    skos:prefLabel  "Evidence Type"@en ;
+    skos:definition "A category of evidence artifact (audit report, log file, certification, etc.)." ;
+.
+
+# ── Core Domain Classes (referenced throughout the graph) ──────────────────
+
+ai:Framework
+    a owl:Class ;
+    skos:prefLabel  "Framework"@en ;
+    skos:definition "A named governance, regulatory, or standards framework." ;
+.
+
+ai:Principle
+    a owl:Class ;
+    skos:prefLabel  "Principle"@en ;
+    skos:definition "A foundational ethical or governance principle." ;
+.
+
+ai:Requirement
+    a owl:Class ;
+    skos:prefLabel  "Requirement"@en ;
+    skos:definition "An obligation or requirement imposed by a framework." ;
+.
+
+ai:Control
+    a owl:Class ;
+    skos:prefLabel  "Control"@en ;
+    skos:definition "A practice, process, or safeguard that satisfies a requirement." ;
+.
+
+ai:Obligation
+    a owl:Class ;
+    skos:prefLabel  "Obligation"@en ;
+    skos:definition "A binding obligation or requirement." ;
+.
+
+ai:Right
+    a owl:Class ;
+    skos:prefLabel  "Right"@en ;
+    skos:definition "A right granted to individuals or stakeholders." ;
+.
+
+ai:Risk
+    a owl:Class ;
+    skos:prefLabel  "Risk"@en ;
+    skos:definition "A named risk, threat, or adverse outcome." ;
+.
+
+ai:RiskLevel
+    a owl:Class ;
+    skos:prefLabel  "Risk Level"@en ;
+    skos:definition "A categorization of risk magnitude (unacceptable, high, limited, minimal)." ;
+.
+
+ai:RiskCategory
+    a owl:Class ;
+    skos:prefLabel  "Risk Category"@en ;
+    skos:definition "A classification of risk type (e.g., security, fairness, privacy, safety)." ;
+.
+
+ai:Lifecycle
+    a owl:Class ;
+    skos:prefLabel  "Lifecycle Stage"@en ;
+    skos:definition "A stage in the AI system development and deployment lifecycle." ;
+.
+
+ai:Stakeholder
+    a owl:Class ;
+    skos:prefLabel  "Stakeholder"@en ;
+    skos:definition "An entity or role affected by or responsible for an AI system." ;
+.
+
+ai:Domain
+    a owl:Class ;
+    skos:prefLabel  "Domain"@en ;
+    skos:definition "A field or sector of application (e.g., finance, healthcare, public sector)." ;
+.
+
+ai:Dimension
+    a owl:Class ;
+    skos:prefLabel  "Dimension"@en ;
+    skos:definition "A canonical governance axis or quality dimension." ;
+.
+
+ai:Assessment
+    a owl:Class ;
+    skos:prefLabel  "Assessment"@en ;
+    skos:definition "An evaluation or audit process." ;
+.
+
+ai:ConformityAssessment
+    a owl:Class ;
+    skos:prefLabel  "Conformity Assessment"@en ;
+    skos:definition "An assessment that verifies compliance with requirements." ;
+.
+
+ai:ImpactAssessment
+    a owl:Class ;
+    skos:prefLabel  "Impact Assessment"@en ;
+    skos:definition "An assessment of system impacts on rights and interests." ;
+.
+
+ai:Organization
+    a owl:Class ;
+    skos:prefLabel  "Organization"@en ;
+    skos:definition "An entity, company, or institution." ;
+.
+
+# ── Canonical Dimensions (Quality Attributes) ────────────────────────────
+
+ai:Safety
+    a ai:Dimension, skos:Concept ;
+    skos:prefLabel  "Safety"@en ;
+    skos:definition "Freedom from hazard, harm, or unintended adverse consequences." ;
+    skos:inScheme <https://iqns.org/v0/ai-core#DimensionScheme> ;
+.
+
+ai:Security
+    a ai:Dimension, skos:Concept ;
+    skos:prefLabel  "Security"@en ;
+    skos:definition "Protection against unauthorized access, manipulation, or attack." ;
+    skos:inScheme <https://iqns.org/v0/ai-core#DimensionScheme> ;
+.
+
+ai:Fairness
+    a ai:Dimension, skos:Concept ;
+    skos:prefLabel  "Fairness"@en ;
+    skos:definition "Equitable treatment without discrimination or bias." ;
+    skos:inScheme <https://iqns.org/v0/ai-core#DimensionScheme> ;
+.
+
+ai:Transparency
+    a ai:Dimension, skos:Concept ;
+    skos:prefLabel  "Transparency"@en ;
+    skos:definition "Openness and clarity about system operation and design." ;
+    skos:inScheme <https://iqns.org/v0/ai-core#DimensionScheme> ;
+.
+
+ai:Accountability
+    a ai:Dimension, skos:Concept ;
+    skos:prefLabel  "Accountability"@en ;
+    skos:definition "Responsibility for decisions and outcomes." ;
+    skos:inScheme <https://iqns.org/v0/ai-core#DimensionScheme> ;
+.
+
+ai:Privacy
+    a ai:Dimension, skos:Concept ;
+    skos:prefLabel  "Privacy"@en ;
+    skos:definition "Protection of personal data and individual privacy rights." ;
+    skos:inScheme <https://iqns.org/v0/ai-core#DimensionScheme> ;
+.
+
+ai:Robustness
+    a ai:Dimension, skos:Concept ;
+    skos:prefLabel  "Robustness"@en ;
+    skos:definition "Resilience and reliability under stress, adversity, or edge cases." ;
+    skos:inScheme <https://iqns.org/v0/ai-core#DimensionScheme> ;
+.
+
+ai:Reliability
+    a ai:Dimension, skos:Concept ;
+    skos:prefLabel  "Reliability"@en ;
+    skos:definition "Consistent, predictable, and accurate performance over time." ;
+    skos:inScheme <https://iqns.org/v0/ai-core#DimensionScheme> ;
+.
+
+ai:HumanOversight
+    a ai:Dimension, skos:Concept ;
+    skos:prefLabel  "Human Oversight"@en ;
+    skos:definition "Human control, review, and governance of AI systems." ;
+    skos:inScheme <https://iqns.org/v0/ai-core#DimensionScheme> ;
+.
+
+ai:Explainability
+    a ai:Dimension, skos:Concept ;
+    skos:prefLabel  "Explainability"@en ;
+    skos:definition "Intelligibility and explainability of AI system decisions." ;
+    skos:inScheme <https://iqns.org/v0/ai-core#DimensionScheme> ;
+.
+
+ai:Sustainability
+    a ai:Dimension, skos:Concept ;
+    skos:prefLabel  "Sustainability"@en ;
+    skos:definition "Environmental and social sustainability impact." ;
+    skos:inScheme <https://iqns.org/v0/ai-core#DimensionScheme> ;
+.
+
+# ── Lifecycle Stages ──────────────────────────────────────────────────────
+
+ai:Design
+    a ai:Lifecycle, skos:Concept ;
+    skos:prefLabel  "Design"@en ;
+    skos:definition "AI system design and planning phase." ;
+    skos:inScheme <https://iqns.org/v0/ai-core#LifecycleScheme> ;
+.
+
+ai:Development
+    a ai:Lifecycle, skos:Concept ;
+    skos:prefLabel  "Development"@en ;
+    skos:definition "AI system development and implementation phase." ;
+    skos:inScheme <https://iqns.org/v0/ai-core#LifecycleScheme> ;
+.
+
+ai:Validation
+    a ai:Lifecycle, skos:Concept ;
+    skos:prefLabel  "Validation"@en ;
+    skos:definition "Testing and validation phase before deployment." ;
+    skos:inScheme <https://iqns.org/v0/ai-core#LifecycleScheme> ;
+.
+
+ai:Deployment
+    a ai:Lifecycle, skos:Concept ;
+    skos:prefLabel  "Deployment"@en ;
+    skos:definition "AI system deployment to production environment." ;
+    skos:inScheme <https://iqns.org/v0/ai-core#LifecycleScheme> ;
+.
+
+ai:Monitoring
+    a ai:Lifecycle, skos:Concept ;
+    skos:prefLabel  "Monitoring"@en ;
+    skos:definition "Post-deployment monitoring and performance tracking." ;
+    skos:inScheme <https://iqns.org/v0/ai-core#LifecycleScheme> ;
+.
+
+ai:Decommission
+    a ai:Lifecycle, skos:Concept ;
+    skos:prefLabel  "Decommission"@en ;
+    skos:definition "Retirement and decommissioning of AI system." ;
+    skos:inScheme <https://iqns.org/v0/ai-core#LifecycleScheme> ;
+.
+
+# ── Risk Levels ───────────────────────────────────────────────────────────
+
+ai:UnacceptableRisk
+    a ai:RiskLevel, skos:Concept ;
+    skos:prefLabel  "Unacceptable Risk"@en ;
+    skos:definition "Risk level that is unacceptable and prohibits system use." ;
+    skos:inScheme <https://iqns.org/v0/ai-core#RiskLevelScheme> ;
+.
+
+ai:HighRisk
+    a ai:RiskLevel, skos:Concept ;
+    skos:prefLabel  "High Risk"@en ;
+    skos:definition "Risk level requiring heightened oversight and controls." ;
+    skos:inScheme <https://iqns.org/v0/ai-core#RiskLevelScheme> ;
+.
+
+ai:LimitedRisk
+    a ai:RiskLevel, skos:Concept ;
+    skos:prefLabel  "Limited Risk"@en ;
+    skos:definition "Risk level requiring some controls and transparency." ;
+    skos:inScheme <https://iqns.org/v0/ai-core#RiskLevelScheme> ;
+.
+
+ai:MinimalRisk
+    a ai:RiskLevel, skos:Concept ;
+    skos:prefLabel  "Minimal Risk"@en ;
+    skos:definition "Risk level with minimal governance requirements." ;
+    skos:inScheme <https://iqns.org/v0/ai-core#RiskLevelScheme> ;
+.
+
+# ── SKOS ConceptScheme Definitions ────────────────────────────────────────
+
+<https://iqns.org/v0/ai-core#DimensionScheme>
+    a skos:ConceptScheme ;
+    skos:prefLabel  "Governance Dimensions"@en ;
+    skos:definition "Canonical quality and governance dimensions across AI frameworks." ;
+.
+
+<https://iqns.org/v0/ai-core#LifecycleScheme>
+    a skos:ConceptScheme ;
+    skos:prefLabel  "AI System Lifecycle Stages"@en ;
+    skos:definition "Stages in the development, deployment, and retirement of AI systems." ;
+.
+
+<https://iqns.org/v0/ai-core#RiskLevelScheme>
+    a skos:ConceptScheme ;
+    skos:prefLabel  "Risk Levels"@en ;
+    skos:definition "Categories of risk magnitude used across governance frameworks." ;
+.

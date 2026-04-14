@@ -1,0 +1,129 @@
+@prefix eo-14110: <https://iqns.org/v0/eo-14110#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+eo-14110:Ontology a owl:Ontology ;
+    dct:title  "Executive Order 14110 — Safe, Secure, and Trustworthy AI"@en ;
+    prov:wasDerivedFrom <https://www.whitehouse.gov/briefing-room/presidential-actions/2023/10/30/executive-order-on-the-safe-secure-and-trustworthy-development-and-use-of-artificial-intelligence/> .
+
+eo-14110:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "EO 14110"@en ;
+    skos:definition "US Executive Order directing federal agencies to advance AI safety, security, equity, privacy, and civil liberties protections."@en .
+
+eo-14110:EO14110
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "EO 14110"@en ;
+    skos:definition "Executive Order 14110 (Oct 2023) directing US government actions to ensure AI safety and security, protect privacy, advance equity, support workers, promote innovation, and secure US leadership in AI."@en ;
+    skos:inScheme   eo-14110:Scheme ;
+    dct:publisher   "US President"@en ;
+    dct:issued      "2023"^^xsd:gYear ;
+.
+
+# ── Key Directives ────────────────────────────────────────────────────────────
+
+eo-14110:SafetyStandards
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "AI Safety Standards Development"@en ;
+    skos:definition "NIST directed to develop consensus-based AI safety and security standards and conduct red-team evaluations of dual-use foundation models."@en ;
+    skos:inScheme   eo-14110:Scheme ; prov:wasDerivedFrom "EO 14110 §4.1" ;
+    ai:mappedToDimension ai:Safety ;
+    ai:mappedToDimension ai:Security ;
+.
+eo-14110:DualUseFMReporting
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Dual-Use Foundation Model Reporting"@en ;
+    skos:definition "Developers of powerful dual-use AI models must report training runs and red-team results to the US government under DPA authority."@en ;
+    skos:inScheme   eo-14110:Scheme ; prov:wasDerivedFrom "EO 14110 §4.2" ;
+    ai:mappedToDimension ai:Safety ;
+    ai:mappedToDimension ai:Security ;
+.
+eo-14110:BiosafetyAI
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "AI Biosafety"@en ;
+    skos:definition "Develop standards preventing use of AI to design biological weapons; screen nucleic acid synthesis orders."@en ;
+    skos:inScheme   eo-14110:Scheme ; prov:wasDerivedFrom "EO 14110 §4.4" ;
+    ai:mappedToDimension ai:Safety ;
+    ai:appliesToDomain ai:Healthcare ;
+.
+eo-14110:ChemicalSafetyAI
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "AI Chemical Safety"@en ;
+    skos:definition "Evaluate risks of AI systems that could enable chemical weapon design or misuse of CBRN data."@en ;
+    skos:inScheme   eo-14110:Scheme ; prov:wasDerivedFrom "EO 14110 §4.4" ;
+    ai:mappedToDimension ai:Safety ;
+.
+eo-14110:CriticalInfrastructureAI
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Critical Infrastructure AI Security"@en ;
+    skos:definition "Sector risk management agencies assess AI risks to critical infrastructure and develop sector-specific guidance."@en ;
+    skos:inScheme   eo-14110:Scheme ; prov:wasDerivedFrom "EO 14110 §4.3" ;
+    ai:mappedToDimension ai:Security ;
+    ai:appliesToDomain ai:CriticalInfrastructure ;
+.
+eo-14110:CybersecurityAI
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "AI-Enabled Cybersecurity"@en ;
+    skos:definition "NSA and CISA develop AI guidance for national security systems; use AI to find and fix vulnerabilities in federal software."@en ;
+    skos:inScheme   eo-14110:Scheme ; prov:wasDerivedFrom "EO 14110 §4.5" ;
+    ai:mappedToDimension ai:Security ;
+.
+eo-14110:SyntheticContentWatermarking
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Synthetic Content Watermarking"@en ;
+    skos:definition "Commerce/NIST to develop guidance on watermarking and content provenance for AI-generated material."@en ;
+    skos:inScheme   eo-14110:Scheme ; prov:wasDerivedFrom "EO 14110 §4.5" ;
+    ai:mappedToDimension ai:Transparency ;
+.
+eo-14110:PrivacyInAI
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Privacy Protections for AI"@en ;
+    skos:definition "Federal agencies evaluate privacy risks of AI; support development of privacy-preserving techniques."@en ;
+    skos:inScheme   eo-14110:Scheme ; prov:wasDerivedFrom "EO 14110 §5" ;
+    ai:mappedToDimension ai:Privacy ;
+.
+eo-14110:EquityAndCivilRights
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Equity and Civil Rights"@en ;
+    skos:definition "Federal agencies address discriminatory AI; develop guidance preventing AI from exacerbating discrimination in housing, employment, benefits, and justice."@en ;
+    skos:inScheme   eo-14110:Scheme ; prov:wasDerivedFrom "EO 14110 §6" ;
+    ai:mappedToDimension ai:Fairness ;
+    ai:mappedToDimension ai:Accountability ;
+.
+eo-14110:WorkerProtections
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Worker Protections"@en ;
+    skos:definition "Develop principles and best practices protecting workers from AI-enabled displacement, surveillance, and rights violations."@en ;
+    skos:inScheme   eo-14110:Scheme ; prov:wasDerivedFrom "EO 14110 §7" ;
+    ai:appliesToDomain ai:Employment ;
+.
+eo-14110:FederalAIGovernance
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Federal AI Governance"@en ;
+    skos:definition "Each federal agency appoints Chief AI Officer; OMB issues memoranda on responsible AI use in federal government."@en ;
+    skos:inScheme   eo-14110:Scheme ; prov:wasDerivedFrom "EO 14110 §10" ;
+    ai:mappedToDimension ai:Accountability ;
+.
+
+# ── Key Concepts ──────────────────────────────────────────────────────────────
+
+eo-14110:DualUseFM
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "Dual-Use Foundation Model"@en ;
+    skos:definition "AI model trained on broad data at large scale with potential for serious misuse in cyberattack, CBRN weapons, or manipulation."@en ;
+    skos:inScheme   eo-14110:Scheme ; prov:wasDerivedFrom "EO 14110 §3" ;
+    ai:hasRiskLevel ai:HighRisk ;
+    ai:hasRiskCategory ai:SecurityHarm ;
+.
+eo-14110:RedTeaming
+    a ai:Control ; a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "Red-Team Evaluation"@en ;
+    skos:definition "Structured adversarial probing of AI systems to discover safety and security failures before deployment."@en ;
+    skos:inScheme   eo-14110:Scheme ; prov:wasDerivedFrom "EO 14110 §4.1" ;
+    skos:exactMatch ai:RedTeamExercise ;
+.

@@ -1,0 +1,16 @@
+# 01-def-ihl-compliance.rq
+# Goal: Verify Autonomous Systems have IHL compliance controls.
+
+PREFIX gg: <https://iqns.org/v0/ai#>
+PREFIX dg: <https://iqns.org/v0/defgraph#>
+PREFIX dod: <https://iqns.org/v0/dod-rai#>
+
+SELECT ?this ?label ?ihlControl
+WHERE {
+    ?this a gg:System ;
+               skos:prefLabel ?label ;
+               gg:mappedToDimension dg:LegalCompliance .
+               
+    ?this gg:implementsControl ?ihlControl .
+    ?ihlControl rdfs:subClassOf* dod:IHLCompliance .
+}

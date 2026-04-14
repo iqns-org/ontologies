@@ -1,0 +1,140 @@
+@prefix uk-ai-safety: <https://iqns.org/v0/uk-ai-safety#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+uk-ai-safety:Ontology a owl:Ontology ;
+    dct:title  "UK AI Safety Institute Framework"@en ;
+    prov:wasDerivedFrom <https://www.gov.uk/government/organisations/ai-safety-institute> .
+
+uk-ai-safety:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "UK AISI Framework"@en ;
+    skos:definition "UK AI Safety Institute's frameworks for advanced AI safety evaluation, including frontier model assessment and the International AI Safety Report."@en .
+
+uk-ai-safety:UKAISI
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "UK AI Safety Institute Framework"@en ;
+    skos:definition "UK AISI's technical research agenda and evaluations for frontier AI safety — risk identification, pre-deployment testing, and international coordination."@en ;
+    skos:inScheme   uk-ai-safety:Scheme ;
+    dct:publisher   "UK AI Safety Institute (AISI)"@en ;
+    dct:issued      "2023"^^xsd:gYear ;
+.
+
+# ── AISI Evaluation Framework ─────────────────────────────────────────────────
+
+uk-ai-safety:FrontierModelEval
+    a ai:Requirement ; a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "Frontier Model Evaluation"@en ;
+    skos:definition "Pre-deployment evaluation of frontier AI models for dangerous capabilities and emergent behaviours."@en ;
+    skos:inScheme   uk-ai-safety:Scheme ; prov:wasDerivedFrom "AISI Model Evaluation Framework 2023" ;
+    skos:broadMatch ai:RedTeamExercise ;
+    ai:mappedToDimension ai:Safety ;
+    ai:mappedToDimension ai:Security ;
+.
+uk-ai-safety:DangerousCapabilityEval
+    a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "Dangerous Capability Evaluation"@en ;
+    skos:definition "Test for presence of capabilities that could enable mass-casualty events: CBRN uplift, cyberoffence, deception, or autonomous self-replication."@en ;
+    skos:inScheme   uk-ai-safety:Scheme ; prov:wasDerivedFrom "AISI Eval Framework §3" ;
+    skos:broadMatch ai:RiskAssessment ;
+    ai:mappedToDimension ai:Safety ;
+.
+uk-ai-safety:UpliftAssessment
+    a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "Uplift Assessment"@en ;
+    skos:definition "Measure degree to which a frontier model increases a threat actor's ability to cause harm."@en ;
+    skos:inScheme   uk-ai-safety:Scheme ; prov:wasDerivedFrom "AISI Eval Framework §4" ;
+    skos:broadMatch ai:RiskAssessment ;
+    ai:hasRiskCategory ai:SecurityHarm ;
+.
+uk-ai-safety:EmergentBehaviourDetection
+    a ai:Control ; a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "Emergent Behaviour Detection"@en ;
+    skos:definition "Systematic probing for unexpected qualitative capabilities arising from scale — including deceptive alignment."@en ;
+    skos:inScheme   uk-ai-safety:Scheme ; prov:wasDerivedFrom "AISI Research Agenda 2024" ;
+    ai:mappedToDimension ai:Safety ;
+.
+uk-ai-safety:SafetyBenchmark
+    a ai:Control ; a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "Standardised Safety Benchmark"@en ;
+    skos:definition "Publicly reproducible benchmark suite measuring AI safety and dangerous capability properties."@en ;
+    skos:inScheme   uk-ai-safety:Scheme ;
+    skos:broadMatch ai:ConformityAssessment ;
+.
+
+# ── Safety Research Areas ─────────────────────────────────────────────────────
+
+uk-ai-safety:ScalableSafety
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Scalable Safety"@en ;
+    skos:definition "Safety oversight mechanisms that remain effective as AI capability increases."@en ;
+    skos:inScheme   uk-ai-safety:Scheme ;
+    ai:mappedToDimension ai:HumanOversight ;
+.
+uk-ai-safety:InterpretabilityResearch
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Mechanistic Interpretability Research"@en ;
+    skos:definition "Scientific understanding of internal model representations to detect deception and misalignment."@en ;
+    skos:inScheme   uk-ai-safety:Scheme ;
+    ai:mappedToDimension ai:Explainability ;
+.
+uk-ai-safety:AlignmentResearch
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "AI Alignment"@en ;
+    skos:definition "Ensuring AI objectives, values, and behaviours robustly match human intent."@en ;
+    skos:inScheme   uk-ai-safety:Scheme ;
+    ai:mappedToDimension ai:Safety ;
+    ai:mappedToDimension ai:HumanOversight ;
+.
+uk-ai-safety:ModelBehaviourBaseline
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Baseline Behaviour Characterisation"@en ;
+    skos:definition "Document expected model behaviour across input domains as a reference for anomaly detection."@en ;
+    skos:inScheme   uk-ai-safety:Scheme ;
+    ai:mappedToDimension ai:Robustness ;
+.
+
+# ── International Coordination ────────────────────────────────────────────────
+
+uk-ai-safety:BletchleyDeclaration
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "Bletchley Declaration"@en ;
+    skos:definition "28-nation declaration (Nov 2023) committing to cooperative action on frontier AI risks and safety research."@en ;
+    skos:inScheme   uk-ai-safety:Scheme ;
+    prov:wasDerivedFrom      <https://www.gov.uk/government/publications/ai-safety-summit-2023-the-bletchley-declaration> ;
+    dct:issued      "2023"^^xsd:gYear ;
+.
+uk-ai-safety:InternationalAISafetyReport
+    a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "International AI Safety Report"@en ;
+    skos:definition "Independent science-based synthesis of AI safety risks and mitigations, produced under AISI coordination."@en ;
+    skos:inScheme   uk-ai-safety:Scheme ;
+    skos:broadMatch ai:RiskAssessment ;
+.
+
+# ── Risks addressed ───────────────────────────────────────────────────────────
+
+uk-ai-safety:LossOfControl
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "Loss of Control"@en ;
+    skos:definition "Scenario in which advanced AI pursues goals misaligned with human values beyond human ability to correct."@en ;
+    skos:inScheme   uk-ai-safety:Scheme ;
+    ai:hasRiskLevel ai:HighRisk ;
+    ai:hasRiskCategory ai:SocietalHarm ;
+    ai:hasRiskCategory ai:PhysicalHarm ;
+    ai:mappedToDimension ai:HumanOversight ;
+.
+uk-ai-safety:MisuseByCBS
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "State or CBRN Misuse"@en ;
+    skos:definition "State or non-state actors using frontier AI to accelerate development of chemical, biological, radiological, or nuclear weapons."@en ;
+    skos:inScheme   uk-ai-safety:Scheme ;
+    ai:hasRiskLevel ai:UnacceptableRisk ;
+    ai:hasRiskCategory ai:SecurityHarm ;
+    ai:hasRiskCategory ai:PhysicalHarm ;
+.

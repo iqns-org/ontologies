@@ -1,0 +1,38 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# 05  Requirements by Lifecycle Stage
+# Purpose : Map every Requirement to the AI system lifecycle stage(s) it
+#           applies to (Design, Development, Validation, Deployment,
+#           Monitoring, Decommission).
+# Use case: CISO can anchor obligations to SDLC gates and programme milestones.
+# ─────────────────────────────────────────────────────────────────────────────
+
+PREFIX ai:   <https://iqns.org/v0/ai#>
+PREFIX dct:  <http://purl.org/dc/terms/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+SELECT DISTINCT
+    ?lifecycleLabel
+    ?requirementLabel
+    ?requirementDef
+    ?frameworkLabel
+    ?citation
+WHERE {
+    ?stage   a ai:Lifecycle ;
+             skos:prefLabel ?lifecycleLabel .
+
+    ?req     a ai:Requirement ;
+             ai:appliesToLifecycle ?stage ;
+             skos:prefLabel        ?requirementLabel .
+
+    OPTIONAL { ?req skos:definition ?requirementDef . }
+    OPTIONAL { ?req dct:source      ?citation       . }
+
+    OPTIONAL {
+        ?fw ai:hasRequirement ?req ;
+            skos:prefLabel    ?frameworkLabel .
+    }
+
+    FILTER ( lang(?lifecycleLabel)   = "en" )
+    FILTER ( lang(?requirementLabel) = "en" )
+}
+ORDER BY ?lifecycleLabel ?frameworkLabel ?requirementLabel

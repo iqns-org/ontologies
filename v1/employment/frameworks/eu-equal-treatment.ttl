@@ -1,0 +1,130 @@
+@prefix eu-equal-treatment: <https://iqns.org/v0/eu-equal-treatment#> .
+@prefix emg:  <https://iqns.org/v0/emgraph#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+eu-equal-treatment:Ontology a owl:Ontology ;
+    dct:title       "EU Equal Treatment Directives — Employment Context"@en ;
+    prov:wasDerivedFrom <https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32000L0043> ;
+    owl:versionInfo "Race Equality Directive 2000/43/EC; Employment Equality Directive 2000/78/EC; Gender Equality Directive (recast) 2006/54/EC" ;
+.
+
+eu-equal-treatment:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "EU Equal Treatment — Employment"@en ;
+    skos:definition "EU directives prohibiting discrimination in employment and occupation — the foundational framework for assessing whether AI hiring and HR management tools produce unlawful discriminatory outcomes in the EU."@en .
+
+eu-equal-treatment:EUEqualTreatment
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "EU Equal Treatment Directives"@en ;
+    skos:definition "Package of EU directives establishing the principle of equal treatment in employment: Race Equality Directive 2000/43/EC, Employment Equality Directive 2000/78/EC (religion, disability, age, sexual orientation), and Gender Equality (recast) Directive 2006/54/EC. AI systems in employment must not produce prohibited discriminatory outcomes."@en ;
+    skos:inScheme   eu-equal-treatment:Scheme ;
+    dct:publisher   "European Parliament and Council of the EU"@en ;
+.
+
+# ── Core Non-Discrimination Principles ───────────────────────────────────────
+
+eu-equal-treatment:DirectDiscriminationProhibition
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Prohibition of Direct Discrimination"@en ;
+    skos:definition "Direct discrimination occurs where one person is treated less favourably than another in a comparable situation on grounds of a protected characteristic — AI systems that use protected characteristics as explicit inputs to produce employment decisions commit direct discrimination."@en ;
+    skos:inScheme   eu-equal-treatment:Scheme ;
+    prov:wasDerivedFrom "Directive 2000/43/EC Art. 2(2)(a); Directive 2000/78/EC Art. 2(2)(a)" ;
+    ai:mappedToDimension emg:EqualTreatment ;
+    ai:mappedToDimension ai:Fairness ;
+.
+eu-equal-treatment:IndirectDiscriminationProhibition
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Prohibition of Indirect Discrimination"@en ;
+    skos:definition "Indirect discrimination occurs where an apparently neutral criterion puts persons of a protected group at a particular disadvantage — AI systems using proxy variables (postcode, name phonetics, social network features) that correlate with protected characteristics may produce unlawful indirect discrimination even without using protected characteristics as explicit inputs."@en ;
+    skos:inScheme   eu-equal-treatment:Scheme ;
+    prov:wasDerivedFrom "Directive 2000/43/EC Art. 2(2)(b); Directive 2000/78/EC Art. 2(2)(b)" ;
+    ai:mappedToDimension emg:EqualTreatment ;
+    ai:mappedToDimension ai:Fairness ;
+    emg:appliesToEmploymentStage emg:Recruitment ;
+    emg:appliesToEmploymentStage emg:HiringDecision ;
+    emg:appliesToEmploymentStage emg:Promotion ;
+    emg:appliesToEmploymentStage emg:Dismissal ;
+.
+eu-equal-treatment:HarassmentProhibition
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Prohibition of Harassment"@en ;
+    skos:definition "Harassment related to a protected characteristic — AI systems generating hostile, humiliating, or offensive content targeted at workers based on a protected characteristic constitute unlawful harassment."@en ;
+    skos:inScheme   eu-equal-treatment:Scheme ;
+    prov:wasDerivedFrom "Directive 2000/43/EC Art. 2(3); Directive 2000/78/EC Art. 2(3)" ;
+    ai:mappedToDimension emg:EqualTreatment ;
+    ai:mappedToDimension emg:WorkerDignity ;
+.
+
+# ── Burden of Proof ───────────────────────────────────────────────────────────
+
+eu-equal-treatment:BurdenOfProofShift
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Shift of Burden of Proof"@en ;
+    skos:definition "Where a complainant establishes facts from which discrimination may be presumed, the burden shifts to the employer to prove no breach of equal treatment — opaque AI systems that cannot explain hiring decisions are at elevated risk of failing to discharge the burden. AI explainability is therefore a legal risk mitigation requirement, not merely an ethical aspiration."@en ;
+    skos:inScheme   eu-equal-treatment:Scheme ;
+    prov:wasDerivedFrom "Directive 2000/43/EC Art. 8; Directive 2000/78/EC Art. 10" ;
+    ai:mappedToDimension emg:EqualTreatment ;
+    ai:mappedToDimension ai:Explainability ;
+.
+
+# ── Rights ────────────────────────────────────────────────────────────────────
+
+eu-equal-treatment:RightToEqualTreatment
+    a ai:Right ; a skos:Concept ;
+    skos:prefLabel  "Right to Equal Treatment in Employment"@en ;
+    skos:definition "Every worker and job applicant has the right to equal treatment regardless of protected characteristics — applies to access to employment, promotion, pay, working conditions, vocational training, and dismissal."@en ;
+    skos:inScheme   eu-equal-treatment:Scheme ;
+    prov:wasDerivedFrom "Directive 2000/43/EC Art. 3; Directive 2000/78/EC Art. 3" ;
+    ai:mappedToDimension emg:EqualTreatment ;
+    emg:hasProtectedCharacteristic emg:Race ;
+    emg:hasProtectedCharacteristic emg:Sex ;
+    emg:hasProtectedCharacteristic emg:Age ;
+    emg:hasProtectedCharacteristic emg:Disability ;
+    emg:hasProtectedCharacteristic emg:Religion ;
+    emg:hasProtectedCharacteristic emg:SexualOrientation ;
+.
+eu-equal-treatment:RightToJudicialRecourse
+    a ai:Right ; a skos:Concept ;
+    skos:prefLabel  "Right to Judicial and Administrative Procedures"@en ;
+    skos:definition "Workers have the right to pursue judicial or administrative procedures to enforce equal treatment obligations — applicable when AI systems are used in hiring decisions and discriminatory outcomes are alleged."@en ;
+    skos:inScheme   eu-equal-treatment:Scheme ;
+    prov:wasDerivedFrom "Directive 2000/43/EC Art. 7; Directive 2000/78/EC Art. 9" ;
+    ai:mappedToDimension emg:EqualTreatment ;
+.
+
+# ── Employer Obligations ──────────────────────────────────────────────────────
+
+eu-equal-treatment:DisparateImpactMonitoring
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Disparate Impact Monitoring"@en ;
+    skos:definition "Employers using AI hiring tools must monitor for disparate impact across protected groups — selection rates, rejection rates, and scoring distributions must be analysed by demographic group at regular intervals. Adverse impact ratios above 4/5 (80%) rule trigger investigation."@en ;
+    skos:inScheme   eu-equal-treatment:Scheme ;
+    prov:wasDerivedFrom "Directive 2000/43/EC Art. 2(2)(b); CJEU C-415/10 Meister" ;
+    ai:mappedToDimension emg:EqualTreatment ;
+    ai:mappedToDimension ai:Accountability ;
+    emg:isAutomatedDecision "true"^^xsd:boolean ;
+.
+eu-equal-treatment:ReasonableAdjustment
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Reasonable Accommodation for Disability"@en ;
+    skos:definition "Employers must provide reasonable accommodation to enable disabled persons to participate in employment — AI assessment tools must be accessible and must not systematically disadvantage candidates with disabilities."@en ;
+    skos:inScheme   eu-equal-treatment:Scheme ;
+    prov:wasDerivedFrom "Directive 2000/78/EC Art. 5" ;
+    ai:mappedToDimension emg:EqualTreatment ;
+    emg:hasProtectedCharacteristic emg:Disability ;
+.
+eu-equal-treatment:WorksCouncilInformation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Inform Works Council / Trade Union on AI Use"@en ;
+    skos:definition "Employers must inform and (in many EU Member States) consult workers' representatives before deploying AI systems that monitor or affect workers — national implementation varies; EU AI Act Art. 68 mandates transparency to workers about high-risk AI used in employment."@en ;
+    skos:inScheme   eu-equal-treatment:Scheme ;
+    prov:wasDerivedFrom "EU AI Act Art. 68; national implementation of Framework Directive 89/391/EEC" ;
+    ai:mappedToDimension emg:AlgorithmicTransparency ;
+    ai:mappedToDimension ai:Transparency ;
+.

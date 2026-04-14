@@ -1,0 +1,57 @@
+@prefix iso-45001: <https://iqns.org/v0/iso-45001#> .
+@prefix enterprise:   <https://iqns.org/v0/enterprise#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+iso-45001:Ontology a owl:Ontology ;
+    dct:title "ISO 45001:2018 — Occupational Health and Safety Management"@en ;
+    prov:wasDerivedFrom <https://www.iso.org/standard/63787.html> ;
+    owl:versionInfo "ISO 45001:2018" ;
+.
+
+iso-45001:Scheme a skos:ConceptScheme ;
+    skos:prefLabel "ISO 45001:2018 — OH&S"@en ;
+    skos:definition "International standard for occupational health and safety management, providing a framework to improve workers' safety and reduce workplace risks."@en .
+
+iso-45001:ISO45001
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel "ISO 45001:2018"@en ;
+    skos:definition "Provides requirements for an occupational health and safety management system (OHSMS), including context, leadership, planning, support, operation, performance evaluation, and improvement."@en ;
+    skos:inScheme iso-45001:Scheme ;
+    dct:publisher "ISO"@en ;
+    dct:issued "2018"^^xsd:gYear ;
+.
+
+iso-45001:SafetyPolicy
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel "OH&S Policy"@en ;
+    skos:definition "Establish and maintain an occupational health and safety policy, integrated with corporate governance and risk management."@en ;
+    skos:inScheme iso-45001:Scheme ;
+    prov:wasDerivedFrom "ISO 45001:2018, Clause 5.2" ;
+    ai:mappedToDimension enterprise:RiskManagement ;
+    ai:mappedToDimension enterprise:CorporateGovernance ;
+.
+
+iso-45001:HSEHazardIdentification
+    a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel "Hazard Identification and Risk Assessment"@en ;
+    skos:definition "Identify hazards and assess OH&S risks in all operations, including AI development and operations environments."@en ;
+    skos:inScheme iso-45001:Scheme ;
+    prov:wasDerivedFrom "ISO 45001:2018, Clause 6.1.2" ;
+    ai:mappedToDimension ai:Risk ;
+.
+
+iso-45001:HSEContinuousImprovement
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel "OHSMS Continual Improvement"@en ;
+    skos:definition "Monitor, measure, analyse, and evaluate OH&S performance and implement improvements."@en ;
+    skos:inScheme iso-45001:Scheme ;
+    prov:wasDerivedFrom "ISO 45001:2018, Clause 10" ;
+    ai:mappedToDimension ai:Robustness ;
+.

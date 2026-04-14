@@ -1,0 +1,20 @@
+# 01-health-safety-critical-systems.rq
+# Goal: Identify Health systems in safety-critical lifecycle stages.
+
+PREFIX gg: <https://iqns.org/v0/ai#>
+PREFIX hg: <https://iqns.org/v0/healthgraph#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+SELECT ?this ?label ?stage ?riskClass
+WHERE {
+    ?this a gg:System ;
+            skos:prefLabel ?label ;
+            gg:appliesToLifecycle ?stage ;
+            a ?riskClass .
+    
+    # Filter for safety-critical (Post-Market or Clinical)
+    FILTER (?stage IN (hg:PostMarketSurveillance, hg:ClinicalTrial))
+    
+    # Ensure it's a health risk class
+    ?riskClass rdfs:subClassOf* hg:RiskClass .
+}

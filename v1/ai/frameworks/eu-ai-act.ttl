@@ -1,0 +1,324 @@
+@prefix eu-ai-act: <https://iqns.org/v0/eu-ai-act#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+eu-ai-act:Ontology a owl:Ontology ;
+    dct:title   "EU AI Act (Regulation 2024/1689)"@en ;
+    prov:wasDerivedFrom  <https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=OJ:L_202401689> ;
+    owl:versionInfo "2024/1689" .
+
+eu-ai-act:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "EU AI Act 2024/1689"@en ;
+    skos:definition "EU horizontal regulation on artificial intelligence — risk-tiered obligations for providers, deployers, importers, and distributors."@en .
+
+eu-ai-act:EUAIAct
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "EU AI Act"@en ;
+    skos:definition "Regulation (EU) 2024/1689 on AI — the world's first comprehensive AI law, applying a risk-based approach across the AI value chain."@en ;
+    skos:inScheme   eu-ai-act:Scheme ;
+    dct:publisher   "European Parliament and Council of the EU"@en ;
+    dct:issued      "2024"^^xsd:gYear ;
+.
+
+# ── Risk Classification ────────────────────────────────────────────────────────
+
+eu-ai-act:UnacceptableRisk
+    a ai:RiskLevel ; a skos:Concept ;
+    skos:prefLabel  "Unacceptable Risk (Prohibited)"@en ;
+    skos:definition "AI practices explicitly banned under Article 5: subliminal manipulation, exploitation of vulnerable groups, social scoring by public authorities, real-time remote biometric identification in public spaces (with narrow exceptions)."@en ;
+    skos:inScheme   eu-ai-act:Scheme ; prov:wasDerivedFrom "EU AI Act Art. 5" ;
+    skos:exactMatch ai:UnacceptableRisk ;
+.
+eu-ai-act:HighRisk
+    a ai:RiskLevel ; a skos:Concept ;
+    skos:prefLabel  "High-Risk AI"@en ;
+    skos:definition "AI systems listed in Annex III requiring conformity assessment, registration, technical documentation, and ongoing monitoring."@en ;
+    skos:inScheme   eu-ai-act:Scheme ; prov:wasDerivedFrom "EU AI Act Art. 6, Annex III" ;
+    skos:exactMatch ai:HighRisk ;
+.
+eu-ai-act:LimitedRisk
+    a ai:RiskLevel ; a skos:Concept ;
+    skos:prefLabel  "Limited-Risk AI"@en ;
+    skos:definition "AI systems (e.g., chatbots, deepfakes) subject to transparency obligations only."@en ;
+    skos:inScheme   eu-ai-act:Scheme ; prov:wasDerivedFrom "EU AI Act Art. 50" ;
+    skos:exactMatch ai:LimitedRisk ;
+.
+eu-ai-act:MinimalRisk
+    a ai:RiskLevel ; a skos:Concept ;
+    skos:prefLabel  "Minimal-Risk AI"@en ;
+    skos:definition "AI systems carrying no mandatory obligations; voluntary codes of conduct encouraged."@en ;
+    skos:inScheme   eu-ai-act:Scheme ; prov:wasDerivedFrom "EU AI Act Art. 95" ;
+    skos:exactMatch ai:MinimalRisk ;
+.
+
+# ── Prohibited Practices (Article 5) ──────────────────────────────────────────
+
+eu-ai-act:SubliminalManipulation
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel    "Subliminal Manipulation"@en ;
+    skos:definition   "AI techniques operating below conscious awareness to distort persons' behaviour in ways causing harm."@en ;
+    skos:inScheme     eu-ai-act:Scheme ; prov:wasDerivedFrom "EU AI Act Art. 5(1)(a)" ;
+    ai:hasRiskLevel   eu-ai-act:UnacceptableRisk ;
+    ai:hasRiskCategory ai:PsychologicalHarm ;
+.
+eu-ai-act:VulnerableGroupExploitation
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel    "Exploitation of Vulnerable Groups"@en ;
+    skos:definition   "AI exploiting age, disability, or socioeconomic vulnerability to distort behaviour."@en ;
+    skos:inScheme     eu-ai-act:Scheme ; prov:wasDerivedFrom "EU AI Act Art. 5(1)(b)" ;
+    ai:hasRiskLevel   eu-ai-act:UnacceptableRisk ;
+    ai:hasRiskCategory ai:PsychologicalHarm ;
+.
+eu-ai-act:SocialScoring
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel    "Social Scoring by Public Authorities"@en ;
+    skos:definition   "AI systems evaluating and ranking persons based on social behaviour or personal characteristics by public authorities."@en ;
+    skos:inScheme     eu-ai-act:Scheme ; prov:wasDerivedFrom "EU AI Act Art. 5(1)(c)" ;
+    ai:hasRiskLevel   eu-ai-act:UnacceptableRisk ;
+    ai:hasRiskCategory ai:DiscriminationHarm ;
+    ai:hasRiskCategory ai:SocietalHarm ;
+.
+eu-ai-act:RealTimeBiometric
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel    "Real-Time Remote Biometric Identification"@en ;
+    skos:definition   "Real-time biometric identification in public spaces by law enforcement — banned except under narrow Article 5(2) exceptions."@en ;
+    skos:inScheme     eu-ai-act:Scheme ; prov:wasDerivedFrom "EU AI Act Art. 5(1)(h)" ;
+    ai:hasRiskLevel   eu-ai-act:UnacceptableRisk ;
+    ai:hasRiskCategory ai:PrivacyHarm ;
+    ai:appliesToDomain ai:LawEnforcement ;
+.
+eu-ai-act:EmotionRecognition
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel    "Emotion Recognition in Workplace/Education"@en ;
+    skos:definition   "AI inferring emotional states of persons in workplace or educational settings — prohibited."@en ;
+    skos:inScheme     eu-ai-act:Scheme ; prov:wasDerivedFrom "EU AI Act Art. 5(1)(f)" ;
+    ai:hasRiskLevel   eu-ai-act:UnacceptableRisk ;
+    ai:hasRiskCategory ai:PrivacyHarm ;
+.
+
+# ── High-Risk Domains (Annex III) ──────────────────────────────────────────────
+
+eu-ai-act:BiometricCategorisation
+    a ai:Domain ; a skos:Concept ;
+    skos:prefLabel  "Biometric Categorisation"@en ;
+    skos:definition "AI inferring sensitive attributes from biometric data — high-risk per Annex III."@en ;
+    skos:inScheme   eu-ai-act:Scheme ; prov:wasDerivedFrom "EU AI Act Annex III §1" ;
+    ai:hasRiskLevel eu-ai-act:HighRisk ;
+.
+eu-ai-act:HighRiskCriticalInfrastructure
+    a ai:Domain ; a skos:Concept ;
+    skos:prefLabel  "Critical Infrastructure Safety"@en ;
+    skos:definition "AI managing safety in roads, utilities, water, gas, energy — high-risk per Annex III."@en ;
+    skos:inScheme   eu-ai-act:Scheme ; prov:wasDerivedFrom "EU AI Act Annex III §2" ;
+    ai:hasRiskLevel eu-ai-act:HighRisk ;
+    skos:narrowMatch ai:CriticalInfrastructure ;
+.
+eu-ai-act:HighRiskEducation
+    a ai:Domain ; a skos:Concept ;
+    skos:prefLabel  "Education and Vocational Training"@en ;
+    skos:definition "AI determining access, evaluating learning outcomes, or assessing examination — high-risk."@en ;
+    skos:inScheme   eu-ai-act:Scheme ; prov:wasDerivedFrom "EU AI Act Annex III §3" ;
+    ai:hasRiskLevel eu-ai-act:HighRisk ;
+    skos:narrowMatch ai:Education ;
+.
+eu-ai-act:HighRiskEmployment
+    a ai:Domain ; a skos:Concept ;
+    skos:prefLabel  "Employment and Workers Management"@en ;
+    skos:definition "AI for recruitment, promotion, termination, or task allocation — high-risk."@en ;
+    skos:inScheme   eu-ai-act:Scheme ; prov:wasDerivedFrom "EU AI Act Annex III §4" ;
+    ai:hasRiskLevel eu-ai-act:HighRisk ;
+    skos:narrowMatch ai:Employment ;
+.
+eu-ai-act:HighRiskEssentialServices
+    a ai:Domain ; a skos:Concept ;
+    skos:prefLabel  "Essential Private Services"@en ;
+    skos:definition "AI for creditworthiness, insurance pricing, or public benefits — high-risk."@en ;
+    skos:inScheme   eu-ai-act:Scheme ; prov:wasDerivedFrom "EU AI Act Annex III §5" ;
+    ai:hasRiskLevel eu-ai-act:HighRisk ;
+    skos:narrowMatch ai:Finance ;
+.
+eu-ai-act:HighRiskLawEnforcement
+    a ai:Domain ; a skos:Concept ;
+    skos:prefLabel  "Law Enforcement"@en ;
+    skos:definition "AI for criminal risk profiling, polygraphs, evidence reliability, crime prediction — high-risk."@en ;
+    skos:inScheme   eu-ai-act:Scheme ; prov:wasDerivedFrom "EU AI Act Annex III §6" ;
+    ai:hasRiskLevel eu-ai-act:HighRisk ;
+    skos:narrowMatch ai:LawEnforcement ;
+.
+eu-ai-act:HighRiskMigration
+    a ai:Domain ; a skos:Concept ;
+    skos:prefLabel  "Migration, Asylum and Border Control"@en ;
+    skos:definition "AI for risk assessment, document authentication, or application processing in migration — high-risk."@en ;
+    skos:inScheme   eu-ai-act:Scheme ; prov:wasDerivedFrom "EU AI Act Annex III §7" ;
+    ai:hasRiskLevel eu-ai-act:HighRisk ;
+    skos:narrowMatch ai:Migration ;
+.
+eu-ai-act:HighRiskJustice
+    a ai:Domain ; a skos:Concept ;
+    skos:prefLabel  "Administration of Justice"@en ;
+    skos:definition "AI assisting judicial bodies in fact-finding, interpreting law, or applying rules — high-risk."@en ;
+    skos:inScheme   eu-ai-act:Scheme ; prov:wasDerivedFrom "EU AI Act Annex III §8" ;
+    ai:hasRiskLevel eu-ai-act:HighRisk ;
+    skos:narrowMatch ai:Justice ;
+.
+
+# ── High-Risk Provider Requirements ───────────────────────────────────────────
+
+eu-ai-act:RiskManagementSystem
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Risk Management System"@en ;
+    skos:definition "Establish, document, and maintain iterative AI risk management throughout the lifecycle."@en ;
+    skos:inScheme   eu-ai-act:Scheme ; prov:wasDerivedFrom "EU AI Act Art. 9" ;
+    skos:exactMatch ai:RiskAssessment ;
+    ai:mappedToDimension ai:Safety ;
+.
+eu-ai-act:DataGovernance
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Data Governance"@en ;
+    skos:definition "Training, validation, and test data must meet quality criteria; bias examined; provenance documented."@en ;
+    skos:inScheme   eu-ai-act:Scheme ; prov:wasDerivedFrom "EU AI Act Art. 10" ;
+    ai:mappedToDimension ai:Fairness ;
+    ai:mappedToDimension ai:Privacy ;
+.
+eu-ai-act:TechnicalDocumentation
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Technical Documentation"@en ;
+    skos:definition "Before-market technical documentation demonstrating compliance (per Annex IV)."@en ;
+    skos:inScheme   eu-ai-act:Scheme ; prov:wasDerivedFrom "EU AI Act Art. 11, Annex IV" ;
+    ai:mappedToDimension ai:Transparency ;
+    ai:mappedToDimension ai:Accountability ;
+.
+eu-ai-act:RecordKeeping
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Record-Keeping and Logging"@en ;
+    skos:definition "Automatic logging capabilities to enable post-deployment traceability and accountability."@en ;
+    skos:inScheme   eu-ai-act:Scheme ; prov:wasDerivedFrom "EU AI Act Art. 12" ;
+    ai:mappedToDimension ai:Transparency ;
+    ai:mappedToDimension ai:Accountability ;
+.
+eu-ai-act:TransparencyObligation
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Transparency and Information Provision"@en ;
+    skos:definition "Provide clear instructions of use; inform deployers of system capabilities, limitations, and risks."@en ;
+    skos:inScheme   eu-ai-act:Scheme ; prov:wasDerivedFrom "EU AI Act Art. 13" ;
+    ai:mappedToDimension ai:Transparency ;
+.
+eu-ai-act:HumanOversightRequirement
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Human Oversight"@en ;
+    skos:definition "Design measures enabling human operators to understand, monitor, override, or halt AI outputs."@en ;
+    skos:inScheme   eu-ai-act:Scheme ; prov:wasDerivedFrom "EU AI Act Art. 14" ;
+    skos:exactMatch ai:HumanOversight ;
+.
+eu-ai-act:AccuracyRobustnessRequirement
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Accuracy, Robustness, Cybersecurity"@en ;
+    skos:definition "Maintain declared performance levels; withstand errors, faults, and adversarial acts throughout lifecycle."@en ;
+    skos:inScheme   eu-ai-act:Scheme ; prov:wasDerivedFrom "EU AI Act Art. 15" ;
+    ai:mappedToDimension ai:Robustness ;
+    ai:mappedToDimension ai:Security ;
+.
+eu-ai-act:ConformityAssessmentRequirement
+    a ai:Requirement ; a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "Conformity Assessment"@en ;
+    skos:definition "Third-party or self-assessment demonstrating conformance before market placement."@en ;
+    skos:inScheme   eu-ai-act:Scheme ; prov:wasDerivedFrom "EU AI Act Art. 43" ;
+    skos:exactMatch ai:ConformityAssessment ;
+.
+eu-ai-act:EUDeclarationOfConformity
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "EU Declaration of Conformity"@en ;
+    skos:definition "Formal declaration by provider that high-risk AI system meets all applicable requirements."@en ;
+    skos:inScheme   eu-ai-act:Scheme ; prov:wasDerivedFrom "EU AI Act Art. 47" ;
+    ai:mappedToDimension ai:Accountability ;
+.
+eu-ai-act:CEMarking
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "CE Marking"@en ;
+    skos:definition "CE mark affixed to high-risk AI system to signal conformity under EU AI Act."@en ;
+    skos:inScheme   eu-ai-act:Scheme ; prov:wasDerivedFrom "EU AI Act Art. 48" ;
+.
+eu-ai-act:EUDatabaseRegistration
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "EU Database Registration"@en ;
+    skos:definition "Register high-risk AI systems and GPAI models in the EU AI Act public database before deployment."@en ;
+    skos:inScheme   eu-ai-act:Scheme ; prov:wasDerivedFrom "EU AI Act Art. 49, 71" ;
+    ai:mappedToDimension ai:Transparency ;
+.
+eu-ai-act:PostMarketMonitoring
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Post-Market Monitoring"@en ;
+    skos:definition "Implement a post-market monitoring plan; report serious incidents to market surveillance authorities."@en ;
+    skos:inScheme   eu-ai-act:Scheme ; prov:wasDerivedFrom "EU AI Act Art. 72, 73" ;
+    ai:appliesToLifecycle ai:Monitoring ;
+    ai:mappedToDimension ai:Accountability ;
+.
+
+# ── GPAI Model Requirements ────────────────────────────────────────────────────
+
+eu-ai-act:GPAIModel
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "GPAI Model Obligations"@en ;
+    skos:definition "Providers of general-purpose AI models must maintain technical documentation, respect copyright, and publish training data summaries."@en ;
+    skos:inScheme   eu-ai-act:Scheme ; prov:wasDerivedFrom "EU AI Act Art. 53" ;
+    ai:mappedToDimension ai:Transparency ;
+.
+eu-ai-act:GPAISystemicRisk
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "GPAI Systemic Risk"@en ;
+    skos:definition "GPAI models with computational training exceeding 10^25 FLOPs deemed to pose systemic risk; subject to model evaluation, adversarial testing, and incident reporting."@en ;
+    skos:inScheme   eu-ai-act:Scheme ; prov:wasDerivedFrom "EU AI Act Art. 51, 55" ;
+    ai:hasRiskLevel eu-ai-act:HighRisk ;
+    ai:hasRiskCategory ai:SocietalHarm ;
+.
+
+# ── Rights ────────────────────────────────────────────────────────────────────
+
+eu-ai-act:RightToExplanation
+    a ai:Right ; a skos:Concept ;
+    skos:prefLabel  "Right to Explanation"@en ;
+    skos:definition "Affected persons can request explanation of high-risk AI decisions that significantly affect them (with deployer obligations to inform)."@en ;
+    skos:inScheme   eu-ai-act:Scheme ; prov:wasDerivedFrom "EU AI Act Art. 86" ;
+    ai:mappedToDimension ai:Transparency ;
+    ai:mappedToDimension ai:Explainability ;
+.
+eu-ai-act:RightToComplain
+    a ai:Right ; a skos:Concept ;
+    skos:prefLabel  "Right to Complain"@en ;
+    skos:definition "Affected persons may lodge complaints with national supervisory authorities."@en ;
+    skos:inScheme   eu-ai-act:Scheme ; prov:wasDerivedFrom "EU AI Act Art. 85" ;
+    ai:mappedToDimension ai:Accountability ;
+.
+
+# ── Stakeholder Obligations summary ──────────────────────────────────────────
+
+eu-ai-act:ProviderObligation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Provider Obligation"@en ;
+    skos:definition "Design, test, and bring into conformance; register; conduct conformity assessment; post-market monitoring."@en ;
+    skos:inScheme   eu-ai-act:Scheme ; prov:wasDerivedFrom "EU AI Act Art. 16" ;
+.
+eu-ai-act:DeployerObligation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Deployer Obligation"@en ;
+    skos:definition "Use AI per instructions; ensure human oversight; conduct fundamental rights impact assessment for public bodies."@en ;
+    skos:inScheme   eu-ai-act:Scheme ; prov:wasDerivedFrom "EU AI Act Art. 26" ;
+.
+eu-ai-act:ImporterObligation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Importer Obligation"@en ;
+    skos:definition "Verify provider conformity before placing on EU market; keep documentation; cooperate with authorities."@en ;
+    skos:inScheme   eu-ai-act:Scheme ; prov:wasDerivedFrom "EU AI Act Art. 23" ;
+.
+eu-ai-act:DistributorObligation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Distributor Obligation"@en ;
+    skos:definition "Verify CE marking and documentation exist before making high-risk AI available."@en ;
+    skos:inScheme   eu-ai-act:Scheme ; prov:wasDerivedFrom "EU AI Act Art. 24" ;
+.

@@ -1,0 +1,96 @@
+@prefix iso-50001: <https://iqns.org/v0/iso-50001#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+iso-50001:Ontology a owl:Ontology ;
+    dct:title       "ISO 50001: Energy Management Systems"@en ;
+    prov:wasDerivedFrom <https://www.iso.org/standard/69426.html> ;
+    owl:imports     <https://iqns.org/v0/ai#> ;
+    owl:versionInfo "2018" .
+
+iso-50001:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "ISO 50001:2018 --- Energy Management Systems"@en ;
+    skos:definition "International standard for establishing, implementing, maintaining, and improving an energy management system (EnMS). Applicable to any organisation regardless of type, size, or sector."@en .
+
+iso-50001:ISO50001
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "ISO 50001:2018 --- Energy Management Systems"@en ;
+    skos:definition "A global ISO standard enabling organisations to systematically improve energy performance including energy efficiency, energy use, and energy consumption. Adopted in 170+ countries."@en ;
+    skos:inScheme   iso-50001:Scheme ;
+    dct:publisher   "International Organization for Standardization (ISO)"@en ;
+    dct:issued      "2018"^^xsd:gYear ;
+    prov:wasDerivedFrom <https://www.iso.org/standard/69426.html> ;
+    ai:mappedToDimension ai:Sustainability ;
+    ai:mappedToDimension ai:Accountability ;
+.
+
+iso-50001:EnergyReview
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Energy Review (Clause 6.3)"@en ;
+    skos:definition "Organisations must analyse energy use and consumption based on measurement data, identifying significant energy uses (SEUs) and variables affecting energy performance. For AI/data centre operators: GPU and inference workload profiling is a core input."@en ;
+    skos:inScheme   iso-50001:Scheme ;
+    prov:wasDerivedFrom "ISO 50001:2018 Clause 6.3" ;
+    ai:mappedToDimension ai:Sustainability ;
+.
+
+iso-50001:EnergyBaselineAndPIs
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Energy Baseline and Performance Indicators (Clause 6.4-6.5)"@en ;
+    skos:definition "Establish energy baselines and EnPIs to measure and demonstrate energy performance improvement. For AI workloads: PUE, model energy-per-inference, and training carbon cost are candidate EnPIs."@en ;
+    skos:inScheme   iso-50001:Scheme ;
+    prov:wasDerivedFrom "ISO 50001:2018 Clause 6.4" ;
+    ai:mappedToDimension ai:Sustainability ;
+.
+
+iso-50001:OperationalControl
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Operational Control (Clause 8.1)"@en ;
+    skos:definition "Controls and procedures ensure operations affecting significant energy uses are carried out under specified conditions. Includes procurement controls for AI hardware and cloud compute energy performance."@en ;
+    skos:inScheme   iso-50001:Scheme ;
+    prov:wasDerivedFrom "ISO 50001:2018 Clause 8.1" ;
+    ai:mappedToDimension ai:Sustainability ;
+.
+
+iso-50001:EnergyMeasurementAndMonitoring
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Measurement, Monitoring, Analysis (Clause 9.1)"@en ;
+    skos:definition "Key characteristics of energy performance must be measured, monitored, and analysed at planned intervals including actual vs. expected energy consumption and EnPI values."@en ;
+    skos:inScheme   iso-50001:Scheme ;
+    prov:wasDerivedFrom "ISO 50001:2018 Clause 9.1" ;
+    ai:mappedToDimension ai:Sustainability ;
+.
+
+iso-50001:InternalAuditEnMS
+    a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "Internal Audit of the EnMS (Clause 9.2)"@en ;
+    skos:definition "Planned internal audits to assess whether the EnMS conforms to planned arrangements and is effectively implemented and maintained."@en ;
+    skos:inScheme   iso-50001:Scheme ;
+    prov:wasDerivedFrom "ISO 50001:2018 Clause 9.2" ;
+    ai:mappedToDimension ai:Accountability ;
+.
+
+iso-50001:AIComputeEnergyRisk
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "AI Compute Energy Consumption Risk"@en ;
+    skos:definition "AI training and inference workloads are significant energy consumers. Large language model training can consume hundreds of MWh. ISO 50001 provides the management system framework for AI-related energy measurement and improvement."@en ;
+    skos:inScheme   iso-50001:Scheme ;
+    prov:wasDerivedFrom "ISO 50001:2018" ;
+    ai:hasRiskLevel ai:HighRisk ;
+    ai:mappedToDimension ai:Sustainability ;
+.
+
+iso-50001:EUEnergyEfficiencyDirective
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "EU Energy Efficiency Directive 2023/1791 --- Data Centre Provisions"@en ;
+    skos:definition "EU EED (recast 2023) requires data centres above thresholds to report on energy consumption, PUE, water usage, and renewable energy share. ISO 50001 certification is recognised as a pathway to demonstrating compliance."@en ;
+    skos:inScheme   iso-50001:Scheme ;
+    prov:wasDerivedFrom <https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023L1791> ;
+    skos:relatedMatch iso-50001:ISO50001 ;
+    ai:mappedToDimension ai:Sustainability ;
+.

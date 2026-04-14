@@ -1,0 +1,41 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# 09  Risk Catalogue by Category and Severity
+# Purpose : Full enumeration of all ai:Risk instances grouped by their
+#           canonical RiskCategory and RiskLevel.
+# Use case: CISO AI risk register — structured input for a corporate risk matrix.
+# ─────────────────────────────────────────────────────────────────────────────
+
+PREFIX ai:   <https://iqns.org/v0/ai#>
+PREFIX dct:  <http://purl.org/dc/terms/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+SELECT DISTINCT ?this
+    ?categoryLabel
+    ?riskLevelLabel
+    ?riskLabel
+    ?riskDef
+    ?frameworkLabel
+    ?citation
+WHERE {
+    ?this  a ai:Risk ;
+           skos:prefLabel ?riskLabel .
+
+    OPTIONAL {
+        ?this ai:hasRiskCategory ?cat .
+        ?cat  skos:prefLabel     ?categoryLabel .
+    }
+    OPTIONAL {
+        ?this ai:hasRiskLevel ?level .
+        ?level skos:prefLabel ?riskLevelLabel .
+    }
+    OPTIONAL { ?this skos:definition ?riskDef  . }
+    OPTIONAL { ?this dct:source      ?citation . }
+
+    OPTIONAL {
+        ?fw (ai:hasRisk | ai:hasRequirement) ?this ;
+            skos:prefLabel ?frameworkLabel .
+    }
+
+    FILTER ( lang(?riskLabel) = "en" )
+}
+ORDER BY ?categoryLabel ?riskLevelLabel ?riskLabel

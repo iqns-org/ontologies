@@ -1,0 +1,129 @@
+@prefix fda-aiml-samd: <https://iqns.org/v0/fda-aiml-samd#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+fda-aiml-samd:Ontology a owl:Ontology ;
+    dct:title  "FDA Action Plan for AI/ML-Based Software as a Medical Device (SaMD, 2021) + Good Machine Learning Practice (GMLP)"@en ;
+    prov:wasDerivedFrom <https://www.fda.gov/media/145022/download> .
+
+fda-aiml-samd:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "FDA AI/ML-Based SaMD Regulatory Framework"@en ;
+    skos:definition "FDA five-action plan for oversight of adaptive AI/ML medical device software; introduces Predetermined Change Control Plans and real-world performance monitoring."@en .
+
+fda-aiml-samd:FDA_AIML_SaMD
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "FDA AI/ML-Based Software as a Medical Device Framework"@en ;
+    skos:definition "FDA's adaptive regulatory framework for AI/ML SaMD that locks some elements for clearance while accommodating planned algorithmic changes through predetermined change control."@en ;
+    skos:inScheme   fda-aiml-samd:Scheme ;
+    dct:publisher   "U.S. Food and Drug Administration"@en ;
+    dct:issued      "2021"^^xsd:gYear ;
+.
+
+# ── Core Concepts ─────────────────────────────────────────────────────────────
+
+fda-aiml-samd:SoftwareAsMedicalDevice
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Software as a Medical Device (SaMD)"@en ;
+    skos:definition "Software intended to be used for medical purposes without being part of a hardware medical device; regulated by FDA when it drives clinical decision-making."@en ;
+    skos:inScheme   fda-aiml-samd:Scheme ; prov:wasDerivedFrom "FDA SaMD Action Plan 2021 §1" ;
+    ai:mappedToDimension ai:Safety ;
+    ai:appliesToDomain ai:HealthAI ;
+.
+fda-aiml-samd:LockedAlgorithm
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Locked Algorithm"@en ;
+    skos:definition "AI/ML algorithm that does not change its behaviour after market release; changes require a new FDA marketing submission."@en ;
+    skos:inScheme   fda-aiml-samd:Scheme ; prov:wasDerivedFrom "FDA SaMD Action Plan 2021 §2" ;
+    ai:appliesToLifecycle ai:Deployment ;
+.
+fda-aiml-samd:AdaptiveAlgorithm
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Adaptive/Continuously Learning Algorithm"@en ;
+    skos:definition "AI/ML algorithm that continues to learn and change its behaviour after market release using real-world data; subject to Predetermined Change Control Plan."@en ;
+    skos:inScheme   fda-aiml-samd:Scheme ; prov:wasDerivedFrom "FDA SaMD Action Plan 2021 §2" ;
+    skos:broadMatch ai:Robustness ;
+    ai:appliesToLifecycle ai:Monitoring ;
+.
+
+# ── Predetermined Change Control Plan (PCCP) ─────────────────────────────────
+
+fda-aiml-samd:PredeterminedChangeControlPlan
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Predetermined Change Control Plan (PCCP)"@en ;
+    skos:definition "FDA-approved plan submitted at market clearance specifying the types of algorithm changes allowed post-deployment, the methodology used, and performance controls."@en ;
+    skos:inScheme   fda-aiml-samd:Scheme ; prov:wasDerivedFrom "FDA SaMD Action Plan 2021 Action 1" ;
+    skos:exactMatch ai:Accountability ;
+    ai:appliesToLifecycle ai:Deployment ;
+    ai:appliesToLifecycle ai:Monitoring ;
+.
+fda-aiml-samd:AlgorithmChangeProtocol
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Algorithm Change Protocol"@en ;
+    skos:definition "Specific methodology within the PCCP describing training data sources, validation approaches, and performance thresholds for planned algorithm updates."@en ;
+    skos:inScheme   fda-aiml-samd:Scheme ; prov:wasDerivedFrom "FDA SaMD Action Plan 2021 Action 1" ;
+    skos:broadMatch ai:Robustness ;
+.
+
+# ── Good Machine Learning Practice (GMLP) ─────────────────────────────────────
+
+fda-aiml-samd:GoodMachineLearningPractice
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Good Machine Learning Practice (GMLP)"@en ;
+    skos:definition "Ten guiding GMLP principles for AI/ML medical devices: relevant data, clinical relevance, data adequacy, training independence, reference standard, model fit, clinically meaningful performance, human-AI team performance, tested in relevant population, monitoring."@en ;
+    skos:inScheme   fda-aiml-samd:Scheme ; prov:wasDerivedFrom "FDA GMLP Ten Principles 2021" ;
+    skos:broadMatch ai:Reliability ;
+    ai:appliesToLifecycle ai:Development ;
+    ai:appliesToLifecycle ai:Validation ;
+.
+fda-aiml-samd:DataRepresentativeness
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Clinical Data Representativeness"@en ;
+    skos:definition "Training and test datasets must represent the intended patient population including across age, sex, race, comorbidities, and clinical settings."@en ;
+    skos:inScheme   fda-aiml-samd:Scheme ; prov:wasDerivedFrom "FDA GMLP Principle 3" ;
+    skos:broadMatch ai:Fairness ;
+    ai:appliesToLifecycle ai:Development ;
+.
+fda-aiml-samd:HumanAITeamPerformance
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Human-AI Team Performance Testing"@en ;
+    skos:definition "Evaluate performance of the clinician–AI system combination, not algorithm alone; assess task performance and cognitive interaction."@en ;
+    skos:inScheme   fda-aiml-samd:Scheme ; prov:wasDerivedFrom "FDA GMLP Principle 8" ;
+    skos:exactMatch ai:HumanOversight ;
+    ai:appliesToLifecycle ai:Validation ;
+.
+
+# ── Real-World Performance Monitoring ────────────────────────────────────────
+
+fda-aiml-samd:RealWorldPerformanceMonitoring
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Real-World Performance Monitoring"@en ;
+    skos:definition "Continuous post-market surveillance monitoring AI/ML SaMD performance in real clinical conditions; detect degradation, distribution shift, and adverse events."@en ;
+    skos:inScheme   fda-aiml-samd:Scheme ; prov:wasDerivedFrom "FDA SaMD Action Plan 2021 Action 3" ;
+    skos:exactMatch ai:Robustness ;
+    ai:appliesToLifecycle ai:Monitoring ;
+.
+fda-aiml-samd:TransparencyToUsersPatients
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Transparency to Users and Patients"@en ;
+    skos:definition "Clear labelling of AI/ML device capabilities, limitations, intended use population, and expected performance; readable by both clinicians and patients."@en ;
+    skos:inScheme   fda-aiml-samd:Scheme ; prov:wasDerivedFrom "FDA SaMD Action Plan 2021 Action 2" ;
+    skos:exactMatch ai:Transparency ;
+    ai:appliesToRole ai:User ;
+    ai:appliesToRole ai:AffectedPerson ;
+.
+
+# ── Risk Classification ───────────────────────────────────────────────────────
+
+fda-aiml-samd:SaMDRiskClass
+    a ai:RiskLevel ; a skos:Concept ;
+    skos:prefLabel  "SaMD Risk Classification (Critical / Serious / Non-Serious)"@en ;
+    skos:definition "IMDRF SaMD risk framework: significance of information × healthcare situation; drives FDA regulatory pathway (510k, De Novo, PMA)."@en ;
+    skos:inScheme   fda-aiml-samd:Scheme ; prov:wasDerivedFrom "IMDRF SaMD N12 / FDA SaMD Action Plan §2" ;
+    skos:broadMatch ai:HighRisk ;
+.

@@ -1,0 +1,18 @@
+# 01-ins-actuarial-transparency.rq
+# Goal: Solvency II transparency lookup for pricing models.
+
+PREFIX gg: <https://iqns.org/v0/ai#>
+PREFIX ing: <https://iqns.org/v0/insgraph#>
+PREFIX sol2: <https://iqns.org/v0/solvency-ii#>
+
+SELECT ?this ?label ?transparencyObligation
+WHERE {
+    ?this a gg:System ;
+                  skos:prefLabel ?label ;
+                  gg:mappedToDimension ing:ActuarialRisk .
+    
+    # Linking transparency via Solvency II structure
+    ?this gg:implementsControl ?transparencyObligation .
+    ?transparencyObligation a gg:Obligation ;
+                            skos:prefLabel ?transparencyObligationLabel .
+}

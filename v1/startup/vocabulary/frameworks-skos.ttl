@@ -1,0 +1,22 @@
+@prefix sta-crosswalk: <https://iqns.org/v0/sta-crosswalk#> .
+@prefix stg:   <https://iqns.org/v0/stargraph#> .
+@prefix ai:    <https://iqns.org/v0/ai#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct:   <http://purl.org/dc/terms/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+
+# AI Frameworks applicable to Startups
+@prefix nist:   <https://iqns.org/v0/nist-ai-rmf#> .
+@prefix iso42001:  <https://iqns.org/v0/iso-42001#> .
+@prefix owasp:  <https://iqns.org/v0/owasp-llm#> .
+@prefix sg-v2:  <https://iqns.org/v0/sg-ai-gov-v2#> .
+
+sta-crosswalk:Ontology a owl:Ontology ; 
+    dct:title "Startup AI Crosswalk"@en ;
+    owl:imports <https://iqns.org/v0/stargraph#> .
+
+nist:Framework skos:relatedMatch stg:RegulatoryReadiness .
+iso42001:Framework skos:relatedMatch stg:EnterpriseReadiness .
+owasp:Framework skos:relatedMatch stg:TrustAndSafety .
+sg-v2:Framework skos:relatedMatch stg:MVPStage .

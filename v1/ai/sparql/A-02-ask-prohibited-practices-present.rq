@@ -1,0 +1,44 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# A-02 — Are prohibited practices present in this system profile?
+# Purpose : Identify if the system has any mapped items that are in the
+#           UnacceptableRisk category (EU AI Act Article 5 / equivalent).
+# Use case: Intake gate for immediate stop/go decision before design approval.
+# ─────────────────────────────────────────────────────────────────────────────
+
+PREFIX ai:   <https://iqns.org/v0/ai#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+ASK WHERE {
+    ?system a ai:System .
+
+    {
+        # Explicit, generic prohibited-level risk mapping
+        ?system (ai:implementsControl|ai:implementsRequirement) ?item .
+        ?item ai:hasRiskLevel ?rl .
+        {
+            ?rl skos:exactMatch ai:UnacceptableRisk .
+        }
+        UNION {
+            FILTER(?rl = ai:UnacceptableRisk)
+        }
+    }
+    UNION
+    {
+        ?system (ai:implementsControl|ai:implementsRequirement) ?item .
+        ?item a ai:Risk .
+        ?item ai:hasRiskLevel ?rl .
+        {
+            ?rl skos:exactMatch ai:UnacceptableRisk .
+        }
+        UNION {
+            FILTER(?rl = ai:UnacceptableRisk)
+        }
+    }
+    UNION
+    {
+        ?system (ai:implementsControl|ai:implementsRequirement) ?item .
+        ?item ai:hasRiskCategory ?cat .
+        ?cat skos:prefLabel ?catLabel .
+        FILTER(CONTAINS(LCASE(STR(?catLabel)), "prohibited") || CONTAINS(LCASE(STR(?catLabel)), "unacceptable"))
+    }
+}

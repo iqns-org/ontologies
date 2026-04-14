@@ -1,0 +1,203 @@
+@prefix dora: <https://iqns.org/v0/dora#> .
+@prefix finance:   <https://iqns.org/v0/finance#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+dora:Ontology a owl:Ontology ;
+    dct:title       "DORA — Digital Operational Resilience Act (EU 2022/2554)"@en ;
+    prov:wasDerivedFrom <https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32022R2554> ;
+    owl:versionInfo "Regulation (EU) 2022/2554 — fully applicable 17 January 2025" ;
+.
+
+dora:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "DORA — Digital Operational Resilience Act"@en ;
+    skos:definition "EU regulation establishing ICT risk management, incident reporting, resilience testing, and third-party oversight obligations for financial entities. Fully applicable from 17 January 2025."@en .
+
+dora:DORA
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "DORA — Digital Operational Resilience Act"@en ;
+    skos:definition "Regulation (EU) 2022/2554 on digital operational resilience for the financial sector — creates a comprehensive ICT risk and operational resilience framework for banks, insurers, investment firms, and critical ICT third-party providers."@en ;
+    skos:inScheme   dora:Scheme ;
+    dct:publisher   "European Parliament and Council of the EU"@en ;
+    dct:issued      "2022"^^xsd:gYear ;
+    finance:appliesFromDate "2025-01-17"^^xsd:date ;
+.
+
+# ── Chapter II — ICT Risk Management (Art. 5–16) ─────────────────────────────
+
+dora:ICTRiskManagementFramework
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "ICT Risk Management Framework"@en ;
+    skos:definition "Financial entities must establish, implement, and maintain a sound, comprehensive, and well-documented ICT risk management framework as part of their overall risk management system."@en ;
+    skos:inScheme   dora:Scheme ;
+    prov:wasDerivedFrom "DORA Art. 6" ;
+    ai:mappedToDimension finance:ICTRisk ;
+.
+dora:ICTAssetManagement
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "ICT Asset Management and Classification"@en ;
+    skos:definition "Financial entities must identify, classify, and document all ICT assets continuously — physical, software, and data — and assess their criticality to business functions."@en ;
+    skos:inScheme   dora:Scheme ;
+    prov:wasDerivedFrom "DORA Art. 8" ;
+    ai:mappedToDimension finance:ICTRisk ;
+    ai:appliesToLifecycle ai:Design ;
+.
+dora:ICTProtectionControls
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "ICT Protection and Prevention Controls"@en ;
+    skos:definition "Entities must implement appropriate ICT security controls including access management, MFA, encryption, network security, and patch management policies."@en ;
+    skos:inScheme   dora:Scheme ;
+    prov:wasDerivedFrom "DORA Art. 9" ;
+    ai:mappedToDimension finance:ICTRisk ;
+    ai:mappedToDimension ai:Security ;
+.
+dora:ICTDetectionControls
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "ICT Anomaly and Incident Detection"@en ;
+    skos:definition "Entities must deploy mechanisms to promptly detect anomalous activities, identify ICT-related incidents, and establish alert thresholds."@en ;
+    skos:inScheme   dora:Scheme ;
+    prov:wasDerivedFrom "DORA Art. 10" ;
+    ai:mappedToDimension finance:ICTRisk ;
+    ai:mappedToDimension ai:Security ;
+.
+dora:DigitalOperationalResilienceStrategy
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Digital Operational Resilience Strategy"@en ;
+    skos:definition "Management body must approve and oversee a documented digital operational resilience strategy setting tolerance levels, objectives, and recovery targets."@en ;
+    skos:inScheme   dora:Scheme ;
+    prov:wasDerivedFrom "DORA Art. 6(8)" ;
+    ai:mappedToDimension finance:ICTRisk ;
+    ai:mappedToDimension ai:Accountability ;
+.
+dora:BusinessContinuityPolicy
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "ICT Business Continuity Policy"@en ;
+    skos:definition "Financial entities must establish, implement, and maintain ICT business continuity plans with RPO and RTO targets, covering crisis communication and coordination procedures."@en ;
+    skos:inScheme   dora:Scheme ;
+    prov:wasDerivedFrom "DORA Art. 11" ;
+    ai:mappedToDimension finance:ICTRisk ;
+.
+dora:ManagementBodyResponsibility
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Management Body ICT Accountability"@en ;
+    skos:definition "The management body bears ultimate responsibility for ICT risk management. Members must maintain sufficient knowledge and skills to understand ICT risks and bear individual accountability for decisions taken."@en ;
+    skos:inScheme   dora:Scheme ;
+    prov:wasDerivedFrom "DORA Art. 5" ;
+    ai:mappedToDimension ai:Accountability ;
+    ai:mappedToDimension ai:HumanOversight ;
+.
+
+# ── Chapter III — ICT Incident Management (Art. 17–23) ───────────────────────
+
+dora:ICTIncidentClassification
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "ICT Incident Classification"@en ;
+    skos:definition "Financial entities must classify ICT incidents using the criteria established in DORA RTS (impact on clients, duration, geographic spread, data loss) to determine whether they are major incidents triggering mandatory reporting."@en ;
+    skos:inScheme   dora:Scheme ;
+    prov:wasDerivedFrom "DORA Art. 18" ;
+    ai:mappedToDimension finance:ICTRisk ;
+.
+dora:MajorICTIncidentReporting
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Major ICT Incident Reporting to Competent Authority"@en ;
+    skos:definition "Financial entities must report major ICT-related incidents to their competent authority in a three-stage process: initial notification (within 4 hours), intermediate report (72 hours), and final report (1 month). AI-related failures that qualify as major incidents are in scope."@en ;
+    skos:inScheme   dora:Scheme ;
+    prov:wasDerivedFrom "DORA Art. 19" ;
+    ai:mappedToDimension finance:ICTRisk ;
+    ai:mappedToDimension ai:Transparency ;
+.
+dora:SignificantCyberThreatNotification
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Significant Cyber Threat Voluntary Notification"@en ;
+    skos:definition "Financial entities may voluntarily notify their competent authority of significant cyber threats — sharing threat intelligence to enable systemic response."@en ;
+    skos:inScheme   dora:Scheme ;
+    prov:wasDerivedFrom "DORA Art. 19(2)" ;
+    ai:mappedToDimension finance:ICTRisk ;
+.
+
+# ── Chapter IV — Digital Operational Resilience Testing (Art. 24–27) ─────────
+
+dora:BasicResilienceTesting
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Basic Digital Operational Resilience Testing"@en ;
+    skos:definition "All financial entities must conduct at least annual vulnerability assessments, open-source analyses, network security assessments, and penetration tests on ICT systems supporting critical functions."@en ;
+    skos:inScheme   dora:Scheme ;
+    prov:wasDerivedFrom "DORA Art. 25" ;
+    ai:mappedToDimension finance:ICTRisk ;
+    ai:mappedToDimension ai:Robustness ;
+    ai:appliesToLifecycle ai:Monitor ;
+.
+dora:ThreatLedPenetrationTesting
+    a ai:Obligation ; a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "TLPT — Threat-Led Penetration Testing"@en ;
+    skos:definition "Significant financial entities must conduct TLPT at least every three years using authorised TLPT providers, testing live production systems covering all critical ICT infrastructure. AI systems supporting critical or important functions must be included."@en ;
+    skos:inScheme   dora:Scheme ;
+    prov:wasDerivedFrom "DORA Art. 26" ;
+    ai:mappedToDimension finance:ICTRisk ;
+    ai:mappedToDimension ai:Security ;
+    ai:mappedToDimension ai:Robustness ;
+.
+
+# ── Chapter V — Third-Party ICT Risk (Art. 28–44) ────────────────────────────
+
+dora:ThirdPartyICTRiskPolicy
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "ICT Third-Party Risk Management Policy"@en ;
+    skos:definition "Financial entities must adopt and regularly review a strategy for ICT third-party risk, maintain a register of all ICT third-party service providers, and conduct pre-contractual due diligence on all providers of ICT services supporting critical functions."@en ;
+    skos:inScheme   dora:Scheme ;
+    prov:wasDerivedFrom "DORA Art. 28" ;
+    ai:mappedToDimension finance:ICTRisk ;
+.
+dora:ConcentrationRiskAssessment
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "ICT Third-Party Concentration Risk Assessment"@en ;
+    skos:definition "Financial entities must identify concentration risks arising from dependence on a single or small number of critical ICT third-party providers and assess whether exit strategies are feasible."@en ;
+    skos:inScheme   dora:Scheme ;
+    prov:wasDerivedFrom "DORA Art. 29" ;
+    ai:mappedToDimension finance:ConcentrationRisk ;
+    ai:mappedToDimension finance:ICTRisk ;
+.
+dora:ContractualRequirementsForICTProviders
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Contractual Requirements for ICT Third-Party Providers"@en ;
+    skos:definition "Contracts with ICT third-party providers must include: description of services, sub-outsourcing locations, data protection provisions, incident reporting obligations, audit rights, business continuity requirements, and termination rights."@en ;
+    skos:inScheme   dora:Scheme ;
+    prov:wasDerivedFrom "DORA Art. 30" ;
+    ai:mappedToDimension finance:ICTRisk ;
+.
+dora:CriticalTPPOversight
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Critical ICT Third-Party Provider (CTPP) Oversight"@en ;
+    skos:definition "Providers designated as Critical Third-Party Providers (CTPPs) by ESAs are subject to direct EU-level oversight including annual monitoring programmes, inspections, and binding recommendations from a Lead Overseer."@en ;
+    skos:inScheme   dora:Scheme ;
+    prov:wasDerivedFrom "DORA Art. 31–44" ;
+    ai:mappedToDimension finance:ICTRisk ;
+.
+
+# ── AI-Specific Implications ──────────────────────────────────────────────────
+
+dora:AISystemsBCPCoverage
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "AI Systems in Business Continuity Planning"@en ;
+    skos:definition "AI systems supporting critical or important business functions must be explicitly identified in the ICT asset register and covered by BCP/DRP provisions — including model fallback procedures and human override protocols."@en ;
+    skos:inScheme   dora:Scheme ;
+    prov:wasDerivedFrom "DORA Art. 11; DORA Art. 8 (asset management)" ;
+    ai:mappedToDimension finance:ICTRisk ;
+    ai:mappedToDimension ai:HumanOversight ;
+    skos:relatedMatch <https://iqns.org/v0/ai#HumanOversight> ;
+.
+dora:ThirdPartyAIProviderRisk
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "Third-Party AI Provider ICT Concentration Risk"@en ;
+    skos:definition "Dependence on a single AI/ML cloud provider (OpenAI, Anthropic, Google, AWS Bedrock) for critical financial AI functions creates DORA concentration risk — exit strategies and fallback models must be documented."@en ;
+    skos:inScheme   dora:Scheme ;
+    prov:wasDerivedFrom "DORA Art. 29" ;
+    ai:mappedToDimension finance:ConcentrationRisk ;
+    ai:mappedToDimension finance:ICTRisk ;
+.

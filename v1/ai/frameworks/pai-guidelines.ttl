@@ -1,0 +1,125 @@
+@prefix pai-guidelines: <https://iqns.org/v0/pai-guidelines#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+pai-guidelines:Ontology a owl:Ontology ;
+    dct:title  "Partnership on AI (PAI) — Tenets, Responsible AI Practices, and ABOUT ML (2016–2023)"@en ;
+    prov:wasDerivedFrom <https://partnershiponai.org/about/> .
+
+pai-guidelines:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "Partnership on AI Responsible AI Guidelines"@en ;
+    skos:definition "PAI's multi-stakeholder responsible AI principles: eight tenets guiding beneficial AI development, plus specific practices on safe AI, fair/transparent/accountable AI, and documentation."@en .
+
+pai-guidelines:PAI_Guidelines
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "Partnership on AI Tenets and Practices"@en ;
+    skos:definition "Multi-stakeholder responsible AI framework from PAI (academia, civil society, industry); eight tenets and domain-specific working group practices for beneficial, safe, and fair AI."@en ;
+    skos:inScheme   pai-guidelines:Scheme ;
+    dct:publisher   "Partnership on AI"@en ;
+    dct:issued      "2016"^^xsd:gYear ;
+.
+
+# ── Eight PAI Tenets ──────────────────────────────────────────────────────────
+
+pai-guidelines:BeneficialAndInclusiveAI
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Beneficial and Inclusive AI"@en ;
+    skos:definition "AI should benefit all people; development must be inclusive and account for needs of marginalised communities worldwide."@en ;
+    skos:inScheme   pai-guidelines:Scheme ; prov:wasDerivedFrom "PAI Tenet 1" ;
+    skos:exactMatch ai:Fairness ;
+.
+pai-guidelines:SafeAndTrustworthyAI
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Safe and Trustworthy AI"@en ;
+    skos:definition "AI systems must be safe, robust, and secure; developers are responsible for ensuring systems behave as intended and do no harm."@en ;
+    skos:inScheme   pai-guidelines:Scheme ; prov:wasDerivedFrom "PAI Tenet 2" ;
+    skos:exactMatch ai:Safety ;
+    skos:exactMatch ai:Robustness ;
+.
+pai-guidelines:TransparentAndExplainablePAI
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Transparent and Explainable AI"@en ;
+    skos:definition "AI developers should be transparent about capabilities and limitations; systems should be explainable in ways meaningful to affected stakeholders."@en ;
+    skos:inScheme   pai-guidelines:Scheme ; prov:wasDerivedFrom "PAI Tenet 3" ;
+    skos:exactMatch ai:Transparency ;
+    skos:exactMatch ai:Explainability ;
+.
+pai-guidelines:FairAndNonDiscriminatory
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Fair and Non-Discriminatory"@en ;
+    skos:definition "AI systems must treat people fairly; AI developers must work to identify and eliminate bias, especially for protected characteristics."@en ;
+    skos:inScheme   pai-guidelines:Scheme ; prov:wasDerivedFrom "PAI Tenet 4" ;
+    skos:exactMatch ai:Fairness ;
+.
+pai-guidelines:AccountableAndResponsiblePAI
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Accountable and Responsible"@en ;
+    skos:definition "AI developers and deployers must be accountable for system outcomes; clear responsibility chains must exist for all AI systems."@en ;
+    skos:inScheme   pai-guidelines:Scheme ; prov:wasDerivedFrom "PAI Tenet 5" ;
+    skos:exactMatch ai:Accountability ;
+.
+pai-guidelines:RespectPrivacyPAI
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Respect Privacy and Data Rights"@en ;
+    skos:definition "AI must respect individuals' data privacy and rights; AI applications must not enable surveillance beyond legitimate purposes."@en ;
+    skos:inScheme   pai-guidelines:Scheme ; prov:wasDerivedFrom "PAI Tenet 6" ;
+    skos:exactMatch ai:Privacy ;
+.
+pai-guidelines:StrengthenMultistakeholderCollaboration
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Multistakeholder Collaboration"@en ;
+    skos:definition "AI governance requires collaboration across civil society, government, academia, and industry; no single actor can govern AI alone."@en ;
+    skos:inScheme   pai-guidelines:Scheme ; prov:wasDerivedFrom "PAI Tenet 7" ;
+    ai:mappedToDimension ai:Accountability ;
+.
+pai-guidelines:EnsureLongTermBenefit
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Ensure Long-Term Societal Benefit"@en ;
+    skos:definition "AI development should be oriented toward long-term human flourishing; risks of catastrophic or existential AI outcomes must be actively researched and mitigated."@en ;
+    skos:inScheme   pai-guidelines:Scheme ; prov:wasDerivedFrom "PAI Tenet 8" ;
+    ai:mappedToDimension ai:Safety ;
+    ai:mappedToDimension ai:Sustainability ;
+.
+
+# ── ABOUT ML Documentation Norms ──────────────────────────────────────────────
+
+pai-guidelines:ABOUTMLAnnotation
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "ABOUT ML — Annotation and Benchmarking"@en ;
+    skos:definition "PAI standard for documenting ML training datasets and models; establishes norms for data provenance, annotation guidelines, and model performance reporting."@en ;
+    skos:inScheme   pai-guidelines:Scheme ; prov:wasDerivedFrom "PAI ABOUT ML 2020" ;
+    skos:exactMatch ai:Transparency ;
+    ai:appliesToLifecycle ai:Development ;
+.
+pai-guidelines:DatasetDocumentation
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Dataset Documentation Norms"@en ;
+    skos:definition "Datasets used for AI training should be documented with collection methodology, demographics, intended use, and known limitations to enable downstream bias and fairness evaluation."@en ;
+    skos:inScheme   pai-guidelines:Scheme ; prov:wasDerivedFrom "PAI ABOUT ML" ;
+    skos:broadMatch ai:Transparency ;
+    ai:appliesToLifecycle ai:Development ;
+.
+
+# ── Responsible AI Practices ──────────────────────────────────────────────────
+
+pai-guidelines:SafeRemoteWorkAI
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Safe AI in High-Stakes Domains"@en ;
+    skos:definition "AI used in high-stakes contexts (health, justice, welfare) must include robust human oversight, contestability mechanisms, and regular equity audits."@en ;
+    skos:inScheme   pai-guidelines:Scheme ; prov:wasDerivedFrom "PAI Responsible Practices" ;
+    skos:exactMatch ai:HumanOversight ;
+    skos:broadMatch ai:Fairness ;
+.
+pai-guidelines:ContestablityMechanism
+    a ai:Right ; a skos:Concept ;
+    skos:prefLabel  "Contestability of AI Decisions"@en ;
+    skos:definition "Persons affected by AI decisions must have meaningful recourse to challenge outcomes; processes must be accessible and effective."@en ;
+    skos:inScheme   pai-guidelines:Scheme ; prov:wasDerivedFrom "PAI Responsible Practices" ;
+    ai:appliesToRole ai:AffectedPerson ;
+.

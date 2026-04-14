@@ -1,0 +1,503 @@
+@prefix gcp:  <https://iqns.org/v0/itil/gcp#> .
+@prefix itil: <https://iqns.org/itil#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# ── Ontology ─────────────────────────────────────────────────────────────────
+
+gcp:Ontology
+    a owl:Ontology ;
+    dct:title       "Google Cloud Platform (GCP) Service Offerings mapped to ITIL"@en ;
+    skos:definition "SKOS concept scheme mapping Google Cloud Platform services to ITIL Service Knowledge Management System practices, configuration items, and service records."@en ;
+    prov:wasDerivedFrom <https://cloud.google.com/> ;
+    dct:issued      "2026"^^xsd:gYear ;
+    owl:versionInfo "0.1" ;
+    owl:imports     <https://iqns.org/itil#> ;
+.
+
+gcp:GCPScheme
+    a skos:ConceptScheme ;
+    skos:prefLabel  "Google Cloud Platform Services"@en ;
+    skos:definition "A SKOS scheme mapping GCP cloud offerings to ITIL practices, service components, and configuration item types."@en ;
+    dct:publisher   "Google Cloud"@en ;
+    dct:issued      "2008"^^xsd:gYear ;
+.
+
+# ═══════════════════════════════════════════════════════════════
+#  COMPUTE & INFRASTRUCTURE
+# ═══════════════════════════════════════════════════════════════
+
+gcp:ComputeEngine
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Compute Engine"@en ;
+    skos:definition     "Scalable computing resources providing virtual machines with customizable CPU, memory, and GPU."@en ;
+    skos:inScheme       gcp:GCPScheme ;
+    prov:wasDerivedFrom <https://cloud.google.com/compute/> ;
+    skos:exactMatch     itil:HardwareCI ;
+    skos:relatedMatch   itil:InfrastructureAndPlatformManagement ;
+    skos:relatedMatch   itil:ServiceConfigurationManagement ;
+.
+
+gcp:CloudRun
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Cloud Run"@en ;
+    skos:definition     "Serverless container platform for deploying containerised applications with automatic scaling."@en ;
+    skos:inScheme       gcp:GCPScheme ;
+    prov:wasDerivedFrom <https://cloud.google.com/run/> ;
+    skos:exactMatch     itil:SoftwareCI ;
+    skos:relatedMatch   itil:SoftwareDevelopmentAndManagement ;
+    skos:relatedMatch   itil:DeploymentManagement ;
+.
+
+gcp:CloudFunctions
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Cloud Functions"@en ;
+    skos:definition     "Serverless function execution environment for event-driven workloads."@en ;
+    skos:inScheme       gcp:GCPScheme ;
+    prov:wasDerivedFrom <https://cloud.google.com/functions/> ;
+    skos:exactMatch     itil:SoftwareCI ;
+    skos:relatedMatch   itil:SoftwareDevelopmentAndManagement ;
+    skos:relatedMatch   itil:DeploymentManagement ;
+.
+
+gcp:GKE
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Google Kubernetes Engine (GKE)"@en ;
+    skos:definition     "Managed Kubernetes service for container orchestration with automatic scaling and upgrades."@en ;
+    skos:inScheme       gcp:GCPScheme ;
+    prov:wasDerivedFrom <https://cloud.google.com/kubernetes-engine/> ;
+    skos:exactMatch     itil:SoftwareCI ;
+    skos:relatedMatch   itil:DeploymentManagement ;
+    skos:relatedMatch   itil:CapacityAndPerformanceManagement ;
+.
+
+gcp:AppEngine
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "App Engine"@en ;
+    skos:definition     "Platform-as-a-Service for building scalable web and mobile backends."@en ;
+    skos:inScheme       gcp:GCPScheme ;
+    prov:wasDerivedFrom <https://cloud.google.com/appengine/> ;
+    skos:exactMatch     itil:SoftwareCI ;
+    skos:relatedMatch   itil:SoftwareDevelopmentAndManagement ;
+    skos:relatedMatch   itil:DeploymentManagement ;
+.
+
+# ═══════════════════════════════════════════════════════════════
+#  STORAGE
+# ═══════════════════════════════════════════════════════════════
+
+gcp:CloudStorage
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Cloud Storage"@en ;
+    skos:definition     "Unified object storage for storing unstructured data with high durability and global access."@en ;
+    skos:inScheme       gcp:GCPScheme ;
+    prov:wasDerivedFrom <https://cloud.google.com/storage/> ;
+    skos:exactMatch     itil:ConfigurationItem ;
+    skos:relatedMatch   itil:ServiceConfigurationManagement ;
+    skos:relatedMatch   itil:ITAssetManagement ;
+.
+
+gcp:Filestore
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Filestore"@en ;
+    skos:definition     "Managed file storage supporting NFS protocol for shared access across compute resources."@en ;
+    skos:inScheme       gcp:GCPScheme ;
+    prov:wasDerivedFrom <https://cloud.google.com/filestore/> ;
+    skos:exactMatch     itil:ConfigurationItem ;
+    skos:relatedMatch   itil:ServiceConfigurationManagement ;
+.
+
+gcp:PersistentDisk
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Persistent Disk"@en ;
+    skos:definition     "Block storage volumes for Compute Engine instances with snapshot and replication support."@en ;
+    skos:inScheme       gcp:GCPScheme ;
+    prov:wasDerivedFrom <https://cloud.google.com/compute/docs/disks/> ;
+    skos:exactMatch     itil:HardwareCI ;
+    skos:relatedMatch   itil:CapacityAndPerformanceManagement ;
+.
+
+# ═══════════════════════════════════════════════════════════════
+#  DATABASES
+# ═══════════════════════════════════════════════════════════════
+
+gcp:CloudSQL
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Cloud SQL"@en ;
+    skos:definition     "Managed relational database supporting MySQL, PostgreSQL, and SQL Server."@en ;
+    skos:inScheme       gcp:GCPScheme ;
+    prov:wasDerivedFrom <https://cloud.google.com/sql/> ;
+    skos:exactMatch     itil:ConfigurationItem ;
+    skos:relatedMatch   itil:ServiceConfigurationManagement ;
+    skos:relatedMatch   itil:CapacityAndPerformanceManagement ;
+    skos:relatedMatch   itil:ServiceLevelManagement ;
+.
+
+gcp:Firestore
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Firestore (Datastore)"@en ;
+    skos:definition     "Fully managed NoSQL document database with real-time updates and offline support."@en ;
+    skos:inScheme       gcp:GCPScheme ;
+    prov:wasDerivedFrom <https://cloud.google.com/firestore/> ;
+    skos:exactMatch     itil:ConfigurationItem ;
+    skos:relatedMatch   itil:ServiceConfigurationManagement ;
+    skos:relatedMatch   itil:CapacityAndPerformanceManagement ;
+.
+
+gcp:Datastore
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Cloud Datastore"@en ;
+    skos:definition     "Managed NoSQL database for web and mobile applications with automatic scaling."@en ;
+    skos:inScheme       gcp:GCPScheme ;
+    prov:wasDerivedFrom <https://cloud.google.com/datastore/> ;
+    skos:exactMatch     itil:ConfigurationItem ;
+    skos:relatedMatch   itil:ServiceConfigurationManagement ;
+.
+
+gcp:Spanner
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Cloud Spanner"@en ;
+    skos:definition     "Horizontally scalable relational database with strong consistency and global scale."@en ;
+    skos:inScheme       gcp:GCPScheme ;
+    prov:wasDerivedFrom <https://cloud.google.com/spanner/> ;
+    skos:exactMatch     itil:ConfigurationItem ;
+    skos:relatedMatch   itil:CapacityAndPerformanceManagement ;
+    skos:relatedMatch   itil:ServiceLevelManagement ;
+.
+
+gcp:Bigtable
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Cloud Bigtable"@en ;
+    skos:definition     "Sparse, distributed database for massive scale analytical and operational workloads."@en ;
+    skos:inScheme       gcp:GCPScheme ;
+    prov:wasDerivedFrom <https://cloud.google.com/bigtable/> ;
+    skos:exactMatch     itil:ConfigurationItem ;
+    skos:relatedMatch   itil:CapacityAndPerformanceManagement ;
+    skos:relatedMatch   itil:MeasurementAndReporting ;
+.
+
+gcp:MemoryStore
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Memorystore"@en ;
+    skos:definition     "Managed Redis and Memcached for caching and session store with high performance."@en ;
+    skos:inScheme       gcp:GCPScheme ;
+    prov:wasDerivedFrom <https://cloud.google.com/memorystore/> ;
+    skos:exactMatch     itil:ConfigurationItem ;
+    skos:relatedMatch   itil:CapacityAndPerformanceManagement ;
+    skos:relatedMatch   itil:MonitoringAndEventManagement ;
+.
+
+# ═══════════════════════════════════════════════════════════════
+#  NETWORKING
+# ═══════════════════════════════════════════════════════════════
+
+gcp:VPC
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Virtual Private Cloud (VPC)"@en ;
+    skos:definition     "Isolated network environment with subnets, routes, firewalls, and VPN capabilities."@en ;
+    skos:inScheme       gcp:GCPScheme ;
+    prov:wasDerivedFrom <https://cloud.google.com/vpc/> ;
+    skos:exactMatch     itil:ConfigurationItem ;
+    skos:relatedMatch   itil:ServiceConfigurationManagement ;
+    skos:relatedMatch   itil:InformationSecurityManagement ;
+.
+
+gcp:CloudLoadBalancing
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Cloud Load Balancing"@en ;
+    skos:definition     "Fully distributed load balancing service supporting global and regional scenarios."@en ;
+    skos:inScheme       gcp:GCPScheme ;
+    prov:wasDerivedFrom <https://cloud.google.com/load-balancing/> ;
+    skos:exactMatch     itil:ConfigurationItem ;
+    skos:relatedMatch   itil:AvailabilityManagement ;
+    skos:relatedMatch   itil:CapacityAndPerformanceManagement ;
+.
+
+gcp:CloudCDN
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Cloud CDN"@en ;
+    skos:definition     "Content delivery network integrated with load balancing for global content distribution."@en ;
+    skos:inScheme       gcp:GCPScheme ;
+    prov:wasDerivedFrom <https://cloud.google.com/cdn/> ;
+    skos:exactMatch     itil:ConfigurationItem ;
+    skos:relatedMatch   itil:CapacityAndPerformanceManagement ;
+    skos:relatedMatch   itil:MonitoringAndEventManagement ;
+.
+
+gcp:CloudDNS
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Cloud DNS"@en ;
+    skos:definition     "Domain Name System service with low-latency DNS resolution and health checking."@en ;
+    skos:inScheme       gcp:GCPScheme ;
+    prov:wasDerivedFrom <https://cloud.google.com/dns/> ;
+    skos:exactMatch     itil:ConfigurationItem ;
+    skos:relatedMatch   itil:AvailabilityManagement ;
+    skos:relatedMatch   itil:ServiceLevelManagement ;
+.
+
+gcp:CloudInterconnect
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Cloud Interconnect"@en ;
+    skos:definition     "Dedicated network interconnection between on-premises and Google Cloud."@en ;
+    skos:inScheme       gcp:GCPScheme ;
+    prov:wasDerivedFrom <https://cloud.google.com/network-connectivity/docs/interconnect/> ;
+    skos:exactMatch     itil:ConfigurationItem ;
+    skos:relatedMatch   itil:ServiceConfigurationManagement ;
+    skos:relatedMatch   itil:InformationSecurityManagement ;
+.
+
+# ═══════════════════════════════════════════════════════════════
+#  SECURITY & IDENTITY
+# ═══════════════════════════════════════════════════════════════
+
+gcp:CloudIAM
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Cloud IAM (Identity and Access Management)"@en ;
+    skos:definition     "Service for managing access to GCP resources through roles, policies, and service accounts."@en ;
+    skos:inScheme       gcp:GCPScheme ;
+    prov:wasDerivedFrom <https://cloud.google.com/iam/> ;
+    skos:exactMatch     itil:InformationSecurityManagement ;
+    skos:relatedMatch   itil:WorkforceAndTalentManagement ;
+.
+
+gcp:CloudKeyManagement
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Cloud Key Management Service (KMS)"@en ;
+    skos:definition     "Managed encryption key service for creating and controlling encryption keys."@en ;
+    skos:inScheme       gcp:GCPScheme ;
+    prov:wasDerivedFrom <https://cloud.google.com/kms/> ;
+    skos:exactMatch     itil:InformationSecurityManagement ;
+    skos:relatedMatch   itil:ConfigurationItem ;
+.
+
+gcp:SecretManager
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Secret Manager"@en ;
+    skos:definition     "Service for securely storing and managing secrets, API keys, and credentials."@en ;
+    skos:inScheme       gcp:GCPScheme ;
+    prov:wasDerivedFrom <https://cloud.google.com/secret-manager/> ;
+    skos:exactMatch     itil:InformationSecurityManagement ;
+    skos:relatedMatch   itil:KnowledgeManagement ;
+.
+
+gcp:CloudArmor
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Cloud Armor"@en ;
+    skos:definition     "DDoS and web application firewall protection for GCP applications."@en ;
+    skos:inScheme       gcp:GCPScheme ;
+    prov:wasDerivedFrom <https://cloud.google.com/armor/> ;
+    skos:exactMatch     itil:InformationSecurityManagement ;
+    skos:relatedMatch   itil:RiskManagement ;
+.
+
+gcp:CloudSecurityCommand
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Security Command Center"@en ;
+    skos:definition     "Centralised security and risk management platform for GCP."@en ;
+    skos:inScheme       gcp:GCPScheme ;
+    prov:wasDerivedFrom <https://cloud.google.com/security-command-center/> ;
+    skos:relatedMatch   itil:InformationSecurityManagement ;
+    skos:relatedMatch   itil:MeasurementAndReporting ;
+    skos:relatedMatch   itil:RiskManagement ;
+.
+
+# ═══════════════════════════════════════════════════════════════
+#  MONITORING & MANAGEMENT
+# ═══════════════════════════════════════════════════════════════
+
+gcp:CloudMonitoring
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Cloud Monitoring"@en ;
+    skos:definition     "Monitoring service collecting metrics, logs, and traces from GCP resources."@en ;
+    skos:inScheme       gcp:GCPScheme ;
+    prov:wasDerivedFrom <https://cloud.google.com/monitoring/> ;
+    skos:exactMatch     itil:MonitoringAndEventManagement ;
+    skos:relatedMatch   itil:MeasurementAndReporting ;
+    skos:relatedMatch   itil:CapacityAndPerformanceManagement ;
+.
+
+gcp:CloudLogging
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Cloud Logging"@en ;
+    skos:definition     "Managed logging service for storing, searching, and analysing logs."@en ;
+    skos:inScheme       gcp:GCPScheme ;
+    prov:wasDerivedFrom <https://cloud.google.com/logging/> ;
+    skos:relatedMatch   itil:MonitoringAndEventManagement ;
+    skos:relatedMatch   itil:InformationSecurityManagement ;
+.
+
+gcp:CloudTrace
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Cloud Trace"@en ;
+    skos:definition     "Distributed tracing service for identifying performance bottlenecks in applications."@en ;
+    skos:inScheme       gcp:GCPScheme ;
+    prov:wasDerivedFrom <https://cloud.google.com/trace/> ;
+    skos:relatedMatch   itil:CapacityAndPerformanceManagement ;
+    skos:relatedMatch   itil:MonitoringAndEventManagement ;
+.
+
+gcp:CloudProfiler
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Cloud Profiler"@en ;
+    skos:definition     "Application profiling service for identifying CPU and memory intensive operations."@en ;
+    skos:inScheme       gcp:GCPScheme ;
+    prov:wasDerivedFrom <https://cloud.google.com/profiler/> ;
+    skos:relatedMatch   itil:CapacityAndPerformanceManagement ;
+    skos:relatedMatch   itil:MonitoringAndEventManagement ;
+.
+
+gcp:CloudDeploymentManager
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Cloud Deployment Manager"@en ;
+    skos:definition     "Infrastructure-as-Code service for provisioning and managing GCP resources via templates."@en ;
+    skos:inScheme       gcp:GCPScheme ;
+    prov:wasDerivedFrom <https://cloud.google.com/deployment-manager/> ;
+    skos:relatedMatch   itil:ServiceConfigurationManagement ;
+    skos:relatedMatch   itil:DeploymentManagement ;
+    skos:relatedMatch   itil:ChangeEnablement ;
+.
+
+gcp:Terraform
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Terraform on Google Cloud"@en ;
+    skos:definition     "HashiCorp Terraform for Infrastructure-as-Code with multi-cloud support."@en ;
+    skos:inScheme       gcp:GCPScheme ;
+    prov:wasDerivedFrom <https://cloud.google.com/docs/terraform/> ;
+    skos:relatedMatch   itil:ServiceConfigurationManagement ;
+    skos:relatedMatch   itil:DeploymentManagement ;
+.
+
+# ═══════════════════════════════════════════════════════════════
+#  AI/ML & ANALYTICS
+# ═══════════════════════════════════════════════════════════════
+
+gcp:VertexAI
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Vertex AI"@en ;
+    skos:definition     "Unified platform for building, deploying, and maintaining ML models."@en ;
+    skos:inScheme       gcp:GCPScheme ;
+    prov:wasDerivedFrom <https://cloud.google.com/vertex-ai/> ;
+    skos:exactMatch     itil:SoftwareCI ;
+    skos:relatedMatch   itil:SoftwareDevelopmentAndManagement ;
+    skos:relatedMatch   itil:KnowledgeManagement ;
+.
+
+gcp:BigQuery
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "BigQuery"@en ;
+    skos:definition     "Serverless data warehouse for large-scale analytics with SQL queries."@en ;
+    skos:inScheme       gcp:GCPScheme ;
+    prov:wasDerivedFrom <https://cloud.google.com/bigquery/> ;
+    skos:exactMatch     itil:SoftwareCI ;
+    skos:relatedMatch   itil:MeasurementAndReporting ;
+    skos:relatedMatch   itil:CapacityAndPerformanceManagement ;
+.
+
+gcp:Dataflow
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Dataflow"@en ;
+    skos:definition     "Serverless stream and batch processing using Apache Beam."@en ;
+    skos:inScheme       gcp:GCPScheme ;
+    prov:wasDerivedFrom <https://cloud.google.com/dataflow/> ;
+    skos:exactMatch     itil:SoftwareCI ;
+    skos:relatedMatch   itil:SoftwareDevelopmentAndManagement ;
+.
+
+gcp:Dataproc
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Dataproc"@en ;
+    skos:definition     "Managed Apache Hadoop and Spark service for big data processing."@en ;
+    skos:inScheme       gcp:GCPScheme ;
+    prov:wasDerivedFrom <https://cloud.google.com/dataproc/> ;
+    skos:exactMatch     itil:SoftwareCI ;
+    skos:relatedMatch   itil:CapacityAndPerformanceManagement ;
+.
+
+gcp:DataStudio
+    a owl:Class ; a skos:Concept ;
+    skos:prefLabel      "Looker Studio"@en ;
+    skos:definition     "Business analytics and data visualisation platform."@en ;
+    skos:inScheme       gcp:GCPScheme ;
+    prov:wasDerivedFrom <https://cloud.google.com/looker/> ;
+    skos:exactMatch     itil:SoftwareCI ;
+    skos:relatedMatch   itil:MeasurementAndReporting ;
+.
+
+# ═══════════════════════════════════════════════════════════════
+#  COLLECTIONS
+# ═══════════════════════════════════════════════════════════════
+
+gcp:ComputeServices
+    a skos:Collection ;
+    skos:prefLabel "GCP Compute Services"@en ;
+    skos:member gcp:ComputeEngine ;
+    skos:member gcp:CloudRun ;
+    skos:member gcp:CloudFunctions ;
+    skos:member gcp:GKE ;
+    skos:member gcp:AppEngine ;
+.
+
+gcp:StorageServices
+    a skos:Collection ;
+    skos:prefLabel "GCP Storage Services"@en ;
+    skos:member gcp:CloudStorage ;
+    skos:member gcp:Filestore ;
+    skos:member gcp:PersistentDisk ;
+.
+
+gcp:DatabaseServices
+    a skos:Collection ;
+    skos:prefLabel "GCP Database Services"@en ;
+    skos:member gcp:CloudSQL ;
+    skos:member gcp:Firestore ;
+    skos:member gcp:Datastore ;
+    skos:member gcp:Spanner ;
+    skos:member gcp:Bigtable ;
+    skos:member gcp:MemoryStore ;
+.
+
+gcp:NetworkingServices
+    a skos:Collection ;
+    skos:prefLabel "GCP Networking Services"@en ;
+    skos:member gcp:VPC ;
+    skos:member gcp:CloudLoadBalancing ;
+    skos:member gcp:CloudCDN ;
+    skos:member gcp:CloudDNS ;
+    skos:member gcp:CloudInterconnect ;
+.
+
+gcp:SecurityServices
+    a skos:Collection ;
+    skos:prefLabel "GCP Security & Identity Services"@en ;
+    skos:member gcp:CloudIAM ;
+    skos:member gcp:CloudKeyManagement ;
+    skos:member gcp:SecretManager ;
+    skos:member gcp:CloudArmor ;
+    skos:member gcp:CloudSecurityCommand ;
+.
+
+gcp:ManagementServices
+    a skos:Collection ;
+    skos:prefLabel "GCP Management & Monitoring Services"@en ;
+    skos:member gcp:CloudMonitoring ;
+    skos:member gcp:CloudLogging ;
+    skos:member gcp:CloudTrace ;
+    skos:member gcp:CloudProfiler ;
+    skos:member gcp:CloudDeploymentManager ;
+    skos:member gcp:Terraform ;
+.
+
+gcp:AnalyticsServices
+    a skos:Collection ;
+    skos:prefLabel "GCP AI/ML & Analytics Services"@en ;
+    skos:member gcp:VertexAI ;
+    skos:member gcp:BigQuery ;
+    skos:member gcp:Dataflow ;
+    skos:member gcp:Dataproc ;
+    skos:member gcp:DataStudio ;
+.

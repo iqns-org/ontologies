@@ -1,0 +1,136 @@
+@prefix owasp-llm: <https://iqns.org/v0/owasp-llm#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+owasp-llm:Ontology a owl:Ontology ;
+    dct:title  "OWASP Top 10 for Large Language Model Applications (v1.1, 2023)"@en ;
+    prov:wasDerivedFrom <https://owasp.org/www-project-top-10-for-large-language-model-applications/> .
+
+owasp-llm:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "OWASP LLM Top 10"@en ;
+    skos:definition "OWASP enumeration of the ten most critical security vulnerabilities in LLM-based applications; guidance on description, prevention, and example attack scenarios."@en .
+
+owasp-llm:OWASP_LLM
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "OWASP Top 10 for LLM Applications v1.1"@en ;
+    skos:definition "Community-developed authoritative list of security vulnerabilities specific to applications built on large language models, with prevention guidance."@en ;
+    skos:inScheme   owasp-llm:Scheme ;
+    dct:publisher   "OWASP Foundation"@en ;
+    dct:issued      "2023"^^xsd:gYear ;
+.
+
+# ── LLM01–LLM10 ──────────────────────────────────────────────────────────────
+
+owasp-llm:LLM01_PromptInjection
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "LLM01 — Prompt Injection"@en ;
+    skos:definition "Attacker crafts inputs that manipulate LLM behaviour, overriding system instructions to exfiltrate data, bypass controls, or execute unintended actions."@en ;
+    skos:inScheme   owasp-llm:Scheme ; prov:wasDerivedFrom "OWASP LLM01" ;
+    skos:exactMatch ai:SecurityHarm ;
+    ai:appliesToDomain ai:GenerativeAI ;
+    ai:mappedToDimension ai:Security ;
+.
+owasp-llm:LLM02_InsecureOutputHandling
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "LLM02 — Insecure Output Handling"@en ;
+    skos:definition "Downstream systems consume LLM output without validation, enabling XSS, SSRF, privilege escalation, or remote code execution via injected content."@en ;
+    skos:inScheme   owasp-llm:Scheme ; prov:wasDerivedFrom "OWASP LLM02" ;
+    skos:exactMatch ai:SecurityHarm ;
+    ai:appliesToDomain ai:GenerativeAI ;
+.
+owasp-llm:LLM03_TrainingDataPoisoning
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "LLM03 — Training Data Poisoning"@en ;
+    skos:definition "Malicious data introduced into training or fine-tuning datasets causes the model to embed backdoors, biases, or vulnerabilities."@en ;
+    skos:inScheme   owasp-llm:Scheme ; prov:wasDerivedFrom "OWASP LLM03" ;
+    skos:exactMatch ai:SecurityHarm ;
+    ai:appliesToLifecycle ai:Development ;
+.
+owasp-llm:LLM04_ModelDenialOfService
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "LLM04 — Model Denial of Service"@en ;
+    skos:definition "Attacker sends resource-exhausting inputs causing LLM service degradation or outage; context-window flooding and recursive queries are common vectors."@en ;
+    skos:inScheme   owasp-llm:Scheme ; prov:wasDerivedFrom "OWASP LLM04" ;
+    skos:broadMatch ai:SecurityHarm ;
+    ai:mappedToDimension ai:Robustness ;
+.
+owasp-llm:LLM05_SupplyChainVulnerabilities
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "LLM05 — Supply Chain Vulnerabilities"@en ;
+    skos:definition "Compromised third-party datasets, pre-trained models, or plugins propagate vulnerabilities into LLM applications."@en ;
+    skos:inScheme   owasp-llm:Scheme ; prov:wasDerivedFrom "OWASP LLM05" ;
+    skos:exactMatch ai:SecurityHarm ;
+    ai:appliesToLifecycle ai:Development ;
+.
+owasp-llm:LLM06_SensitiveInfoDisclosure
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "LLM06 — Sensitive Information Disclosure"@en ;
+    skos:definition "LLM reveals confidential training data, PII, credentials, or proprietary content in responses due to insufficient data sanitisation or overfitting."@en ;
+    skos:inScheme   owasp-llm:Scheme ; prov:wasDerivedFrom "OWASP LLM06" ;
+    skos:exactMatch ai:PrivacyHarm ;
+    ai:mappedToDimension ai:Privacy ;
+.
+owasp-llm:LLM07_InsecurePluginDesign
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "LLM07 — Insecure Plugin Design"@en ;
+    skos:definition "LLM plugins lack proper input validation and access control, allowing malicious prompts to invoke plugins with elevated privileges or exfiltrate data."@en ;
+    skos:inScheme   owasp-llm:Scheme ; prov:wasDerivedFrom "OWASP LLM07" ;
+    skos:exactMatch ai:SecurityHarm ;
+    ai:appliesToDomain ai:GenerativeAI ;
+.
+owasp-llm:LLM08_ExcessiveAgency
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "LLM08 — Excessive Agency"@en ;
+    skos:definition "LLM-based agents are granted excessive permissions or autonomy, enabling unintended or harmful actions in connected systems without human approval."@en ;
+    skos:inScheme   owasp-llm:Scheme ; prov:wasDerivedFrom "OWASP LLM08" ;
+    skos:exactMatch ai:SecurityHarm ;
+    skos:broadMatch ai:SocietalHarm ;
+    ai:mappedToDimension ai:HumanOversight ;
+.
+owasp-llm:LLM09_Overreliance
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "LLM09 — Overreliance"@en ;
+    skos:definition "Users or systems trust LLM outputs without verification, acting on hallucinated facts, fabricated citations, or erroneous advice."@en ;
+    skos:inScheme   owasp-llm:Scheme ; prov:wasDerivedFrom "OWASP LLM09" ;
+    skos:broadMatch ai:PhysicalHarm ;
+    skos:broadMatch ai:FinancialHarm ;
+    ai:mappedToDimension ai:HumanOversight ;
+.
+owasp-llm:LLM10_ModelTheft
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "LLM10 — Model Theft"@en ;
+    skos:definition "Unauthorised extraction of proprietary LLM weights or capabilities via API querying, enabling IP theft or uncontrolled redistribution."@en ;
+    skos:inScheme   owasp-llm:Scheme ; prov:wasDerivedFrom "OWASP LLM10" ;
+    skos:broadMatch ai:SecurityHarm ;
+    ai:mappedToDimension ai:Security ;
+.
+
+# ── Mitigations ───────────────────────────────────────────────────────────────
+
+owasp-llm:PromptValidation
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Prompt Input Validation"@en ;
+    skos:definition "Sanitise, constrain, and validate all user-supplied inputs before passing to LLM; use privilege-separated prompt contexts."@en ;
+    skos:inScheme   owasp-llm:Scheme ; prov:wasDerivedFrom "OWASP LLM Mitigation" ;
+    skos:broadMatch ai:Security ;
+.
+owasp-llm:OutputValidation
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "LLM Output Validation"@en ;
+    skos:definition "Treat all LLM output as untrusted; encode, sanitise, and contextually validate before rendering or passing to downstream systems."@en ;
+    skos:inScheme   owasp-llm:Scheme ; prov:wasDerivedFrom "OWASP LLM Mitigation" ;
+    skos:broadMatch ai:Security ;
+.
+owasp-llm:LeastPrivilegeLLM
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Least Privilege for LLM Agents"@en ;
+    skos:definition "Grant LLM agents minimum permissions necessary; require human approval for irreversible or high-impact actions."@en ;
+    skos:inScheme   owasp-llm:Scheme ; prov:wasDerivedFrom "OWASP LLM Mitigation" ;
+    skos:exactMatch ai:HumanOversight ;
+.

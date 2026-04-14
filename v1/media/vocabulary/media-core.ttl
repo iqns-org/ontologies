@@ -1,0 +1,143 @@
+@prefix mg:  <https://iqns.org/v0/medgraph#> .
+@prefix ai:  <https://iqns.org/v0/ai#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:<http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:<http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# ── Ontology ─────────────────────────────────────────────────────────────────
+
+mg:Ontology
+    a owl:Ontology ;
+    dct:title       "MedGraph: Media, Content, and Platform Core Vocabulary"@en ;
+    skos:definition "Abstract vocabulary for media and platform governance frameworks — DSA, content moderation AI, synthetic media detection, and content provenance. Extends ai: with media-specific dimensions, lifecycle stages, and stakeholders."@en ;
+    owl:imports     <https://iqns.org/v0/ai#> ;
+    owl:versionInfo "0.1" ;
+.
+
+# ── Media-Specific Properties ─────────────────────────────────────────────────
+
+mg:hasPlatformCategory
+    a owl:ObjectProperty ;
+    skos:prefLabel  "has DSA platform category"@en ;
+    rdfs:range  mg:PlatformCategory ;
+.
+mg:reachesMonthlyActiveUsers
+    a owl:DatatypeProperty ;
+    skos:prefLabel  "reaches monthly active users (EU)"@en ;
+    rdfs:range  xsd:integer ;
+.
+mg:usesRecommendationSystem
+    a owl:DatatypeProperty ;
+    skos:prefLabel  "uses recommendation system"@en ;
+    rdfs:range  xsd:boolean ;
+.
+
+# ── DSA Platform Categories ───────────────────────────────────────────────────
+
+mg:IntermediaryService
+    a mg:PlatformCategory ; a skos:Concept ;
+    skos:prefLabel  "Intermediary Service"@en ;
+    skos:definition "Any information society service transmitting, caching, or hosting third-party information — broadest DSA category."@en ;
+.
+mg:HostingService
+    a mg:PlatformCategory ; a skos:Concept ;
+    skos:prefLabel  "Hosting Service"@en ;
+    skos:definition "Service storing information provided by a recipient — subject to notice-and-action requirements."@en ;
+.
+mg:OnlinePlatform
+    a mg:PlatformCategory ; a skos:Concept ;
+    skos:prefLabel  "Online Platform"@en ;
+    skos:definition "Hosting service that also disseminates content to the public — social networks, content aggregators, app stores, marketplaces."@en ;
+.
+mg:VLOPorVLOSE
+    a mg:PlatformCategory ; a skos:Concept ;
+    skos:prefLabel  "VLOP / VLOSE (≥45M EU monthly users)"@en ;
+    skos:definition "Very Large Online Platform or Search Engine — ≥45 million EU monthly active users; subject to most stringent DSA obligations including algorithmic risk assessments, independent audits, and data access for researchers."@en ;
+.
+
+# ── Media Dimensions ──────────────────────────────────────────────────────────
+
+mg:ContentModeration
+    a ai:Dimension ; a skos:Concept ;
+    skos:prefLabel  "Content Moderation"@en ;
+    skos:definition "AI-driven detection and removal of illegal content and CSAM — balancing over-removal (freedom of expression) and under-removal (harmful content) risks."@en ;
+    skos:relatedMatch ai:Accountability ;
+.
+mg:RecommendationSystemTransparency
+    a ai:Dimension ; a skos:Concept ;
+    skos:prefLabel  "Recommendation System Transparency"@en ;
+    skos:definition "User right to understand and influence algorithmic content curation — opt-out of profiling-based recommendations; explanation of main parameters used in ranking."@en ;
+    skos:broadMatch ai:Transparency ;
+.
+mg:SyntheticMediaIntegrity
+    a ai:Dimension ; a skos:Concept ;
+    skos:prefLabel  "Synthetic Media Integrity / Deepfake Detection"@en ;
+    skos:definition "Governance of AI-generated synthetic images, audio, and video — labelling obligations (EU AI Act Art. 50), content provenance (C2PA standards), detection capabilities."@en ;
+    skos:relatedMatch ai:Transparency ;
+.
+mg:AdvertisingTransparency
+    a ai:Dimension ; a skos:Concept ;
+    skos:prefLabel  "Advertising Transparency and Targeting"@en ;
+    skos:definition "Transparency of targeted advertising — DSA Art. 26 ad disclosure, prohibition on targeting minors, limitations on sensitive data targeting."@en ;
+    skos:broadMatch ai:Transparency ;
+.
+mg:DisinformationRisk
+    a ai:Dimension ; a skos:Concept ;
+    skos:prefLabel  "Disinformation and Systemic Risk"@en ;
+    skos:definition "Systemic risk that recommendation systems amplify disinformation, hate speech, or electoral manipulation — VLOP-specific risk assessment and mitigation obligation under DSA."@en ;
+    skos:relatedMatch ai:Safety ;
+.
+
+# ── Platform Lifecycle ────────────────────────────────────────────────────────
+
+mg:SystemDesign
+    a ai:Lifecycle ; a skos:Concept ;
+    skos:prefLabel  "Recommendation System Design"@en ;
+    skos:definition "Architecture and parameter choices for content ranking and recommendation AI — where EU AI Act GPAI and DSA obligations are established."@en ;
+.
+mg:ContentIngestion
+    a ai:Lifecycle ; a skos:Concept ;
+    skos:prefLabel  "Content Ingestion and Indexing"@en ;
+    skos:definition "Receiving and processing user-generated or third-party content — automated content scanning for illegal content, CSAM detection, and copyright verification."@en ;
+.
+mg:ContentDistribution
+    a ai:Lifecycle ; a skos:Concept ;
+    skos:prefLabel  "Content Ranking and Distribution"@en ;
+    skos:definition "Algorithmic selection and sequencing of content shown to users — recommendation systems, news feeds, search results; highest systemic risk surface."@en ;
+.
+mg:ContentModeration2
+    a ai:Lifecycle ; a skos:Concept ;
+    skos:prefLabel  "Content Moderation and Trust and Safety"@en ;
+    skos:definition "Detection, flagging, labelling, and removal of illegal or harmful content — AI-driven moderation with human review for appeals."@en ;
+.
+
+# ── Stakeholders ──────────────────────────────────────────────────────────────
+
+mg:PlatformProvider
+    a ai:Stakeholder ; a skos:Concept ;
+    skos:prefLabel  "Platform Provider"@en ;
+    skos:definition "Organisation providing an online platform or search engine — primary obligated party under DSA. VLOPs/VLOSEs face heightened obligations."@en ;
+.
+mg:PlatformUser
+    a ai:Stakeholder ; a skos:Concept ;
+    skos:prefLabel  "Platform User"@en ;
+    skos:definition "Individual using a platform — holds rights to non-profiling recommendations, ad transparency, complaint mechanisms, and out-of-court dispute settlement."@en ;
+.
+mg:ContentCreator
+    a ai:Stakeholder ; a skos:Concept ;
+    skos:prefLabel  "Content Creator / Publisher"@en ;
+    skos:definition "Individual or organisation producing content distributed on a platform — rights to notice of removal decisions and appeals processes."@en ;
+.
+mg:DigitalServicesCoordinator
+    a ai:Stakeholder ; a skos:Concept ;
+    skos:prefLabel  "Digital Services Coordinator (DSC)"@en ;
+    skos:definition "National authority designated under DSA for monitoring and enforcement — European Commission is lead supervisor for VLOPs/VLOSEs."@en ;
+.
+mg:TrustedFlagger
+    a ai:Stakeholder ; a skos:Concept ;
+    skos:prefLabel  "Trusted Flagger"@en ;
+    skos:definition "DSA-designated organisations with expertise in identifying illegal content — platforms must process trusted flagger notices on a priority basis."@en ;
+.

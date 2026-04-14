@@ -1,0 +1,113 @@
+@prefix eba-ai: <https://iqns.org/v0/eba-ai#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+eba-ai:Ontology a owl:Ontology ;
+    dct:title  "EBA Guidelines on ICT and Security Risk Management + EBA AI Discussion Paper (2020)"@en ;
+    prov:wasDerivedFrom <https://www.eba.europa.eu/regulation-and-policy/internal-governance/guidelines-on-ict-and-security-risk-management> .
+
+eba-ai:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "EBA AI and ICT Risk Governance"@en ;
+    skos:definition "European Banking Authority requirements for ICT risk management and AI-specific guidance for financial institutions; complements EU AI Act in the banking sector."@en .
+
+eba-ai:EBA_AIRMF
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "EBA ICT Risk Management and AI Governance"@en ;
+    skos:definition "EBA regulatory framework governing ICT security, operational resilience, and AI model risk for EU credit institutions and investment firms."@en ;
+    skos:inScheme   eba-ai:Scheme ;
+    dct:publisher   "European Banking Authority"@en ;
+    dct:issued      "2020"^^xsd:gYear ;
+.
+
+# ── ICT Risk Framework ─────────────────────────────────────────────────────────
+
+eba-ai:ICTRiskFramework
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "ICT Risk Management Framework"@en ;
+    skos:definition "Board-approved framework covering identification, classification, and management of ICT and AI-related operational risks."@en ;
+    skos:inScheme   eba-ai:Scheme ; prov:wasDerivedFrom "EBA GL/2019/04 §4.1" ;
+    skos:broadMatch ai:RiskAssessment ;
+    ai:appliesToRole ai:Operator ;
+.
+eba-ai:ICTAssetManagement
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "ICT Asset Management"@en ;
+    skos:definition "Maintain comprehensive inventory of ICT assets including AI systems, data assets, and third-party models; classify by criticality."@en ;
+    skos:inScheme   eba-ai:Scheme ; prov:wasDerivedFrom "EBA GL/2019/04 §4.2" ;
+    skos:relatedMatch ai:Accountability ;
+.
+eba-ai:OperationalResilienceEBA
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Operational Resilience"@en ;
+    skos:definition "AI systems supporting critical banking functions must have continuity plans, fallback procedures, and tested recovery capabilities."@en ;
+    skos:inScheme   eba-ai:Scheme ; prov:wasDerivedFrom "EBA GL/2019/04 §6" ;
+    skos:exactMatch ai:Robustness ;
+    skos:relatedMatch ai:Security ;
+.
+eba-ai:ThirdPartyRiskEBA
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "Third-Party ICT and AI Risk"@en ;
+    skos:definition "Risk from reliance on external providers for AI models, cloud infrastructure, or data; requires due diligence, contractual obligations, and concentration risk controls."@en ;
+    skos:inScheme   eba-ai:Scheme ; prov:wasDerivedFrom "EBA GL/2019/04 §9" ;
+    skos:broadMatch ai:SecurityHarm ;
+    ai:mappedToDimension ai:Accountability ;
+.
+
+# ── AI-Specific Requirements ──────────────────────────────────────────────────
+
+eba-ai:AIModelExplainabilityEBA
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "AI Model Explainability in Credit"@en ;
+    skos:definition "Credit decisions driven by AI must be explainable to supervisors and customers; black-box models require compensating interpretability controls."@en ;
+    skos:inScheme   eba-ai:Scheme ; prov:wasDerivedFrom "EBA Discussion Paper AI §4.3" ;
+    skos:exactMatch ai:Explainability ;
+    ai:appliesToRole ai:AffectedPerson ;
+    ai:appliesToRole ai:Regulator ;
+.
+eba-ai:AIBiasTestingEBA
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "AI Bias and Fairness Testing"@en ;
+    skos:definition "Institutions must test AI credit scoring and decision systems for discriminatory outcomes across protected characteristics before and during deployment."@en ;
+    skos:inScheme   eba-ai:Scheme ; prov:wasDerivedFrom "EBA Discussion Paper AI §4.4" ;
+    skos:exactMatch ai:Fairness ;
+    ai:appliesToLifecycle ai:Validation ;
+    ai:appliesToLifecycle ai:Monitoring ;
+.
+eba-ai:AIGovernanceCommitteeEBA
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "AI Governance Committee"@en ;
+    skos:definition "Senior management body responsible for AI risk appetite, model approval, and ongoing oversight of AI use across the institution."@en ;
+    skos:inScheme   eba-ai:Scheme ; prov:wasDerivedFrom "EBA Discussion Paper AI §5.1" ;
+    skos:exactMatch ai:Accountability ;
+    ai:appliesToRole ai:Auditor ;
+.
+eba-ai:DataQualityEBA
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Training Data Quality Controls"@en ;
+    skos:definition "Establish data quality standards for AI training data including completeness, accuracy, representativeness, and compliance with data protection regulation."@en ;
+    skos:inScheme   eba-ai:Scheme ; prov:wasDerivedFrom "EBA Discussion Paper AI §4.2" ;
+    skos:broadMatch ai:Reliability ;
+    ai:appliesToLifecycle ai:Development ;
+.
+eba-ai:ModelValidationEBA
+    a ai:Control ; a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "AI Model Validation (EBA)"@en ;
+    skos:definition "Independent validation of AI models including data quality, conceptual soundness, performance testing, and ongoing monitoring; aligned with SR 11-7 principles."@en ;
+    skos:inScheme   eba-ai:Scheme ; prov:wasDerivedFrom "EBA Discussion Paper AI §5.2" ;
+    skos:exactMatch ai:ConformityAssessment ;
+    ai:appliesToLifecycle ai:Validation ;
+.
+eba-ai:SupervisoryReportingEBA
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "AI Supervisory Reporting"@en ;
+    skos:definition "Institutions must be able to explain AI model decisions to supervisors on demand; maintain audit trails sufficient for supervisory review."@en ;
+    skos:inScheme   eba-ai:Scheme ; prov:wasDerivedFrom "EBA Discussion Paper AI §6" ;
+    skos:broadMatch ai:Transparency ;
+    ai:appliesToRole ai:Regulator ;
+.

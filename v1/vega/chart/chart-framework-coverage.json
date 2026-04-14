@@ -1,0 +1,17 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Framework coverage heatmap by dimension",
+  "title": "{{chart.title}}",
+  "data": { "values": {{data}} },
+  "mark": "rect",
+  "encoding": {
+    "x": { "field": "{{chart.x}}", "type": "nominal", "title": "{{chart.xTitle}}" },
+    "y": { "field": "{{chart.y}}", "type": "nominal", "title": "{{chart.yTitle}}" },
+    "color": { "field": "{{chart.color}}", "type": "quantitative", "title": "{{chart.colorTitle}}", "scale": { "scheme": "blues" } },
+    "tooltip": [
+      { "field": "{{chart.x}}", "type": "nominal" },
+      { "field": "{{chart.y}}", "type": "nominal" },
+      { "field": "{{chart.color}}", "type": "quantitative" }
+    ]
+  }
+}

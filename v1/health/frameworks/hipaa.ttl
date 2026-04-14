@@ -1,0 +1,169 @@
+@prefix hipaa: <https://iqns.org/v0/hipaa#> .
+@prefix hg:   <https://iqns.org/v0/health#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+hipaa:Ontology a owl:Ontology ;
+    dct:title       "HIPAA / HITECH — Health Insurance Portability and Accountability Act"@en ;
+    prov:wasDerivedFrom <https://www.hhs.gov/hipaa/for-professionals/index.html> ;
+    owl:versionInfo "HIPAA 1996 (Pub.L. 104-191) + HITECH 2009 + Omnibus Rule 2013 + 2024 amendments" ;
+.
+
+hipaa:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "HIPAA / HITECH — US Health Data Protection"@en ;
+    skos:definition "US federal law protecting individually identifiable health information (PHI) — the primary health privacy framework for AI systems processing patient data in US clinical settings."@en .
+
+hipaa:HIPAA
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "HIPAA / HITECH"@en ;
+    skos:definition "Health Insurance Portability and Accountability Act (1996) and Health Information Technology for Economic and Clinical Health Act (2009) — US framework establishing PHI privacy, security, and breach notification obligations for covered entities and their AI system vendors (business associates)."@en ;
+    skos:inScheme   hipaa:Scheme ;
+    dct:publisher   "US Department of Health and Human Services (HHS)"@en ;
+    dct:issued      "1996"^^xsd:gYear ;
+.
+
+# ── Privacy Rule ──────────────────────────────────────────────────────────────
+
+hipaa:PHIMinimumNecessary
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Minimum Necessary Standard"@en ;
+    skos:definition "Covered entities and business associates must make reasonable efforts to limit PHI used, disclosed, or requested to the minimum necessary to accomplish the intended purpose. AI training on patient data must apply minimum necessary — using de-identified or synthetic data preferred."@en ;
+    skos:inScheme   hipaa:Scheme ;
+    prov:wasDerivedFrom "HIPAA Privacy Rule, 45 CFR §164.502(b)" ;
+    ai:mappedToDimension hg:HealthDataPrivacy ;
+    ai:mappedToDimension ai:Privacy ;
+.
+hipaa:PatientRightToAccess
+    a ai:Right ; a skos:Concept ;
+    skos:prefLabel  "Patient Right of Access to PHI"@en ;
+    skos:definition "Patients have the right to access their own PHI in any designated record set — including outputs from AI systems that are used to make or inform decisions about the patient."@en ;
+    skos:inScheme   hipaa:Scheme ;
+    prov:wasDerivedFrom "HIPAA Privacy Rule, 45 CFR §164.524 (amended 2024)" ;
+    ai:mappedToDimension hg:HealthDataPrivacy ;
+    ai:mappedToDimension ai:Privacy ;
+.
+hipaa:PatientRightToAmend
+    a ai:Right ; a skos:Concept ;
+    skos:prefLabel  "Patient Right to Amend PHI"@en ;
+    skos:definition "Patients have the right to request amendment of inaccurate or incomplete PHI — relevant where an AI system has generated or contributed to erroneous health records."@en ;
+    skos:inScheme   hipaa:Scheme ;
+    prov:wasDerivedFrom "HIPAA Privacy Rule, 45 CFR §164.526" ;
+    ai:mappedToDimension hg:HealthDataPrivacy ;
+.
+hipaa:AccountingOfDisclosures
+    a ai:Right ; a skos:Concept ;
+    skos:prefLabel  "Right to Accounting of Disclosures"@en ;
+    skos:definition "Patients have the right to an accounting of disclosures of their PHI — AI systems that disclose PHI must log all disclosures for a 6-year lookback."@en ;
+    skos:inScheme   hipaa:Scheme ;
+    prov:wasDerivedFrom "HIPAA Privacy Rule, 45 CFR §164.528" ;
+    ai:mappedToDimension hg:HealthDataPrivacy ;
+    ai:mappedToDimension ai:Accountability ;
+.
+hipaa:TreatmentPaymentOperationsException
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "TPO Exception — Treatment, Payment, Operations"@en ;
+    skos:definition "PHI may be used or disclosed without individual authorisation for Treatment, Payment, or Healthcare Operations — the primary legal basis for AI systems in clinical use. AI must stay within the scope of the stated use case."@en ;
+    skos:inScheme   hipaa:Scheme ;
+    prov:wasDerivedFrom "HIPAA Privacy Rule, 45 CFR §164.506" ;
+    ai:mappedToDimension hg:HealthDataPrivacy ;
+.
+
+# ── Security Rule ─────────────────────────────────────────────────────────────
+
+hipaa:AdministrativeSafeguards
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Administrative Safeguards (Security Rule)"@en ;
+    skos:definition "Covered entities and business associates must implement administrative safeguards including: security officer designation, workforce training, access management, security incident response, and contingency planning — all applicable to AI systems processing PHI."@en ;
+    skos:inScheme   hipaa:Scheme ;
+    prov:wasDerivedFrom "HIPAA Security Rule, 45 CFR §164.308" ;
+    ai:mappedToDimension hg:HealthDataPrivacy ;
+    ai:mappedToDimension ai:Security ;
+.
+hipaa:PhysicalSafeguards
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Physical Safeguards (Security Rule)"@en ;
+    skos:definition "Physical access controls, workstation security, and device/media controls for systems containing PHI — includes servers, cloud infrastructure, and endpoints running AI inference on patient data."@en ;
+    skos:inScheme   hipaa:Scheme ;
+    prov:wasDerivedFrom "HIPAA Security Rule, 45 CFR §164.310" ;
+    ai:mappedToDimension hg:HealthDataPrivacy ;
+    ai:mappedToDimension ai:Security ;
+.
+hipaa:TechnicalSafeguards
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Technical Safeguards (Security Rule)"@en ;
+    skos:definition "Access controls, audit controls, integrity controls, transmission security — covering AI pipeline encryption, PHI access logging, model inference audit trails, and API security for health AI products."@en ;
+    skos:inScheme   hipaa:Scheme ;
+    prov:wasDerivedFrom "HIPAA Security Rule, 45 CFR §164.312" ;
+    ai:mappedToDimension hg:HealthDataPrivacy ;
+    ai:mappedToDimension ai:Security ;
+    ai:appliesToLifecycle hg:PostMarketSurveillance ;
+.
+hipaa:RiskAnalysisObligation
+    a ai:Obligation ; a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "Security Risk Analysis and Management"@en ;
+    skos:definition "Covered entities must conduct an accurate and thorough assessment of potential risks and vulnerabilities to ePHI — including AI model vulnerabilities (prompt injection, data leakage, model inversion attacks)."@en ;
+    skos:inScheme   hipaa:Scheme ;
+    prov:wasDerivedFrom "HIPAA Security Rule, 45 CFR §164.308(a)(1)" ;
+    ai:mappedToDimension hg:HealthDataPrivacy ;
+    ai:mappedToDimension ai:Security ;
+.
+
+# ── Business Associate Obligations ───────────────────────────────────────────
+
+hipaa:BusinessAssociateAgreement
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Business Associate Agreement (BAA)"@en ;
+    skos:definition "Covered entities must execute a BAA with every vendor or contractor that creates, receives, maintains, or transmits PHI on their behalf — AI vendors processing patient data are Business Associates and must sign a compliant BAA before receiving any PHI."@en ;
+    skos:inScheme   hipaa:Scheme ;
+    prov:wasDerivedFrom "HIPAA, 45 CFR §164.308(b); §164.314" ;
+    ai:mappedToDimension hg:HealthDataPrivacy ;
+    ai:mappedToDimension ai:Accountability ;
+.
+hipaa:BAASubcontractorObligation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Subcontractor BAA Chain"@en ;
+    skos:definition "Business associates must ensure their own subcontractors (including AI model providers, cloud infrastructure) are bound by equivalent PHI protections through a downstream BAA. AI supply chain must be mapped and contracted."@en ;
+    skos:inScheme   hipaa:Scheme ;
+    prov:wasDerivedFrom "HIPAA Omnibus Rule, 45 CFR §164.308(b)(2)" ;
+    ai:mappedToDimension hg:HealthDataPrivacy ;
+.
+
+# ── Breach Notification Rule ──────────────────────────────────────────────────
+
+hipaa:BreachNotificationObligation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Breach Notification — 60-Day Rule"@en ;
+    skos:definition "Following discovery of a breach of unsecured PHI, covered entities must notify affected individuals within 60 days; entities experiencing breaches affecting ≥500 individuals in a state must also notify HHS and prominent media. AI model failures that expose PHI (e.g., model inversion, training data extraction) are reportable breaches."@en ;
+    skos:inScheme   hipaa:Scheme ;
+    prov:wasDerivedFrom "HITECH §13402; 45 CFR §164.404–414" ;
+    ai:mappedToDimension hg:HealthDataPrivacy ;
+    ai:mappedToDimension ai:Transparency ;
+.
+
+# ── De-identification ─────────────────────────────────────────────────────────
+
+hipaa:DeIdentificationSafeHarbour
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "De-identification Safe Harbour (18-Identifier Rule)"@en ;
+    skos:definition "PHI is considered de-identified if all 18 categories of identifiers are removed — de-identified data is not subject to HIPAA restrictions and is the preferred basis for AI model training where the safe harbour can be met."@en ;
+    skos:inScheme   hipaa:Scheme ;
+    prov:wasDerivedFrom "HIPAA Privacy Rule, 45 CFR §164.514(b)" ;
+    ai:mappedToDimension hg:HealthDataPrivacy ;
+    ai:mappedToDimension ai:Privacy ;
+    ai:appliesToLifecycle hg:DataCuration ;
+.
+hipaa:ExpertDetermination
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "De-identification Expert Determination Method"@en ;
+    skos:definition "A statistician or other qualified expert may certify that the risk of re-identification is very small — alternative to safe harbour for complex datasets. Must document methods used. Relevant for synthetic health data used in AI training."@en ;
+    skos:inScheme   hipaa:Scheme ;
+    prov:wasDerivedFrom "HIPAA Privacy Rule, 45 CFR §164.514(b)(1)" ;
+    ai:mappedToDimension hg:HealthDataPrivacy ;
+    ai:appliesToLifecycle hg:DataCuration ;
+.

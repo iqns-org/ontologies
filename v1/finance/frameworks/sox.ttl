@@ -1,0 +1,117 @@
+@prefix sox: <https://iqns.org/v0/sox#> .
+@prefix finance:   <https://iqns.org/v0/finance#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+sox:Ontology a owl:Ontology ;
+    dct:title       "SOX — Sarbanes-Oxley Act (US, 2002)"@en ;
+    prov:wasDerivedFrom <https://uscode.house.gov/view.xhtml?path=/prelim@title15/chapter98&edition=prelim> ;
+    owl:versionInfo "Pub.L. 107–204, 116 Stat. 745 — as amended" ;
+.
+
+sox:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "Sarbanes-Oxley Act — Financial Controls and Audit"@en ;
+    skos:definition "US federal law establishing internal control over financial reporting (ICFR) requirements, CEO/CFO certification, auditor independence, and whistleblower protections for public companies. AI systems involved in financial reporting or ICFR are directly in scope of §302 and §404."@en .
+
+sox:SOX
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "Sarbanes-Oxley Act (SOX)"@en ;
+    skos:definition "Pub.L. 107-204 — US federal law requiring public company management and external auditors to report on the adequacy of internal controls over financial reporting. AI systems that generate, process, or report financial data are in scope."@en ;
+    skos:inScheme   sox:Scheme ;
+    dct:publisher   "US Congress"@en ;
+    dct:issued      "2002"^^xsd:gYear ;
+.
+
+# ── §302 — CEO/CFO Certification ──────────────────────────────────────────────
+
+sox:CEOCFOCertificationObligation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "§302 CEO/CFO Quarterly Certification"@en ;
+    skos:definition "CEO and CFO must personally certify in each 10-Q and 10-K filing that: (1) they have reviewed the report; (2) it contains no material misstatements; (3) they are responsible for ICFR; (4) they have disclosed all significant deficiencies and material weaknesses. AI systems generating financial figures directly implicate this certification."@en ;
+    skos:inScheme   sox:Scheme ;
+    prov:wasDerivedFrom "SOX §302 (15 U.S.C. §7241)" ;
+    ai:mappedToDimension ai:Accountability ;
+    ai:mappedToDimension finance:OperationalRisk ;
+.
+
+# ── §404 — ICFR / Internal Controls ──────────────────────────────────────────
+
+sox:ICFRManagementAssessment
+    a ai:Obligation ; a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "§404(a) Management Assessment of ICFR"@en ;
+    skos:definition "Management must annually assess and report on the effectiveness of internal controls over financial reporting (ICFR) using a recognised framework (COSO). AI models that produce financial estimates, valuations, or disclosures are ICFR controls and must be assessed."@en ;
+    skos:inScheme   sox:Scheme ;
+    prov:wasDerivedFrom "SOX §404(a) (15 U.S.C. §7262(a))" ;
+    ai:mappedToDimension finance:ModelRisk ;
+    ai:mappedToDimension ai:Accountability ;
+    ai:appliesToLifecycle finance:ModelProduction ;
+.
+sox:ICFRAuditorAttestation
+    a ai:Obligation ; a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "§404(b) External Auditor ICFR Attestation"@en ;
+    skos:definition "For accelerated and large accelerated filers, the external auditor must independently attest to and report on management's ICFR assessment. Where AI models are ICFR controls, auditors must assess their design and operating effectiveness."@en ;
+    skos:inScheme   sox:Scheme ;
+    prov:wasDerivedFrom "SOX §404(b) (15 U.S.C. §7262(b))" ;
+    ai:mappedToDimension finance:ModelRisk ;
+    ai:mappedToDimension ai:Accountability ;
+.
+
+# ── §409 — Real-Time Disclosure ───────────────────────────────────────────────
+
+sox:MaterialEventRealTimeDisclosure
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "§409 Real-Time Disclosure of Material Events"@en ;
+    skos:definition "Public companies must disclose material changes in financial condition or operations on a rapid and current basis. AI-generated forecasts or valuations that are disclosed publicly must be accurate — material AI model failures causing mis-disclosure trigger §409 obligations."@en ;
+    skos:inScheme   sox:Scheme ;
+    prov:wasDerivedFrom "SOX §409 (15 U.S.C. §7266)" ;
+    ai:mappedToDimension ai:Transparency ;
+    ai:mappedToDimension finance:ModelRisk ;
+.
+
+# ── §802 / §1102 — Records and Audit Trail ────────────────────────────────────
+
+sox:AuditTrailRetentionObligation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "§802 Audit Record Retention (7 Years)"@en ;
+    skos:definition "Auditors must retain audit workpapers and records for 7 years. For AI models used in audit or financial reporting, this means retaining model versions, training data snapshots, validation results, and decision logs for the full retention period."@en ;
+    skos:inScheme   sox:Scheme ;
+    prov:wasDerivedFrom "SOX §802 (18 U.S.C. §1520)" ;
+    ai:mappedToDimension ai:Accountability ;
+    ai:mappedToDimension finance:ModelRisk ;
+.
+
+# ── Controls ──────────────────────────────────────────────────────────────────
+
+sox:COSOFrameworkAdoption
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "COSO Framework for ICFR Assessment"@en ;
+    skos:definition "Management assessment of ICFR under SOX §404 must use a recognised framework — COSO Internal Control — Integrated Framework (2013) is the SEC-accepted standard. AI model controls must map to the five COSO components."@en ;
+    skos:inScheme   sox:Scheme ;
+    prov:wasDerivedFrom "SEC Release No. 33-8238; PCAOB AS2201" ;
+    ai:mappedToDimension finance:ModelRisk ;
+    ai:mappedToDimension ai:Accountability ;
+.
+sox:AIModelChangeManagement
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "AI Model Change Management — ICFR Control"@en ;
+    skos:definition "Changes to AI/ML models used in financial reporting must follow a documented change management process: version control, impact assessment, testing, approval, and rollback — to maintain ICFR completeness."@en ;
+    skos:inScheme   sox:Scheme ;
+    prov:wasDerivedFrom "PCAOB AS2201 §B4; SEC Staff Bulletin on AI (2024)" ;
+    ai:mappedToDimension finance:ModelRisk ;
+    ai:appliesToLifecycle finance:ModelApproval ;
+    ai:appliesToLifecycle finance:ModelProduction ;
+.
+sox:WhistleblowerProtection
+    a ai:Right ; a skos:Concept ;
+    skos:prefLabel  "§806 Whistleblower Protection"@en ;
+    skos:definition "Employees of public companies who report SEC violations or fraud are protected from retaliation — including employees who raise concerns about AI systems used in financial reporting."@en ;
+    skos:inScheme   sox:Scheme ;
+    prov:wasDerivedFrom "SOX §806 (18 U.S.C. §1514A)" ;
+    ai:mappedToDimension ai:Accountability ;
+.

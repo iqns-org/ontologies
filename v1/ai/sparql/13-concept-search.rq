@@ -1,0 +1,32 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# 13  Full-Text Concept Search (label + definition)
+# Purpose : Find any concept whose label or definition contains a keyword.
+#           Substitute ?keyword with the term to search.
+# Use case: Ad-hoc CISO lookups — "what does the graph say about 'bias'?"
+# ─────────────────────────────────────────────────────────────────────────────
+
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX ai:   <https://iqns.org/v0/ai#>
+PREFIX dct:  <http://purl.org/dc/terms/>
+
+SELECT DISTINCT
+    ?concept
+    ?label
+    ?definition
+    ?source
+WHERE {
+    ?concept skos:prefLabel ?label .
+
+    OPTIONAL { ?concept skos:definition ?definition . }
+    OPTIONAL { ?concept dct:source      ?source     . }
+
+    # ── Change the search string below ─────────────────────────────────────
+    FILTER (
+        CONTAINS( LCASE(STR(?label)),      "bias" )
+        || CONTAINS( LCASE(STR(?definition)), "bias" )
+    )
+    # ───────────────────────────────────────────────────────────────────────
+
+    FILTER ( lang(?label) = "en" || lang(?label) = "" )
+}
+ORDER BY ?label

@@ -1,0 +1,159 @@
+@prefix eu-mdr: <https://iqns.org/v0/eu-mdr#> .
+@prefix hg:   <https://iqns.org/v0/health#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+eu-mdr:Ontology a owl:Ontology ;
+    dct:title       "EU MDR — Medical Device Regulation (EU 2017/745)"@en ;
+    prov:wasDerivedFrom <https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32017R0745> ;
+    owl:versionInfo "Regulation (EU) 2017/745 — fully applicable May 2021 (Class III/IIb); transitional extensions per Regulation 2023/607" ;
+.
+
+eu-mdr:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "EU MDR 2017/745 — Medical Device Regulation"@en ;
+    skos:definition "EU regulation governing medical devices — the primary conformity framework for AI/ML-based Software as a Medical Device (SaMD) in the EU market. AI diagnostic and treatment-support software is classified under Rule 11 (IIa/IIb/III) depending on intended purpose and patient risk."@en .
+
+eu-mdr:EUMDR
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "EU MDR 2017/745"@en ;
+    skos:definition "Regulation (EU) 2017/745 on medical devices — applies to any software that qualifies as a medical device, including AI/ML diagnostic support, clinical decision support, and predictive risk tools intended to influence clinical decisions."@en ;
+    skos:inScheme   eu-mdr:Scheme ;
+    dct:publisher   "European Parliament and Council of the EU"@en ;
+    dct:issued      "2017"^^xsd:gYear ;
+.
+
+# ── Classification — Rule 11 (Software) ──────────────────────────────────────
+
+eu-mdr:SoftwareClassificationRule11
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Rule 11 — Software Classification"@en ;
+    skos:definition "Software intended to provide information used to make decisions for diagnostic or therapeutic purposes is classified IIa (non-serious), IIb (serious), or III (life-threatening) depending on intended purpose. Most clinical AI decision-support tools land in Class IIa or IIb."@en ;
+    skos:inScheme   eu-mdr:Scheme ;
+    prov:wasDerivedFrom "EU MDR 2017/745, Annex VIII, Rule 11" ;
+    ai:mappedToDimension hg:ClinicalSafety ;
+.
+
+# ── Annex I — General Safety and Performance Requirements ────────────────────
+
+eu-mdr:GeneralSafetyPerformanceRequirements
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "General Safety and Performance Requirements (GSPR)"@en ;
+    skos:definition "All medical devices must meet the General Safety and Performance Requirements in Annex I — including: no unacceptable risk to patients, clinical performance evidence, known or foreseeable risks minimised, and reproducible performance. AI systems must demonstrate consistent performance across patient subpopulations."@en ;
+    skos:inScheme   eu-mdr:Scheme ;
+    prov:wasDerivedFrom "EU MDR 2017/745, Annex I, §1–23" ;
+    ai:mappedToDimension hg:ClinicalSafety ;
+    ai:mappedToDimension hg:ClinicalEfficacy ;
+    ai:mappedToDimension hg:EquityAndBias ;
+.
+
+# ── Technical Documentation (Annex II/III) ────────────────────────────────────
+
+eu-mdr:TechnicalDocumentationObligation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Technical Documentation (Annex II)"@en ;
+    skos:definition "Manufacturers must prepare and maintain comprehensive technical documentation covering: device description, intended use, design and manufacturing information, risk management, verification and validation, and clinical evaluation. For AI/ML: includes training data description, model architecture, performance on test sets, and subgroup analysis."@en ;
+    skos:inScheme   eu-mdr:Scheme ;
+    prov:wasDerivedFrom "EU MDR 2017/745, Annex II" ;
+    ai:mappedToDimension hg:ClinicalSafety ;
+    ai:mappedToDimension ai:Transparency ;
+    ai:mappedToDimension ai:Accountability ;
+    ai:appliesToLifecycle hg:AlgorithmDevelopment ;
+    ai:appliesToLifecycle hg:ClinicalValidation ;
+.
+eu-mdr:PostMarketTechnicalDocumentation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Post-Market Technical Documentation (Annex III — PMCF)"@en ;
+    skos:definition "Manufacturers must maintain post-market surveillance documentation including PMCF plan and reports. For AI systems, this means ongoing monitoring of real-world performance against the validation study results — with predefined performance thresholds triggering corrective action."@en ;
+    skos:inScheme   eu-mdr:Scheme ;
+    prov:wasDerivedFrom "EU MDR 2017/745, Annex III; Art. 83–86" ;
+    ai:mappedToDimension hg:ClinicalSafety ;
+    ai:mappedToDimension hg:ClinicalEfficacy ;
+    ai:appliesToLifecycle hg:PostMarketSurveillance ;
+.
+
+# ── Clinical Evaluation (Annex XIV) ──────────────────────────────────────────
+
+eu-mdr:ClinicalEvaluationObligation
+    a ai:Obligation ; a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "Clinical Evaluation and Clinical Evidence"@en ;
+    skos:definition "Manufacturers must demonstrate clinical safety and performance through a systematic clinical evaluation — for AI: including clinical validation study results, literature review, and post-market clinical follow-up. Clinical claim must be supported by statistically significant evidence on the intended patient population."@en ;
+    skos:inScheme   eu-mdr:Scheme ;
+    prov:wasDerivedFrom "EU MDR 2017/745, Art. 61; Annex XIV; MDCG 2020-5" ;
+    ai:mappedToDimension hg:ClinicalSafety ;
+    ai:mappedToDimension hg:ClinicalEfficacy ;
+    ai:mappedToDimension hg:EquityAndBias ;
+    ai:appliesToLifecycle hg:ClinicalValidation ;
+.
+
+# ── Unique Device Identification (Art. 27) ────────────────────────────────────
+
+eu-mdr:UDIObligation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "UDI — Unique Device Identification"@en ;
+    skos:definition "All medical devices must be assigned a UDI and registered in EUDAMED. For AI software: the UDI-DI changes with each new version affecting intended use or performance — software update triggers a new UDI and potentially a new conformity assessment."@en ;
+    skos:inScheme   eu-mdr:Scheme ;
+    prov:wasDerivedFrom "EU MDR 2017/745, Art. 27; Annex VI" ;
+    ai:mappedToDimension ai:Accountability ;
+.
+
+# ── Post-Market Surveillance (Art. 83–86) ────────────────────────────────────
+
+eu-mdr:PMSPlanObligation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Post-Market Surveillance Plan (PMS Plan)"@en ;
+    skos:definition "Manufacturers must establish and update a proactive PMS system including: collection of real-world performance data, analysis of adverse events, PMCF plan execution, and trend analysis. AI systems must define performance thresholds and drift detection mechanisms in the PMS plan."@en ;
+    skos:inScheme   eu-mdr:Scheme ;
+    prov:wasDerivedFrom "EU MDR 2017/745, Art. 83; Chapter VII" ;
+    ai:mappedToDimension hg:ClinicalSafety ;
+    ai:mappedToDimension hg:ClinicalEfficacy ;
+    ai:appliesToLifecycle hg:PostMarketSurveillance ;
+.
+eu-mdr:SeriousIncidentReporting
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Serious Incident and FSCA Reporting (Vigilance)"@en ;
+    skos:definition "Manufacturers must report serious incidents (SI) and safety corrective actions (FSCA) to competent authorities within 15 days (immediately life-threatening) to 30 days. AI model failures contributing to adverse patient events are reportable under the vigilance system."@en ;
+    skos:inScheme   eu-mdr:Scheme ;
+    prov:wasDerivedFrom "EU MDR 2017/745, Art. 87; MDCG 2023-3" ;
+    ai:mappedToDimension hg:ClinicalSafety ;
+    ai:mappedToDimension ai:Transparency ;
+    ai:appliesToLifecycle hg:PostMarketSurveillance ;
+.
+eu-mdr:PeriodicSafetyUpdateReport
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Periodic Safety Update Report (PSUR)"@en ;
+    skos:definition "Manufacturers of Class IIa/IIb/III devices must prepare PSURs summarising conclusions of PMS data analysis — Class IIb/III must submit annually; Class IIa every 2 years. AI PSURs must include performance drift analysis and subpopulation equity analysis."@en ;
+    skos:inScheme   eu-mdr:Scheme ;
+    prov:wasDerivedFrom "EU MDR 2017/745, Art. 86" ;
+    ai:mappedToDimension hg:ClinicalSafety ;
+    ai:appliesToLifecycle hg:PostMarketSurveillance ;
+.
+
+# ── Quality Management System (Art. 10(9)) ───────────────────────────────────
+
+eu-mdr:QMSObligation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Quality Management System (ISO 13485)"@en ;
+    skos:definition "Manufacturers must implement and maintain a quality management system covering the full device lifecycle — assessed by Notified Bodies during conformity assessment. ISO 13485 is the QMS standard; AI-specific guidance embedded in IEC 62304 for software lifecycle processes."@en ;
+    skos:inScheme   eu-mdr:Scheme ;
+    prov:wasDerivedFrom "EU MDR 2017/745, Art. 10(9)" ;
+    ai:mappedToDimension hg:ClinicalSafety ;
+    ai:mappedToDimension ai:Accountability ;
+.
+
+# ── Rights ────────────────────────────────────────────────────────────────────
+
+eu-mdr:PatientRightToInformation
+    a ai:Right ; a skos:Concept ;
+    skos:prefLabel  "Patient Right to Device Information (IFU)"@en ;
+    skos:definition "Patients and users have the right to adequate instructions for use (IFU) for medical devices — AI clinical decision support must include clear information on intended use, limitations, and when to override the AI recommendation."@en ;
+    skos:inScheme   eu-mdr:Scheme ;
+    prov:wasDerivedFrom "EU MDR 2017/745, Annex I §23; Art. 10(11)" ;
+    ai:mappedToDimension ai:Transparency ;
+    ai:mappedToDimension hg:ClinicalSafety ;
+.

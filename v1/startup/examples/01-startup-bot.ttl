@@ -1,0 +1,17 @@
+@prefix scale-ai: <https://iqns.org/v0/startup/examples/scale-ai#> .
+@prefix ex:     <https://iqns.org/v0/example#> .
+@prefix stg:    <https://iqns.org/v0/stargraph#> .
+@prefix ai:     <https://iqns.org/v0/ai#> .
+@prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:   <http://www.w3.org/ns/prov#> .
+@prefix owasp:  <https://iqns.org/v0/owasp-llm#> .
+
+scale-ai:ScaleAppLLM a ai:System ;
+    a stg:Founder ;
+    skos:prefLabel "ScaleAI Enterprise Chatbot"@en ;
+    ai:mappedToDimension stg:RegulatoryReadiness ;
+    ai:appliesToLifecycle stg:ProductMarketFit ;
+    prov:wasDerivedFrom "ScaleAI Series A Due Diligence Pack" ;
+    # Startup scaling
+    ai:implementsControl owasp:Framework ;
+.

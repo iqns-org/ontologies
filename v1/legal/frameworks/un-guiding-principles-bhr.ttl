@@ -1,0 +1,111 @@
+@prefix ungp-bhr: <https://iqns.org/v0/ungp-bhr#> .
+@prefix lg:   <https://iqns.org/v0/leggraph#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+ungp-bhr:Ontology a owl:Ontology ;
+    dct:title       "UN Guiding Principles on Business and Human Rights"@en ;
+    prov:wasDerivedFrom <https://www.ohchr.org/sites/default/files/documents/publications/guidingprinciplesbusinesshr_en.pdf> ;
+    owl:imports     <https://iqns.org/v0/ai#> ;
+    owl:versionInfo "2011" .
+
+ungp-bhr:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "UN Guiding Principles on Business and Human Rights (UNGPs)"@en ;
+    skos:definition "Endorsed by the UN Human Rights Council in 2011 (Resolution 17/4), the UNGPs articulate the Protect-Respect-Remedy framework governing how states and businesses must address human rights. The authoritative global reference for corporate human rights due diligence, increasingly applied to AI systems."@en .
+
+ungp-bhr:UNGPs
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "UN Guiding Principles on Business and Human Rights (UNGPs, 2011)"@en ;
+    skos:definition "Authoritative global framework endorsed by the UN Human Rights Council. Three-pillar structure: (I) State Duty to Protect human rights; (II) Corporate Responsibility to Respect human rights; (III) Access to Remedy for victims of business-related human rights impacts."@en ;
+    skos:inScheme   ungp-bhr:Scheme ;
+    dct:publisher   "UN Human Rights Council"@en ;
+    dct:issued      "2011"^^xsd:gYear ;
+    prov:wasDerivedFrom <https://www.ohchr.org/sites/default/files/documents/publications/guidingprinciplesbusinesshr_en.pdf> ;
+    ai:mappedToDimension ai:HumanOversight ;
+    ai:mappedToDimension ai:Fairness ;
+    ai:mappedToDimension ai:Accountability ;
+    ai:mappedToDimension ai:Transparency ;
+.
+
+ungp-bhr:StateDutyToProtect
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Pillar I: State Duty to Protect (GP 1-10)"@en ;
+    skos:definition "States must protect against human rights abuses within their territory or jurisdiction by third parties including business enterprises, through appropriate policies, regulation, and adjudication. For AI: obligates states to regulate AI systems that could infringe human rights."@en ;
+    skos:inScheme   ungp-bhr:Scheme ;
+    prov:wasDerivedFrom "UN Guiding Principles 1-10" ;
+    ai:mappedToDimension ai:HumanOversight ;
+.
+
+ungp-bhr:CorporateResponsibilityToRespect
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Pillar II: Corporate Responsibility to Respect (GP 11-24)"@en ;
+    skos:definition "Business enterprises must respect human rights — avoiding infringement and addressing adverse impacts in their own operations and throughout their value chains. Includes a responsibility to carry out human rights due diligence."@en ;
+    skos:inScheme   ungp-bhr:Scheme ;
+    prov:wasDerivedFrom "UN Guiding Principles 11-24" ;
+    ai:mappedToDimension ai:Accountability ;
+.
+
+ungp-bhr:HRDueDiligence
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Human Rights Due Diligence (GP 17)"@en ;
+    skos:definition "Business enterprises must carry out human rights due diligence to identify, prevent, mitigate, and account for how they address actual and potential adverse human rights impacts. For AI: supply chain audits of training data, model outputs, and deployment contexts."@en ;
+    skos:inScheme   ungp-bhr:Scheme ;
+    prov:wasDerivedFrom "UN Guiding Principles GP 17" ;
+    skos:broader    ungp-bhr:CorporateResponsibilityToRespect ;
+    ai:mappedToDimension ai:Accountability ;
+.
+
+ungp-bhr:AIHumanRightsImpactAssessment
+    a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "AI Human Rights Impact Assessment (HRIA)"@en ;
+    skos:definition "Application of UNGP GP 17-21 to AI systems: a structured assessment of how an AI product or deployment may adversely affect rights to privacy, non-discrimination, fair trial, freedom of expression, and access to remedy. Required under EU CSDDD for in-scope corporations."@en ;
+    skos:inScheme   ungp-bhr:Scheme ;
+    prov:wasDerivedFrom "UN Guiding Principles GP 17-21" ;
+    skos:broader    ungp-bhr:HRDueDiligence ;
+    ai:mappedToDimension ai:Fairness ;
+    ai:mappedToDimension ai:Transparency ;
+.
+
+ungp-bhr:SalientHumanRightsRisks
+    a ai:RiskCategory ; a skos:Concept ;
+    skos:prefLabel  "Salient Human Rights Risks in AI (GP 20)"@en ;
+    skos:definition "Those human rights at risk of the most severe negative impact through a company's activities or business relationships. For AI systems: algorithmic discrimination, biometric surveillance without consent, automated decision-making affecting livelihood or liberty."@en ;
+    skos:inScheme   ungp-bhr:Scheme ;
+    prov:wasDerivedFrom "UN Guiding Principles GP 20" ;
+    ai:hasRiskLevel ai:HighRisk ;
+    ai:mappedToDimension ai:Fairness ;
+.
+
+ungp-bhr:Grievance
+    a ai:Right ; a skos:Concept ;
+    skos:prefLabel  "Operational-Level Grievance Mechanisms (GP 29)"@en ;
+    skos:definition "Business enterprises should establish or participate in effective legitimate grievance mechanisms for those whose rights are impacted. For AI: internal redress mechanisms, audit logs, and explainability tools that support redress calculations."@en ;
+    skos:inScheme   ungp-bhr:Scheme ;
+    prov:wasDerivedFrom "UN Guiding Principles GP 29" ;
+    ai:mappedToDimension ai:Transparency ;
+.
+
+ungp-bhr:AccessToRemedy
+    a ai:Right ; a skos:Concept ;
+    skos:prefLabel  "Pillar III: Access to Remedy (GP 25-31)"@en ;
+    skos:definition "States and businesses must ensure individuals and communities have access to effective remedy for business-related human rights abuses, through judicial, non-judicial, state-based, and non-state-based mechanisms."@en ;
+    skos:inScheme   ungp-bhr:Scheme ;
+    prov:wasDerivedFrom "UN Guiding Principles 25-31" ;
+    ai:mappedToDimension ai:HumanOversight ;
+.
+
+ungp-bhr:EUCSDDDCrosswalk
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "EU Corporate Sustainability Due Diligence Directive (CSDDD 2024/1760)"@en ;
+    skos:definition "The EU CSDDD (adopted 2024) legally operationalises UNGP Pillar II for large companies operating in the EU. Requires human rights and environmental due diligence with civil liability. AI supply chains, including training data and model providers, fall within scope."@en ;
+    skos:inScheme   ungp-bhr:Scheme ;
+    prov:wasDerivedFrom <https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024L1760> ;
+    skos:relatedMatch ungp-bhr:HRDueDiligence ;
+    ai:mappedToDimension ai:Accountability ;
+.

@@ -1,0 +1,105 @@
+@prefix iso-24029: <https://iqns.org/v0/iso-24029#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+iso-24029:Ontology a owl:Ontology ;
+    dct:title  "ISO/IEC 24029 — Robustness of Neural Networks"@en ;
+    prov:wasDerivedFrom <https://www.iso.org/standard/77609.html> .
+
+iso-24029:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "ISO/IEC 24029"@en ;
+    skos:definition "Assessment methods for robustness of neural networks (Parts 1 and 2)."@en .
+
+iso-24029:ISO24029
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "ISO/IEC 24029"@en ;
+    skos:definition "Two-part standard on formal and informal methods for assessing neural network robustness."@en ;
+    skos:inScheme   iso-24029:Scheme ;
+    dct:publisher   "ISO/IEC JTC 1/SC 42"@en ;
+.
+
+# ── Robustness Properties ─────────────────────────────────────────────────────
+
+iso-24029:InputRobustness
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Input Robustness"@en ;
+    skos:definition "Network output does not change significantly under small perturbations to input."@en ;
+    skos:inScheme   iso-24029:Scheme ; prov:wasDerivedFrom "ISO/IEC 24029-1 §5" ;
+    skos:exactMatch ai:Robustness ;
+.
+iso-24029:DistributionalRobustness
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Distributional Robustness"@en ;
+    skos:definition "Model performance is stable across variation in operational data distribution."@en ;
+    skos:inScheme   iso-24029:Scheme ; prov:wasDerivedFrom "ISO/IEC 24029-1 §5" ;
+    skos:broadMatch ai:Robustness ;
+.
+iso-24029:AdversarialRobustness
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Adversarial Robustness"@en ;
+    skos:definition "Model resists intentionally crafted adversarial inputs designed to cause failure."@en ;
+    skos:inScheme   iso-24029:Scheme ; prov:wasDerivedFrom "ISO/IEC 24029-2 §5" ;
+    skos:broadMatch ai:Security ;
+.
+
+# ── Assessment Methods ────────────────────────────────────────────────────────
+
+iso-24029:FormalVerification
+    a ai:Control ; a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "Formal Verification"@en ;
+    skos:definition "Mathematical proof that a neural network satisfies specified robustness properties."@en ;
+    skos:inScheme   iso-24029:Scheme ; prov:wasDerivedFrom "ISO/IEC 24029-2" ;
+    skos:broadMatch ai:ConformityAssessment ;
+.
+iso-24029:StatisticalTesting
+    a ai:Control ; a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "Statistical Testing"@en ;
+    skos:definition "Empirical evaluation of robustness using test suites, including adversarial examples."@en ;
+    skos:inScheme   iso-24029:Scheme ; prov:wasDerivedFrom "ISO/IEC 24029-1" ;
+    skos:broadMatch ai:RiskAssessment ;
+.
+iso-24029:BoundaryAnalysis
+    a ai:Control ; a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "Decision Boundary Analysis"@en ;
+    skos:definition "Analyse the geometry of decision boundaries to assess sensitivity to input change."@en ;
+    skos:inScheme   iso-24029:Scheme ; prov:wasDerivedFrom "ISO/IEC 24029-1 §6" ;
+    skos:broadMatch ai:RiskAssessment ;
+.
+iso-24029:PerturbationTesting
+    a ai:Control ; a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "Perturbation Testing"@en ;
+    skos:definition "Apply systematic input perturbations to measure output stability bounds."@en ;
+    skos:inScheme   iso-24029:Scheme ; prov:wasDerivedFrom "ISO/IEC 24029-1 §6" ;
+    skos:broadMatch ai:RiskAssessment ;
+.
+iso-24029:UncertaintyQuantification
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Uncertainty Quantification"@en ;
+    skos:definition "Estimate and communicate confidence intervals or prediction uncertainty."@en ;
+    skos:inScheme   iso-24029:Scheme ; prov:wasDerivedFrom "ISO/IEC 24029-1 §7" ;
+    skos:broadMatch ai:Explainability ;
+.
+
+# ── Risks addressed ───────────────────────────────────────────────────────────
+
+iso-24029:OverfittingRisk
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel    "Overfitting Risk"@en ;
+    skos:definition   "Model memorises training data and fails to generalise to unseen inputs."@en ;
+    skos:inScheme     iso-24029:Scheme ;
+    ai:hasRiskCategory ai:PhysicalHarm ;
+    skos:broadMatch   ai:Robustness ;
+.
+iso-24029:TransferabilityRisk
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel    "Transferability Risk"@en ;
+    skos:definition   "Adversarial examples crafted for one model transfer to other models."@en ;
+    skos:inScheme     iso-24029:Scheme ;
+    ai:hasRiskCategory ai:SecurityHarm ;
+.

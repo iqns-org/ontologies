@@ -1,0 +1,28 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# A-03 — Is human oversight covered for this AI system?
+# Purpose : Validate whether the system implements an oversight requirement.
+# Use case: Check human-in-the-loop guardrails in AI deployment checks.
+# ─────────────────────────────────────────────────────────────────────────────
+
+PREFIX ai:   <https://iqns.org/v0/ai#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+ASK WHERE {
+    ?system a ai:System .
+
+    ?system (ai:implementsControl|ai:implementsRequirement) ?item .
+
+    {
+        ?item skos:exactMatch ai:HumanOversight .
+    }
+    UNION
+    {
+        ?item a ai:Requirement .
+        ?item skos:prefLabel ?label .
+        FILTER(CONTAINS(LCASE(STR(?label)), "human oversight") || CONTAINS(LCASE(STR(?label)), "human-in-the-loop") || CONTAINS(LCASE(STR(?label)), "human oversight"))
+    }
+    UNION
+    {
+        ?item skos:exactMatch ai:HumanOversight .
+    }
+}

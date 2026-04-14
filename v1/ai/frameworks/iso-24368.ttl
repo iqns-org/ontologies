@@ -1,0 +1,112 @@
+@prefix iso-24368: <https://iqns.org/v0/iso-24368#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+iso-24368:Ontology a owl:Ontology ;
+    dct:title  "ISO/IEC TR 24368:2022 — AI Ethical and Societal Concerns"@en ;
+    prov:wasDerivedFrom <https://www.iso.org/standard/78507.html> .
+
+iso-24368:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "ISO/IEC TR 24368:2022"@en ;
+    skos:definition "Overview of ethical and societal concerns in AI; framework for values-based governance."@en .
+
+iso-24368:ISO24368
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "ISO/IEC TR 24368:2022"@en ;
+    skos:definition "Catalogues ethical and societal concerns arising from AI and maps them to governance areas."@en ;
+    skos:inScheme   iso-24368:Scheme ;
+    dct:publisher   "ISO/IEC JTC 1/SC 42"@en ;
+    dct:issued      "2022"^^xsd:gYear ;
+.
+
+# ── Ethical Principles ────────────────────────────────────────────────────────
+
+iso-24368:HumanDignity
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Human Dignity"@en ;
+    skos:definition "AI must respect the inherent worth and rights of every person."@en ;
+    skos:inScheme   iso-24368:Scheme ; prov:wasDerivedFrom "ISO/IEC TR 24368:2022 §5" ;
+    skos:broadMatch ai:Fairness ;
+.
+iso-24368:Autonomy
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Human Autonomy"@en ;
+    skos:definition "AI preserves individuals' capacity for self-determination and informed consent."@en ;
+    skos:inScheme   iso-24368:Scheme ; prov:wasDerivedFrom "ISO/IEC TR 24368:2022 §5" ;
+    skos:broadMatch ai:HumanOversight ;
+.
+iso-24368:Beneficence
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Beneficence"@en ;
+    skos:definition "AI should actively promote well-being and societal benefit."@en ;
+    skos:inScheme   iso-24368:Scheme ; prov:wasDerivedFrom "ISO/IEC TR 24368:2022 §5" ;
+    skos:broadMatch ai:Safety ;
+.
+iso-24368:NonMaleficence
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Non-Maleficence"@en ;
+    skos:definition "AI should avoid or minimise harm to individuals, groups, and society."@en ;
+    skos:inScheme   iso-24368:Scheme ; prov:wasDerivedFrom "ISO/IEC TR 24368:2022 §5" ;
+    skos:exactMatch ai:Safety ;
+.
+iso-24368:Justice24368
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Justice"@en ;
+    skos:definition "Benefits and risks of AI are distributed fairly across society."@en ;
+    skos:inScheme   iso-24368:Scheme ; prov:wasDerivedFrom "ISO/IEC TR 24368:2022 §5" ;
+    skos:exactMatch ai:Fairness ;
+.
+iso-24368:Explicability
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Explicability"@en ;
+    skos:definition "AI processes and decisions can be understood by stakeholders (combination of explainability and transparency)."@en ;
+    skos:inScheme   iso-24368:Scheme ; prov:wasDerivedFrom "ISO/IEC TR 24368:2022 §5" ;
+    skos:broadMatch ai:Explainability ;
+    skos:broadMatch ai:Transparency ;
+.
+
+# ── Societal Concern Areas ────────────────────────────────────────────────────
+
+iso-24368:LaborDisplacement
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel    "Labour Displacement"@en ;
+    skos:definition   "AI automation reduces employment opportunities or changes skill requirements at scale."@en ;
+    skos:inScheme     iso-24368:Scheme ; prov:wasDerivedFrom "ISO/IEC TR 24368:2022 §6" ;
+    ai:hasRiskCategory ai:SocietalHarm ;
+.
+iso-24368:DigitalDivide
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel    "Digital Divide"@en ;
+    skos:definition   "Unequal access to AI benefits widens inequality across regions or demographics."@en ;
+    skos:inScheme     iso-24368:Scheme ; prov:wasDerivedFrom "ISO/IEC TR 24368:2022 §6" ;
+    ai:hasRiskCategory ai:SocietalHarm ;
+.
+iso-24368:DemocraticErosion
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel    "Democratic Erosion"@en ;
+    skos:definition   "AI enables manipulation of public opinion, elections, or institutional processes."@en ;
+    skos:inScheme     iso-24368:Scheme ; prov:wasDerivedFrom "ISO/IEC TR 24368:2022 §6" ;
+    ai:hasRiskCategory ai:SocietalHarm ;
+.
+iso-24368:SurveillanceSociety
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel    "Mass Surveillance Risk"@en ;
+    skos:definition   "AI-enabled pervasive monitoring that chills freedom of expression or assembly."@en ;
+    skos:inScheme     iso-24368:Scheme ; prov:wasDerivedFrom "ISO/IEC TR 24368:2022 §6" ;
+    ai:hasRiskCategory ai:PrivacyHarm ;
+    ai:hasRiskCategory ai:SocietalHarm ;
+.
+iso-24368:EnvironmentalImpact
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel    "Environmental Impact"@en ;
+    skos:definition   "AI training and inference consume significant energy and natural resources."@en ;
+    skos:inScheme     iso-24368:Scheme ; prov:wasDerivedFrom "ISO/IEC TR 24368:2022 §6" ;
+    ai:hasRiskCategory ai:EnvironmentalHarm ;
+    skos:broadMatch   ai:Sustainability ;
+.

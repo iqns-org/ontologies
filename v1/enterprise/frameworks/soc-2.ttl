@@ -1,0 +1,76 @@
+@prefix soc-2: <https://iqns.org/v0/soc-2#> .
+@prefix enterprise:   <https://iqns.org/v0/enterprise#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+soc-2:Ontology a owl:Ontology ;
+    dct:title "SOC 2 — Service Organization Controls"@en ;
+    prov:wasDerivedFrom <https://www.aicpa.org/interestareas/frc/assuranceadvisoryservices/socforserviceorganizations.html> ;
+    owl:versionInfo "SOC 2 (Trust Services Criteria)" ;
+.
+
+soc-2:Scheme a skos:ConceptScheme ;
+    skos:prefLabel "SOC 2"@en ;
+    skos:definition "Framework for auditing controls relevant to security, availability, processing integrity, confidentiality, and privacy — widely used for SaaS and AI service providers."@en .
+
+soc-2:SOC2
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel "SOC 2"@en ;
+    skos:definition "AICPA Trust Services Criteria-based attestation standard for service organization controls, often aligned with ISO 27001 and AI supply chain assurance."@en ;
+    skos:inScheme soc-2:Scheme ;
+    dct:publisher "AICPA"@en ;
+    dct:issued "2017"^^xsd:gYear ;
+.
+
+soc-2:SecurityCriteria
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel "Security"@en ;
+    skos:definition "The system is protected against unauthorized access and vulnerabilities; includes encryption, identity management, and incident response."@en ;
+    skos:inScheme soc-2:Scheme ;
+    prov:wasDerivedFrom "AICPA Trust Services Criteria: Security" ;
+    ai:mappedToDimension ai:Security ;
+.
+
+soc-2:AvailabilityCriteria
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel "Availability"@en ;
+    skos:definition "The system is available for operation and use as committed or agreed."@en ;
+    skos:inScheme soc-2:Scheme ;
+    prov:wasDerivedFrom "AICPA Trust Services Criteria: Availability" ;
+    ai:mappedToDimension ai:Robustness ;
+.
+
+soc-2:ConfidentialityCriteria
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel "Confidentiality"@en ;
+    skos:definition "Information designated as confidential is protected as committed."@en ;
+    skos:inScheme soc-2:Scheme ;
+    prov:wasDerivedFrom "AICPA Trust Services Criteria: Confidentiality" ;
+    ai:mappedToDimension ai:Privacy ;
+.
+
+soc-2:ProcessingIntegrityCriteria
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel "Processing Integrity"@en ;
+    skos:definition "System processing is complete, valid, accurate, timely, and authorized; includes AI inference correctness, data validation, and model output quality checks."@en ;
+    skos:inScheme soc-2:Scheme ;
+    prov:wasDerivedFrom "AICPA Trust Services Criteria: Processing Integrity" ;
+    ai:mappedToDimension ai:Reliability ;
+    ai:appliesToLifecycle enterprise:ControlImplementation ;
+.
+
+soc-2:PrivacyCriteria
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel "Privacy"@en ;
+    skos:definition "Personal information is collected, used, retained, disclosed, and disposed in conformity with the entity’s privacy notice and criteria."@en ;
+    skos:inScheme soc-2:Scheme ;
+    prov:wasDerivedFrom "AICPA Trust Services Criteria: Privacy" ;
+    ai:mappedToDimension ai:Privacy ;
+    ai:mappedToDimension ai:Accountability ;
+.

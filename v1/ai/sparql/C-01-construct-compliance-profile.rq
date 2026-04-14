@@ -1,0 +1,66 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# C-01  CONSTRUCT — Unified Compliance Profile for a Single AI System
+# Purpose : Build a mini-graph (named RDF subgraph) that captures all
+#           Requirements, Controls, and Obligations relevant to a given
+#           combination of domain and risk level.  Parameterise with VALUES.
+#
+# Usage   : Substitute ?targetDomain and ?targetRisk with your values, or feed
+#           them via a VALUES clause as shown below.
+# ─────────────────────────────────────────────────────────────────────────────
+
+PREFIX ai:   <https://iqns.org/v0/ai#>
+PREFIX dct:  <http://purl.org/dc/terms/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+CONSTRUCT {
+    ?req     a ai:Requirement ;
+             skos:prefLabel        ?reqLabel ;
+             skos:definition       ?reqDef ;
+             ai:appliesToDomain    ?domain ;
+             ai:appliesToLifecycle ?stage ;
+             dct:source            ?citation ;
+             ai:implementedBy      ?control .
+
+    ?control a ai:Control ;
+             skos:prefLabel       ?controlLabel ;
+             ai:mappedToDimension ?dimension .
+
+    ?obligation a ai:Obligation ;
+                skos:prefLabel    ?obligationLabel ;
+                dct:source        ?oblCitation .
+
+    ?fw  a ai:Framework ;
+         skos:prefLabel   ?fwLabel ;
+         ai:hasRequirement ?req ;
+         ai:imposesObligation ?obligation .
+}
+WHERE {
+    ?fw  a ai:Framework ;
+         skos:prefLabel ?fwLabel .
+
+    OPTIONAL {
+        ?fw ai:hasRequirement ?req .
+        ?req a ai:Requirement ;
+             skos:prefLabel    ?reqLabel .
+
+        OPTIONAL { ?req skos:definition       ?reqDef   . }
+        OPTIONAL { ?req ai:appliesToDomain    ?domain   . }
+        OPTIONAL { ?req ai:appliesToLifecycle ?stage    . }
+        OPTIONAL { ?req dct:source            ?citation . }
+        OPTIONAL { ?req ai:hasControl ?control .
+                   ?control skos:prefLabel       ?controlLabel .
+                   OPTIONAL { ?control ai:mappedToDimension ?dimension . } }
+
+        OPTIONAL { ?req ai:hasRiskLevel ?rl .
+                   FILTER ( ?rl = ?targetRisk
+                            || EXISTS { ?rl skos:exactMatch ?targetRisk . } ) }
+    }
+
+    OPTIONAL {
+        ?fw ai:imposesObligation ?obligation .
+        ?obligation a ai:Obligation ;
+                    skos:prefLabel ?obligationLabel .
+        OPTIONAL { ?obligation dct:source ?oblCitation . }
+    }
+}

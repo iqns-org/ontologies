@@ -1,0 +1,18 @@
+@prefix mission-ai: <https://iqns.org/v0/defence/examples/mission-ai#> .
+@prefix ex:     <https://iqns.org/v0/example#> .
+@prefix dg:     <https://iqns.org/v0/defgraph#> .
+@prefix ai:     <https://iqns.org/v0/ai#> .
+@prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
+@prefix prov:   <http://www.w3.org/ns/prov#> .
+@prefix dod:    <https://iqns.org/v0/dod-rai#> .
+
+mission-ai:SentinelUAV a ai:System ;
+    a dg:MilitaryCommander ;
+    skos:prefLabel "Sentinel Autonomous UAV Reconnaissance"@en ;
+    ai:mappedToDimension dg:LegalCompliance ;
+    ai:appliesToLifecycle dg:OperationalDeployment ;
+    prov:wasDerivedFrom "Sentinel Programme Office - Capability ID S4" ;
+    # Ethical AI alignment
+    ai:implementsControl dod:AIGovernanceStructure ;
+    ai:implementsControl dod:IHLCompliance ;
+.

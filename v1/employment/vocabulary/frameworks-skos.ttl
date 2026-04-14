@@ -1,0 +1,17 @@
+@prefix em-crosswalk: <https://iqns.org/v0/em-crosswalk#> .
+@prefix emg:   <https://iqns.org/v0/emgraph#> .
+@prefix ai:    <https://iqns.org/v0/ai#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct:   <http://purl.org/dc/terms/> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+
+# AI Frameworks applicable to Employment
+@prefix eu-ai:  <https://iqns.org/v0/eu-ai-act#> .
+
+em-crosswalk:Ontology a owl:Ontology ; 
+    dct:title "Employment AI Crosswalk"@en ;
+    owl:imports <https://iqns.org/v0/emgraph#> .
+
+# EU AI Act Annex III (4) identifies AI in employment as high-risk
+eu-ai:Ontology skos:relatedMatch emg:Ontology .

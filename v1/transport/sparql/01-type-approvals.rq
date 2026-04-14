@@ -1,0 +1,18 @@
+# 01-tran-safety-approvals.rq
+# Goal: List UN R157 (ALKS) approved Highway Pilots.
+
+PREFIX gg: <https://iqns.org/v0/ai#>
+PREFIX tg: <https://iqns.org/v0/trangraph#>
+PREFIX r157: <https://iqns.org/v0/un-r157#>
+
+SELECT ?this ?label ?safetyControl
+WHERE {
+    ?this a gg:System ;
+                   skos:prefLabel ?label ;
+                   gg:appliesToLifecycle tg:VehicleTypeApproval .
+    
+    # Requirement: must implement ALKS functional safety controls
+    ?this gg:implementsControl ?safetyControl .
+    ?safetyControl a gg:Control ;
+                   skos:prefLabel ?safetyControlLabel .
+}

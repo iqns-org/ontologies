@@ -1,0 +1,46 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# 11  Related Concepts Across Frameworks (broadMatch / relatedMatch)
+# Purpose : Surface skos:broadMatch and skos:relatedMatch links across
+#           frameworks, identifying partial alignments and hierarchy edges.
+# Use case: CISO / Architect — understand where frameworks overlap partially
+#           and where genuine regulatory differences exist.
+# ─────────────────────────────────────────────────────────────────────────────
+
+PREFIX ai:   <https://iqns.org/v0/ai#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX dct:  <http://purl.org/dc/terms/>
+
+SELECT DISTINCT
+    ?this
+    ?sourceLabel
+    ?relation
+    ?targetLabel
+    ?sourceCitation
+    ?targetCitation
+WHERE {
+    {
+        ?this skos:broadMatch   ?target .
+        BIND( "broadMatch" AS ?relation )
+    }
+    UNION
+    {
+        ?this skos:relatedMatch ?target .
+        BIND( "relatedMatch" AS ?relation )
+    }
+    UNION
+    {
+        ?this skos:narrowMatch  ?target .
+        BIND( "narrowMatch" AS ?relation )
+    }
+
+    ?this skos:prefLabel ?sourceLabel .
+    ?target skos:prefLabel ?targetLabel .
+
+    OPTIONAL { ?this dct:source ?sourceCitation . }
+    OPTIONAL { ?target dct:source ?targetCitation . }
+
+    FILTER ( lang(?sourceLabel) = "en" )
+    FILTER ( lang(?targetLabel) = "en" )
+    FILTER ( STRBEFORE(STR(?source), "#") != STRBEFORE(STR(?target), "#") )
+}
+ORDER BY ?relation ?sourceLabel ?targetLabel

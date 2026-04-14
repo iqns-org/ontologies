@@ -1,0 +1,9 @@
+PREFIX ai: <https://iqns.org/v0/ai#>
+
+SELECT ?date ?incidentType (COUNT(?incident) AS ?count) WHERE {
+  ?incident a ai:Incident ;
+            ai:reportedDate ?date ;
+            ai:incidentType ?incidentType .
+}
+GROUP BY ?date ?incidentType
+ORDER BY ?date

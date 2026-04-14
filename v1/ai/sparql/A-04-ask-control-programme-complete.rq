@@ -1,0 +1,22 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# A-04 — Is control programme complete across core dimensions?
+# Purpose : Check that the system has at least one mapped control for each of
+#           key governance dimensions (Safety, Security, Transparency, HumanOversight).
+# Use case: CISO maturity gate for 'minimum coverage' before deployment.
+# ─────────────────────────────────────────────────────────────────────────────
+
+PREFIX ai:   <https://iqns.org/v0/ai#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+ASK WHERE {
+    ?system a ai:System .
+
+    FILTER NOT EXISTS {
+        VALUES ?requiredDimension { ai:Safety ai:Security ai:Transparency ai:HumanOversight }
+
+        FILTER NOT EXISTS {
+            ?system (ai:implementsControl|ai:implementsRequirement) ?item .
+            ?item ai:mappedToDimension ?requiredDimension .
+        }
+    }
+}

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Control status donut chart",
+  "title": "{{chart.title}}",
+  "data": { "values": {{data}} },
+  "mark": { "type": "arc", "innerRadius": 50 },
+  "encoding": {
+    "theta": { "field": "{{chart.theta}}", "type": "quantitative" },
+    "color": { "field": "{{chart.color}}", "type": "nominal", "title": "{{chart.colorTitle}}" },
+    "tooltip": [
+      { "field": "{{chart.color}}", "type": "nominal" },
+      { "field": "{{chart.theta}}", "type": "quantitative" }
+    ]
+  }
+}

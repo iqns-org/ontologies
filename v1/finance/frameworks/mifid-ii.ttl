@@ -1,0 +1,138 @@
+@prefix mifid-ii: <https://iqns.org/v0/mifid-ii#> .
+@prefix finance:   <https://iqns.org/v0/finance#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+mifid-ii:Ontology a owl:Ontology ;
+    dct:title       "MiFID II / MiFIR — Markets in Financial Instruments Directive/Regulation"@en ;
+    prov:wasDerivedFrom <https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32014L0065> ;
+    owl:versionInfo "Directive 2014/65/EU + MiFIR Regulation 600/2014; as amended" ;
+.
+
+mifid-ii:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "MiFID II / MiFIR — EU Investment Services Framework"@en ;
+    skos:definition "EU framework governing investment services and markets — covers best execution, suitability, product governance, algorithmic trading, and market transparency. AI and algorithmic trading obligations are directly in scope."@en .
+
+mifid-ii:MiFIDII
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "MiFID II / MiFIR"@en ;
+    skos:definition "Directive 2014/65/EU and Regulation 600/2014 governing EU investment services — primary framework for algorithmic trading controls, best execution, suitability assessment AI, and product governance obligations for investment firms."@en ;
+    skos:inScheme   mifid-ii:Scheme ;
+    dct:publisher   "European Parliament and Council of the EU"@en ;
+    dct:issued      "2014"^^xsd:gYear ;
+.
+
+# ── Algorithmic Trading (Art. 17) ─────────────────────────────────────────────
+
+mifid-ii:AlgorithmicTradingObligation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Algorithmic Trading Systems Obligation"@en ;
+    skos:definition "Investment firms engaging in algorithmic trading must have effective systems and risk controls ensuring systems are resilient and have sufficient capacity; are subject to appropriate trading thresholds and limits; and are fully tested and monitored."@en ;
+    skos:inScheme   mifid-ii:Scheme ;
+    prov:wasDerivedFrom "MiFID II Art. 17(1)" ;
+    ai:mappedToDimension finance:ModelRisk ;
+    ai:mappedToDimension ai:Robustness ;
+    ai:appliesToLifecycle finance:ModelProduction ;
+.
+mifid-ii:AlgorithmicTradingAnnualSelfAssessment
+    a ai:Obligation ; a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "Algorithmic Trading Annual Self-Assessment"@en ;
+    skos:definition "Firms must conduct an annual self-assessment of their algorithmic trading systems and submit a statement of compliance to their national competent authority."@en ;
+    skos:inScheme   mifid-ii:Scheme ;
+    prov:wasDerivedFrom "MiFID II Art. 17(2); RTS 6" ;
+    ai:mappedToDimension finance:ModelRisk ;
+    ai:appliesToLifecycle finance:ModelMonitoring ;
+.
+mifid-ii:KillSwitchRequirement
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Kill Switch — Market Making / Algorithmic Trading"@en ;
+    skos:definition "Investment firms using algorithmic trading must maintain the ability to cancel unfilled orders and immediately halt or stop trading in any or all financial instruments in emergency situations."@en ;
+    skos:inScheme   mifid-ii:Scheme ;
+    prov:wasDerivedFrom "MiFID II Art. 17(1); RTS 6 Art. 12" ;
+    ai:mappedToDimension finance:ModelRisk ;
+    ai:mappedToDimension ai:HumanOversight ;
+.
+mifid-ii:AlgorithmicTradingRecordKeeping
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Algorithmic Trading Record Keeping"@en ;
+    skos:definition "Firms must keep records of all algorithmic trading strategies, parameters, and testing in a form accessible to regulators for at least 5 years. Model versions and parameter changes must be logged."@en ;
+    skos:inScheme   mifid-ii:Scheme ;
+    prov:wasDerivedFrom "MiFID II Art. 17(2); RTS 6 Art. 13" ;
+    ai:mappedToDimension ai:Accountability ;
+    ai:mappedToDimension ai:Transparency ;
+.
+
+# ── Best Execution (Art. 27) ──────────────────────────────────────────────────
+
+mifid-ii:BestExecutionObligation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Best Execution Obligation"@en ;
+    skos:definition "Investment firms must take all sufficient steps to obtain the best possible result for clients when executing orders — covering price, costs, speed, likelihood of execution, and other factors. AI routing and execution algorithms must demonstrably serve this obligation."@en ;
+    skos:inScheme   mifid-ii:Scheme ;
+    prov:wasDerivedFrom "MiFID II Art. 27" ;
+    ai:mappedToDimension finance:ConductRisk ;
+    ai:mappedToDimension ai:Fairness ;
+.
+mifid-ii:BestExecutionMonitoring
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Best Execution Monitoring and Reporting"@en ;
+    skos:definition "Firms must monitor execution quality and publish annual RTS 27/28 reports — quantitative data enabling clients and regulators to assess whether best execution is being achieved."@en ;
+    skos:inScheme   mifid-ii:Scheme ;
+    prov:wasDerivedFrom "MiFID II Art. 27(3); RTS 27/28" ;
+    ai:mappedToDimension finance:ConductRisk ;
+    ai:mappedToDimension ai:Transparency ;
+    ai:appliesToLifecycle finance:ModelMonitoring ;
+.
+
+# ── Suitability and Appropriateness (Art. 25) ────────────────────────────────
+
+mifid-ii:SuitabilityAssessmentObligation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Suitability Assessment Obligation"@en ;
+    skos:definition "Firms providing investment advice or portfolio management must obtain client information and assess suitability of recommendations. AI-driven robo-advisers must meet the same suitability standards — model logic must be explainable and auditable per client."@en ;
+    skos:inScheme   mifid-ii:Scheme ;
+    prov:wasDerivedFrom "MiFID II Art. 25(2); ESMA Guidelines on Suitability 2018" ;
+    ai:mappedToDimension finance:ConductRisk ;
+    ai:mappedToDimension ai:Fairness ;
+    ai:mappedToDimension ai:Explainability ;
+.
+mifid-ii:RoboAdviceExplainability
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Robo-Advice Explainability Requirement"@en ;
+    skos:definition "AI-driven recommendation systems (robo-advisers) must be able to explain to clients and regulators the basis for any investment recommendation — black-box decisions that cannot be explained to the client violate the suitability obligation."@en ;
+    skos:inScheme   mifid-ii:Scheme ;
+    prov:wasDerivedFrom "ESMA Supervisory Briefing on Suitability (2021); MiFID II Art. 25(6)" ;
+    ai:mappedToDimension ai:Explainability ;
+    ai:mappedToDimension finance:ConductRisk ;
+    skos:relatedMatch <https://iqns.org/v0/eu-ai-act#TransparencyObligation> ;
+.
+
+# ── Product Governance (Art. 16, 24) ─────────────────────────────────────────
+
+mifid-ii:ProductGovernanceRequirement
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Product Governance — target market definition"@en ;
+    skos:definition "Manufacturers of financial instruments must define a target market for each product and adopt a distribution strategy. Distributors using AI to target clients must ensure AI segmentation aligns with the approved target market — distributing outside target market is a conduct breach."@en ;
+    skos:inScheme   mifid-ii:Scheme ;
+    prov:wasDerivedFrom "MiFID II Art. 16(3), 24(2); RTS 5; ESMA Product Governance Guidelines" ;
+    ai:mappedToDimension finance:ConductRisk ;
+    ai:mappedToDimension ai:Fairness ;
+.
+
+# ── Market Abuse — MAR Intersection ──────────────────────────────────────────
+
+mifid-ii:MarketAbuseAlgorithmicControls
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Algorithmic Trading Market Abuse Controls"@en ;
+    skos:definition "Firms using algorithmic trading must have controls to prevent, detect, and report market manipulation. AI trading systems must not generate orders or patterns that could constitute layering, spoofing, or momentum ignition."@en ;
+    skos:inScheme   mifid-ii:Scheme ;
+    prov:wasDerivedFrom "MiFID II Art. 17; MAR Art. 12" ;
+    ai:mappedToDimension finance:ConductRisk ;
+    ai:mappedToDimension finance:OperationalRisk ;
+.

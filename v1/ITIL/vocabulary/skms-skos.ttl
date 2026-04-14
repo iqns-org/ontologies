@@ -1,0 +1,237 @@
+@prefix itil: <https://iqns.org/itil#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# ── Ontology ─────────────────────────────────────────────────────────────────
+
+itil:SKMSOntology
+    a owl:Ontology ;
+    dct:title       "ITIL SKMS — SKOS Concept Scheme and Cross-Cutting Collections"@en ;
+    skos:definition "SKOS concept scheme for the ITIL Service Knowledge Management System, organising all practices, principles, and record types into navigable collections."@en ;
+    owl:imports     <https://iqns.org/itil#> ;
+    owl:versionInfo "0.1" ;
+.
+
+# ── Top-Level Concept Scheme ──────────────────────────────────────────────────
+
+itil:SKMSScheme
+    a skos:ConceptScheme ;
+    skos:prefLabel  "ITIL Service Knowledge Management System"@en ;
+    skos:definition "A SKOS scheme organising all ITIL concepts: Service Value System, guiding principles, management practices, SKMS knowledge infrastructure, and service record types."@en ;
+    dct:publisher   "AXELOS"@en ;
+    dct:issued      "2019"^^xsd:gYear ;
+.
+
+# ── Top Concepts ──────────────────────────────────────────────────────────────
+
+itil:SKMS          skos:topConceptOf itil:SKMSScheme ; skos:inScheme itil:SKMSScheme .
+itil:ServiceValueSystem skos:topConceptOf itil:SKMSScheme ; skos:inScheme itil:SKMSScheme .
+
+# ── All practicesand principals in scheme ────────────────────────────────────
+
+itil:GuidingPrinciple     skos:inScheme itil:SKMSScheme .
+itil:Practice             skos:inScheme itil:SKMSScheme .
+itil:PracticeGroup        skos:inScheme itil:SKMSScheme .
+itil:ValueChainActivity   skos:inScheme itil:SKMSScheme .
+itil:ServiceRecord        skos:inScheme itil:SKMSScheme .
+itil:ConfigurationItem    skos:inScheme itil:SKMSScheme .
+
+itil:FocusOnValue              skos:inScheme itil:SKMSScheme .
+itil:StartWhereYouAre          skos:inScheme itil:SKMSScheme .
+itil:ProgressIteratively       skos:inScheme itil:SKMSScheme .
+itil:CollaborateAndPromoteVisibility skos:inScheme itil:SKMSScheme .
+itil:ThinkAndWorkHolistically  skos:inScheme itil:SKMSScheme .
+itil:KeepItSimpleAndPractical  skos:inScheme itil:SKMSScheme .
+itil:OptimiseAndAutomate       skos:inScheme itil:SKMSScheme .
+
+itil:Plan               skos:inScheme itil:SKMSScheme .
+itil:Improve            skos:inScheme itil:SKMSScheme .
+itil:Engage             skos:inScheme itil:SKMSScheme .
+itil:DesignAndTransition skos:inScheme itil:SKMSScheme .
+itil:ObtainBuild        skos:inScheme itil:SKMSScheme .
+itil:DeliverAndSupport  skos:inScheme itil:SKMSScheme .
+
+itil:GeneralManagement   skos:inScheme itil:SKMSScheme .
+itil:ServiceManagement   skos:inScheme itil:SKMSScheme .
+itil:TechnicalManagement skos:inScheme itil:SKMSScheme .
+
+itil:Incident           skos:inScheme itil:SKMSScheme .
+itil:MajorIncident      skos:inScheme itil:SKMSScheme .
+itil:Problem            skos:inScheme itil:SKMSScheme .
+itil:KnownError         skos:inScheme itil:SKMSScheme .
+itil:Change             skos:inScheme itil:SKMSScheme .
+itil:StandardChange     skos:inScheme itil:SKMSScheme .
+itil:EmergencyChange    skos:inScheme itil:SKMSScheme .
+itil:ServiceRequest     skos:inScheme itil:SKMSScheme .
+itil:Event              skos:inScheme itil:SKMSScheme .
+itil:Release            skos:inScheme itil:SKMSScheme .
+
+itil:CMDB                 skos:inScheme itil:SKMSScheme .
+itil:DML                  skos:inScheme itil:SKMSScheme .
+itil:KnownErrorDatabase   skos:inScheme itil:SKMSScheme .
+itil:ServiceCatalogue     skos:inScheme itil:SKMSScheme .
+
+itil:HardwareCI  skos:inScheme itil:SKMSScheme .
+itil:SoftwareCI  skos:inScheme itil:SKMSScheme .
+itil:DocumentCI  skos:inScheme itil:SKMSScheme .
+
+# Practices
+itil:ArchitectureManagement           skos:inScheme itil:SKMSScheme .
+itil:ContinualImprovementPractice     skos:inScheme itil:SKMSScheme .
+itil:InformationSecurityManagement    skos:inScheme itil:SKMSScheme .
+itil:KnowledgeManagement              skos:inScheme itil:SKMSScheme .
+itil:MeasurementAndReporting          skos:inScheme itil:SKMSScheme .
+itil:OrganisationalChangeManagement   skos:inScheme itil:SKMSScheme .
+itil:PortfolioManagement              skos:inScheme itil:SKMSScheme .
+itil:ProjectManagement                skos:inScheme itil:SKMSScheme .
+itil:RelationshipManagement           skos:inScheme itil:SKMSScheme .
+itil:RiskManagement                   skos:inScheme itil:SKMSScheme .
+itil:ServiceFinancialManagement       skos:inScheme itil:SKMSScheme .
+itil:StrategyManagement               skos:inScheme itil:SKMSScheme .
+itil:SupplierManagement               skos:inScheme itil:SKMSScheme .
+itil:WorkforceAndTalentManagement     skos:inScheme itil:SKMSScheme .
+
+itil:AvailabilityManagement           skos:inScheme itil:SKMSScheme .
+itil:BusinessAnalysis                 skos:inScheme itil:SKMSScheme .
+itil:CapacityAndPerformanceManagement skos:inScheme itil:SKMSScheme .
+itil:ChangeEnablement                 skos:inScheme itil:SKMSScheme .
+itil:EventManagement                  skos:inScheme itil:SKMSScheme .
+itil:IncidentManagementPractice       skos:inScheme itil:SKMSScheme .
+itil:ITAssetManagement                skos:inScheme itil:SKMSScheme .
+itil:MonitoringAndEventManagement     skos:inScheme itil:SKMSScheme .
+itil:ProblemManagement                skos:inScheme itil:SKMSScheme .
+itil:ReleaseManagement                skos:inScheme itil:SKMSScheme .
+itil:ServiceCatalogueManagement       skos:inScheme itil:SKMSScheme .
+itil:ServiceConfigurationManagement   skos:inScheme itil:SKMSScheme .
+itil:ServiceContinuityManagement      skos:inScheme itil:SKMSScheme .
+itil:ServiceDesign                    skos:inScheme itil:SKMSScheme .
+itil:ServiceDesk                      skos:inScheme itil:SKMSScheme .
+itil:ServiceLevelManagement           skos:inScheme itil:SKMSScheme .
+itil:ServiceRequestManagement         skos:inScheme itil:SKMSScheme .
+itil:ServiceValidationAndTesting      skos:inScheme itil:SKMSScheme .
+
+itil:DeploymentManagement             skos:inScheme itil:SKMSScheme .
+itil:InfrastructureAndPlatformManagement skos:inScheme itil:SKMSScheme .
+itil:SoftwareDevelopmentAndManagement skos:inScheme itil:SKMSScheme .
+
+# ═══════════════════════════════════════════════════════════════
+#  SKOS COLLECTIONS — grouped by theme for navigation
+# ═══════════════════════════════════════════════════════════════
+
+itil:GuidingPrinciplesCollection
+    a skos:Collection ;
+    skos:prefLabel "ITIL v4 Guiding Principles"@en ;
+    skos:member itil:FocusOnValue ;
+    skos:member itil:StartWhereYouAre ;
+    skos:member itil:ProgressIteratively ;
+    skos:member itil:CollaborateAndPromoteVisibility ;
+    skos:member itil:ThinkAndWorkHolistically ;
+    skos:member itil:KeepItSimpleAndPractical ;
+    skos:member itil:OptimiseAndAutomate ;
+.
+
+itil:ValueChainCollection
+    a skos:Collection ;
+    skos:prefLabel "Service Value Chain Activities"@en ;
+    skos:member itil:Plan ;
+    skos:member itil:Improve ;
+    skos:member itil:Engage ;
+    skos:member itil:DesignAndTransition ;
+    skos:member itil:ObtainBuild ;
+    skos:member itil:DeliverAndSupport ;
+.
+
+itil:SKMSInfrastructureCollection
+    a skos:Collection ;
+    skos:prefLabel "SKMS Knowledge Infrastructure"@en ;
+    skos:member itil:CMDB ;
+    skos:member itil:DML ;
+    skos:member itil:KnownErrorDatabase ;
+    skos:member itil:ServiceCatalogue ;
+.
+
+itil:ServiceRecordCollection
+    a skos:Collection ;
+    skos:prefLabel "Service Record Types"@en ;
+    skos:member itil:Incident ;
+    skos:member itil:MajorIncident ;
+    skos:member itil:Problem ;
+    skos:member itil:KnownError ;
+    skos:member itil:Change ;
+    skos:member itil:StandardChange ;
+    skos:member itil:EmergencyChange ;
+    skos:member itil:ServiceRequest ;
+    skos:member itil:Event ;
+    skos:member itil:Release ;
+.
+
+itil:GeneralManagementCollection
+    a skos:Collection ;
+    skos:prefLabel "General Management Practices (14)"@en ;
+    skos:member itil:ArchitectureManagement ;
+    skos:member itil:ContinualImprovementPractice ;
+    skos:member itil:InformationSecurityManagement ;
+    skos:member itil:KnowledgeManagement ;
+    skos:member itil:MeasurementAndReporting ;
+    skos:member itil:OrganisationalChangeManagement ;
+    skos:member itil:PortfolioManagement ;
+    skos:member itil:ProjectManagement ;
+    skos:member itil:RelationshipManagement ;
+    skos:member itil:RiskManagement ;
+    skos:member itil:ServiceFinancialManagement ;
+    skos:member itil:StrategyManagement ;
+    skos:member itil:SupplierManagement ;
+    skos:member itil:WorkforceAndTalentManagement ;
+.
+
+itil:ServiceManagementCollection
+    a skos:Collection ;
+    skos:prefLabel "Service Management Practices (17)"@en ;
+    skos:member itil:AvailabilityManagement ;
+    skos:member itil:BusinessAnalysis ;
+    skos:member itil:CapacityAndPerformanceManagement ;
+    skos:member itil:ChangeEnablement ;
+    skos:member itil:EventManagement ;
+    skos:member itil:IncidentManagementPractice ;
+    skos:member itil:ITAssetManagement ;
+    skos:member itil:MonitoringAndEventManagement ;
+    skos:member itil:ProblemManagement ;
+    skos:member itil:ReleaseManagement ;
+    skos:member itil:ServiceCatalogueManagement ;
+    skos:member itil:ServiceConfigurationManagement ;
+    skos:member itil:ServiceContinuityManagement ;
+    skos:member itil:ServiceDesign ;
+    skos:member itil:ServiceDesk ;
+    skos:member itil:ServiceLevelManagement ;
+    skos:member itil:ServiceRequestManagement ;
+    skos:member itil:ServiceValidationAndTesting ;
+.
+
+itil:TechnicalManagementCollection
+    a skos:Collection ;
+    skos:prefLabel "Technical Management Practices (3)"@en ;
+    skos:member itil:DeploymentManagement ;
+    skos:member itil:InfrastructureAndPlatformManagement ;
+    skos:member itil:SoftwareDevelopmentAndManagement ;
+.
+
+# ── Cross-cutting alignments to ai: governance dimensions ────────────────────
+# Maps ITIL practices and principles to canonical ai: dimensions for SPARQL
+# queries that cross both the SKMS and domain layers.
+
+itil:KnowledgeManagement          skos:relatedMatch ai:Transparency .
+itil:InformationSecurityManagement skos:exactMatch  ai:Security .
+itil:RiskManagement               skos:exactMatch  ai:Accountability .
+itil:ServiceContinuityManagement  skos:relatedMatch ai:Robustness .
+itil:AvailabilityManagement       skos:relatedMatch ai:Reliability .
+itil:WorkforceAndTalentManagement skos:relatedMatch ai:HumanOversight .
+itil:MeasurementAndReporting      skos:relatedMatch ai:Transparency .
+itil:ServiceLevelManagement       skos:relatedMatch ai:Reliability .
+itil:SupplierManagement           skos:relatedMatch ai:Accountability .
+itil:FocusOnValue                 skos:relatedMatch ai:Sustainability .
+itil:OptimiseAndAutomate          skos:relatedMatch ai:Sustainability .

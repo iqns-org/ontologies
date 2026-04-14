@@ -1,0 +1,24 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Risk distribution by category",
+  "title": "{{chart.title}}",
+  "data": {
+    "values": {{data}}
+  },
+  "mark": "bar",
+  "encoding": {
+    "x": {"field": "{{chart.x}}", "type": "ordinal", "title": "{{chart.xTitle}}"},
+    "y": {"field": "{{chart.y}}", "type": "quantitative", "title": "{{chart.yTitle}}"},
+    "color": {
+      "condition": {
+        "test": "datum.{{y}} > {{threshold}}",
+        "value": "#d62728"
+      },
+      "value": "#1f77b4"
+    },
+    "tooltip": [
+      {"field": "{{chart.x}}", "type": "nominal"},
+      {"field": "{{chart.y}}", "type": "quantitative"}
+    ]
+  }
+}

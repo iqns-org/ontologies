@@ -1,0 +1,41 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# 08  Dimension Coverage Gap Analysis
+# Purpose : For each (Framework, Dimension) pair, show whether the framework
+#           has at least one Requirement, Control, or Principle mapped to it.
+#           Missing rows indicate coverage gaps.
+# Use case: CISO gap analysis — which governance dimensions lack formal coverage
+#           under each regulatory framework.
+# ─────────────────────────────────────────────────────────────────────────────
+
+PREFIX ai:   <https://iqns.org/v0/ai#>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+SELECT DISTINCT
+    ?this ?frameworkLabel
+    ?dimensionLabel
+    (COUNT(?coverage) AS ?itemsCovered)
+WHERE {
+    ?this  a ai:Framework ;
+                skos:prefLabel ?frameworkLabel .
+
+    ?dimension  a ai:Dimension ;
+                skos:prefLabel ?dimensionLabel .
+
+    OPTIONAL {
+        ?coverage ai:mappedToDimension ?dimension .
+        {
+            ?this (ai:hasRequirement | ai:hasPrinciple) ?coverage .
+        }
+        UNION
+        {
+            ?this ai:hasRequirement ?req .
+            ?req       ai:hasControl     ?coverage .
+            ?coverage  ai:mappedToDimension ?dimension .
+        }
+    }
+
+    FILTER ( lang(?frameworkLabel) = "en" )
+    FILTER ( lang(?dimensionLabel) = "en" )
+}
+GROUP BY ?frameworkLabel ?dimensionLabel
+ORDER BY ?frameworkLabel DESC(?itemsCovered)

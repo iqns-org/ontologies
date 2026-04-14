@@ -1,0 +1,31 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# 07  Data-Subject & Individual Rights Inventory
+# Purpose : List all ai:Right instances granted by frameworks, their
+#           definitions, and associated citation.
+# Use case: CISO Data-Subject Rights programme — know what rights are owed.
+# ─────────────────────────────────────────────────────────────────────────────
+
+PREFIX ai:   <https://iqns.org/v0/ai#>
+PREFIX dct:  <http://purl.org/dc/terms/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+SELECT DISTINCT
+    ?frameworkLabel
+    ?rightLabel
+    ?rightDef
+    ?citation
+WHERE {
+    ?fw     a ai:Framework ;
+            skos:prefLabel    ?frameworkLabel ;
+            ai:grantsRight    ?right .
+
+    ?right  a ai:Right ;
+            skos:prefLabel    ?rightLabel .
+
+    OPTIONAL { ?right skos:definition ?rightDef . }
+    OPTIONAL { ?right dct:source      ?citation  . }
+
+    FILTER ( lang(?frameworkLabel) = "en" )
+    FILTER ( lang(?rightLabel)     = "en" )
+}
+ORDER BY ?frameworkLabel ?rightLabel

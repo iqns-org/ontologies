@@ -1,0 +1,188 @@
+@prefix crossdomain: <https://iqns.org/v0/crossdomain#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix euai: <https://iqns.org/v0/eu-ai-act#> .
+@prefix gdpr: <https://iqns.org/v0/eu-gdpr-ai#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+
+# ── Ontology ────────────────────────────────────────────────────────────────
+
+crossdomain:Ontology a owl:Ontology ;
+    dct:title "Cross-Domain Alignments: AI ↔ Legal/GDPR"@en ;
+    dct:description "SKOS alignments between EU AI Act concepts and GDPR/legal obligations." ;
+    dct:issued "2026-03-30"^^xsd:date ;
+    owl:versionInfo "0.1" ;
+.
+
+crossdomain:Scheme a skos:ConceptScheme ;
+    skos:prefLabel "Cross-Domain Alignments"@en ;
+.
+
+# ════════════════════════════════════════════════════════════════════════════
+# DATA PROTECTION DIMENSION: EU AI Act ↔ GDPR
+# ════════════════════════════════════════════════════════════════════════════
+
+crossdomain:DataProtectionCollection a skos:Collection ;
+    skos:prefLabel "Data Protection Alignments"@en ;
+    skos:definition "Concepts related to personal data protection across AI and GDPR frameworks." ;
+    skos:member
+        euai:DataProtectionObligation,
+        gdpr:ArticleProcessing,
+        euai:HighRiskPersonalDataProcessing,
+        gdpr:AutomatedDecisionMaking,
+        euai:TransparencyObligation,
+        gdpr:RightToExplanation ;
+    skos:inScheme crossdomain:Scheme ;
+.
+
+# EU AI Act obligations map to GDPR articles
+euai:DataProtectionObligation
+    skos:exactMatch gdpr:DataProtectionPrinciple ;
+    skos:definition "Personal data protection is a shared obligation across AI Act and GDPR." ;
+.
+
+euai:HighRiskPersonalDataProcessing
+    skos:broadMatch gdpr:SpecialCategoryData ;
+    skos:definition "Processing personal data in high-risk AI contexts triggers stricter GDPR obligations." ;
+.
+
+euai:TransparencyObligation
+    skos:relatedMatch gdpr:RightToExplanation ;
+    skos:definition "EU AI Act transparency overlaps with GDPR Article 22 rights." ;
+.
+
+# Automated decision-making is a critical crossover
+crossdomain:AutomatedDecisionCollection a skos:Collection ;
+    skos:prefLabel "Automated Decision-Making"@en ;
+    skos:member
+        euai:AutomatedDecision,
+        gdpr:AutomatedDecisionMaking,
+        euai:HumanOversight ;
+    skos:inScheme crossdomain:Scheme ;
+.
+
+euai:AutomatedDecision
+    skos:exactMatch gdpr:AutomatedDecisionMaking ;
+    skos:definition "Both frameworks require human review for consequential automated decisions on individuals." ;
+.
+
+gdpr:AutomatedDecisionMaking
+    skos:broadMatch euai:HumanOversight ;
+    skos:definition "GDPR Article 22 right to explanation, EU AI Act human oversight requirement, are complementary." ;
+.
+
+# ════════════════════════════════════════════════════════════════════════════
+# CONSENT & LAWFUL BASIS: EU AI Act → GDPR
+# ════════════════════════════════════════════════════════════════════════════
+
+crossdomain:ConsentCollection a skos:Collection ;
+    skos:prefLabel "Consent & Lawful Basis"@en ;
+    skos:member
+        euai:DataGovernance,
+        gdpr:Consent,
+        gdpr:LawfulBasis ;
+    skos:inScheme crossdomain:Scheme ;
+.
+
+euai:DataGovernance
+    skos:relatedMatch gdpr:LawfulBasis ;
+    skos:definition "EU AI Act data governance obligations supplement GDPR lawful basis requirements." ;
+.
+
+# ════════════════════════════════════════════════════════════════════════════
+# FAIRNESS & NON-DISCRIMINATION: EU AI Act ↔ Charter/GDPR
+# ════════════════════════════════════════════════════════════════════════════
+
+crossdomain:FairnessLegalCollection a skos:Collection ;
+    skos:prefLabel "Fairness & Non-Discrimination"@en ;
+    skos:definition "EU AI Act fairness obligations align with Charter of Fundamental Rights and GDPR non-discrimination." ;
+    skos:member
+        euai:FairnessAssertion,
+        gdpr:NonDiscrimination,
+        euai:BiasMitigation ;
+    skos:inScheme crossdomain:Scheme ;
+.
+
+euai:FairnessAssertion
+    skos:relatedMatch gdpr:NonDiscrimination ;
+    skos:definition "EU AI Act requires documented fairness assessment; GDPR prohibits discrimination." ;
+.
+
+euai:BiasMitigation
+    skos:broadMatch gdpr:DataProcessingImpact ;
+    skos:definition "Bias audits required by EU AI Act feed into GDPR Data Protection Impact Assessments (DPIA)." ;
+.
+
+# ════════════════════════════════════════════════════════════════════════════
+# ACCOUNTABILITY & GOVERNANCE: EU AI Act ↔ GDPR
+# ════════════════════════════════════════════════════════════════════════════
+
+crossdomain:AccountabilityCollection a skos:Collection ;
+    skos:prefLabel "Accountability & Governance"@en ;
+    skos:member
+        euai:ProviderObligation,
+        gdpr:ControllerResponsibility,
+        euai:ProofOfCompliance,
+        gdpr:ProofOfCompliance ;
+    skos:inScheme crossdomain:Scheme ;
+.
+
+euai:ProviderObligation
+    skos:relatedMatch gdpr:ControllerResponsibility ;
+    skos:definition "EU AI Act provider obligations parallel GDPR controller responsibilities (documentation, record-keeping)." ;
+.
+
+euai:ProofOfCompliance
+    skos:exactMatch gdpr:ProofOfCompliance ;
+    skos:definition "Both frameworks require documented evidence of compliance; must maintain audit trail." ;
+.
+
+# ════════════════════════════════════════════════════════════════════════════
+# SPECIAL CATEGORIES: AI Act identifies high-risk contexts
+# ════════════════════════════════════════════════════════════════════════════
+
+crossdomain:HighRiskContextsCollection a skos:Collection ;
+    skos:prefLabel "High-Risk Contexts"@en ;
+    skos:definition "AI Act Annex III lists contexts (employment, credit, law enforcement) that often process special category data under GDPR." ;
+    skos:member
+        euai:EmploymentAI,
+        gdpr:EmploymentRecords,
+        euai:CreditScoringAI,
+        gdpr:FinancialData,
+        euai:LawEnforcementAI,
+        gdpr:CriminalData ;
+    skos:inScheme crossdomain:Scheme ;
+.
+
+euai:EmploymentAI
+    skos:relatedMatch gdpr:EmploymentRecords ;
+    skos:definition "Employment AI (Annex III.4(c)) often processes employment-related personal data; triggers GDPR Chapter 2 obligations." ;
+.
+
+euai:CreditScoringAI
+    skos:relatedMatch gdpr:FinancialData ;
+    skos:definition "Credit scoring (Annex III.5(b)) processes financial data; subject to GDPR Article 22 safeguards." ;
+.
+
+euai:LawEnforcementAI
+    skos:relatedMatch gdpr:CriminalData ;
+    skos:definition "Law enforcement AI (Annex III.6) processes criminal records; requires GDPR Articles 6(1)(e) legal basis." ;
+.
+
+# ════════════════════════════════════════════════════════════════════════════
+# PRACTICAL ALIGNMENT: How to navigate both regulations simultaneously
+# ════════════════════════════════════════════════════════════════════════════
+
+crossdomain:PracticalGuidance a skos:Concept ;
+    skos:prefLabel "Practical Guidance: Simultaneous Compliance"@en ;
+    skos:definition "When deploying an AI system in the EU, check both frameworks in parallel:" ;
+    skos:note "1. Is it high-risk under EU AI Act Annex III? → Full Title III obligations apply." ;
+    skos:note "2. Does it process personal data? → GDPR applies in addition to AI Act." ;
+    skos:note "3. Check intersection: High-risk + personal data = strict requirements on fairness, transparency, human oversight, impact assessment." ;
+    skos:note "4. Document both compliance frameworks; audit trail should satisfy both auditors." ;
+    skos:inScheme crossdomain:Scheme ;
+.
+

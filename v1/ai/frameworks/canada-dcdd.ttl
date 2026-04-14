@@ -1,0 +1,135 @@
+@prefix canada-dcdd: <https://iqns.org/v0/canada-dcdd#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+canada-dcdd:Ontology a owl:Ontology ;
+    dct:title  "Canada Treasury Board Directive on Automated Decision-Making (DADM, 2019 / amended 2023)"@en ;
+    prov:wasDerivedFrom <https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=32592> .
+
+canada-dcdd:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "Canada Directive on Automated Decision-Making"@en ;
+    skos:definition "Mandatory directive for Government of Canada institutions using automated decision systems; requires impact assessment, notice, human recourse, and algorithmic transparency."@en .
+
+canada-dcdd:CA_DADM
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "Canada Directive on Automated Decision-Making (DADM)"@en ;
+    skos:definition "Treasury Board directive mandating risk-tiered governance for federal automated decision systems — impact assessment, explanation, and appeal rights calibrated to four impact levels."@en ;
+    skos:inScheme   canada-dcdd:Scheme ;
+    dct:publisher   "Treasury Board of Canada Secretariat"@en ;
+    dct:issued      "2019"^^xsd:gYear ;
+.
+
+# ── Algorithmic Impact Assessment (AIA) ───────────────────────────────────────
+
+canada-dcdd:AlgorithmicImpactAssessment
+    a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "Algorithmic Impact Assessment (AIA)"@en ;
+    skos:definition "Mandatory questionnaire scoring the potential impact of an automated decision system; score determines the applicable impact level (I–IV) and associated requirements."@en ;
+    skos:inScheme   canada-dcdd:Scheme ; prov:wasDerivedFrom "DADM Appendix A" ;
+    skos:exactMatch ai:ImpactAssessment ;
+    ai:appliesToLifecycle ai:Design ;
+.
+
+# ── Impact Levels ─────────────────────────────────────────────────────────────
+
+canada-dcdd:ImpactLevelI
+    a ai:RiskLevel ; a skos:Concept ;
+    skos:prefLabel  "Impact Level I"@en ;
+    skos:definition "Lowest impact; decisions cause minimal harm; basic requirements only — peer review, notice on request."@en ;
+    skos:inScheme   canada-dcdd:Scheme ; prov:wasDerivedFrom "DADM Appendix C §1" ;
+    skos:broadMatch ai:MinimalRisk ;
+.
+canada-dcdd:ImpactLevelII
+    a ai:RiskLevel ; a skos:Concept ;
+    skos:prefLabel  "Impact Level II"@en ;
+    skos:definition "Moderate impact; decisions may deprive individuals of benefits or services; requires plain-language notice, meaningful human review on request, and documented testing."@en ;
+    skos:inScheme   canada-dcdd:Scheme ; prov:wasDerivedFrom "DADM Appendix C §2" ;
+    skos:broadMatch ai:LimitedRisk ;
+.
+canada-dcdd:ImpactLevelIII
+    a ai:RiskLevel ; a skos:Concept ;
+    skos:prefLabel  "Impact Level III"@en ;
+    skos:definition "Significant impact; decisions affect liberty, health, safety, or financial security; requires explanation of decision factors, human review option, and departmental approval before deployment."@en ;
+    skos:inScheme   canada-dcdd:Scheme ; prov:wasDerivedFrom "DADM Appendix C §3" ;
+    skos:broadMatch ai:HighRisk ;
+.
+canada-dcdd:ImpactLevelIV
+    a ai:RiskLevel ; a skos:Concept ;
+    skos:prefLabel  "Impact Level IV"@en ;
+    skos:definition "Highest impact; decisions could deprive liberty, impose lifelong consequences, or threaten health/safety of multiple persons; requires full human review and Deputy Head approval."@en ;
+    skos:inScheme   canada-dcdd:Scheme ; prov:wasDerivedFrom "DADM Appendix C §4" ;
+    skos:broadMatch ai:UnacceptableRisk ;
+.
+
+# ── Requirements ──────────────────────────────────────────────────────────────
+
+canada-dcdd:AutomatedDecisionNotice
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Automated Decision Notice to Client"@en ;
+    skos:definition "Institutions must notify affected clients that an automated decision system was used in a decision affecting them, in plain language."@en ;
+    skos:inScheme   canada-dcdd:Scheme ; prov:wasDerivedFrom "DADM §6.2.2" ;
+    skos:exactMatch ai:Transparency ;
+    ai:appliesToRole ai:AffectedPerson ;
+.
+canada-dcdd:ExplanationOfDecision
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Explanation of Automated Decision Factors"@en ;
+    skos:definition "For Level II+, provide a meaningful explanation of the factors that led to the automated decision on request."@en ;
+    skos:inScheme   canada-dcdd:Scheme ; prov:wasDerivedFrom "DADM §6.2.3" ;
+    skos:exactMatch ai:Explainability ;
+    ai:appliesToRole ai:AffectedPerson ;
+.
+canada-dcdd:HumanReviewOption
+    a ai:Right ; a skos:Concept ;
+    skos:prefLabel  "Right to Human Review"@en ;
+    skos:definition "Affected persons have the right to request human review of automated decisions at Level II and above; review must be meaningful and not merely procedural."@en ;
+    skos:inScheme   canada-dcdd:Scheme ; prov:wasDerivedFrom "DADM §6.2.4" ;
+    skos:exactMatch ai:HumanOversight ;
+    ai:appliesToRole ai:AffectedPerson ;
+.
+canada-dcdd:PeerReviewRequirement
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Peer Review of Automated Decision System"@en ;
+    skos:definition "Independent review of system design, data quality, and decision logic before deployment; scope scales with impact level."@en ;
+    skos:inScheme   canada-dcdd:Scheme ; prov:wasDerivedFrom "DADM §6.3.2" ;
+    skos:broadMatch ai:ConformityAssessment ;
+    ai:appliesToLifecycle ai:Validation ;
+.
+canada-dcdd:QualityAssuranceTestingCA
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Quality Assurance and Bias Testing"@en ;
+    skos:definition "Testing for unintended outcomes, performance across demographic groups, and bias before deployment; ongoing monitoring post-launch."@en ;
+    skos:inScheme   canada-dcdd:Scheme ; prov:wasDerivedFrom "DADM §6.3.3" ;
+    skos:relatedMatch ai:Fairness ;
+    skos:relatedMatch ai:Robustness ;
+    ai:appliesToLifecycle ai:Validation ;
+    ai:appliesToLifecycle ai:Monitoring ;
+.
+canada-dcdd:DataGovernanceCA
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Data Quality and Governance"@en ;
+    skos:definition "Training and decision data must be relevant, accurate, and representative; data lineage documented; privacy obligations met."@en ;
+    skos:inScheme   canada-dcdd:Scheme ; prov:wasDerivedFrom "DADM §6.3.4" ;
+    skos:broadMatch ai:Privacy ;
+    ai:appliesToLifecycle ai:Development ;
+.
+canada-dcdd:SourceCodeRelease
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel  "Source Code Release (Level III+)"@en ;
+    skos:definition "Governments must release source code of Level III and IV automated decision systems under an open government licence unless security, privacy, or legal exemptions apply."@en ;
+    skos:inScheme   canada-dcdd:Scheme ; prov:wasDerivedFrom "DADM §6.3.7" ;
+    skos:broadMatch ai:Transparency ;
+.
+canada-dcdd:TrainingOfEmployees
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Employee Training on Automated Decisions"@en ;
+    skos:definition "Staff using automated decision systems must be trained on system capabilities, limitations, and appropriate human oversight practices."@en ;
+    skos:inScheme   canada-dcdd:Scheme ; prov:wasDerivedFrom "DADM §6.3.8" ;
+    ai:appliesToRole ai:Operator ;
+.

@@ -1,0 +1,189 @@
+@prefix mitre-atlas: <https://iqns.org/v0/mitre-atlas#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+mitre-atlas:Ontology a owl:Ontology ;
+    dct:title  "MITRE ATLAS — Adversarial Threat Landscape for Artificial-Intelligence Systems (v4)"@en ;
+    prov:wasDerivedFrom <https://atlas.mitre.org> .
+
+mitre-atlas:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "MITRE ATLAS Adversarial ML Taxonomy"@en ;
+    skos:definition "MITRE ATLAS: knowledge base of adversarial tactics, techniques, and case studies targeting AI/ML systems; structured parallel to ATT&CK."@en .
+
+mitre-atlas:MITRE_ATLAS
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "MITRE ATLAS v4"@en ;
+    skos:definition "Adversarial threat taxonomy for AI systems cataloguing real-world attacks against ML models across the full ML lifecycle: reconnaissance to impact."@en ;
+    skos:inScheme   mitre-atlas:Scheme ;
+    dct:publisher   "MITRE Corporation"@en ;
+    dct:issued      "2022"^^xsd:gYear ;
+.
+
+# ── Tactics ───────────────────────────────────────────────────────────────────
+
+mitre-atlas:Reconnaissance
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "Reconnaissance (ATLAS TA0001)"@en ;
+    skos:definition "Adversary gathers information about the target AI system — APIs, model architecture, training data, deployment stack."@en ;
+    skos:inScheme   mitre-atlas:Scheme ; prov:wasDerivedFrom "ATLAS TA0001" ;
+    skos:broadMatch ai:SecurityHarm ;
+    ai:mappedToDimension ai:Security ;
+.
+mitre-atlas:ResourceDevelopment
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "Resource Development (ATLAS TA0002)"@en ;
+    skos:definition "Adversary acquires infrastructure, data, or models to support attacks on the target ML system."@en ;
+    skos:inScheme   mitre-atlas:Scheme ; prov:wasDerivedFrom "ATLAS TA0002" ;
+    skos:broadMatch ai:SecurityHarm ;
+.
+mitre-atlas:MLAttackStaging
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "ML Attack Staging (ATLAS TA0003)"@en ;
+    skos:definition "Adversary stages attack infrastructure — poisoned datasets, adversarial examples, surrogate models — before execution."@en ;
+    skos:inScheme   mitre-atlas:Scheme ; prov:wasDerivedFrom "ATLAS TA0003" ;
+    skos:broadMatch ai:SecurityHarm ;
+.
+mitre-atlas:InitialAccess
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "Initial Access (ATLAS TA0004)"@en ;
+    skos:definition "Adversary gains entry to the target ML pipeline via API access, supply chain compromise, or insider threat."@en ;
+    skos:inScheme   mitre-atlas:Scheme ; prov:wasDerivedFrom "ATLAS TA0004" ;
+    skos:broadMatch ai:SecurityHarm ;
+.
+mitre-atlas:Execution
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "Execution (ATLAS TA0005)"@en ;
+    skos:definition "Adversary runs malicious code or queries against the ML system — model inversion, prompt injection, adversarial queries."@en ;
+    skos:inScheme   mitre-atlas:Scheme ; prov:wasDerivedFrom "ATLAS TA0005" ;
+    skos:broadMatch ai:SecurityHarm ;
+.
+mitre-atlas:Persistence
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "Persistence (ATLAS TA0006)"@en ;
+    skos:definition "Adversary maintains access via backdoor insertion in training data or model weights; backdoor survives retraining."@en ;
+    skos:inScheme   mitre-atlas:Scheme ; prov:wasDerivedFrom "ATLAS TA0006" ;
+    skos:broadMatch ai:SecurityHarm ;
+.
+mitre-atlas:PrivilegeEscalation
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "Privilege Escalation (ATLAS TA0007)"@en ;
+    skos:definition "Adversary exploits ML pipeline to gain elevated access to model internals, training data, or downstream systems."@en ;
+    skos:inScheme   mitre-atlas:Scheme ; prov:wasDerivedFrom "ATLAS TA0007" ;
+    skos:broadMatch ai:SecurityHarm ;
+.
+mitre-atlas:DefenceEvasion
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "Defence Evasion (ATLAS TA0008)"@en ;
+    skos:definition "Adversary crafts inputs to evade detection by ML-based security models or AML defences."@en ;
+    skos:inScheme   mitre-atlas:Scheme ; prov:wasDerivedFrom "ATLAS TA0008" ;
+    skos:broadMatch ai:SecurityHarm ;
+.
+mitre-atlas:Discovery
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "Discovery (ATLAS TA0009)"@en ;
+    skos:definition "Adversary queries the ML system to infer model architecture, hyperparameters, training data membership, or decision boundaries."@en ;
+    skos:inScheme   mitre-atlas:Scheme ; prov:wasDerivedFrom "ATLAS TA0009" ;
+    skos:relatedMatch ai:PrivacyHarm ;
+.
+mitre-atlas:Collection
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "Collection (ATLAS TA0010)"@en ;
+    skos:definition "Adversary collects inferred training data, private attributes, or model representations via model extraction or inversion attacks."@en ;
+    skos:inScheme   mitre-atlas:Scheme ; prov:wasDerivedFrom "ATLAS TA0010" ;
+    skos:exactMatch ai:PrivacyHarm ;
+.
+mitre-atlas:ExfiltrationATLAS
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "Exfiltration (ATLAS TA0011)"@en ;
+    skos:definition "Adversary exports stolen model weights, training data, or private predictions out of the victim environment."@en ;
+    skos:inScheme   mitre-atlas:Scheme ; prov:wasDerivedFrom "ATLAS TA0011" ;
+    skos:broadMatch ai:SecurityHarm ;
+.
+mitre-atlas:ImpactATLAS
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "Impact (ATLAS TA0012)"@en ;
+    skos:definition "Adversary degrades or manipulates ML system output — erroneous predictions, denial of ML service, integrity corruption of decisions."@en ;
+    skos:inScheme   mitre-atlas:Scheme ; prov:wasDerivedFrom "ATLAS TA0012" ;
+    skos:broadMatch ai:PhysicalHarm ;
+    skos:broadMatch ai:FinancialHarm ;
+.
+
+# ── Key Techniques ────────────────────────────────────────────────────────────
+
+mitre-atlas:DataPoisoningATLAS
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "Data Poisoning (AML.T0020)"@en ;
+    skos:definition "Adversary injects malicious samples into training data to degrade model performance or embed backdoor behaviour."@en ;
+    skos:inScheme   mitre-atlas:Scheme ; prov:wasDerivedFrom "ATLAS AML.T0020" ;
+    skos:exactMatch ai:SecurityHarm ;
+    ai:appliesToLifecycle ai:Development ;
+.
+mitre-atlas:AdversarialExampleATLAS
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "Adversarial Example (AML.T0043)"@en ;
+    skos:definition "Crafted input with imperceptible perturbations that causes the target ML model to misclassify with high confidence."@en ;
+    skos:inScheme   mitre-atlas:Scheme ; prov:wasDerivedFrom "ATLAS AML.T0043" ;
+    skos:exactMatch ai:SecurityHarm ;
+    ai:appliesToLifecycle ai:Deployment ;
+.
+mitre-atlas:ModelInversionATLAS
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "Model Inversion (AML.T0037)"@en ;
+    skos:definition "Adversary reconstructs private training data from model outputs — including face images, health records, or PII."@en ;
+    skos:inScheme   mitre-atlas:Scheme ; prov:wasDerivedFrom "ATLAS AML.T0037" ;
+    skos:exactMatch ai:PrivacyHarm ;
+.
+mitre-atlas:MembershipInferenceATLAS
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "Membership Inference (AML.T0024)"@en ;
+    skos:definition "Adversary determines whether a specific record was in the model's training dataset — breaching data subject privacy."@en ;
+    skos:inScheme   mitre-atlas:Scheme ; prov:wasDerivedFrom "ATLAS AML.T0024" ;
+    skos:exactMatch ai:PrivacyHarm ;
+.
+mitre-atlas:ModelExtractionATLAS
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "Model Extraction / Theft (AML.T0040)"@en ;
+    skos:definition "Adversary reconstructs a functionally equivalent model by querying the target API, stealing IP and bypassing access controls."@en ;
+    skos:inScheme   mitre-atlas:Scheme ; prov:wasDerivedFrom "ATLAS AML.T0040" ;
+    skos:broadMatch ai:SecurityHarm ;
+.
+mitre-atlas:PromptInjectionATLAS
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "Prompt Injection (AML.T0051)"@en ;
+    skos:definition "Adversary embeds malicious instructions in LLM input to override system prompts, exfiltrate data, or manipulate outputs."@en ;
+    skos:inScheme   mitre-atlas:Scheme ; prov:wasDerivedFrom "ATLAS AML.T0051" ;
+    skos:exactMatch ai:SecurityHarm ;
+    ai:appliesToDomain ai:GenerativeAI ;
+.
+
+# ── Mitigations ───────────────────────────────────────────────────────────────
+
+mitre-atlas:AdversarialTraining
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Adversarial Training (AML.M0004)"@en ;
+    skos:definition "Augment training with adversarial examples to improve model robustness against perturbation attacks."@en ;
+    skos:inScheme   mitre-atlas:Scheme ; prov:wasDerivedFrom "ATLAS AML.M0004" ;
+    skos:broadMatch ai:Robustness ;
+    ai:appliesToLifecycle ai:Development ;
+.
+mitre-atlas:InputValidation
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Input Validation and Sanitisation (AML.M0014)"@en ;
+    skos:definition "Validate and sanitise all inputs before passing to ML model; detect out-of-distribution or adversarially crafted inputs."@en ;
+    skos:inScheme   mitre-atlas:Scheme ; prov:wasDerivedFrom "ATLAS AML.M0014" ;
+    skos:broadMatch ai:Security ;
+    ai:appliesToLifecycle ai:Deployment ;
+.
+mitre-atlas:ModelAccessControl
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Model Access Control (AML.M0001)"@en ;
+    skos:definition "Restrict API access, rate-limit queries, and authenticate callers to reduce model extraction and membership inference risk."@en ;
+    skos:inScheme   mitre-atlas:Scheme ; prov:wasDerivedFrom "ATLAS AML.M0001" ;
+    skos:broadMatch ai:Security ;
+.

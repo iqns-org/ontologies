@@ -1,0 +1,117 @@
+@prefix oecd-ai: <https://iqns.org/v0/oecd-ai#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+oecd-ai:Ontology a owl:Ontology ;
+    dct:title  "OECD AI Principles (2019, revised 2024)"@en ;
+    prov:wasDerivedFrom <https://oecd.ai/en/ai-principles> .
+
+oecd-ai:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "OECD AI Principles"@en ;
+    skos:definition "First intergovernmental AI standards adopted by 46+ countries — five principles and five governmental recommendations."@en .
+
+oecd-ai:OECDAI
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "OECD AI Principles 2024"@en ;
+    skos:definition "OECD Council Recommendation on AI (OECD/LEGAL/0449) — five principles for trustworthy AI and five recommendations for governments; revised 2024 to address generative AI and frontier models."@en ;
+    skos:inScheme   oecd-ai:Scheme ;
+    dct:publisher   "OECD"@en ;
+    dct:issued      "2019"^^xsd:gYear ;
+.
+
+# ── Five Principles ───────────────────────────────────────────────────────────
+
+oecd-ai:InclusiveGrowth
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Inclusive Growth, Sustainable Development, and Well-Being"@en ;
+    skos:definition "AI should benefit people and the planet by driving inclusive growth, sustainable development, and well-being."@en ;
+    skos:inScheme   oecd-ai:Scheme ; prov:wasDerivedFrom "OECD AI Principle 1.1" ;
+    ai:mappedToDimension ai:Sustainability ;
+    ai:mappedToDimension ai:Fairness ;
+.
+oecd-ai:HumanCentredValues
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Human-Centred Values and Fairness"@en ;
+    skos:definition "AI actors should respect the rule of law, human rights, democratic values, and diversity; implement fairness and equity mechanisms."@en ;
+    skos:inScheme   oecd-ai:Scheme ; prov:wasDerivedFrom "OECD AI Principle 1.2" ;
+    ai:mappedToDimension ai:Fairness ;
+    ai:mappedToDimension ai:HumanOversight ;
+.
+oecd-ai:OECDTransparency
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Transparency and Explainability"@en ;
+    skos:definition "AI actors should commit to transparency and responsible disclosure; AI systems should be explainable commensurate with context and risk."@en ;
+    skos:inScheme   oecd-ai:Scheme ; prov:wasDerivedFrom "OECD AI Principle 1.3" ;
+    skos:exactMatch ai:Transparency ;
+    skos:exactMatch ai:Explainability ;
+.
+oecd-ai:OECDRobustness
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Robustness, Security, and Safety"@en ;
+    skos:definition "AI systems must function robustly and safely; assess and manage AI risks throughout lifecycle."@en ;
+    skos:inScheme   oecd-ai:Scheme ; prov:wasDerivedFrom "OECD AI Principle 1.4" ;
+    skos:exactMatch ai:Robustness ;
+    skos:exactMatch ai:Safety ;
+    skos:exactMatch ai:Security ;
+.
+oecd-ai:OECDAccountability
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Accountability"@en ;
+    skos:definition "AI actors should be accountable for the proper functioning of AI systems based on their roles."@en ;
+    skos:inScheme   oecd-ai:Scheme ; prov:wasDerivedFrom "OECD AI Principle 1.5" ;
+    skos:exactMatch ai:Accountability ;
+.
+
+# ── Five Governmental Recommendations ────────────────────────────────────────
+
+oecd-ai:InvestInAI
+    a ai:Recommendation ; a skos:Concept ;
+    skos:prefLabel  "Invest in AI Research and Innovation"@en ;
+    skos:definition "Governments should invest in R&D for trustworthy AI and enable data sharing for responsible AI."@en ;
+    skos:inScheme   oecd-ai:Scheme ; prov:wasDerivedFrom "OECD AI Recommendation 2.1" ;
+.
+oecd-ai:FosterDigitalEcosystem
+    a ai:Recommendation ; a skos:Concept ;
+    skos:prefLabel  "Foster AI-Enabling Digital Ecosystem"@en ;
+    skos:definition "Governments should promote digital infrastructure and access to data for responsible AI."@en ;
+    skos:inScheme   oecd-ai:Scheme ; prov:wasDerivedFrom "OECD AI Recommendation 2.2" ;
+.
+oecd-ai:ShapeAIPolicies
+    a ai:Recommendation ; a skos:Concept ;
+    skos:prefLabel  "Shape an Enabling Policy Environment"@en ;
+    skos:definition "Governments should use agile, human rights-based policy and regulatory frameworks; review and adapt standards."@en ;
+    skos:inScheme   oecd-ai:Scheme ; prov:wasDerivedFrom "OECD AI Recommendation 2.3" ;
+.
+oecd-ai:BuildHumanCapacity
+    a ai:Recommendation ; a skos:Concept ;
+    skos:prefLabel  "Build Human Capacity and Prepare for Labour Market Transitions"@en ;
+    skos:definition "Governments should promote education and training; prepare workers for AI-driven labour transitions."@en ;
+    skos:inScheme   oecd-ai:Scheme ; prov:wasDerivedFrom "OECD AI Recommendation 2.4" ;
+.
+oecd-ai:InternationalCooperation
+    a ai:Recommendation ; a skos:Concept ;
+    skos:prefLabel  "International Cooperation for Trustworthy AI"@en ;
+    skos:definition "Governments should work multilaterally to share information, develop standards, and govern AI responsibly at global scale."@en ;
+    skos:inScheme   oecd-ai:Scheme ; prov:wasDerivedFrom "OECD AI Recommendation 2.5" ;
+.
+
+# ── OECD AI Definitions ───────────────────────────────────────────────────────
+
+oecd-ai:AISystem
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "AI System (OECD Definition)"@en ;
+    skos:definition "Machine-based system that, for a given set of objectives, makes predictions, recommendations, decisions, or content influencing real or virtual environments."@en ;
+    skos:inScheme   oecd-ai:Scheme ; prov:wasDerivedFrom "OECD AI Recommendation §1" ;
+.
+oecd-ai:AIActor
+    a ai:Stakeholder ; a skos:Concept ;
+    skos:prefLabel  "AI Actor"@en ;
+    skos:definition "Any entity — researcher, developer, deployer, or policymaker — who participates in the AI lifecycle."@en ;
+    skos:inScheme   oecd-ai:Scheme ; prov:wasDerivedFrom "OECD AI Recommendation §1" ;
+.

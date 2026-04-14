@@ -1,0 +1,551 @@
+@prefix ai-crosswalk: <https://iqns.org/v0/ai-crosswalk#> .
+@prefix enterprise: <https://iqns.org/v0/enterprise#> .
+@prefix iso45001: <https://iqns.org/v0/iso-45001#> .
+@prefix soc2: <https://iqns.org/v0/soc-2#> .
+@prefix cobit: <https://iqns.org/v0/cobit#> .
+
+@prefix iso42001: <https://iqns.org/v0/iso-42001#> .
+@prefix iso23894: <https://iqns.org/v0/iso-23894#> .
+@prefix iso24028: <https://iqns.org/v0/iso-24028#> .
+@prefix iso24027: <https://iqns.org/v0/iso-24027#> .
+@prefix iso24029: <https://iqns.org/v0/iso-24029#> .
+@prefix iso24368: <https://iqns.org/v0/iso-24368#> .
+@prefix iso25059: <https://iqns.org/v0/iso-25059#> .
+@prefix ieee7000:  <https://iqns.org/v0/ieee-7000#> .
+@prefix euai:  <https://iqns.org/v0/eu-ai-act#> .
+@prefix gdprai: <https://iqns.org/v0/eu-gdpr-ai#> .
+@prefix nrmf:  <https://iqns.org/v0/nist-ai-rmf#> .
+@prefix n1001: <https://iqns.org/v0/nist-ai-100-1#> .
+@prefix eo:    <https://iqns.org/v0/eo-14110#> .
+@prefix ukais: <https://iqns.org/v0/uk-ai-safety#> .
+@prefix oecd:  <https://iqns.org/v0/oecd-ai#> .
+@prefix un:    <https://iqns.org/v0/unesco-ai#> .
+@prefix sg:    <https://iqns.org/v0/sg-ai#> .
+@prefix cn:    <https://iqns.org/v0/cn-ai#> .
+@prefix ca:    <https://iqns.org/v0/canada-dcdd#> .
+@prefix sr:    <https://iqns.org/v0/sr-11-7#> .
+@prefix eba:   <https://iqns.org/v0/eba-ai#> .
+@prefix fda:   <https://iqns.org/v0/fda-aiml-samd#> .
+@prefix onc:   <https://iqns.org/v0/onc-trustworthy#> .
+@prefix atlas: <https://iqns.org/v0/mitre-atlas#> .
+@prefix owasp: <https://iqns.org/v0/owasp-llm#> .
+@prefix saif:  <https://iqns.org/v0/google-saif#> .
+@prefix pai:   <https://iqns.org/v0/pai-guidelines#> .
+@prefix msft:  <https://iqns.org/v0/microsoft-rai#> .
+
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+ai-crosswalk:Ontology a owl:Ontology ;
+    dct:title  "IQ:NS Compliance Crosswalk — SKOS Alignments Across All Frameworks"@en ;
+    skos:definition "N×M mapping of equivalent and related concepts across all ai compliance frameworks, anchored via the ai: core vocabulary."@en .
+
+# Enterprise+IT/cyber/HSE frameworks in AI crosswalk
+ai-crosswalk:EnterpriseGovernance a skos:Collection ;
+    skos:prefLabel "Enterprise Governance and Risk Architecture"@en ;
+    skos:member cobit:GovernanceFramework ;
+    skos:member iso45001:ISO45001 ;
+    skos:member soc2:SOC2 ;
+    skos:member iso42001:ISO42001 ;
+    skos:member nrmf:NISTRMF ;
+    skos:member enterprise:RiskManagement ;
+.
+
+
+ai-crosswalk:Scheme a skos:ConceptScheme ;
+    skos:prefLabel "IQ:NS Compliance Crosswalk"@en .
+
+# ════════════════════════════════════════════════════════════════════
+# DIMENSION: TRANSPARENCY / EXPLAINABILITY
+# ════════════════════════════════════════════════════════════════════
+
+ai-crosswalk:Transparency a skos:Collection ;
+    skos:prefLabel "Transparency and Explainability"@en ;
+    skos:member ai:Transparency ;
+    skos:member ai:Explainability ;
+    skos:member euai:TransparencyObligation ;
+    skos:member n1001:Transparency ;
+    skos:member nrmf:TrustworthinessCharacteristic ;
+    skos:member oecd:TransparencyOECD ;
+    skos:member un:TransparencyUNESCO ;
+    skos:member msft:TransparencyMSFT ;
+    skos:member sg:ModelInterpretability ;
+    skos:member ca:ExplanationOfDecision ;
+    skos:member ieee7000:T7001 ;
+    skos:member iso25059:Interpretability ;
+    skos:member iso24028:TrustworthinessProperty ;
+    skos:member pai:TransparentAndExplainablePAI ;
+    skos:member eba:AIModelExplainabilityEBA ;
+    skos:member onc:TransparencyONC ;
+    skos:member fda:TransparencyToUsersPatients ;
+    skos:member cn:OpenGovernance ;
+.
+
+euai:TransparencyObligation
+    skos:exactMatch n1001:Transparency ;
+    skos:exactMatch msft:TransparencyMSFT ;
+    skos:exactMatch oecd:TransparencyOECD ;
+    skos:exactMatch un:TransparencyUNESCO ;
+    skos:exactMatch pai:TransparentAndExplainablePAI ;
+    skos:broadMatch sg:DecisionAuditability ;
+    skos:broadMatch ca:ExplanationOfDecision ;
+    skos:broadMatch eba:AIModelExplainabilityEBA ;
+.
+n1001:Transparency
+    skos:exactMatch msft:TransparencyMSFT ;
+    skos:exactMatch oecd:TransparencyOECD ;
+    skos:broadMatch sg:ModelInterpretability ;
+    skos:broadMatch onc:TransparencyONC ;
+    skos:broadMatch fda:TransparencyToUsersPatients ;
+.
+iso25059:Interpretability
+    skos:exactMatch sg:ModelInterpretability ;
+    skos:broadMatch eba:AIModelExplainabilityEBA ;
+    skos:relatedMatch msft:ModelCardsMSFT ;
+.
+
+# ════════════════════════════════════════════════════════════════════
+# DIMENSION: FAIRNESS
+# ════════════════════════════════════════════════════════════════════
+
+ai-crosswalk:Fairness a skos:Collection ;
+    skos:prefLabel "Fairness and Non-Discrimination"@en ;
+    skos:member ai:Fairness ;
+    skos:member euai:HighRiskAISystem ;
+    skos:member iso242027:BiasSourceType ;
+    skos:member n1001:Fairness ;
+    skos:member nrmf:TrustworthinessCharacteristic ;
+    skos:member un:FairnessNonDiscrimination ;
+    skos:member un:DiversityInclusion ;
+    skos:member un:FairnessJustice ;
+    skos:member oecd:HumanCentredValues ;
+    skos:member msft:FairnessMSFT ;
+    skos:member msft:FairnessMetricsRequirement ;
+    skos:member pai:FairAndNonDiscriminatory ;
+    skos:member eba:AIBiasTestingEBA ;
+    skos:member onc:EquityONC ;
+    skos:member fda:DataRepresentativeness ;
+    skos:member ca:QualityAssuranceTestingCA ;
+    skos:member cn:FairnessJustice ;
+.
+
+iso24027:BiasSourceType
+    skos:relatedMatch euai:HighRiskAISystem ;
+    skos:relatedMatch eba:AIBiasTestingEBA ;
+    skos:relatedMatch onc:AlgorithmBiasEvaluationONC ;
+    skos:relatedMatch ca:QualityAssuranceTestingCA ;
+    skos:relatedMatch msft:FairnessMetricsRequirement ;
+.
+onc:AlgorithmBiasEvaluationONC
+    skos:exactMatch eba:AIBiasTestingEBA ;
+    skos:exactMatch msft:FairnessMetricsRequirement ;
+    skos:broadMatch ca:QualityAssuranceTestingCA ;
+    skos:relatedMatch iso242027:BiasSourceType ;
+.
+msft:FairnessMSFT
+    skos:exactMatch pai:FairAndNonDiscriminatory ;
+    skos:exactMatch un:FairnessNonDiscrimination ;
+    skos:exactMatch n1001:Fairness ;
+    skos:broadMatch onc:EquityONC ;
+.
+
+# ════════════════════════════════════════════════════════════════════
+# DIMENSION: ACCOUNTABILITY
+# ════════════════════════════════════════════════════════════════════
+
+ai-crosswalk:Accountability a skos:Collection ;
+    skos:prefLabel "Accountability"@en ;
+    skos:member ai:Accountability ;
+    skos:member iso42001:Clause5Leadership ;
+    skos:member euai:ProviderObligation ;
+    skos:member nrmf:GOVERN ;
+    skos:member oecd:AccountabilityOECD ;
+    skos:member un:ResponsibilityAccountability ;
+    skos:member msft:AccountabilityMSFT ;
+    skos:member pai:AccountableAndResponsiblePAI ;
+    skos:member sr:ThreeLinesOfDefence ;
+    skos:member sg:AIGovernanceStructure ;
+    skos:member eba:AIGovernanceCommitteeEBA ;
+    skos:member ca:AlgorithmicImpactAssessment ;
+    skos:member cn:SharedResponsibility ;
+.
+
+nrmf:GOVERN
+    skos:exactMatch iso42001:Clause5Leadership ;
+    skos:broadMatch eba:AIGovernanceCommitteeEBA ;
+    skos:broadMatch sg:AIGovernanceStructure ;
+    skos:broadMatch sr:ThreeLinesOfDefence ;
+    skos:relatedMatch msft:AccountabilityMSFT ;
+.
+sr:ThreeLinesOfDefence
+    skos:broadMatch eba:AIGovernanceCommitteeEBA ;
+    skos:relatedMatch iso42001:Clause5Leadership ;
+    skos:relatedMatch nrmf:GOVERN ;
+.
+euai:ProviderObligation
+    skos:broadMatch msft:SensitiveUseReview ;
+    skos:relatedMatch iso42001:Clause5Leadership ;
+    skos:relatedMatch ca:AlgorithmicImpactAssessment ;
+.
+
+# ════════════════════════════════════════════════════════════════════
+# DIMENSION: SAFETY
+# ════════════════════════════════════════════════════════════════════
+
+ai-crosswalk:Safety a skos:Collection ;
+    skos:prefLabel "Safety"@en ;
+    skos:member ai:Safety ;
+    skos:member euai:UnacceptableRiskTier ;
+    skos:member euai:HighRiskAISystem ;
+    skos:member n1001:Safety ;
+    skos:member nrmf:TrustworthinessCharacteristic ;
+    skos:member un:SafetySecurityUNESCO ;
+    skos:member oecd:RobustnessSecuritySafety ;
+    skos:member cn:SafeSecurity ;
+    skos:member ukais:FrontierModelEvaluation ;
+    skos:member ukais:DangerousCapabilityEvaluation ;
+    skos:member msft:ReliabilitySafetyMSFT ;
+    skos:member pai:SafeAndTrustworthyAI ;
+    skos:member fda:ClinicalSafetyONC ;
+    skos:member onc:ClinicalSafetyONC ;
+    skos:member iso24028:TrustworthinessProperty ;
+    skos:member eo:SafetyStandards ;
+.
+
+ukais:FrontierModelEvaluation
+    skos:relatedMatch eo:SafetyStandards ;
+    skos:relatedMatch euai:HighRiskAISystem ;
+    skos:relatedMatch n1001:Safety ;
+.
+fda:ClinicalSafetyONC
+    skos:exactMatch onc:ClinicalSafetyONC ;
+    skos:broadMatch pai:SafeAndTrustworthyAI ;
+    skos:relatedMatch msft:ReliabilitySafetyMSFT ;
+.
+
+# ════════════════════════════════════════════════════════════════════
+# DIMENSION: SECURITY
+# ════════════════════════════════════════════════════════════════════
+
+ai-crosswalk:Security a skos:Collection ;
+    skos:prefLabel "Security"@en ;
+    skos:member ai:Security ;
+    skos:member euai:CybersecurityRequirements ;
+    skos:member iso23894:SecurityVulnerability ;
+    skos:member iso24028:AdversarialExampleThreat ;
+    skos:member eo:Cybersecurity ;
+    skos:member msft:PrivacySecurityMSFT ;
+    skos:member saif:ExpandSecureFoundation ;
+    skos:member saif:SupplyChainIntegrity ;
+    skos:member saif:RedTeamSAIF ;
+    skos:member atlas:ImpactATLAS ;
+    skos:member owasp:LLM01_PromptInjection ;
+    skos:member owasp:LLM05_SupplyChainVulnerabilities ;
+    skos:member eba:OperationalResilienceEBA ;
+    skos:member cn:SafeSecurity ;
+.
+
+saif:ExpandSecureFoundation
+    skos:broadMatch euai:CybersecurityRequirements ;
+    skos:relatedMatch msft:PrivacySecurityMSFT ;
+    skos:relatedMatch eba:OperationalResilienceEBA ;
+.
+atlas:DataPoisoningATLAS
+    skos:exactMatch owasp:LLM03_TrainingDataPoisoning ;
+    skos:exactMatch iso24028:DataPoisoningThreat ;
+.
+atlas:AdversarialExampleATLAS
+    skos:exactMatch iso24028:AdversarialExampleThreat ;
+.
+atlas:ModelInversionATLAS
+    skos:exactMatch iso24028:ModelInversionThreat ;
+    skos:exactMatch owasp:LLM06_SensitiveInfoDisclosure ;
+.
+atlas:MembershipInferenceATLAS
+    skos:exactMatch iso24028:MembershipInferenceThreat ;
+.
+atlas:PromptInjectionATLAS
+    skos:exactMatch owasp:LLM01_PromptInjection ;
+.
+atlas:ModelExtractionATLAS
+    skos:exactMatch owasp:LLM10_ModelTheft ;
+.
+owasp:LLM08_ExcessiveAgency
+    skos:relatedMatch saif:ContextualisedRiskAssessmentSAIF ;
+    skos:broadMatch euai:HighRiskAISystem ;
+.
+
+# ════════════════════════════════════════════════════════════════════
+# DIMENSION: PRIVACY
+# ════════════════════════════════════════════════════════════════════
+
+ai-crosswalk:Privacy a skos:Collection ;
+    skos:prefLabel "Privacy"@en ;
+    skos:member ai:Privacy ;
+    skos:member gdprai:DataProtectionByDesign ;
+    skos:member gdprai:DataQualityPrinciple ;
+    skos:member iso42001:PrivacyRequirements ;
+    skos:member un:RightToPrivacyUNESCO ;
+    skos:member cn:RespectToPrivacy ;
+    skos:member eo:Privacy ;
+    skos:member msft:PrivacySecurityMSFT ;
+    skos:member pai:RespectPrivacyPAI ;
+    skos:member ca:DataGovernanceCA ;
+    skos:member sg:MinimiseDataUsed ;
+    skos:member owasp:LLM06_SensitiveInfoDisclosure ;
+    skos:member atlas:ModelInversionATLAS ;
+    skos:member atlas:MembershipInferenceATLAS ;
+    skos:member atlas:Collection ;
+.
+
+gdprai:DataProtectionByDesign
+    skos:exactMatch iso42001:PrivacyRequirements ;
+    skos:broadMatch sg:MinimiseDataUsed ;
+    skos:broadMatch ca:DataGovernanceCA ;
+    skos:relatedMatch msft:PrivacySecurityMSFT ;
+.
+cn:RespectToPrivacy
+    skos:exactMatch un:RightToPrivacyUNESCO ;
+    skos:exactMatch pai:RespectPrivacyPAI ;
+.
+
+# ════════════════════════════════════════════════════════════════════
+# DIMENSION: ROBUSTNESS / RELIABILITY
+# ════════════════════════════════════════════════════════════════════
+
+ai-crosswalk:Robustness a skos:Collection ;
+    skos:prefLabel "Robustness and Reliability"@en ;
+    skos:member ai:Robustness ;
+    skos:member ai:Reliability ;
+    skos:member iso24029:RobustnessProperty ;
+    skos:member iso24028:TrustworthinessProperty ;
+    skos:member iso25059:Correctness ;
+    skos:member n1001:Robustness ;
+    skos:member nrmf:MEASURE ;
+    skos:member oecd:RobustnessSecuritySafety ;
+    skos:member sr:ModelValidation ;
+    skos:member sr:OngoingMonitoringSR ;
+    skos:member eba:ModelValidationEBA ;
+    skos:member fda:RealWorldPerformanceMonitoring ;
+    skos:member fda:GoodMachineLearningPractice ;
+    skos:member msft:ReliabilitySafetyMSFT ;
+    skos:member sg:ModelMonitoringDriftSG ;
+    skos:member onc:ReliabilityONC ;
+    skos:member onc:ContinuousPerformanceMonitoring ;
+    skos:member pai:SafeAndTrustworthyAI ;
+.
+
+sr:ModelValidation
+    skos:exactMatch eba:ModelValidationEBA ;
+    skos:broadMatch ca:PeerReviewRequirement ;
+    skos:relatedMatch iso24029:FormalVerificationMethod ;
+.
+fda:RealWorldPerformanceMonitoring
+    skos:exactMatch onc:ContinuousPerformanceMonitoring ;
+    skos:broadMatch sg:ModelMonitoringDriftSG ;
+    skos:broadMatch sr:OngoingMonitoringSR ;
+.
+
+# ════════════════════════════════════════════════════════════════════
+# DIMENSION: HUMAN OVERSIGHT
+# ════════════════════════════════════════════════════════════════════
+
+ai-crosswalk:HumanOversight a skos:Collection ;
+    skos:prefLabel "Human Oversight"@en ;
+    skos:member ai:HumanOversight ;
+    skos:member euai:HumanOversightMeasure ;
+    skos:member un:HumanOversightUNESCO ;
+    skos:member oecd:HumanCentredValues ;
+    skos:member sg:HumanInTheLoop ;
+    skos:member ca:HumanReviewOption ;
+    skos:member msft:AccountabilityMSFT ;
+    skos:member msft:SensitiveUseReview ;
+    skos:member ieee7000:T7004 ;
+    skos:member owasp:LLM08_ExcessiveAgency ;
+    skos:member owasp:LeastPrivilegeLLM ;
+    skos:member pai:ContestablityMechanism ;
+    skos:member gdprai:RightToHumanReview ;
+.
+
+euai:HumanOversightMeasure
+    skos:exactMatch sg:HumanInTheLoop ;
+    skos:exactMatch ca:HumanReviewOption ;
+    skos:exactMatch gdprai:RightToHumanReview ;
+    skos:exactMatch un:HumanOversightUNESCO ;
+    skos:broadMatch msft:SensitiveUseReview ;
+    skos:relatedMatch pai:ContestablityMechanism ;
+.
+
+# ════════════════════════════════════════════════════════════════════
+# DIMENSION: RISK ASSESSMENT
+# ════════════════════════════════════════════════════════════════════
+
+ai-crosswalk:RiskAssessment a skos:Collection ;
+    skos:prefLabel "Risk Assessment"@en ;
+    skos:member ai:RiskAssessment ;
+    skos:member ai:ImpactAssessment ;
+    skos:member iso42001:AIRiskAssessment ;
+    skos:member iso23894:RiskIdentification ;
+    skos:member iso23894:RiskAnalysis ;
+    skos:member iso23894:RiskEvaluation ;
+    skos:member euai:AIImpactAssessment ;
+    skos:member nrmf:MAP ;
+    skos:member msft:ImpactAssessmentMSFT ;
+    skos:member ca:AlgorithmicImpactAssessment ;
+    skos:member un:EthicsImpactAssessment ;
+    skos:member un:ReadinessAssessmentMethodology ;
+    skos:member fda:SaMDRiskClass ;
+    skos:member sr:ModelRisk ;
+    skos:member eba:ICTRiskFramework ;
+    skos:member saif:ContextualisedRiskAssessmentSAIF ;
+.
+
+iso42001:AIRiskAssessment
+    skos:exactMatch euai:AIImpactAssessment ;
+    skos:exactMatch msft:ImpactAssessmentMSFT ;
+    skos:broadMatch ca:AlgorithmicImpactAssessment ;
+    skos:broadMatch un:EthicsImpactAssessment ;
+    skos:relatedMatch sr:ModelRisk ;
+.
+nrmf:MAP
+    skos:broadMatch iso23894:RiskIdentification ;
+    skos:broadMatch iso23894:RiskAnalysis ;
+    skos:broadMatch iso23894:RiskEvaluation ;
+    skos:relatedMatch saif:ContextualisedRiskAssessmentSAIF ;
+.
+
+# ════════════════════════════════════════════════════════════════════
+# RISK LEVELS ALIGNMENT
+# ════════════════════════════════════════════════════════════════════
+
+ai-crosswalk:RiskLevels a skos:Collection ;
+    skos:prefLabel "Risk Level Tiers"@en ;
+    skos:member ai:UnacceptableRisk ;
+    skos:member ai:HighRisk ;
+    skos:member ai:LimitedRisk ;
+    skos:member ai:MinimalRisk ;
+    skos:member euai:UnacceptableRiskTier ;
+    skos:member euai:HighRiskTier ;
+    skos:member euai:LimitedRiskTier ;
+    skos:member euai:MinimalRiskTier ;
+    skos:member ca:ImpactLevelIV ;
+    skos:member ca:ImpactLevelIII ;
+    skos:member ca:ImpactLevelII ;
+    skos:member ca:ImpactLevelI ;
+    skos:member fda:SaMDRiskClass ;
+.
+
+euai:UnacceptableRiskTier   skos:exactMatch ai:UnacceptableRisk ; skos:broadMatch ca:ImpactLevelIV .
+euai:HighRiskTier           skos:exactMatch ai:HighRisk ;         skos:broadMatch ca:ImpactLevelIII .
+euai:LimitedRiskTier        skos:exactMatch ai:LimitedRisk ;      skos:broadMatch ca:ImpactLevelII .
+euai:MinimalRiskTier        skos:exactMatch ai:MinimalRisk ;       skos:broadMatch ca:ImpactLevelI .
+
+# ════════════════════════════════════════════════════════════════════
+# LIFECYCLE ALIGNMENT
+# ════════════════════════════════════════════════════════════════════
+
+ai-crosswalk:Lifecycle a skos:Collection ;
+    skos:prefLabel "AI Lifecycle Stages"@en ;
+    skos:member ai:Design ;
+    skos:member ai:Development ;
+    skos:member ai:Validation ;
+    skos:member ai:Deployment ;
+    skos:member ai:Monitoring ;
+    skos:member ai:Decommission ;
+    skos:member iso42001:AISystemLifecycle ;
+    skos:member iso23894:RiskManagementProcess ;
+    skos:member nrmf:MANAGE ;
+    skos:member fda:PredeterminedChangeControlPlan ;
+    skos:member sr:ModelDevelopment ;
+    skos:member sr:ModelValidation ;
+    skos:member sr:OngoingMonitoringSR ;
+.
+
+# ════════════════════════════════════════════════════════════════════
+# CONFORMITY ASSESSMENT ALIGNMENT
+# ════════════════════════════════════════════════════════════════════
+
+ai-crosswalk:ConformityAssessment a skos:Collection ;
+    skos:prefLabel "Conformity Assessment"@en ;
+    skos:member ai:ConformityAssessment ;
+    skos:member euai:ConformityAssessment ;
+    skos:member iso42001:AIRiskAssessment ;
+    skos:member nrmf:MEASURE ;
+    skos:member sr:ModelValidation ;
+    skos:member eba:ModelValidationEBA ;
+    skos:member sg:AIVerify ;
+    skos:member saif:RedTeamSAIF ;
+    skos:member ca:PeerReviewRequirement ;
+    skos:member fda:GoodMachineLearningPractice ;
+    skos:member un:ReadinessAssessmentMethodology ;
+.
+
+euai:ConformityAssessment
+    skos:exactMatch ai:ConformityAssessment ;
+    skos:exactMatch sr:ModelValidation ;
+    skos:exactMatch eba:ModelValidationEBA ;
+    skos:broadMatch sg:AIVerify ;
+    skos:broadMatch saif:RedTeamSAIF ;
+    skos:relatedMatch ca:PeerReviewRequirement ;
+.
+
+# ════════════════════════════════════════════════════════════════════
+# GENERATIVE AI CLUSTER
+# ════════════════════════════════════════════════════════════════════
+
+ai-crosswalk:GenerativeAI a skos:Collection ;
+    skos:prefLabel "Generative AI Obligations"@en ;
+    skos:member euai:GPAIObligation ;
+    skos:member n1001:Hallucination ;
+    skos:member n1001:ContentProvenance ;
+    skos:member n1001:SyntheticContentDisclosure ;
+    skos:member eo:SyntheticContentWatermarking ;
+    skos:member cn:ContentLabellingGenAI ;
+    skos:member cn:SocialistCoreValues ;
+    skos:member cn:DeepSynthesisDisclosure ;
+    skos:member owasp:LLM01_PromptInjection ;
+    skos:member owasp:LLM07_InsecurePluginDesign ;
+    skos:member owasp:LLM08_ExcessiveAgency ;
+    skos:member owasp:LLM09_Overreliance ;
+    skos:member saif:MemoryPoisoningRAG ;
+    skos:member atlas:PromptInjectionATLAS ;
+.
+
+n1001:SyntheticContentDisclosure
+    skos:exactMatch cn:ContentLabellingGenAI ;
+    skos:exactMatch cn:DeepSynthesisDisclosure ;
+    skos:broadMatch eo:SyntheticContentWatermarking ;
+    skos:relatedMatch euai:GPAIObligation ;
+.
+n1001:Hallucination
+    skos:relatedMatch owasp:LLM09_Overreliance ;
+.
+
+# ════════════════════════════════════════════════════════════════════
+# DOCUMENTATION / MODEL CARDS
+# ════════════════════════════════════════════════════════════════════
+
+ai-crosswalk:Documentation a skos:Collection ;
+    skos:prefLabel "AI Documentation Norms"@en ;
+    skos:member msft:ModelCardsMSFT ;
+    skos:member msft:DataSheetsForDatasets ;
+    skos:member pai:ABOUTMLAnnotation ;
+    skos:member pai:DatasetDocumentation ;
+    skos:member sr:ModelDocumentation ;
+    skos:member iso42001:AISystemDocumentation ;
+    skos:member euai:TechnicalDocumentation ;
+    skos:member fda:GoodMachineLearningPractice ;
+.
+
+msft:ModelCardsMSFT
+    skos:exactMatch euai:TechnicalDocumentation ;
+    skos:broadMatch pai:ABOUTMLAnnotation ;
+    skos:relatedMatch sr:ModelDocumentation ;
+.
+msft:DataSheetsForDatasets
+    skos:exactMatch pai:DatasetDocumentation ;
+    skos:relatedMatch iso42001:AISystemDocumentation ;
+.

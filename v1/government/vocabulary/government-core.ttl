@@ -1,0 +1,148 @@
+@prefix gov: <https://iqns.org/v0/government#> .
+@prefix ai:  <https://iqns.org/v0/ai#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:<http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:<http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# ── Ontology ─────────────────────────────────────────────────────────────────
+
+gov:Ontology
+    a owl:Ontology ;
+    dct:title       "GovtGraph: Government and Public Sector Governance Core Vocabulary"@en ;
+    skos:definition "Abstract vocabulary for government and public sector frameworks — cybersecurity risk management, FedRAMP cloud authorisation, and public sector AI governance. Extends ai: with government-specific dimensions, lifecycle stages, and stakeholders."@en ;
+    owl:imports     <https://iqns.org/v0/ai#> ;
+    owl:versionInfo "0.1" ;
+.
+
+# ── Government-Specific Properties ───────────────────────────────────────────
+
+gov:hasAuthorizationLevel
+    a owl:ObjectProperty ;
+    skos:prefLabel  "has authorization level"@en ;
+    rdfs:range  gov:AuthorizationLevel ;
+.
+gov:requiresFedRAMPAuth
+    a owl:DatatypeProperty ;
+    skos:prefLabel  "requires FedRAMP authorization"@en ;
+    rdfs:range  xsd:boolean ;
+.
+gov:appliesTo
+    a owl:ObjectProperty ;
+    skos:prefLabel  "applies to sector"@en ;
+    rdfs:range  gov:Sector ;
+.
+
+# ── Authorization Levels (FedRAMP impact) ─────────────────────────────────────
+
+gov:LowImpact
+    a gov:AuthorizationLevel ; a skos:Concept ;
+    skos:prefLabel  "FedRAMP Low Impact"@en ;
+    skos:definition "Limited adverse effect on government operations, assets, or individuals — public-facing informational systems."@en ;
+.
+gov:ModerateImpact
+    a gov:AuthorizationLevel ; a skos:Concept ;
+    skos:prefLabel  "FedRAMP Moderate Impact"@en ;
+    skos:definition "Serious adverse effect on government operations, assets, or individuals — most federal government systems handling non-public data."@en ;
+.
+gov:HighImpact
+    a gov:AuthorizationLevel ; a skos:Concept ;
+    skos:prefLabel  "FedRAMP High Impact"@en ;
+    skos:definition "Severe or catastrophic adverse effect — law enforcement, emergency systems, financial systems, health IT. AI in high-stakes government decisions typically requires High baseline."@en ;
+.
+
+# ── Government Sectors ────────────────────────────────────────────────────────
+
+gov:FederalGovernment
+    a gov:Sector ; a skos:Concept ;
+    skos:prefLabel  "Federal Government"@en ;
+.
+gov:StateLocalGovernment
+    a gov:Sector ; a skos:Concept ;
+    skos:prefLabel  "State and Local Government"@en ;
+.
+gov:CriticalInfrastructure
+    a gov:Sector ; a skos:Concept ;
+    skos:prefLabel  "Critical Infrastructure"@en ;
+.
+
+# ── Government Dimensions ─────────────────────────────────────────────────────
+
+gov:CyberResilience
+    a ai:Dimension ; a skos:Concept ;
+    skos:prefLabel  "Cyber Resilience"@en ;
+    skos:definition "Ability to anticipate, withstand, recover from, and adapt to cyber threats — broader than security, encompassing continuity and adaptation across the NIST CSF 2.0 six-function model."@en ;
+    skos:broadMatch ai:Security ;
+    skos:relatedMatch ai:Robustness ;
+.
+gov:PublicSectorAccountability
+    a ai:Dimension ; a skos:Concept ;
+    skos:prefLabel  "Public Sector Accountability"@en ;
+    skos:definition "Obligations of government bodies to explain and justify decisions — particularly automated or AI-assisted decisions affecting citizens, including administrative due process and right to challenge."@en ;
+    skos:broadMatch ai:Accountability ;
+    skos:relatedMatch ai:Transparency ;
+.
+gov:SovereigntyAndData
+    a ai:Dimension ; a skos:Concept ;
+    skos:prefLabel  "Data Sovereignty"@en ;
+    skos:definition "Government requirement to maintain control over data — including jurisdictional constraints on data residency, cross-border transfer restrictions, and control over AI model training data."@en ;
+    skos:relatedMatch ai:Privacy ;
+.
+
+# ── CSF Lifecycle (maps to NIST CSF 2.0 Functions) ───────────────────────────
+
+gov:Govern
+    a ai:Lifecycle ; a skos:Concept ;
+    skos:prefLabel  "Govern (CSF 2.0 Function)"@en ;
+    skos:definition "Establish and monitor cybersecurity risk management strategy, expectations, and policy — the new governance function added in NIST CSF 2.0."@en ;
+.
+gov:Identify
+    a ai:Lifecycle ; a skos:Concept ;
+    skos:prefLabel  "Identify (CSF Function)"@en ;
+    skos:definition "Understand the organisation's cybersecurity risks — asset management, risk assessment, improvement planning."@en ;
+.
+gov:Protect
+    a ai:Lifecycle ; a skos:Concept ;
+    skos:prefLabel  "Protect (CSF Function)"@en ;
+    skos:definition "Implement safeguards to manage cybersecurity risks — access control, awareness training, data security, platform security, technology infrastructure resilience."@en ;
+.
+gov:Detect
+    a ai:Lifecycle ; a skos:Concept ;
+    skos:prefLabel  "Detect (CSF Function)"@en ;
+    skos:definition "Define and implement activities to identify cybersecurity attacks and compromises — continuous monitoring and adverse event detection."@en ;
+.
+gov:Respond
+    a ai:Lifecycle ; a skos:Concept ;
+    skos:prefLabel  "Respond (CSF Function)"@en ;
+    skos:definition "Take action regarding a detected cybersecurity incident — incident management, analysis, mitigation, reporting, communication."@en ;
+.
+gov:Recover
+    a ai:Lifecycle ; a skos:Concept ;
+    skos:prefLabel  "Recover (CSF Function)"@en ;
+    skos:definition "Restore operations and services affected by a cybersecurity incident — recovery planning, improvements, and communication."@en ;
+.
+
+# ── Stakeholders ──────────────────────────────────────────────────────────────
+
+gov:GovernmentAgency
+    a ai:Stakeholder ; a skos:Concept ;
+    skos:prefLabel  "Federal Agency / Authorizing Official"@en ;
+    skos:definition "Federal government body responsible for authorising cloud services and AI systems under FedRAMP — the Authorizing Official (AO) accepts residual risk."@en ;
+.
+gov:CISA
+    a ai:Stakeholder ; a skos:Concept ;
+    skos:prefLabel  "CISA — Cybersecurity and Infrastructure Security Agency"@en ;
+    skos:definition "US federal agency responsible for national cyber and infrastructure security — issues Binding Operational Directives (BODs) and Emergency Directives applicable to federal civilian agencies."@en ;
+.
+gov:ThirdPartyAssessor
+    a ai:Stakeholder ; a skos:Concept ;
+    skos:prefLabel  "3PAO — Third-Party Assessment Organization"@en ;
+    skos:definition "Accredited organisation that assesses cloud service providers against FedRAMP controls — required for initial authorisation and annual assessments."@en ;
+.
+gov:CloudServiceProvider
+    a ai:Stakeholder ; a skos:Concept ;
+    skos:prefLabel  "Cloud Service Provider (CSP)"@en ;
+    skos:definition "Provider of cloud computing services seeking or maintaining FedRAMP authorisation — must implement the applicable NIST SP 800-53 control baseline and maintain a continuous monitoring programme."@en ;
+.

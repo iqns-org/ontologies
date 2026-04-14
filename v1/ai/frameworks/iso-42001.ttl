@@ -1,0 +1,197 @@
+@prefix iso-42001: <https://iqns.org/v0/iso-42001#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# ── Ontology ─────────────────────────────────────────────────────────────────
+
+iso-42001:Ontology
+    a owl:Ontology ;
+    dct:title   "ISO/IEC 42001:2023 — AI Management System"@en ;
+    prov:wasDerivedFrom  <https://www.iso.org/standard/81230.html> ;
+    owl:versionInfo "2023" ;
+.
+
+# ── Scheme ───────────────────────────────────────────────────────────────────
+
+iso-42001:Scheme
+    a skos:ConceptScheme ;
+    skos:prefLabel  "ISO/IEC 42001:2023"@en ;
+    skos:definition "AIMS: AI Management System standard — clauses and Annex A controls."@en ;
+    prov:wasDerivedFrom      <https://www.iso.org/standard/81230.html> ;
+.
+
+# ── Framework identity ────────────────────────────────────────────────────────
+
+iso-42001:ISO42001
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "ISO/IEC 42001:2023"@en ;
+    skos:definition "International standard specifying requirements for an AI management system (AIMS)."@en ;
+    skos:inScheme   iso-42001:Scheme ;
+    dct:publisher   "ISO/IEC JTC 1/SC 42"@en ;
+    dct:issued      "2023"^^xsd:gYear ;
+.
+
+# ── Clause structure ──────────────────────────────────────────────────────────
+
+iso-42001:Context
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel    "Context of the Organisation"@en ;
+    skos:definition   "Understand internal/external issues, interested parties, and AIMS scope (clause 4)."@en ;
+    skos:inScheme     iso-42001:Scheme ;
+    prov:wasDerivedFrom        "ISO/IEC 42001:2023 §4" ;
+    ai:appliesToLifecycle ai:Design ;
+    skos:broadMatch   ai:Accountability ;
+.
+iso-42001:Leadership
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel    "Leadership"@en ;
+    skos:definition   "Top management commitment, AI policy, and role assignments (clause 5)."@en ;
+    skos:inScheme     iso-42001:Scheme ;
+    prov:wasDerivedFrom        "ISO/IEC 42001:2023 §5" ;
+    ai:appliesToLifecycle ai:Design ;
+    skos:broadMatch   ai:Accountability ;
+.
+iso-42001:AIPolicy
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel    "AI Policy"@en ;
+    skos:definition   "Organisation-wide statement of intent and direction for responsible AI."@en ;
+    skos:inScheme     iso-42001:Scheme ;
+    prov:wasDerivedFrom        "ISO/IEC 42001:2023 §5.2" ;
+    skos:broadMatch   ai:Accountability ;
+    rdfs:subClassOf   iso-42001:Leadership ;
+.
+iso-42001:Planning
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel    "Planning"@en ;
+    skos:definition   "AI risk and opportunity treatment, AI objectives, and plans to achieve them (clause 6)."@en ;
+    skos:inScheme     iso-42001:Scheme ;
+    prov:wasDerivedFrom        "ISO/IEC 42001:2023 §6" ;
+    ai:appliesToLifecycle ai:Design ;
+.
+iso-42001:AIRiskAssessment
+    a ai:Requirement ; a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel    "AI Risk Assessment"@en ;
+    skos:definition   "Identify and evaluate risks arising from AI development and use."@en ;
+    skos:inScheme     iso-42001:Scheme ;
+    prov:wasDerivedFrom        "ISO/IEC 42001:2023 §6.1" ;
+    skos:exactMatch   ai:RiskAssessment ;
+    rdfs:subClassOf   iso-42001:Planning ;
+.
+iso-42001:AIImpactAssessment
+    a ai:Requirement ; a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel    "AI Impact Assessment"@en ;
+    skos:definition   "Evaluate societal, ethical, and fundamental rights impacts of AI systems."@en ;
+    skos:inScheme     iso-42001:Scheme ;
+    prov:wasDerivedFrom        "ISO/IEC 42001:2023 §6.1.2" ;
+    skos:exactMatch   ai:ImpactAssessment ;
+    rdfs:subClassOf   iso-42001:Planning ;
+.
+iso-42001:AIObjectives
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel    "AI Objectives"@en ;
+    skos:definition   "Measurable goals for responsible AI aligned with the AI policy."@en ;
+    skos:inScheme     iso-42001:Scheme ;
+    prov:wasDerivedFrom        "ISO/IEC 42001:2023 §6.2" ;
+    rdfs:subClassOf   iso-42001:Planning ;
+.
+iso-42001:Support
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel    "Support"@en ;
+    skos:definition   "Resources, competence, awareness, communication, and documentation (clause 7)."@en ;
+    skos:inScheme     iso-42001:Scheme ;
+    prov:wasDerivedFrom        "ISO/IEC 42001:2023 §7" ;
+.
+iso-42001:Operation
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel    "Operation"@en ;
+    skos:definition   "Operational planning, control of AI development processes, and outsourcing (clause 8)."@en ;
+    skos:inScheme     iso-42001:Scheme ;
+    prov:wasDerivedFrom        "ISO/IEC 42001:2023 §8" ;
+    ai:appliesToLifecycle ai:Development ;
+    ai:appliesToLifecycle ai:Deployment ;
+.
+iso-42001:PerformanceEvaluation
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel    "Performance Evaluation"@en ;
+    skos:definition   "Monitoring, measurement, internal audit, and management review (clause 9)."@en ;
+    skos:inScheme     iso-42001:Scheme ;
+    prov:wasDerivedFrom        "ISO/IEC 42001:2023 §9" ;
+    ai:appliesToLifecycle ai:Monitoring ;
+.
+iso-42001:Improvement
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel    "Improvement"@en ;
+    skos:definition   "Continual improvement and nonconformity correction (clause 10)."@en ;
+    skos:inScheme     iso-42001:Scheme ;
+    prov:wasDerivedFrom        "ISO/IEC 42001:2023 §10" ;
+    ai:appliesToLifecycle ai:Monitoring ;
+.
+
+# ── Annex A Controls ──────────────────────────────────────────────────────────
+
+iso-42001:A5AIPolicy
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel    "A5 — Policies for AI"@en ;
+    skos:definition   "Define and communicate AI-specific policies covering responsible AI use."@en ;
+    skos:inScheme     iso-42001:Scheme ;
+    prov:wasDerivedFrom        "ISO/IEC 42001:2023 Annex A §A.5" ;
+    skos:broadMatch   ai:Accountability ;
+.
+iso-42001:A6InternalOrganisation
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel    "A6 — Internal AI Organisation"@en ;
+    skos:definition   "Assign AI governance roles and establish cross-functional AI oversight."@en ;
+    skos:inScheme     iso-42001:Scheme ;
+    prov:wasDerivedFrom        "ISO/IEC 42001:2023 Annex A §A.6" ;
+    skos:broadMatch   ai:Accountability ;
+.
+iso-42001:A7ResourcesForAI
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel    "A7 — Resources for AI Systems"@en ;
+    skos:definition   "Manage training data, compute, tooling, and human resources for AI."@en ;
+    skos:inScheme     iso-42001:Scheme ;
+    prov:wasDerivedFrom        "ISO/IEC 42001:2023 Annex A §A.7" ;
+    skos:broadMatch   ai:Reliability ;
+.
+iso-42001:A8AILifecycle
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel    "A8 — AI System Lifecycle"@en ;
+    skos:definition   "Apply governance controls across design, development, validation, deployment, and decommission."@en ;
+    skos:inScheme     iso-42001:Scheme ;
+    prov:wasDerivedFrom        "ISO/IEC 42001:2023 Annex A §A.8" ;
+    skos:broadMatch   ai:Accountability ;
+.
+iso-42001:A9SupplyChain
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel    "A9 — AI Supply Chain"@en ;
+    skos:definition   "Manage third-party components, data providers, and model vendors."@en ;
+    skos:inScheme     iso-42001:Scheme ;
+    prov:wasDerivedFrom        "ISO/IEC 42001:2023 Annex A §A.9" ;
+    skos:broadMatch   ai:Security ;
+.
+iso-42001:A10Documentation
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel    "A10 — AI Documentation"@en ;
+    skos:definition   "Maintain records sufficient to demonstrate conformity and traceability."@en ;
+    skos:inScheme     iso-42001:Scheme ;
+    prov:wasDerivedFrom        "ISO/IEC 42001:2023 Annex A §A.10" ;
+    skos:broadMatch   ai:Transparency ;
+.
+
+# ── Stakeholder obligations ───────────────────────────────────────────────────
+
+iso-42001:DeveloperObligation
+    a ai:Obligation ; a skos:Concept ;
+    skos:prefLabel    "Developer Obligation"@en ;
+    skos:definition   "Establish and operate an AIMS; conduct AI impact and risk assessments."@en ;
+    skos:inScheme     iso-42001:Scheme ;
+    prov:wasDerivedFrom        "ISO/IEC 42001:2023 §4–8" ;
+    ai:implementedBy  iso-42001:AIRiskAssessment ;
+    ai:implementedBy  iso-42001:AIImpactAssessment ;
+.

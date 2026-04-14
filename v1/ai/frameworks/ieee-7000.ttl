@@ -1,0 +1,140 @@
+@prefix ieee-7000: <https://iqns.org/v0/ieee-7000#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+ieee-7000:Ontology a owl:Ontology ;
+    dct:title  "IEEE 7000-Series — Ethically Aligned Design"@en ;
+    prov:wasDerivedFrom <https://standards.ieee.org/industry-connections/ec/autonomous-systems/> .
+
+ieee-7000:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "IEEE 7000-Series"@en ;
+    skos:definition "Suite of IEEE standards for ethical system and software design."@en .
+
+ieee-7000:IEEE7000Series
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "IEEE 7000-Series"@en ;
+    skos:definition "Family of IEEE standards embedding ethics into system design, covering transparency, data privacy, algorithmic bias, and autonomous system harm."@en ;
+    skos:inScheme   ieee-7000:Scheme ;
+    dct:publisher   "IEEE Standards Association"@en ;
+.
+
+# ── IEEE 7000:2021 — Model Process for Addressing Ethical Concerns ─────────────
+
+ieee-7000:IEEE7000
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "IEEE 7000:2021"@en ;
+    skos:definition "Model process for addressing ethical concerns during system design."@en ;
+    skos:inScheme   ieee-7000:Scheme ; prov:wasDerivedFrom "https://standards.ieee.org/ieee/7000/6781/" ;
+    skos:broader    ieee-7000:IEEE7000Series ;
+.
+ieee-7000:ValueElicitation
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Value Elicitation"@en ;
+    skos:definition "Identify and document stakeholder values relevant to the system design context."@en ;
+    skos:inScheme   ieee-7000:Scheme ; prov:wasDerivedFrom "IEEE 7000:2021 §6" ;
+    skos:broadMatch ai:HumanOversight ;
+    ai:appliesToLifecycle ai:Design ;
+.
+ieee-7000:EthicalRiskAnalysis
+    a ai:Control ; a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "Ethical Risk Analysis"@en ;
+    skos:definition "Analyse design alternatives for potential ethical harms or value conflicts."@en ;
+    skos:inScheme   ieee-7000:Scheme ; prov:wasDerivedFrom "IEEE 7000:2021 §7" ;
+    skos:broadMatch ai:ImpactAssessment ;
+    ai:appliesToLifecycle ai:Design ;
+.
+ieee-7000:ValueVerification
+    a ai:Control ; a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "Value Verification"@en ;
+    skos:definition "Verify that the implemented system embodies intended values through testing and review."@en ;
+    skos:inScheme   ieee-7000:Scheme ; prov:wasDerivedFrom "IEEE 7000:2021 §8" ;
+    skos:broadMatch ai:ConformityAssessment ;
+    ai:appliesToLifecycle ai:Validation ;
+.
+
+# ── IEEE 7001:2021 — Transparency ─────────────────────────────────────────────
+
+ieee-7000:IEEE7001
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "IEEE 7001:2021"@en ;
+    skos:definition "Standard for transparency of autonomous systems — measurability and testability requirements."@en ;
+    skos:inScheme   ieee-7000:Scheme ; prov:wasDerivedFrom "https://standards.ieee.org/ieee/7001/6790/" ;
+    skos:relatedMatch ai:Transparency ;
+    skos:broader    ieee-7000:IEEE7000Series ;
+.
+ieee-7000:TransparencyLevels
+    a ai:Requirement ; a skos:Concept ;
+    skos:prefLabel  "Transparency Levels"@en ;
+    skos:definition "Five-level hierarchy of transparency from stakeholders to regulators, each with measurable conformance criteria."@en ;
+    skos:inScheme   ieee-7000:Scheme ; prov:wasDerivedFrom "IEEE 7001:2021 §5" ;
+    skos:broadMatch ai:Transparency ;
+.
+
+# ── IEEE 7002:2022 — Data Privacy Process ────────────────────────────────────
+
+ieee-7000:IEEE7002
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "IEEE 7002:2022"@en ;
+    skos:definition "Standard for data privacy processes for software engineering and AI systems."@en ;
+    skos:inScheme   ieee-7000:Scheme ; prov:wasDerivedFrom "https://standards.ieee.org/ieee/7002/7026/" ;
+    skos:broader    ieee-7000:IEEE7000Series ;
+.
+ieee-7000:PrivacyByDesign7002
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Privacy by Design"@en ;
+    skos:definition "Embed privacy requirements in system architecture from the outset."@en ;
+    skos:inScheme   ieee-7000:Scheme ; prov:wasDerivedFrom "IEEE 7002:2022 §6" ;
+    skos:exactMatch ai:Privacy ;
+    ai:appliesToLifecycle ai:Design ;
+.
+
+# ── IEEE 7003:2023 — Algorithmic Bias ────────────────────────────────────────
+
+ieee-7000:IEEE7003
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "IEEE 7003:2023"@en ;
+    skos:definition "Standard for algorithmic bias considerations in autonomous and intelligent systems."@en ;
+    skos:inScheme   ieee-7000:Scheme ;
+    skos:broader    ieee-7000:IEEE7000Series ;
+.
+ieee-7000:BiasMitigation7003
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Bias Mitigation"@en ;
+    skos:definition "Apply documented process to identify, measure, and reduce algorithmic bias."@en ;
+    skos:inScheme   ieee-7000:Scheme ; prov:wasDerivedFrom "IEEE 7003:2023 §6" ;
+    skos:exactMatch ai:Fairness ;
+.
+
+# ── IEEE 7004:2023 — Child and Student Data Governance ───────────────────────
+
+ieee-7000:IEEE7004
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "IEEE 7004:2023"@en ;
+    skos:definition "Standard for ethical considerations of children's data in AI systems."@en ;
+    skos:inScheme   ieee-7000:Scheme ;
+    skos:broader    ieee-7000:IEEE7000Series ;
+    ai:appliesToDomain ai:Education ;
+.
+
+# ── IEEE 7010:2020 — Well-Being Metrics ──────────────────────────────────────
+
+ieee-7000:IEEE7010
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "IEEE 7010:2020"@en ;
+    skos:definition "Recommended practice for assessing the impact of autonomous and intelligent systems on human well-being."@en ;
+    skos:inScheme   ieee-7000:Scheme ;
+    skos:broader    ieee-7000:IEEE7000Series ;
+.
+ieee-7000:WellBeingMetrics
+    a ai:Control ; a ai:Assessment ; a skos:Concept ;
+    skos:prefLabel  "Well-Being Metrics"@en ;
+    skos:definition "Measure positive and negative system impacts against multi-dimensional human well-being indicators."@en ;
+    skos:inScheme   ieee-7000:Scheme ; prov:wasDerivedFrom "IEEE 7010:2020 §6" ;
+    skos:broadMatch ai:ImpactAssessment ;
+.

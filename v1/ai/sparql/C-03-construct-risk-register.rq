@@ -1,0 +1,35 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# C-03  CONSTRUCT — Risk Register Graph
+# Purpose : Build a self-contained RDF risk register graph from all Risk
+#           instances, linking each to its category, level, and framework.
+#           Export and import into any GRC tool that accepts RDF/JSON-LD.
+# ─────────────────────────────────────────────────────────────────────────────
+
+PREFIX ai:   <https://iqns.org/v0/ai#>
+PREFIX dct:  <http://purl.org/dc/terms/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+CONSTRUCT {
+    ?risk  a ai:Risk ;
+           skos:prefLabel        ?riskLabel ;
+           skos:definition       ?riskDef ;
+           ai:hasRiskLevel       ?level ;
+           ai:hasRiskCategory    ?category ;
+           dct:source            ?citation ;
+           skos:inScheme         ?scheme .
+
+    ?level     skos:prefLabel ?levelLabel .
+    ?category  skos:prefLabel ?categoryLabel .
+}
+WHERE {
+    ?risk  a ai:Risk ;
+           skos:prefLabel ?riskLabel .
+
+    OPTIONAL { ?risk skos:definition    ?riskDef     . }
+    OPTIONAL { ?risk ai:hasRiskLevel    ?level       .
+               ?level skos:prefLabel    ?levelLabel  .   }
+    OPTIONAL { ?risk ai:hasRiskCategory ?category    .
+               ?category skos:prefLabel ?categoryLabel . }
+    OPTIONAL { ?risk dct:source         ?citation    . }
+    OPTIONAL { ?risk skos:inScheme      ?scheme      . }
+}

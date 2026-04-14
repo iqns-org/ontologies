@@ -1,0 +1,148 @@
+@prefix nist-ai-100-1: <https://iqns.org/v0/nist-ai-100-1#> .
+@prefix ai:   <https://iqns.org/v0/ai#> .
+@prefix dct:  <http://purl.org/dc/terms/> .
+@prefix prov:  <http://www.w3.org/ns/prov#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+nist-ai-100-1:Ontology a owl:Ontology ;
+    dct:title  "NIST AI 100-1 — Trustworthy & Responsible AI"@en ;
+    prov:wasDerivedFrom <https://doi.org/10.6028/NIST.AI.100-1> .
+
+nist-ai-100-1:Scheme a skos:ConceptScheme ;
+    skos:prefLabel  "NIST AI 100-1"@en ;
+    skos:definition "NIST report on trustworthy and responsible AI — characteristics, challenges, and approaches."@en .
+
+nist-ai-100-1:NISTAI1001
+    a ai:Framework ; a skos:Concept ;
+    skos:prefLabel  "NIST AI 100-1"@en ;
+    skos:definition "NIST guidance document defining trustworthiness characteristics for AI systems and their tradeoffs."@en ;
+    skos:inScheme   nist-ai-100-1:Scheme ;
+    dct:publisher   "NIST"@en ;
+    dct:issued      "2023"^^xsd:gYear ;
+.
+
+# ── Trustworthiness Characteristics ─────────────────────────────────────────
+
+nist-ai-100-1:Accuracy1001
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Accuracy"@en ;
+    skos:definition "The correctness of AI outputs — classification accuracy, prediction error, F1, etc."@en ;
+    skos:inScheme   nist-ai-100-1:Scheme ; prov:wasDerivedFrom "NIST AI 100-1 §2.1" ;
+    skos:broadMatch ai:Reliability ;
+.
+nist-ai-100-1:Calibration
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Calibration"@en ;
+    skos:definition "Predicted probabilities match empirical frequencies; uncertainty estimates are trustworthy."@en ;
+    skos:inScheme   nist-ai-100-1:Scheme ; prov:wasDerivedFrom "NIST AI 100-1 §2.1" ;
+    skos:broadMatch ai:Reliability ;
+.
+nist-ai-100-1:Interpretability1001
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Interpretability"@en ;
+    skos:definition "Model mechanics can be understood — feature attribution, mechanistic explanations."@en ;
+    skos:inScheme   nist-ai-100-1:Scheme ; prov:wasDerivedFrom "NIST AI 100-1 §2.2" ;
+    skos:exactMatch ai:Explainability ;
+.
+nist-ai-100-1:Explainability1001
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Explainability"@en ;
+    skos:definition "Post-hoc explanations of model outputs comprehensible to non-experts."@en ;
+    skos:inScheme   nist-ai-100-1:Scheme ; prov:wasDerivedFrom "NIST AI 100-1 §2.2" ;
+    skos:exactMatch ai:Explainability ;
+.
+nist-ai-100-1:Bias1001
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "Algorithmic Bias"@en ;
+    skos:definition "Systematic deviation in AI outputs that disadvantages individuals or groups."@en ;
+    skos:inScheme   nist-ai-100-1:Scheme ; prov:wasDerivedFrom "NIST AI 100-1 §2.3" ;
+    ai:hasRiskCategory ai:DiscriminationHarm ;
+    skos:broadMatch ai:Fairness ;
+.
+nist-ai-100-1:Transparency1001
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Transparency"@en ;
+    skos:definition "Information about AI system design, data, and decision-making is available where appropriate."@en ;
+    skos:inScheme   nist-ai-100-1:Scheme ; prov:wasDerivedFrom "NIST AI 100-1 §2.5" ;
+    skos:exactMatch ai:Transparency ;
+.
+nist-ai-100-1:Safety1001
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Safety"@en ;
+    skos:definition "AI systems avoid unsafe conditions through design, testing, and monitoring."@en ;
+    skos:inScheme   nist-ai-100-1:Scheme ; prov:wasDerivedFrom "NIST AI 100-1 §2.6" ;
+    skos:exactMatch ai:Safety ;
+.
+nist-ai-100-1:Robustness1001
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Robustness"@en ;
+    skos:definition "Performance is maintained under error conditions, adversarial inputs, and data drift."@en ;
+    skos:inScheme   nist-ai-100-1:Scheme ; prov:wasDerivedFrom "NIST AI 100-1 §2.6" ;
+    skos:exactMatch ai:Robustness ;
+.
+nist-ai-100-1:Privacy1001
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Privacy"@en ;
+    skos:definition "AI systems protect personal data through minimisation, access controls, and privacy-enhancing techniques."@en ;
+    skos:inScheme   nist-ai-100-1:Scheme ; prov:wasDerivedFrom "NIST AI 100-1 §2.7" ;
+    skos:exactMatch ai:Privacy ;
+.
+nist-ai-100-1:Accountability1001
+    a ai:Principle ; a skos:Concept ;
+    skos:prefLabel  "Accountability"@en ;
+    skos:definition "Actors bear responsibility for AI outcomes through governance, audit, and redress mechanisms."@en ;
+    skos:inScheme   nist-ai-100-1:Scheme ; prov:wasDerivedFrom "NIST AI 100-1 §2.8" ;
+    skos:exactMatch ai:Accountability ;
+.
+
+# ── Tradeoff Awareness ────────────────────────────────────────────────────────
+
+nist-ai-100-1:PrivacyAccuracyTradeoff
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "Privacy–Accuracy Tradeoff"@en ;
+    skos:definition "Privacy-preserving techniques (differential privacy, federated learning) may reduce model accuracy."@en ;
+    skos:inScheme   nist-ai-100-1:Scheme ; prov:wasDerivedFrom "NIST AI 100-1 §4" ;
+    ai:hasRiskCategory ai:PrivacyHarm ;
+.
+nist-ai-100-1:FairnessAccuracyTradeoff
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "Fairness–Accuracy Tradeoff"@en ;
+    skos:definition "Constraints enforcing group fairness may reduce aggregate predictive accuracy."@en ;
+    skos:inScheme   nist-ai-100-1:Scheme ; prov:wasDerivedFrom "NIST AI 100-1 §4" ;
+    ai:hasRiskCategory ai:DiscriminationHarm ;
+.
+nist-ai-100-1:ExplainabilityPerformanceTradeoff
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "Explainability–Performance Tradeoff"@en ;
+    skos:definition "More interpretable model architectures may sacrifice predictive performance."@en ;
+    skos:inScheme   nist-ai-100-1:Scheme ; prov:wasDerivedFrom "NIST AI 100-1 §4" ;
+.
+
+# ── Generative AI Considerations ──────────────────────────────────────────────
+
+nist-ai-100-1:HallucinnationRisk
+    a ai:Risk ; a skos:Concept ;
+    skos:prefLabel  "Hallucination"@en ;
+    skos:definition "Generative AI produces factually incorrect, fabricated, or internally inconsistent outputs."@en ;
+    skos:inScheme   nist-ai-100-1:Scheme ; prov:wasDerivedFrom "NIST AI 100-1 §5" ;
+    ai:hasRiskCategory ai:ReputationalHarm ;
+    ai:hasRiskCategory ai:PhysicalHarm ;
+.
+nist-ai-100-1:ContentProvenance
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Content Provenance"@en ;
+    skos:definition "Track and attest origin and authenticity of AI-generated content."@en ;
+    skos:inScheme   nist-ai-100-1:Scheme ; prov:wasDerivedFrom "NIST AI 100-1 §5" ;
+    ai:mappedToDimension ai:Transparency ;
+.
+nist-ai-100-1:SyntheticContentDisclosure
+    a ai:Control ; a skos:Concept ;
+    skos:prefLabel  "Synthetic Content Disclosure"@en ;
+    skos:definition "Label AI-generated text, images, audio, and video to prevent deception."@en ;
+    skos:inScheme   nist-ai-100-1:Scheme ; prov:wasDerivedFrom "NIST AI 100-1 §5" ;
+    ai:mappedToDimension ai:Transparency ;
+.
